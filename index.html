@@ -143,6 +143,27 @@
       gap:1.5rem;
       grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
     }
+    /* Scroll horizontal para tarjetas */
+.cards-scroll {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 1rem;
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
+}
+.cards-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+.cards-scroll::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.2);
+  border-radius: 4px;
+}
+.cards-scroll .card {
+  flex: 0 0 clamp(240px, 28vw, 300px);
+  scroll-snap-align: start;
+}
     .card{
       background:white;
       border-radius:var(--radius);
