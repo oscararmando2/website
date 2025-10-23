@@ -252,24 +252,38 @@
 
   .slide-image img {
     border-radius: var(--radius) var(--radius) 0 0;
-    height: 240px;
+    height: 200px;
   }
-
   .slide-content {
-    padding: 1.5rem;
+    padding: 1.2rem 1rem;
     text-align: center;
+    height: auto;
+    min-height: 180px; /* mantiene un alto equilibrado */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .slide-content h2 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
   }
 
-  .slide-content h2 {
-    font-size: 1.4rem;
+  .slide-content p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+  .btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+    margin: 0 auto;
   }
 
   .arrow {
-    bottom: 15px;
+    bottom: 12px;
     top: auto;
   }
 }
-
     /* SECCIONES */
     section{
       padding:3rem 1rem;
