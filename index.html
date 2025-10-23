@@ -129,13 +129,196 @@
       margin:auto;
       opacity:0.9;
     }
+    .feature-slider {
+  position: relative;
+  overflow: hidden;
+  max-width: 1200px;
+  margin: 2rem auto;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.slides {
+  display: flex;
+  transition: transform 0.8s ease, opacity 0.8s ease;
+}
+.slide {
+  min-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all 0.8s ease;
+}
+.slide.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+.slide-image {
+  flex: 1 1 50%;
+}
+.slide-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.slide-content {
+  flex: 1 1 50%;
+  padding: 2rem;
+  background: white;
+}
+.slide-content h2 {
+  color: var(--verde-mex);
+  margin-bottom: 0.5rem;
+}
+.slide-content p {
+  color: var(--texto-claro);
+  margin-bottom: 1rem;
+}
+.badge {
+  background: var(--rojo-fuego);
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+.btn {
+  background: var(--verde-mex);
+  color: white;
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  transition: background var(--transition);
+}
+.btn:hover {
+  background: var(--rojo-fuego);
+}
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition: background 0.3s;
+}
+.arrow:hover {
+  background: rgba(0,0,0,0.7);
+}
+.prev { left: 10px; }
+.next { right: 10px; }
 
+@media(max-width:768px){
+  .slide {
+    flex-direction: column;
+  }
+  .slide-content {
+    padding: 1.5rem;
+  }
+}
     /* SECCIONES */
     section{
       padding:3rem 1rem;
       max-width:1200px;
       margin:auto;
     }
+.feature-slider {
+  position: relative;
+  overflow: hidden;
+  max-width: 1200px;
+  margin: 2rem auto;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.slides {
+  display: flex;
+  transition: transform 0.8s ease, opacity 0.8s ease;
+}
+.slide {
+  min-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all 0.8s ease;
+}
+.slide.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+.slide-image {
+  flex: 1 1 50%;
+}
+.slide-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.slide-content {
+  flex: 1 1 50%;
+  padding: 2rem;
+  background: white;
+}
+.slide-content h2 {
+  color: var(--verde-mex);
+  margin-bottom: 0.5rem;
+}
+.slide-content p {
+  color: var(--texto-claro);
+  margin-bottom: 1rem;
+}
+.badge {
+  background: var(--rojo-fuego);
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+.btn {
+  background: var(--verde-mex);
+  color: white;
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  transition: background var(--transition);
+}
+.btn:hover {
+  background: var(--rojo-fuego);
+}
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition: background 0.3s;
+}
+.arrow:hover {
+  background: rgba(0,0,0,0.7);
+}
+.prev { left: 10px; }
+.next { right: 10px; }
+
+@media(max-width:768px){
+  .slide {
+    flex-direction: column;
+  }
+  .slide-content {
+    padding: 1.5rem;
+  }
+}
 
     /* TARJETAS */
     .cards{
@@ -227,8 +410,50 @@
       </nav>
     </div>
   </header>
-
   <section class="hero" id="inicio">
+    <!-- Carrusel destacado -->
+<section id="destacados" class="feature-slider">
+  <div class="slides">
+    <div class="slide active">
+      <div class="slide-image">
+        <img src="https://www.cardenasmarkets.com/wp-content/uploads/fly-images/3644/cardenas-rewards-las-vegas-carousel-1462x1122-c.jpg" alt="Ofertas Exclusivas">
+      </div>
+      <div class="slide-content">
+        <span class="badge">Ofertas</span>
+        <h2>Descubre ofertas exclusivas</h2>
+        <p>¡Encuentra descuentos increíbles en tus productos mexicanos favoritos!</p>
+        <a href="#" class="btn">Ver más</a>
+      </div>
+    </div>
+
+    <div class="slide">
+      <div class="slide-image">
+        <img src="https://www.cardenasmarkets.com/wp-content/uploads/fly-images/986/careers-bonus-image-sp-1462x1122-c.jpg" alt="Únete al equipo">
+      </div>
+      <div class="slide-content">
+        <span class="badge">Empleo</span>
+        <h2>¡Únete al equipo!</h2>
+        <p>Forma parte de nuestra familia y crece con nosotros en un ambiente lleno de oportunidades.</p>
+        <a href="#" class="btn">Postúlate aquí</a>
+      </div>
+    </div>
+
+    <div class="slide">
+      <div class="slide-image">
+        <img src="https://www.cardenasmarkets.com/wp-content/uploads/fly-images/1067/money-services-hero-image-1462x1122-c.jpg" alt="Envíos de dinero">
+      </div>
+      <div class="slide-content">
+        <span class="badge">Servicios</span>
+        <h2>Envíos de dinero a México</h2>
+        <p>Rápidos, seguros y confiables — envía dinero a tus seres queridos con la mejor tasa.</p>
+        <a href="#" class="btn">Más detalles</a>
+      </div>
+    </div>
+  </div>
+
+  <button class="arrow prev">‹</button>
+  <button class="arrow next">›</button>
+</section>
     <h1>Bienvenido a El Mexiquense Market</h1>
   </section>
 <section id="productos">
@@ -324,6 +549,32 @@
       });
     },{threshold:0.2});
     cards.forEach(card=>io.observe(card));
+    // Carrusel destacado automático
+const slides = document.querySelectorAll('.slide');
+let current = 0;
+
+function showSlide(index) {
+  slides.forEach((s, i) => {
+    s.classList.remove('active');
+    if (i === index) s.classList.add('active');
+  });
+}
+
+document.querySelector('.next').onclick = () => {
+  current = (current + 1) % slides.length;
+  showSlide(current);
+};
+document.querySelector('.prev').onclick = () => {
+  current = (current - 1 + slides.length) % slides.length;
+  showSlide(current);
+};
+
+// autoplay
+setInterval(() => {
+  current = (current + 1) % slides.length;
+  showSlide(current);
+}, 5000);
+
   </script>
 </body>
 </html>
