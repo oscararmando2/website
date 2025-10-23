@@ -505,32 +505,40 @@
       });
     },{threshold:0.2});
     cards.forEach(card=>io.observe(card));
-   // Carrusel destacado automático con efecto fade
+  // Carrusel destacado automático con efecto fade optimizado
 const slides = document.querySelectorAll('.slide');
 let current = 0;
+const totalSlides = slides.length;
 
 function showSlide(index) {
   slides.forEach((s, i) => {
-    s.style.opacity = i === index ? '1' : '0';
-    s.style.zIndex = i === index ? '1' : '0';
-    s.classList.toggle('active', i === index);
+    s.classList.remove('active');
+    s.style.opacity = '0';
+    s.style.pointerEvents = 'none';
   });
+  slides[index].classList.add('active');
+  slides[index].style.opacity = '1';
+  slides[index].style.pointerEvents = 'auto';
 }
 
+// Botones manuales
 document.querySelector('.next').onclick = () => {
-  current = (current + 1) % slides.length;
+  current = (current + 1) % totalSlides;
   showSlide(current);
 };
 document.querySelector('.prev').onclick = () => {
-  current = (current - 1 + slides.length) % slides.length;
+  current = (current - 1 + totalSlides) % totalSlides;
   showSlide(current);
 };
 
-// autoplay cada 5 segundos
+// AutoPlay cada 5 segundos
 setInterval(() => {
-  current = (current + 1) % slides.length;
+  current = (current + 1) % totalSlides;
   showSlide(current);
 }, 5000);
+
+// Mostrar la primera al cargar
+showSlide(current);
 
 // Mostrar la primera al cargar
 showSlide(0);
