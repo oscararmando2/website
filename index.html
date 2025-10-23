@@ -137,6 +137,7 @@
   margin: 3rem auto;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+  min-height: 400px;
   background: white;
 }
 
@@ -261,98 +262,12 @@
     bottom: 10px;
   }
 }
-
     /* SECCIONES */
     section{
       padding:3rem 1rem;
       max-width:1200px;
       margin:auto;
     }
-.slides {
-  display: flex;
-  transition: transform 0.8s ease, opacity 0.8s ease;
-}
-.slide {
-  min-width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  opacity: 0;
-  transform: translateX(100%);
-  transition: all 0.8s ease;
-}
-.slide.active {
-  opacity: 1;
-  transform: translateX(0);
-}
-.slide-image {
-  flex: 1 1 50%;
-}
-.slide-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.slide-content {
-  flex: 1 1 50%;
-  padding: 2rem;
-  background: white;
-}
-.slide-content h2 {
-  color: var(--verde-mex);
-  margin-bottom: 0.5rem;
-}
-.slide-content p {
-  color: var(--texto-claro);
-  margin-bottom: 1rem;
-}
-.badge {
-  background: var(--rojo-fuego);
-  color: white;
-  padding: 0.3rem 0.8rem;
-  border-radius: 999px;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-}
-.btn {
-  background: var(--verde-mex);
-  color: white;
-  padding: 0.7rem 1.2rem;
-  border-radius: 8px;
-  transition: background var(--transition);
-}
-.btn:hover {
-  background: var(--rojo-fuego);
-}
-.arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.5);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  font-size: 1.5rem;
-  transition: background 0.3s;
-}
-.arrow:hover {
-  background: rgba(0,0,0,0.7);
-}
-.prev { left: 10px; }
-.next { right: 10px; }
-
-@media(max-width:768px){
-  .slide {
-    flex-direction: column;
-  }
-  .slide-content {
-    padding: 1.5rem;
-  }
-}
-
     /* TARJETAS */
     .cards{
       display:grid;
@@ -582,14 +497,15 @@
       });
     },{threshold:0.2});
     cards.forEach(card=>io.observe(card));
-    // Carrusel destacado automático
+   // Carrusel destacado automático con efecto fade
 const slides = document.querySelectorAll('.slide');
 let current = 0;
 
 function showSlide(index) {
   slides.forEach((s, i) => {
-    s.classList.remove('active');
-    if (i === index) s.classList.add('active');
+    s.style.opacity = i === index ? '1' : '0';
+    s.style.zIndex = i === index ? '1' : '0';
+    s.classList.toggle('active', i === index);
   });
 }
 
@@ -602,12 +518,14 @@ document.querySelector('.prev').onclick = () => {
   showSlide(current);
 };
 
-// autoplay
+// autoplay cada 5 segundos
 setInterval(() => {
   current = (current + 1) % slides.length;
   showSlide(current);
 }, 5000);
 
+// Mostrar la primera al cargar
+showSlide(0);
   </script>
 </body>
 </html>
