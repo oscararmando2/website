@@ -1,708 +1,910 @@
 <!DOCTYPE html>
-<html lang="es" class="no-js">
+<html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>El Mexiquense Market — Frescura y Sabor Auténtico</title>
-  <meta name="description" content="El Mexiquense Market: ofertas, recetas, contacto y ubicación. Productos frescos con el sabor auténtico de México." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Tipografía Poppins variable -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:opsz,wght@14..144,300;14..144,400;14..144,600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="El Mexiquense Market - Envíos de dinero, cambio de cheques, productos frescos y recetas auténticas mexicanas.">
+  <title>El Mexiquense Market - Tienda Mexicana Moderna</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
-    /* ===============================
-       Variables y Reset básico
-       =============================== */
+    /* Reset y estilos base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
     :root {
-      --verde-mex: #1D8445; /* Verde principal para acentos frescos */
-      --rojo-fuego: #D45438; /* Rojo para CTAs y highlights */
-      --blanco-crema: #FAFAFA; /* Fondo general cálido */
-      --gris-suave: #F5F5F5; /* Para secciones alternas */
-      --texto: #2D2D2D; /* Texto principal */
-      --texto-claro: #666666; /* Subtextos */
-      --degradado-hero: linear-gradient(135deg, var(--verde-mex), var(--rojo-fuego)); /* Para fondos dinámicos */
-      --radius-xl: 20px;
-      --shadow-soft: 0 10px 30px rgba(0,0,0,0.12);
-      --shadow-hover: 0 14px 40px rgba(0,0,0,0.18);
-      --maxw: 1200px;
-      --transition: 0.3s ease;
+      --verde-mex: #1D8445;
+      --rojo-fuego: #D45438;
+      --blanco-puro: #FFFFFF;
+      --gris-suave: #ECECEC;
+      --texto: #1A1A1A;
+      --texto-claro: #4A4A4A;
+      --degradado-hero: linear-gradient(135deg, var(--verde-mex) 0%, var(--rojo-fuego) 100%);
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { margin:0; font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; color: var(--texto); background: var(--blanco-crema); }
-
-    img { display:block; width:100%; height:auto; border:0; }
-    a { color: inherit; text-decoration: none; }
-    button { font: inherit; cursor: pointer; border: 0; background: none; }
-
-    .container { width: min(92%, var(--maxw)); margin-inline: auto; }
-
-    /* ===============================
-       Loader inicial (opcional premium)
-       =============================== */
-    .loader {
-      position: fixed; inset: 0; display: grid; place-items: center; background: radial-gradient(1200px 600px at 50% -20%, rgba(212,84,56,0.12), rgba(29,132,69,0.12)), var(--blanco-crema);
-      z-index: 9999; transition: opacity .5s ease, visibility .5s ease; 
-    }
-    .loader.hide { opacity: 0; visibility: hidden; }
-    .loader__ring { width: 70px; height: 70px; border-radius: 50%; border: 4px solid rgba(0,0,0,0.08); border-top-color: var(--verde-mex); animation: spin 1s linear infinite; position: relative; }
-    .loader__ring::after { content:""; position:absolute; inset:10px; border-radius:50%; border:4px solid transparent; border-left-color: var(--rojo-fuego); animation: spin 1.2s linear infinite reverse; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    /* ===============================
-       Navbar Sticky
-       =============================== */
-    header {
-      position: sticky; top: 0; z-index: 1000; backdrop-filter: saturate(140%) blur(8px);
-      background: color-mix(in oklab, white 70%, rgba(250,250,250,0.7) 30%);
-      border-bottom: 1px solid rgba(0,0,0,0.05);
-      opacity: 0; transform: translateY(-10px); animation: fadeDown .6s ease .15s forwards;
-    }
-    @keyframes fadeDown { to { opacity: 1; transform: translateY(0); } }
-
-    .nav { display:flex; align-items:center; justify-content: space-between; gap: 1rem; padding: .7rem 0; }
-
-    .logo { display:flex; align-items:center; gap:.6rem; font-weight: 600; letter-spacing:.3px; }
-    .logo .mark { width:34px; height:34px; border-radius:10px; background: var(--degradado-hero); box-shadow: var(--shadow-soft); transform: translateZ(0); }
-
-    .menu { display:flex; align-items:center; gap:1rem; }
-    .menu a { padding:.6rem .8rem; border-radius: 999px; transition: transform var(--transition), background var(--transition); }
-    .menu a:hover { transform: translateY(-2px) scale(1.02); background: rgba(29,132,69,0.08); }
-
-    .hamburger { display:none; width:40px; height:40px; border-radius: 10px; place-content:center; position: relative; }
-    .hamburger span, .hamburger::before, .hamburger::after {
-      content:""; position:absolute; left:10px; right:10px; height:2px; background: var(--texto); transition: transform .35s ease, top .35s ease, opacity .35s ease;
-    }
-    .hamburger span { top: 19px; }
-    .hamburger::before { top: 12px; }
-    .hamburger::after { top: 26px; }
-    .hamburger.active span { opacity:0; }
-    .hamburger.active::before { top: 19px; transform: rotate(45deg); }
-    .hamburger.active::after { top: 19px; transform: rotate(-45deg); }
-
-    .menu-mobile { display:none; flex-direction:column; gap:.6rem; padding: .6rem 0 1rem; }
-    .menu-mobile a { padding:.9rem; border-radius:12px; background: rgba(255,255,255,0.6); box-shadow: var(--shadow-soft); }
-
-    /* ===============================
-       Hero con Carrusel de Tarjetas Flotantes
-       =============================== */
-    .hero {
-      background: var(--degradado-hero);
-      color: #fff; position: relative; overflow: clip; isolation: isolate;
-    }
-
-    /* Parallax sutil del fondo */
-    .hero::before {
-      content:""; position:absolute; inset:-20% -10% -10% -10%; background: radial-gradient(600px 300px at 10% 10%, rgba(255,255,255,0.15), transparent 60%), radial-gradient(600px 300px at 90% 20%, rgba(0,0,0,0.12), transparent 60%);
-      z-index: -1; transform: translateY(var(--parallax,0)); transition: transform .2s ease-out; will-change: transform;
-    }
-
-    .hero-wrap { padding: clamp(3rem, 6vw, 5rem) 0; }
-
-    .carousel { position: relative; }
-    .carousel-track { display: grid; grid-auto-flow: column; grid-auto-columns: 100%; gap: 1.5rem; align-items: stretch; scroll-snap-type: x mandatory; overflow-x: auto; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
-    .carousel-track::-webkit-scrollbar { display:none; }
-
-    .card {
-      background: color-mix(in oklab, white 86%, rgba(255,255,255,0.75) 14%);
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--blanco-puro);
       color: var(--texto);
-      border-radius: var(--radius-xl);
-      box-shadow: var(--shadow-soft);
-      padding: clamp(1rem, 4vw, 1.5rem);
-      display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(1rem, 3vw, 2rem);
-      align-items: center; scroll-snap-align: center; min-height: 340px;
-      transform: translateY(0); transition: transform var(--transition), box-shadow var(--transition);
+      line-height: 1.6;
+      overflow-x: hidden;
     }
-    .card:hover { transform: translateY(-6px) scale(1.01); box-shadow: var(--shadow-hover); }
-    .card img { border-radius: 16px; aspect-ratio: 16/10; object-fit: cover; filter: saturate(1.06) contrast(1.02);
-                box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
 
-    .card h2 { margin:0 0 .5rem; font-weight: 600; color: var(--texto); }
-    .card p { margin:0 0 1rem; color: var(--texto-claro); }
-
-    .cta-btn {
-      position: relative; overflow: hidden; border-radius: 999px; padding: .85rem 1.2rem; background: var(--rojo-fuego); color:#fff; font-weight:600; box-shadow: var(--shadow-soft); transition: transform .2s ease, filter .2s ease; will-change: transform;
+    /* Animaciones generales */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
     }
-    .cta-btn:hover { transform: translateY(-2px); filter: brightness(1.03); }
-    .cta-btn:active { transform: translateY(0) scale(.98); }
-    /* Ripple effect */
-    .ripple { position:absolute; border-radius:50%; transform: translate(-50%,-50%); pointer-events:none; animation: ripple .6s ease-out forwards; background: rgba(255,255,255,.5); }
-    @keyframes ripple { from { width:0; height:0; opacity:.6; } to { width:400px; height:400px; opacity:0; } }
 
-    .carousel-nav { display:flex; align-items:center; justify-content: space-between; margin-top: 1rem; gap: .75rem; }
-    .arrows { display:flex; gap:.5rem; }
-    .arrow { width:44px; height:44px; border-radius:12px; background: rgba(255,255,255,.8); display:grid; place-items:center; box-shadow: var(--shadow-soft); transition: transform var(--transition), background var(--transition); }
-    .arrow:hover { transform: translateY(-2px); background: #fff; }
-    .dots { display:flex; gap: .4rem; }
-    .dot { width:10px; height:10px; border-radius:50%; background: rgba(255,255,255,.6); transition: background var(--transition), transform var(--transition); }
-    .dot.active { background: #fff; transform: scale(1.1); }
-
-    /* ===============================
-       Productos Destacados
-       =============================== */
-    section { padding: clamp(2.5rem, 6vw, 4rem) 0; }
-    .section-title { text-align:center; margin: 0 0 1.2rem; font-size: clamp(1.5rem, 3.6vw, 2.1rem); }
-    .section-sub { text-align:center; margin: 0 auto 2rem; color: var(--texto-claro); max-width: 60ch; }
-
-    .grid-feats { display:grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-    @media (min-width: 768px){ .grid-feats { grid-template-columns: repeat(3, 1fr); gap: 1.2rem; } }
-    @media (min-width: 1024px){ .grid-feats { grid-template-columns: repeat(6, 1fr); gap: 1.2rem; } }
-
-    .feat-card { background:#fff; border-radius: 18px; padding: 1rem; text-align:center; box-shadow: var(--shadow-soft); transition: transform var(--transition), box-shadow var(--transition), background var(--transition); will-change: transform; }
-    .feat-card:hover { transform: translateY(-4px) rotate(0.2deg); box-shadow: var(--shadow-hover); background: linear-gradient(180deg, rgba(29,132,69,.05), rgba(212,84,56,.05)); }
-    .feat-icon { width:46px; height:46px; margin: 0 auto .6rem; }
-    .feat-card h3 { margin:.4rem 0 .4rem; font-size: 1rem; }
-    .feat-card p { margin:0 0 .8rem; color: var(--texto-claro); font-size: .95rem; }
-    .feat-card .btn { display:inline-block; padding:.55rem .9rem; border-radius: 999px; background: var(--verde-mex); color:#fff; font-weight:600; transition: filter var(--transition), transform var(--transition); }
-    .feat-card .btn:hover { filter: brightness(1.05); transform: translateY(-1px); }
-
-    /* ===============================
-       Ofertas del día
-       =============================== */
-    .offers-grid { display:grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-    @media (min-width: 768px){ .offers-grid { grid-template-columns: repeat(3, 1fr); } }
-    @media (min-width: 1024px){ .offers-grid { grid-template-columns: repeat(4, 1fr); } }
-
-    .offer-card { background:#fff; border-radius: 18px; overflow: hidden; box-shadow: var(--shadow-soft); position: relative; transition: transform var(--transition), box-shadow var(--transition); }
-    .offer-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
-    .offer-card img { aspect-ratio: 4/3; object-fit: cover; transition: transform .5s ease; }
-    .offer-card:hover img { transform: scale(1.05); }
-    .offer-badge { position:absolute; top:12px; left:12px; background: var(--verde-mex); color:#fff; padding:.35rem .6rem; border-radius: 999px; font-size:.8rem; box-shadow: var(--shadow-soft); }
-    .offer-content { padding: .9rem; }
-    .old-price { color:#9a9a9a; text-decoration: line-through; margin:0; }
-    .new-price { color: var(--rojo-fuego); font-weight: 700; margin:.2rem 0 0; font-size: 1.2rem; }
-
-    /* ===============================
-       Recetas con amor (scroll horizontal infinito)
-       =============================== */
-    .recipes-strip { display:flex; gap:1rem; overflow-x:auto; scroll-snap-type: x mandatory; padding-bottom:.5rem; scrollbar-width: thin; }
-    .recipe-item { flex: 0 0 clamp(160px, 28vw, 220px); position:relative; border-radius: 16px; overflow:hidden; scroll-snap-align: start; box-shadow: var(--shadow-soft); }
-    .recipe-item img { width:100%; height:100%; aspect-ratio:1/1; object-fit: cover; filter: saturate(1.05); }
-    .recipe-overlay { position:absolute; inset:0; display:grid; place-items:center; background: linear-gradient(180deg, rgba(0,0,0,.0), rgba(0,0,0,.55)); color:#fff; opacity:0; transition: opacity var(--transition); text-align:center; padding:.6rem; }
-    .recipe-item:hover .recipe-overlay { opacity:1; }
-
-    /* ===============================
-       Contacto y Ubicación
-       =============================== */
-    .contact-grid { display:grid; gap: 1.2rem; }
-    @media (min-width: 768px){ .contact-grid { grid-template-columns: 1.1fr .9fr; } }
-
-    .form-card { background:#fff; border-radius: 18px; padding: 1.2rem; box-shadow: var(--shadow-soft); }
-    .field { position:relative; margin:.9rem 0; }
-    .field input, .field textarea {
-      width:100%; padding: 1rem .9rem .9rem; border: 1px solid #eaeaea; border-radius: 12px; background: #fff; outline: none; transition: border var(--transition), box-shadow var(--transition);
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
-    .field textarea { min-height: 120px; resize: vertical; }
-    .field label { position:absolute; left: 12px; top: 14px; color:#7a7a7a; font-size:.95rem; pointer-events:none; transition: transform var(--transition), font-size var(--transition), top var(--transition), background var(--transition), padding var(--transition); background:#fff; padding: 0 .25rem; }
-    .field input:focus, .field textarea:focus { border-color: color-mix(in oklab, var(--verde-mex) 70%, #2d2d2d 30%); box-shadow: 0 0 0 4px rgba(29,132,69,.08); }
-    .field input:not(:placeholder-shown) + label,
-    .field textarea:not(:placeholder-shown) + label,
-    .field input:focus + label,
-    .field textarea:focus + label {
-      top: -8px; font-size: .78rem; transform: translateY(0); }
 
-    .contact-actions { display:flex; flex-wrap: wrap; gap: .6rem; margin-top: .6rem; }
-    .chip { display:inline-flex; align-items:center; gap:.45rem; padding:.6rem .85rem; border-radius: 999px; background: var(--gris-suave); transition: transform var(--transition), background var(--transition); }
-    .chip:hover { transform: translateY(-2px); background: #fff; box-shadow: var(--shadow-soft); }
-    .chip svg { width:18px; height:18px; }
+    /* Navbar */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: var(--blanco-puro);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      z-index: 1000;
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-    .map-card { border-radius: 18px; overflow:hidden; box-shadow: var(--shadow-soft); min-height: 280px; }
-    .map-card iframe { width:100%; height:100%; border:0; }
+    .logo img {
+      /* Reemplaza esta imagen aquí con tu logo */
+      content: url('https://via.placeholder.com/150x50?text=El+Mexiquense+Logo');
+      height: 40px;
+    }
 
-    .submit-btn { margin-top:.5rem; background: var(--verde-mex); color:#fff; padding: .9rem 1.2rem; border-radius: 12px; font-weight: 600; box-shadow: var(--shadow-soft); }
-    .submit-btn:hover { filter: brightness(1.04); transform: translateY(-1px); }
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2.5rem;
+    }
 
-    /* ===============================
-       Footer
-       =============================== */
-    footer { background: #111; color: #ddd; padding: 2rem 0; position: relative; }
-    .footer-grid { display:grid; gap: 1rem; align-items:center; }
-    @media (min-width: 768px){ .footer-grid { grid-template-columns: 1fr auto; } }
-    .socials { display:flex; gap:.6rem; }
-    .socials a { width:38px; height:38px; border-radius: 12px; background: rgba(255,255,255,.06); display:grid; place-items:center; transition: transform var(--transition), background var(--transition); }
-    .socials a:hover { transform: translateY(-2px); background: rgba(255,255,255,.12); }
+    nav a {
+      color: var(--texto);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
 
-    .to-top { position: fixed; right: 18px; bottom: 18px; width: 46px; height: 46px; border-radius: 14px; display:grid; place-items:center; background: var(--rojo-fuego); color:#fff; box-shadow: var(--shadow-soft); opacity: 0; visibility: hidden; transform: translateY(10px); transition: opacity .3s ease, transform .3s ease, visibility .3s ease; }
-    .to-top.show { opacity:1; visibility: visible; transform: translateY(0); }
+    nav a:hover {
+      color: var(--rojo-fuego);
+      transform: translateY(-2px);
+    }
 
-    /* ===============================
-       Utilidades y animaciones on-scroll
-       =============================== */
-    .u-muted { color: var(--texto-claro); }
-    .u-center { text-align:center; }
+    .menu-toggle {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: var(--verde-mex);
+    }
 
-    [data-animate] { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
-    [data-animate].in { opacity: 1; transform: translateY(0); }
+    /* Hero Carrusel */
+    .hero {
+      position: relative;
+      min-height: 80vh;
+      background: var(--blanco-puro);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5rem 2rem;
+      overflow: hidden;
+    }
 
-    /* ===============================
-       Responsivo del header
-       =============================== */
-    @media (max-width: 768px){
-      .menu { display:none; }
-      .hamburger { display:grid; }
-      .menu-mobile { display:flex; }
-      .card { grid-template-columns: 1fr; }
+    .carousel {
+      width: 100%;
+      max-width: 1000px;
+      position: relative;
+    }
+
+    .carousel-item {
+      position: absolute;
+      width: 90%;
+      max-width: 700px;
+      background: var(--blanco-puro);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      overflow: hidden;
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .carousel-item.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .carousel-item img {
+      /* Reemplaza estas imágenes aquí */
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+      border-radius: 20px 20px 0 0;
+    }
+
+    .carousel-content {
+      padding: 2rem;
+      text-align: center;
+      background: linear-gradient(180deg, rgba(255,255,255,0.95), var(--blanco-puro));
+    }
+
+    .carousel-content h2 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 900;
+      font-size: 2.5rem;
+      color: var(--verde-mex);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    .carousel-content p {
+      color: var(--texto-claro);
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .carousel-content button {
+      background: var(--rojo-fuego);
+      color: var(--blanco-puro);
+      border: none;
+      padding: 0.9rem 2.5rem;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    }
+
+    .carousel-content button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      background: var(--verde-mex);
+    }
+
+    .carousel-controls {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+    }
+
+    .carousel-dot {
+      width: 12px;
+      height: 12px;
+      background: var(--gris-suave);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .carousel-dot.active {
+      background: var(--rojo-fuego);
+      transform: scale(1.3);
+    }
+
+    /* Productos Destacados */
+    .productos {
+      padding: 5rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .productos h2 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 900;
+      font-size: 3rem;
+      color: var(--texto);
+      margin-bottom: 3rem;
+      text-transform: uppercase;
+    }
+
+    .productos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .producto-card {
+      background: var(--blanco-puro);
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .producto-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+    }
+
+    .producto-card svg {
+      width: 60px;
+      height: 60px;
+      fill: var(--verde-mex);
+      margin-bottom: 1.5rem;
+    }
+
+    .producto-card h3 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--texto);
+      margin-bottom: 0.5rem;
+    }
+
+    .producto-card p {
+      color: var(--texto-claro);
+      font-size: 0.9rem;
+    }
+
+    /* Ofertas del Día */
+    .ofertas {
+      background: var(--gris-suave);
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .ofertas h2 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 900;
+      font-size: 3rem;
+      color: var(--rojo-fuego);
+      margin-bottom: 3rem;
+      text-transform: uppercase;
+    }
+
+    .ofertas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .oferta-card {
+      position: relative;
+      background: var(--blanco-puro);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .oferta-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+    }
+
+    .oferta-card img {
+      /* Reemplaza estas imágenes aquí */
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .oferta-card:hover img {
+      transform: scale(1.1);
+    }
+
+    .oferta-card .badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: var(--verde-mex);
+      color: var(--blanco-puro);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .oferta-content {
+      padding: 1.5rem;
+    }
+
+    .oferta-content h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--texto);
+      margin-bottom: 0.5rem;
+    }
+
+    .oferta-content .precio-viejo {
+      text-decoration: line-through;
+      color: var(--texto-claro);
+      font-size: 0.9rem;
+    }
+
+    .oferta-content .precio-nuevo {
+      color: var(--rojo-fuego);
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    /* Recetas */
+    .recetas {
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .recetas h2 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 900;
+      font-size: 3rem;
+      color: var(--verde-mex);
+      margin-bottom: 3rem;
+      text-transform: uppercase;
+    }
+
+    .recetas-carousel {
+      display: flex;
+      overflow-x: auto;
+      gap: 1.5rem;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 1rem;
+      scrollbar-width: none;
+      -ms-overflow-styling: none;
+    }
+
+    .recetas-carousel::-webkit-scrollbar {
+      display: none;
+    }
+
+    .receta-card {
+      flex: 0 0 300px;
+      border-radius: 15px;
+      overflow: hidden;
+      position: relative;
+      scroll-snap-align: start;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    }
+
+    .receta-card img {
+      /* Reemplaza estas imágenes aquí */
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .receta-card .overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.7);
+      color: var(--blanco-puro);
+      padding: 1rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .receta-card:hover .overlay {
+      opacity: 1;
+    }
+
+    .receta-card h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+
+    /* Contacto */
+    .contacto {
+      padding: 5rem 2rem;
+      background: var(--blanco-puro);
+      text-align: center;
+    }
+
+    .contacto h2 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 900;
+      font-size: 3rem;
+      color: var(--rojo-fuego);
+      margin-bottom: 3rem;
+      text-transform: uppercase;
+    }
+
+    .contacto-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .contact-form label {
+      position: relative;
+      display: block;
+      text-align: left;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid var(--gris-suave);
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--verde-mex);
+      outline: none;
+    }
+
+    .contact-form span {
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
+      color: var(--texto-claro);
+      font-size: 1rem;
+      transition: transform 0.3s ease, font-size 0.3s ease, color 0.3s ease;
+      pointer-events: none;
+    }
+
+    .contact-form input:focus + span,
+    .contact-form textarea:focus + span,
+    .contact-form input:not(:placeholder-shown) + span,
+    .contact-form textarea:not(:placeholder-shown) + span {
+      transform: translateY(-2.5rem);
+      font-size: 0.8rem;
+      color: var(--verde-mex);
+    }
+
+    .contact-form button {
+      background: var(--rojo-fuego);
+      color: var(--blanco-puro);
+      border: none;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .contact-form button:hover {
+      background: var(--verde-mex);
+      transform: translateY(-3px);
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+
+    .contact-info a {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      color: var(--texto);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    .contact-info a:hover {
+      color: var(--rojo-fuego);
+    }
+
+    .contact-info svg {
+      width: 24px;
+      height: 24px;
+      fill: var(--verde-mex);
+    }
+
+    .map iframe {
+      width: 100%;
+      height: 350px;
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--blanco-puro);
+      color: var(--texto-claro);
+      text-align: center;
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--gris-suave);
+    }
+
+    footer p {
+      font-size: 0.9rem;
+    }
+
+    .back-to-top {
+      background: var(--rojo-fuego);
+      color: var(--blanco-puro);
+      border: none;
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      cursor: pointer;
+      margin-top: 1.5rem;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      transition: background 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .back-to-top:hover {
+      background: var(--verde-mex);
+      transform: translateY(-3px);
+    }
+
+    .back-to-top.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        padding: 1rem 2rem;
+      }
+
+      nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: var(--blanco-puro);
+        padding: 1.5rem;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      }
+
+      nav ul.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .hero {
+        min-height: 60vh;
+        padding: 4rem 1rem;
+      }
+
+      .carousel-item {
+        width: 95%;
+      }
+
+      .carousel-content h2 {
+        font-size: 2rem;
+      }
+
+      .contacto-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .productos h2,
+      .ofertas h2,
+      .recetas h2,
+      .contacto h2 {
+        font-size: 2.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .carousel-content h2 {
+        font-size: 1.8rem;
+      }
+
+      .carousel-content p {
+        font-size: 0.9rem;
+      }
+
+      .carousel-content button {
+        padding: 0.8rem 2rem;
+      }
+
+      .productos h2,
+      .ofertas h2,
+      .recetas h2,
+      .contacto h2 {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- Loader premium -->
-  <div class="loader" id="pageLoader" aria-hidden="true">
-    <div class="loader__ring" aria-label="Cargando"></div>
-  </div>
-
-  <!-- =============================== -->
-  <!-- Header / Navbar Sticky          -->
-  <!-- =============================== -->
+  <!-- Encabezado -->
   <header>
-    <div class="container nav" role="navigation" aria-label="Principal">
-      <a href="#" class="logo" aria-label="El Mexiquense Market">
-        <span class="mark" aria-hidden="true"></span>
-        <span>El Mexiquense <span style="color:var(--verde-mex)">Market</span></span>
-      </a>
-      <nav class="menu" aria-label="Secciones">
-        <a href="#hero">Inicio</a>
-        <a href="#destacados">Productos</a>
-        <a href="#ofertas">Ofertas</a>
-        <a href="#recetas">Recetas</a>
-        <a href="#contacto">Contacto</a>
-      </nav>
-      <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false"><span></span></button>
+    <div class="logo">
+      <!-- Reemplaza esta imagen aquí con tu logo -->
+      <img src="https://via.placeholder.com/150x50?text=El+Mexiquense+Logo" alt="El Mexiquense Market Logo">
     </div>
-    <div class="container menu-mobile" id="menuMobile" aria-hidden="true">
-      <a href="#hero">Inicio</a>
-      <a href="#destacados">Productos</a>
-      <a href="#ofertas">Ofertas</a>
-      <a href="#recetas">Recetas</a>
-      <a href="#contacto">Contacto</a>
-    </div>
+    <nav>
+      <div class="menu-toggle">☰</div>
+      <ul>
+        <li><a href="#hero">Inicio</a></li>
+        <li><a href="#productos">Productos</a></li>
+        <li><a href="#ofertas">Ofertas</a></li>
+        <li><a href="#recetas">Recetas</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main>
-    <!-- ===================================== -->
-    <!-- Sección Hero: Carrusel de Tarjetas    -->
-    <!-- ===================================== -->
-    <section class="hero" id="hero" aria-label="Hero">
-      <div class="container hero-wrap">
-        <div class="carousel" data-animate>
-          <div class="carousel-track" id="carouselTrack" aria-live="polite">
-            <!-- Tarjeta 1 -->
-            <article class="card" aria-roledescription="slide">
-              <div>
-                <h2>Descubre Ofertas Exclusivas</h2>
-                <p>Encuentra descuentos increíbles en tus favoritos mexicanos.</p>
-                <button class="cta-btn" data-ripple>Ver ofertas</button>
-              </div>
-              <img loading="eager" src="https://images.unsplash.com/photo-1518518873111-6ca469aa456f?q=80&w=1200&auto=format&fit=crop" alt="Productos frescos" />
-              <!-- Reemplaza la imagen con tu URL si lo deseas -->
-            </article>
-
-            <!-- Tarjeta 2 -->
-            <article class="card" aria-roledescription="slide">
-              <div>
-                <h2>Recetas de la Semana</h2>
-                <p>Prueba nuestras recetas auténticas con ingredientes de la tienda.</p>
-                <button class="cta-btn" data-ripple>Ver recetas</button>
-              </div>
-              <img loading="lazy" src="https://images.unsplash.com/photo-1599487488170-d11e0647f6d6?q=80&w=1200&auto=format&fit=crop" alt="Platillo típico mexicano" />
-            </article>
-
-            <!-- Tarjeta 3 -->
-            <article class="card" aria-roledescription="slide">
-              <div>
-                <h2>¡Únete al Equipo!</h2>
-                <p>Forma parte de nuestra familia y crece con nosotros.</p>
-                <button class="cta-btn" data-ripple>Aplicar ahora</button>
-              </div>
-              <img loading="lazy" src="https://images.unsplash.com/photo-1600880292089-90e8bee76f10?q=80&w=1200&auto=format&fit=crop" alt="Equipo sonriente" />
-            </article>
-
-            <!-- Tarjeta 4 -->
-            <article class="card" aria-roledescription="slide">
-              <div>
-                <h2>Envíos de Dinero y Cambio de Cheques</h2>
-                <p>¡Envíos rápidos, seguros y confiables a México y Latinoamérica! Aquí cambiamos tus cheques al instante con las mejores tasas. 📍 Visítanos en El Mexiquense Market. ¡Tu confianza, nuestra prioridad!</p>
-                <button class="cta-btn" data-ripple>Más información</button>
-              </div>
-              <img loading="lazy" src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=1200&auto=format&fit=crop" alt="Servicios de envío de dinero" />
-            </article>
-          </div>
-
-          <div class="carousel-nav">
-            <div class="arrows">
-              <button class="arrow" id="prevBtn" aria-label="Anterior" title="Anterior">◀</button>
-              <button class="arrow" id="nextBtn" aria-label="Siguiente" title="Siguiente">▶</button>
-            </div>
-            <div class="dots" id="dots" aria-label="Paginación"></div>
-          </div>
+  <!-- Hero Carrusel -->
+  <section id="hero" class="hero">
+    <div class="carousel">
+      <div class="carousel-item active">
+        <!-- Reemplaza esta imagen aquí -->
+        <img src="https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Ofertas">
+        <div class="carousel-content">
+          <h2>Descubre Ofertas Exclusivas</h2>
+          <p>Encuentra descuentos increíbles en tus favoritos mexicanos.</p>
+          <button>Ver Ofertas</button>
         </div>
       </div>
-    </section>
-
-    <!-- ===================================== -->
-    <!-- Productos Destacados                  -->
-    <!-- ===================================== -->
-    <section id="destacados" aria-label="Productos destacados">
-      <div class="container">
-        <h2 class="section-title" data-animate>Productos destacados</h2>
-        <p class="section-sub" data-animate>Calidad, frescura y el auténtico sabor de México en cada pasillo.</p>
-        <div class="grid-feats" id="feats" data-animate>
-          <!-- Tarjetas 3-6 (2 móvil, 3 tablet, 6 desktop) -->
-          <article class="feat-card">
-            <svg class="feat-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M12 2C8 2 4 6 4 10c0 6 8 12 8 12s8-6 8-12c0-4-4-8-8-8Zm0 10a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z" fill="url(#g1)"/>
-              <defs><linearGradient id="g1" x1="0" y1="0" x2="24" y2="24"><stop stop-color="#1D8445"/><stop offset="1" stop-color="#D45438"/></linearGradient></defs>
-            </svg>
-            <h3>Frutas & Verduras</h3>
-            <p>Seleccionadas cada día para que siempre te lleves lo mejor.</p>
-            <a class="btn" href="#ofertas">Ver más</a>
-          </article>
-
-          <article class="feat-card">
-            <svg class="feat-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M2 7h20v4H2V7zm2 6h16l-1 5H5l-1-5z" fill="url(#g2)"/>
-              <defs><linearGradient id="g2" x1="0" y1="0" x2="24" y2="24"><stop stop-color="#1D8445"/><stop offset="1" stop-color="#D45438"/></linearGradient></defs>
-            </svg>
-            <h3>Cremería & Deli</h3>
-            <p>Quesos, cremas y embutidos para tus antojos.</p>
-            <a class="btn" href="#ofertas">Ver más</a>
-          </article>
-
-          <article class="feat-card">
-            <svg class="feat-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M4 20V7l8-5 8 5v13H4zm8-9 8-5M4 7l8 5" fill="url(#g3)"/>
-              <defs><linearGradient id="g3" x1="0" y1="0" x2="24" y2="24"><stop stop-color="#1D8445"/><stop offset="1" stop-color="#D45438"/></linearGradient></defs>
-            </svg>
-            <h3>Panadería</h3>
-            <p>Pan dulce recién horneado como en casa.</p>
-            <a class="btn" href="#ofertas">Ver más</a>
-          </article>
-
-          <article class="feat-card">
-            <svg class="feat-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M6 20V8h12v12H6zm2-8h8v6H8v-6z" fill="url(#g4)"/>
-              <defs><linearGradient id="g4" x1="0" y1="0" x2="24" y2="24"><stop stop-color="#1D8445"/><stop offset="1" stop-color="#D45438"/></linearGradient></defs>
-            </svg>
-            <h3>Abarrotes</h3>
-            <p>Todo lo básico para tu despensa mexicana.</p>
-            <a class="btn" href="#ofertas">Ver más</a>
-          </article>
-
-          <article class="feat-card">
-            <svg class="feat-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M3 12h18M6 6l12 12" stroke="url(#g5)" stroke-width="2"/>
-              <defs><linearGradient id="g5" x1="0" y1="0" x2="24" y2="24"><stop stop-color="#1D8445"/><stop offset="1" stop-color="#D45438"/></linearGradient></defs>
-            </svg>
-            <h3>Carnicería</h3>
-            <p>Cortes frescos para tus asados y guisos.</p>
-            <a class="btn" href="#ofertas">Ver más</a>
-          </article>
-
-          <article class="feat-card">
-            <svg class="feat-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <circle cx="12" cy="12" r="10" fill="url(#g6)"/>
-              <defs><linearGradient id="g6" x1="0" y1="0" x2="24" y2="24"><stop stop-color="#1D8445"/><stop offset="1" stop-color="#D45438"/></linearGradient></defs>
-            </svg>
-            <h3>Bebidas</h3>
-            <p>Desde aguas frescas hasta refrescos y más.</p>
-            <a class="btn" href="#ofertas">Ver más</a>
-          </article>
+      <div class="carousel-item">
+        <!-- Reemplaza esta imagen aquí -->
+        <img src="https://images.unsplash.com/photo-1610216705422-caa3fc06f381?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Recetas">
+        <div class="carousel-content">
+          <h2>Recetas de la Semana</h2>
+          <p>Prueba nuestras recetas auténticas con ingredientes de la tienda.</p>
+          <button>Explorar Recetas</button>
         </div>
       </div>
-    </section>
-
-    <!-- ===================================== -->
-    <!-- Ofertas del día                        -->
-    <!-- ===================================== -->
-    <section id="ofertas" aria-label="Ofertas del día" style="background: var(--gris-suave);">
-      <div class="container">
-        <h2 class="section-title" data-animate>Ofertas del día</h2>
-        <p class="section-sub" data-animate>Aprovecha descuentos por tiempo limitado.</p>
-        <div class="offers-grid" data-animate>
-
-          <!-- Tarjeta de oferta (ejemplo) -->
-          <article class="offer-card">
-            <div class="offer-badge">¡Oferta!</div>
-            <img loading="lazy" src="https://images.unsplash.com/photo-1506806732259-39c2d0268443?q=80&w=1200&auto=format&fit=crop" alt="Naranjas jugosas" />
-            <div class="offer-content">
-              <h3>Naranja para jugo</h3>
-              <p class="old-price">$34.90</p>
-              <p class="new-price">$27.90</p>
-            </div>
-          </article>
-
-          <article class="offer-card">
-            <div class="offer-badge">¡Oferta!</div>
-            <img loading="lazy" src="https://images.unsplash.com/photo-1546549039-49e9b4efcd4c?q=80&w=1200&auto=format&fit=crop" alt="Aguacates" />
-            <div class="offer-content">
-              <h3>Aguacate Hass</h3>
-              <p class="old-price">$59.90</p>
-              <p class="new-price">$39.90</p>
-            </div>
-          </article>
-
-          <article class="offer-card">
-            <div class="offer-badge">¡Oferta!</div>
-            <img loading="lazy" src="https://images.unsplash.com/photo-1604908176997-4310a2c4757c?q=80&w=1200&auto=format&fit=crop" alt="Carne fresca" />
-            <div class="offer-content">
-              <h3>Diezmillo res</h3>
-              <p class="old-price">$169.90</p>
-              <p class="new-price">$139.90</p>
-            </div>
-          </article>
-
-          <article class="offer-card">
-            <div class="offer-badge">¡Oferta!</div>
-            <img loading="lazy" src="https://images.unsplash.com/photo-1543352634-8730b6b3e0d8?q=80&w=1200&auto=format&fit=crop" alt="Pan dulce" />
-            <div class="offer-content">
-              <h3>Pan dulce surtido</h3>
-              <p class="old-price">$15.90</p>
-              <p class="new-price">$9.90</p>
-            </div>
-          </article>
-
+      <div class="carousel-item">
+        <!-- Reemplaza esta imagen aquí -->
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Equipo">
+        <div class="carousel-content">
+          <h2>¡Únete al Equipo!</h2>
+          <p>Forma parte de nuestra familia y crece con nosotros.</p>
+          <button>Ver Vacantes</button>
         </div>
       </div>
-    </section>
-
-    <!-- ===================================== -->
-    <!-- Recetas con amor                      -->
-    <!-- ===================================== -->
-    <section id="recetas" aria-label="Recetas con amor">
-      <div class="container">
-        <h2 class="section-title" data-animate>Recetas con amor</h2>
-        <p class="section-sub" data-animate>Inspírate con platillos tradicionales y modernos.</p>
-        <div class="recipes-strip" id="recipesStrip" data-animate>
-          <!-- Reemplaza estas imágenes con tus propias URLs si lo deseas -->
-          <a class="recipe-item" href="#" aria-label="Ver receta Chilaquiles">
-            <img loading="lazy" src="https://images.unsplash.com/photo-1625944529262-2a70f3056a31?q=80&w=800&auto=format&fit=crop" alt="Chilaquiles" />
-            <div class="recipe-overlay"><strong>Chilaquiles</strong></div>
-          </a>
-          <a class="recipe-item" href="#" aria-label="Ver receta Tacos al Pastor">
-            <img loading="lazy" src="https://images.unsplash.com/photo-1552332386-f8dd00dc2f85?q=80&w=800&auto=format&fit=crop" alt="Tacos al pastor" />
-            <div class="recipe-overlay"><strong>Tacos al Pastor</strong></div>
-          </a>
-          <a class="recipe-item" href="#" aria-label="Ver receta Pozole Rojo">
-            <img loading="lazy" src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=800&auto=format&fit=crop" alt="Pozole" />
-            <div class="recipe-overlay"><strong>Pozole Rojo</strong></div>
-          </a>
-          <a class="recipe-item" href="#" aria-label="Ver receta Enchiladas Verdes">
-            <img loading="lazy" src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?q=80&w=800&auto=format&fit=crop" alt="Enchiladas verdes" />
-            <div class="recipe-overlay"><strong>Enchiladas Verdes</strong></div>
-          </a>
-          <a class="recipe-item" href="#" aria-label="Ver receta Tamales">
-            <img loading="lazy" src="https://images.unsplash.com/photo-1640075293936-8799b3bced3e?q=80&w=800&auto=format&fit=crop" alt="Tamales" />
-            <div class="recipe-overlay"><strong>Tamales</strong></div>
-          </a>
+      <div class="carousel-item">
+        <!-- Reemplaza esta imagen aquí -->
+        <img src="https://images.unsplash.com/photo-1515168833906-dad337047e3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Envíos">
+        <div class="carousel-content">
+          <h2>Envíos de Dinero y Cambio de Cheques</h2>
+          <p>¡Envíos rápidos, seguros y confiables a México y Latinoamérica! Aquí cambiamos tus cheques al instante con las mejores tasas. 📍 Visítanos en El Mexiquense Market. ¡Tu confianza, nuestra prioridad!</p>
+          <button>Más Información</button>
         </div>
       </div>
-    </section>
-
-    <!-- ===================================== -->
-    <!-- Contacto y Ubicación                  -->
-    <!-- ===================================== -->
-    <section id="contacto" aria-label="Contacto y Ubicación" style="background: var(--gris-suave)">
-      <div class="container">
-        <h2 class="section-title" data-animate>Contacto y ubicación</h2>
-        <p class="section-sub" data-animate>¿Tienes dudas? Escríbenos o visítanos.</p>
-
-        <div class="contact-grid" data-animate>
-          <form class="form-card" id="contactForm" novalidate>
-            <div class="field">
-              <input id="nombre" name="nombre" type="text" placeholder=" " required aria-required="true" />
-              <label for="nombre">Nombre</label>
-            </div>
-            <div class="field">
-              <input id="email" name="email" type="email" placeholder=" " required aria-required="true" />
-              <label for="email">Email</label>
-            </div>
-            <div class="field">
-              <textarea id="mensaje" name="mensaje" placeholder=" " required aria-required="true"></textarea>
-              <label for="mensaje">Mensaje</label>
-            </div>
-            <div class="contact-actions" aria-label="Acciones rápidas">
-              <a class="chip" href="https://wa.me/15551234567" target="_blank" rel="noopener" aria-label="WhatsApp">
-                <!-- Icono WhatsApp -->
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.5 11.5C.5 5.71 5.21 1 11 .999 16.79 1 21.5 5.71 21.5 11.5S16.79 22 11 22a10.9 10.9 0 0 1-5-1.2L2 22l1.2-4A10.9 10.9 0 0 1 .5 11.5Zm10.5-7.5a7.5 7.5 0 1 0 6.53 11.2l.4-.73 2.07.53-.55-2.02.72-.4A7.5 7.5 0 0 0 11 4Zm3.1 9.83c-.17.1-.99.49-1.14.51-.15.01-.29.02-.42-.03a5.27 5.27 0 0 1-2.31-1.27 6.01 6.01 0 0 1-1.37-1.76c-.14-.25-.02-.39.08-.49.08-.08.18-.2.26-.3.09-.1.11-.17.17-.28.06-.12.03-.22 0-.31l-.42-1.01c-.11-.26-.23-.22-.34-.23l-.29-.01a.56.56 0 0 0-.4.19c-.14.15-.53.52-.53 1.28 0 .76.54 1.49.62 1.6.08.11 1.06 1.72 2.59 2.34 1.53.62 1.53.41 1.81.4.28-.01.91-.37 1.04-.73.13-.36.13-.67.09-.73-.04-.06-.15-.1-.32-.19Z"/></svg>
-                WhatsApp
-              </a>
-              <a class="chip" href="tel:+15551234567" aria-label="Llamar">
-                <!-- Icono Teléfono -->
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.7 15.7 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.6.7 4 .7.6 0 1 .4 1 1V21c0 .6-.4 1-1 1C10.4 22 2 13.6 2 3c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.4.2 2.7.7 4 .1.4 0 .8-.3 1.1l-2.2 2.2Z"/></svg>
-                Llamar
-              </a>
-              <a class="chip" href="mailto:hola@elmexiquense.com" aria-label="Email">
-                <!-- Icono Email -->
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 6c0-1.1.9-2 2-2h16c1.1 0 2 .9 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6Zm3.2 0 6.8 5 6.8-5H5.2Zm13.6 12V8.3l-7.2 5.3L4.4 8.3V18H18.8Z"/></svg>
-                Email
-              </a>
-            </div>
-            <button class="submit-btn" type="submit">Enviar mensaje</button>
-            <p class="u-muted" id="formMessage" role="status" aria-live="polite" style="margin-top:.6rem"></p>
-          </form>
-
-          <div class="map-card" aria-label="Mapa">
-            <!-- Mapa embebido (reemplaza con tu dirección) -->
-            <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3011.627165778934!2d-99.133208!3d19.432607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1f92aa4d2b3bb%3A0x6d5d7d5d0d3!2sEl%20Mexiquense%20Market!5e0!3m2!1ses!2smx!4v1680000000000">
-            </iframe>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- =============================== -->
-  <!-- Footer                          -->
-  <!-- =============================== -->
-  <footer>
-    <div class="container footer-grid">
-      <p>© <span id="year"></span> El Mexiquense Market — Todos los derechos reservados.</p>
-      <div class="socials" aria-label="Redes sociales">
-        <a href="#" aria-label="Facebook" title="Facebook">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M13 22v-9h3l1-4h-4V7c0-1.1.9-2 2-2h2V1h-3a5 5 0 0 0-5 5v3H6v4h3v9h4Z"/></svg>
-        </a>
-        <a href="#" aria-label="Instagram" title="Instagram">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm5 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm6.5-.8a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4Z"/></svg>
-        </a>
-        <a href="#" aria-label="TikTok" title="TikTok">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M14 3h2a5 5 0 0 0 5 5v3a8 8 0 1 1-8-8Z"/></svg>
-        </a>
+      <div class="carousel-controls">
+        <div class="carousel-dot active"></div>
+        <div class="carousel-dot"></div>
+        <div class="carousel-dot"></div>
+        <div class="carousel-dot"></div>
       </div>
     </div>
+  </section>
+
+  <!-- Productos Destacados -->
+  <section id="productos" class="productos fade-in">
+    <h2>Productos Destacados</h2>
+    <div class="productos-grid">
+      <div class="producto-card">
+        <!-- Reemplaza este SVG aquí -->
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/></svg>
+        <h3>Frutas Frescas</h3>
+        <p>Las mejores frutas de temporada, directas del campo.</p>
+      </div>
+      <div class="producto-card">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S *\ 17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/></svg>
+        <h3>Carnes Premium</h3>
+        <p>Cortes frescos y de alta calidad para tus platillos.</p>
+      </div>
+      <div class="producto-card">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/></svg>
+        <h3>Panadería Artesanal</h3>
+        <p>Pan mexicano recién horneado con amor.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ofertas del Día -->
+  <section id="ofertas" class="ofertas fade-in">
+    <h2>Ofertas del Día</h2>
+    <div class="ofertas-grid">
+      <div class="oferta-card">
+        <span class="badge">¡Oferta!</span>
+        <!-- Reemplaza esta imagen aquí -->
+        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7b5c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Producto 1">
+        <div class="oferta-content">
+          <h3>Chiles Frescos</h3>
+          <p><span class="precio-viejo">$10.00</span> <span class="precio-nuevo">$7.99</span></p>
+        </div>
+      </div>
+      <div class="oferta-card">
+        <span class="badge">¡Oferta!</span>
+        <img src="https://images.unsplash.com/photo-1603046891748-7f8f6b1c9044?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Producto 2">
+        <div class="oferta-content">
+          <h3>Tortillas Artesanales</h3>
+          <p><span class="precio-viejo">$15.00</span> <span class="precio-nuevo">$12.99</span></p>
+        </div>
+      </div>
+      <div class="oferta-card">
+        <span class="badge">¡Oferta!</span>
+        <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Producto 3">
+        <div class="oferta-content">
+          <h3>Salsas Caseras</h3>
+          <p><span class="precio-viejo">$8.00</span> <span class="precio-nuevo">$5.99</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recetas -->
+  <section id="recetas" class="recetas fade-in">
+    <h2>Recetas con Amor</h2>
+    <div class="recetas-carousel">
+      <div class="receta-card">
+        <!-- Reemplaza esta imagen aquí -->
+        <img src="https://images.unsplash.com/photo-1598971458491-3a8d7651611b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Receta 1">
+        <div class="overlay">
+          <h3>Tacos al Pastor</h3>
+        </div>
+      </div>
+      <div class="receta-card">
+        <img src="https://images.unsplash.com/photo-1605926637513-8deaf2d5fe60?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Receta 2">
+        <div class="overlay">
+          <h3>Mole Poblano</h3>
+        </div>
+      </div>
+      <div class="receta-card">
+        <img src="https://images.unsplash.com/photo-1627133803097-7f7533cbb3be?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Receta 3">
+        <div class="overlay">
+          <h3>Enchiladas Verdes</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section id="contacto" class="contacto fade-in">
+    <h2>Contacto y Ubicación</h2>
+    <div class="contacto-grid">
+      <form class="contact-form">
+        <label>
+          <input type="text" placeholder=" " required>
+          <span>Nombre</span>
+        </label>
+        <label>
+          <input type="email" placeholder=" " required>
+          <span>Email</span>
+        </label>
+        <label>
+          <textarea placeholder=" " required></textarea>
+          <span>Mensaje</span>
+        </label>
+        <button type="submit">Enviar</button>
+      </form>
+      <div class="contact-info">
+        <a href="tel:+1234567890">
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.24 1.02l-2.2 2.2z"/></svg>
+          Llamar
+        </a>
+        <a href="https://wa.me/1234567890">
+          <svg viewBox="0 0 24 24"><path d="M16.75 13.96c.25.13.41.2.46.3.06.11.04.61-.21 1.18-.2.56-1.24 1.1-1.7 1.12-.46.02-.47.36-2.96-.73-2.49-.9-3.85-3.24-4.75-5.73-.9-2.49-.36-4.69.73-5.96.29-.37.73-.66 1.18-.74.45-.08.88.02 1.18.21.31.25.37.39.3.46-.1.05-.59.22-1.18.74-.59.52-.66 1.16-.73 1.62-.07.46.01 1.06.22 1.78.21.72.36 1.25.44 1.44.08.2.45.3.89.2.42-.11 1.77-.53 2.94.24.77.5 1.22 1.03 1.44 1.22.22.19.28.6.19.89zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/></svg>
+          WhatsApp
+        </a>
+        <a href="mailto:info@elmexiquense.com">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          Email
+        </a>
+        <div class="map">
+          <!-- Reemplaza este iframe con tu Google Maps embed -->
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.019!2d-122.4194155!3d37.7749295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDQ2JzI5LjciTiAxMjLCsDI1JzA5LjkiVw!5e0!3m2!1ses!2sus!4v1635171234567!5m2!1ses!2sus"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; <span id="year"></span> El Mexiquense Market. Todos los derechos reservados.</p>
+    <button class="back-to-top">Volver Arriba</button>
   </footer>
 
-  <!-- Botón Volver arriba -->
-  <a href="#hero" class="to-top" id="toTop" aria-label="Volver arriba">↑</a>
-
   <script>
-    // Previene FOUC quitando la clase no-js
-    document.documentElement.classList.remove('no-js');
+    // Año dinámico
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Loader premium
-    window.addEventListener('load', () => {
-      const loader = document.getElementById('pageLoader');
-      setTimeout(() => loader?.classList.add('hide'), 350);
+    // Menú hamburguesa
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('nav ul');
+    menuToggle.addEventListener('click', () => {
+      nav.classList.toggle('active');
     });
 
-    // Navbar móvil
-    const hamburger = document.getElementById('hamburger');
-    const menuMobile = document.getElementById('menuMobile');
-    hamburger?.addEventListener('click', () => {
-      const active = hamburger.classList.toggle('active');
-      hamburger.setAttribute('aria-expanded', active);
-      menuMobile.style.display = active ? 'flex' : 'none';
-    });
-    menuMobile?.addEventListener('click', (e) => {
-      if(e.target.tagName === 'A'){ hamburger.classList.remove('active'); menuMobile.style.display='none'; }
-    });
+    // Carrusel
+    const items = document.querySelectorAll('.carousel-item');
+    const dots = document.querySelectorAll('.carousel-dot');
+    let currentItem = 0;
 
-    // Parallax sutil en hero
-    const hero = document.querySelector('.hero');
-    window.addEventListener('scroll', () => {
-      const y = Math.min(60, window.scrollY * 0.06);
-      hero?.style.setProperty('--parallax', y + 'px');
-    }, { passive: true });
-
-    // Carrusel: autoplay, flechas, dots, y swipe táctil
-    const track = document.getElementById('carouselTrack');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const dotsContainer = document.getElementById('dots');
-
-    function updateDots(){
-      const idx = Math.round(track.scrollLeft / track.clientWidth);
-      [...dotsContainer.children].forEach((d,i)=> d.classList.toggle('active', i===idx));
+    function showItem(index) {
+      items.forEach((item, i) => {
+        item.classList.remove('active');
+        dots[i].classList.remove('active');
+        if (i === index) {
+          item.classList.add('active');
+          dots[i].classList.add('active');
+        }
+      });
     }
 
-    function goToSlide(i){ track.scrollTo({ left: i * track.clientWidth, behavior: 'smooth' }); }
-
-    function buildDots(){
-      const slides = track.children.length;
-      dotsContainer.innerHTML = '';
-      for(let i=0;i<slides;i++){
-        const dot = document.createElement('button');
-        dot.className = 'dot' + (i===0 ? ' active':'' );
-        dot.setAttribute('aria-label','Ir al slide ' + (i+1));
-        dot.addEventListener('click', ()=> goToSlide(i));
-        dotsContainer.appendChild(dot);
-      }
-    }
-
-    buildDots();
-    track.addEventListener('scroll', updateDots, { passive: true });
-
-    prevBtn?.addEventListener('click', ()=> {
-      const idx = Math.round(track.scrollLeft / track.clientWidth);
-      goToSlide(Math.max(0, idx-1));
-    });
-    nextBtn?.addEventListener('click', ()=> {
-      const idx = Math.round(track.scrollLeft / track.clientWidth);
-      const max = track.children.length - 1;
-      goToSlide(Math.min(max, idx+1));
-    });
-
-    // Autoplay cada 5s
-    let auto = setInterval(()=> {
-      const idx = Math.round(track.scrollLeft / track.clientWidth);
-      const max = track.children.length - 1;
-      goToSlide(idx >= max ? 0 : idx + 1);
-    }, 5000);
-    track.addEventListener('pointerdown', ()=> clearInterval(auto), { passive:true });
-
-    // Swipe táctil manual (mejor control)
-    let startX = 0, scrollStart = 0;
-    track.addEventListener('touchstart', (e)=> { startX = e.touches[0].clientX; scrollStart = track.scrollLeft; }, { passive: true });
-    track.addEventListener('touchmove', (e)=> { const dx = startX - e.touches[0].clientX; track.scrollLeft = scrollStart + dx; }, { passive: true });
-
-    // Ripple effect en botones CTA
-    document.querySelectorAll('[data-ripple]').forEach(btn => {
-      btn.addEventListener('click', function(e){
-        const rect = this.getBoundingClientRect();
-        const x = e.clientX - rect.left; const y = e.clientY - rect.top;
-        const span = document.createElement('span');
-        span.className = 'ripple'; span.style.left = x + 'px'; span.style.top = y + 'px';
-        this.appendChild(span); setTimeout(()=> span.remove(), 600);
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        currentItem = index;
+        showItem(currentItem);
       });
     });
 
-    // Intersection Observer para animaciones on-scroll
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{ if(entry.isIntersecting){ entry.target.classList.add('in'); io.unobserve(entry.target); } });
-    }, { threshold: .15 });
-    document.querySelectorAll('[data-animate]').forEach(el=> io.observe(el));
+    setInterval(() => {
+      currentItem = (currentItem + 1) % items.length;
+      showItem(currentItem);
+    }, 5000);
 
-    // Validación básica de formulario
-    const contactForm = document.getElementById('contactForm');
-    const formMsg = document.getElementById('formMessage');
-    contactForm?.addEventListener('submit', (e)=>{
-      e.preventDefault();
-      const data = new FormData(contactForm);
-      const nombre = (data.get('nombre')||'').toString().trim();
-      const email = (data.get('email')||'').toString().trim();
-      const mensaje = (data.get('mensaje')||'').toString().trim();
-      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-      if(!nombre || !emailOk || !mensaje){
-        formMsg.textContent = 'Por favor completa todos los campos correctamente.';
-        formMsg.style.color = '#b00020';
-      } else {
-        formMsg.textContent = '¡Gracias! Tu mensaje ha sido enviado (demo).';
-        formMsg.style.color = 'var(--verde-mex)';
-        contactForm.reset();
-      }
+    // Animaciones al hacer scroll
+    const fadeIns = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    fadeIns.forEach(element => observer.observe(element));
+
+    // Volver arriba
+    const backToTop = document.querySelector('.back-to-top');
+    window.addEventListener('scroll', () => {
+      backToTop.classList.toggle('hidden', window.scrollY < 200);
     });
 
-    // Botón Volver arriba: mostrar/ocultar con scroll
-    const toTop = document.getElementById('toTop');
-    const onScrollToTop = () => {
-      if(window.scrollY > 200){ toTop.classList.add('show'); } else { toTop.classList.remove('show'); }
-    };
-    window.addEventListener('scroll', onScrollToTop, { passive: true });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 
-    // Año automático en footer
-    document.getElementById('year').textContent = new Date().getFullYear();
+    // Formulario básico
+    const form = document.querySelector('.contact-form');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Formulario enviado. ¡Gracias por contactarnos!');
+      form.reset();
+    });
   </script>
 </body>
 </html>
+
