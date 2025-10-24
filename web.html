@@ -159,6 +159,61 @@
     .btn:hover {
       background: var(--rojo-fuego);
     }
+    /* ==== FIX VISUAL CARRUSEL EN MÓVIL ==== */
+@media (max-width: 768px) {
+  #promociones {
+    margin-top: 2.5rem !important; /* separa del hero */
+  }
+
+  #promociones .feature-slider {
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+  }
+
+  #promociones .slide {
+    flex-direction: column !important;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  #promociones .slide-image {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 260px !important;
+    overflow: hidden;
+  }
+
+  #promociones .slide-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important; /* evita recorte */
+    object-position: center center !important;
+    display: block;
+  }
+
+  #promociones .slide-content {
+    background: white;
+    width: 100%;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    border-radius: 0 0 var(--radius) var(--radius);
+  }
+
+  #promociones .slide-content h2 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+
+  #promociones .slide-content p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+  #promociones .btn {
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+  }
   </style>
 </head>
 <body>
