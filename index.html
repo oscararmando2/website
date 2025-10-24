@@ -248,87 +248,88 @@
       transition: background 0.3s;
       z-index: 10;
     }
+/* 🧩 AJUSTE ESTRUCTURAL: IMAGEN ARRIBA, CUADRO ABAJO */
 @media (max-width: 768px) {
   .feature-slider {
-    margin: 1rem auto;
-    max-height: 100vh; /* Ensure it fits within viewport */
+    margin: 2rem auto;
+    max-width: 95%;
   }
 
   .slides {
     height: auto;
-    max-height: calc(100vh - 80px); /* Account for header and margins */
   }
 
   .slide {
-    position: relative;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 0; /* Prevent excessive height */
-    max-height: calc(100vh - 80px); /* Fit within viewport */
   }
 
+  /* Imagen separada */
   .slide-image {
     width: 100%;
-    height: 50vh; /* Reduced to fit within viewport */
-    max-height: 300px; /* Cap height for consistency */
+    background: #000; /* fondo de seguridad */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
   }
 
   .slide-image img {
     width: 100%;
-    height: 100%; /* Fill the container */
-    max-height: 300px; /* Consistent with first slide */
+    max-height: 300px;
     object-fit: cover;
-    object-position: center center;
-    border-radius: var(--radius) var(--radius) 0 0;
-    display: block;
+    object-position: center;
+    border-radius: var(--radius);
+    margin-bottom: 0; /* elimina espacio entre imagen y cuadro */
   }
 
+  /* Cuadro blanco independiente */
   .slide-content {
     background: white;
-    padding: 1rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 1.5rem 1rem;
+    width: 95%;
+    margin-top: -1rem; /* simula continuidad visual sin tocar la estructura */
+    z-index: 2;
+    position: relative;
     text-align: center;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    max-height: 40vh; /* Limit content height */
   }
 
   .slide-content h2 {
-    font-size: 1.2rem;
-    margin: 0.3rem 0;
+    font-size: 1.3rem;
+    margin-bottom: 0.4rem;
+    color: var(--verde-mex);
   }
 
   .slide-content p {
-    font-size: 0.85rem;
-    margin: 0.5rem 0;
+    font-size: 0.9rem;
     color: var(--texto-claro);
+    margin-bottom: 1rem;
   }
 
   .btn {
-    font-size: 0.85rem;
-    padding: 0.5rem 1rem;
-    margin: 0.5rem auto;
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
   }
 
   .arrow {
     bottom: 10px;
     top: auto;
-    width: 32px;
-    height: 32px;
-    font-size: 1.2rem;
   }
 }
-/* 📱 Teléfonos más pequeños */
+
+/* 📱 En teléfonos más pequeños */
 @media (max-width: 480px) {
   .slide-image img {
-    height: 220px; /* igual proporcional más chico */
+    max-height: 220px;
   }
 
   .slide-content {
-    padding: 1rem;
+    width: 90%;
+    padding: 1rem 0.8rem;
+    margin-top: -0.8rem;
   }
 
   .slide-content h2 {
@@ -337,19 +338,8 @@
 
   .slide-content p {
     font-size: 0.85rem;
-    margin-bottom: 0.8rem;
-  }
-
-  .btn {
-    font-size: 0.85rem;
-    padding: 0.5rem 0.9rem;
   }
 }
-
-    .arrow:hover { background: rgba(0, 0, 0, 0.7); }
-    .prev { left: 15px; }
-    .next { right: 15px; }
-
     /* =============================
        🧱 SECCIONES GENERALES
     ============================== */
