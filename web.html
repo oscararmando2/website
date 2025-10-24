@@ -393,6 +393,62 @@
       </div>
     </div>
   </section>
+  <!-- ================= CARRUSEL DESTACADO ================= -->
+<section id="promociones" class="section" style="padding-top:2rem;">
+  <div class="container">
+    <div class="feature-slider" style="position:relative; overflow:hidden; border-radius:var(--radius); box-shadow:var(--shadow-soft); background:white;">
+      <div class="slides">
+        
+        <!-- Slide 1 -->
+        <div class="slide active" style="display:flex; align-items:stretch; flex-wrap:wrap;">
+          <div class="slide-image" style="flex:1 1 50%;">
+            <img src="https://www.cardenasmarkets.com/wp-content/uploads/fly-images/3644/cardenas-rewards-las-vegas-carousel-1462x1122-c.jpg" 
+                 alt="Ofertas exclusivas" style="width:100%; height:100%; object-fit:cover; border-radius:var(--radius) 0 0 var(--radius);">
+          </div>
+          <div class="slide-content" style="flex:1 1 50%; display:flex; flex-direction:column; justify-content:center; padding:2rem;">
+            <span class="badge" style="background:var(--rojo-fuego); color:white; padding:0.3rem 0.8rem; border-radius:999px; font-size:0.8rem; text-transform:uppercase; width:fit-content;">Ofertas</span>
+            <h2 style="color:var(--verde-mex); margin:0.5rem 0;">Descubre ofertas exclusivas</h2>
+            <p style="color:var(--texto-claro); margin-bottom:1rem;">¡Encuentra descuentos increíbles en tus productos mexicanos favoritos!</p>
+            <a href="#ofertas" class="btn btn-primary">Ver más</a>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide" style="display:none; align-items:stretch; flex-wrap:wrap;">
+          <div class="slide-image" style="flex:1 1 50%;">
+            <img src="https://st2.depositphotos.com/1799455/7612/i/450/depositphotos_76127411-stock-photo-hand-throwing-a-dollar-paper.jpg" 
+                 alt="Envía dinero" style="width:100%; height:100%; object-fit:cover; border-radius:var(--radius) 0 0 var(--radius);">
+          </div>
+          <div class="slide-content" style="flex:1 1 50%; display:flex; flex-direction:column; justify-content:center; padding:2rem;">
+            <span class="badge" style="background:var(--rojo-fuego); color:white; padding:0.3rem 0.8rem; border-radius:999px; font-size:0.8rem; text-transform:uppercase; width:fit-content;">Servicios</span>
+            <h2 style="color:var(--verde-mex); margin:0.5rem 0;">Envía dinero a tus familiares</h2>
+            <p style="color:var(--texto-claro); margin-bottom:1rem;">Rápido, seguro y confiable — envía dinero a toda Latinoamérica con las mejores tarifas.</p>
+            <a href="#contacto" class="btn btn-primary">Más detalles</a>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide" style="display:none; align-items:stretch; flex-wrap:wrap;">
+          <div class="slide-image" style="flex:1 1 50%;">
+            <img src="https://www.cardenasmarkets.com/wp-content/uploads/fly-images/986/careers-bonus-image-sp-1462x1122-c.jpg" 
+                 alt="Miercolazo de Descuento" style="width:100%; height:100%; object-fit:cover; border-radius:var(--radius) 0 0 var(--radius);">
+          </div>
+          <div class="slide-content" style="flex:1 1 50%; display:flex; flex-direction:column; justify-content:center; padding:2rem;">
+            <span class="badge" style="background:var(--rojo-fuego); color:white; padding:0.3rem 0.8rem; border-radius:999px; font-size:0.8rem; text-transform:uppercase; width:fit-content;">Promoción</span>
+            <h2 style="color:var(--verde-mex); margin:0.5rem 0;">¡Miercolazo de Descuento!</h2>
+            <p style="color:var(--texto-claro); margin-bottom:1rem;">Ahorra en productos frescos cada miércoles. ¡Precios bajos, estilo Mexiquense!</p>
+            <a href="#ofertas" class="btn btn-primary">Ver ofertas</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Flechas -->
+      <button class="arrow prev" style="position:absolute; top:50%; left:15px; transform:translateY(-50%); background:rgba(0,0,0,0.4); color:white; border:none; border-radius:50%; width:40px; height:40px; font-size:1.5rem; cursor:pointer;">‹</button>
+      <button class="arrow next" style="position:absolute; top:50%; right:15px; transform:translateY(-50%); background:rgba(0,0,0,0.4); color:white; border:none; border-radius:50%; width:40px; height:40px; font-size:1.5rem; cursor:pointer;">›</button>
+    </div>
+  </div>
+</section>
 
   <!-- ================= PRODUCTOS DESTACADOS ================= -->
   <section id="destacados" class="section">
@@ -815,6 +871,36 @@
 
     // ========= Accesibilidad ligera: indica JS habilitado =========
     document.documentElement.classList.remove('no-js');
+
+    // ===== Carrusel funcional =====
+const slides = document.querySelectorAll('#promociones .slide');
+let currentSlide = 0;
+
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.style.display = (i === index) ? 'flex' : 'none';
+  });
+}
+
+document.querySelector('#promociones .next').addEventListener('click', () => {
+  currentSlide = (currentSlide + 1) % slides.length;
+  showSlide(currentSlide);
+});
+
+document.querySelector('#promociones .prev').addEventListener('click', () => {
+  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+  showSlide(currentSlide);
+});
+
+// Auto-play cada 6 segundos
+setInterval(() => {
+  currentSlide = (currentSlide + 1) % slides.length;
+  showSlide(currentSlide);
+}, 6000);
+
+// Iniciar
+showSlide(currentSlide);
+
   </script>
 </body>
 </html>
