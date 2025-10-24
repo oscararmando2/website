@@ -1,17 +1,10 @@
 <!DOCTYPE html>
-<html lang="es" class="no-js">
+<html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>El Mexiquense Market — Frescura diaria</title>
-  <meta name="theme-color" content="#1D8445" />
-  <meta name="description" content="El Mexiquense Market: frescura diaria, precios justos y calidad garantizada." />
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- AOS -->
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>El Mexiquense Market — Frescura y Sabor Auténtico</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -21,370 +14,414 @@
       --gris-suave: #F5F5F5;
       --texto: #2D2D2D;
       --texto-claro: #666;
-      --radius: 20px;
-      --shadow-soft: 0 12px 40px rgba(29,132,69,0.08);
-      --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-      --container: min(1200px, 92vw);
-      --section-y: 5rem;
-      --grid-gap: 2rem;
+      --degradado-hero: linear-gradient(135deg, var(--verde-mex), var(--rojo-fuego));
+      --radius: 16px;
+      --shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      --transition: 0.3s ease;
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      font-family: 'Poppins', sans-serif;
+      background: var(--blanco-crema);
       color: var(--texto);
-      background: var(--blanco-crema);
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
     }
 
-    img { max-width: 100%; display: block; }
-    a { color: inherit; text-decoration: none; }
-    .container { width: var(--container); margin: 0 auto; }
-    .section { padding: var(--section-y) 0; }
+    a { text-decoration: none; color: inherit; }
 
-    /* ===== NAV ===== */
+    /* =============================
+       🧭 ENCABEZADO
+    ============================== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+      animation: fadeDown 0.8s ease forwards;
+    }
+
     .nav {
-      position: sticky; top: 0; z-index: 999;
-      background: var(--blanco-crema);
-      transition: var(--transition);
-    }
-    .nav.scrolled { box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-    .nav-inner {
-      width: var(--container);
-      margin: 0 auto;
-      height: 72px;
+      max-width: 1200px;
+      margin: auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 1rem;
+      padding: 0.8rem 1rem;
     }
-    .brand {
-      display: flex; align-items: center; gap: .75rem;
-      font-weight: 700; font-size: 1.15rem; color: var(--verde-mex);
-      letter-spacing: .2px;
+
+    .logo {
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: var(--verde-mex);
     }
+
     .menu {
-      display: none; align-items: center; gap: 2rem; font-weight: 500;
+      display: flex;
+      gap: 1rem;
+      transition: all var(--transition);
     }
+
     .menu a {
-      position: relative; padding: .25rem 0;
-    }
-    .menu a::after {
-      content: ""; position: absolute; left: 0; bottom: -4px; width: 0%; height: 2px;
-      background: var(--rojo-fuego); transition: var(--transition);
-    }
-    .menu a:hover::after { width: 100%; }
-
-    .hamb {
-      display: inline-flex; gap: .5rem; align-items: center; border: 0;
-      background: transparent; font: inherit;
-    }
-    .hamb .bars {
-      width: 26px; height: 2px; background: var(--texto);
-      position: relative; border-radius: 2px; transition: var(--transition);
-    }
-    .hamb .bars::before, .hamb .bars::after {
-      content: ""; position: absolute; left: 0; right: 0;
-      height: 2px; background: var(--texto); border-radius: 2px;
-      transition: var(--transition);
-    }
-    .hamb .bars::before { top: -7px; }
-    .hamb .bars::after { top: 7px; }
-
-    .drawer {
-      position: fixed; inset: 0;
-      display: grid; grid-template-columns: 280px 1fr;
-      transform: translateX(-100%);
-      transition: var(--transition);
-      z-index: 1000;
-    }
-    .drawer.open { transform: translateX(0); }
-    .drawer aside {
-      background: var(--verde-mex); color: white;
-      padding: 1.25rem 1.5rem;
-      display: flex; flex-direction: column; gap: 1.25rem;
-    }
-    .drawer a {
-      color: white; font-weight: 600;
-      padding: .75rem 0; border-bottom: 1px solid rgba(255,255,255,.12);
-    }
-    .drawer .close {
-      margin-left: auto; background: transparent; border: 0;
-      color: white; font-size: 1.25rem; display: flex; align-items: center; gap: .5rem;
-    }
-    .drawer .close .x {
-      width: 22px; height: 2px; background: white; position: relative; transform: rotate(45deg);
-    }
-    .drawer .close .x::after {
-      content: ""; position: absolute; inset: 0; background: white; transform: rotate(90deg);
-    }
-    .drawer .backdrop { background: rgba(0,0,0,0.35); }
-
-    @media (min-width: 992px) {
-      .menu { display: flex; }
-      .hamb, .drawer { display: none; }
+      padding: 0.5rem 0.9rem;
+      border-radius: 999px;
+      transition: background var(--transition);
     }
 
-    /* ===== HERO ===== */
-    .hero {
-      position: relative; min-height: 84vh; display: grid; place-items: center; overflow: hidden;
-      background:
-        linear-gradient(135deg, rgba(29,132,69,0.8), rgba(212,84,56,0.7)),
-        url('https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1974&auto=format&fit=crop') center/cover no-repeat;
-      color: white;
-    }
-    .hero-content { text-align: center; padding: 6rem 1rem; }
-    .hero h1 {
-      font-size: clamp(2.4rem, 6vw, 4.5rem);
-      line-height: 1.07; margin: 0 0 1rem; font-weight: 700;
-      animation: fadeInUp .9s ease both .1s;
-    }
-    .hero p {
-      font-size: clamp(1rem, 2.5vw, 1.25rem);
-      opacity: .95; margin: 0 0 2rem;
-      animation: fadeInUp .9s ease both .2s;
-    }
-    .cta-row {
-      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
-    }
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
-      padding: .9rem 1.25rem; border-radius: 999px;
-      border: 2px solid transparent; font-weight: 700; cursor: pointer;
-      transition: var(--transition); box-shadow: var(--shadow-soft);
-    }
-    .btn-primary { background: var(--rojo-fuego); color: white; }
-    .btn-primary:hover { background: var(--verde-mex); transform: translateY(-1px); }
-    .btn-outline { background: white; color: var(--verde-mex); border-color: var(--verde-mex); }
-    .btn-outline:hover { background: var(--verde-mex); color: white; }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(18px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  <!-- ================= CARRUSEL DESTACADO ================= -->
-  <section id="promociones" class="section" style="padding-top:2rem;">
-    <div class="container">
-      <div class="feature-slider">
-        <div class="slides">
-          
-          <!-- 🥑 SLIDE 1 — Ofertas exclusivas -->
-          <div class="slide active">
-            <div class="slide-image">
-              <img src="https://www.cardenasmarkets.com/wp-content/uploads/fly-images/3644/cardenas-rewards-las-vegas-carousel-1462x1122-c.jpg" 
-                   alt="Ofertas exclusivas">
-            </div>
-            <div class="slide-content">
-              <span class="badge">Ofertas</span>
-              <h2>Descubre ofertas exclusivas</h2>
-              <p>¡Encuentra descuentos increíbles en tus productos mexicanos favoritos!</p>
-              <a href="#ofertas" class="btn btn-primary">Ver más</a>
-            </div>
-          </div>
-
-          <!-- 💸 SLIDE 2 — Envía dinero -->
-          <div class="slide">
-            <div class="slide-image">
-              <img src="https://st2.depositphotos.com/1799455/7612/i/450/depositphotos_76127411-stock-photo-hand-throwing-a-dollar-paper.jpg" 
-                   alt="Envía dinero">
-            </div>
-            <div class="slide-content">
-              <span class="badge">Servicios</span>
-              <h2>Envía dinero a tus familiares</h2>
-              <p>Rápido, seguro y confiable — envía dinero a toda Latinoamérica con las mejores tarifas.</p>
-              <a href="#contacto" class="btn btn-primary">Más detalles</a>
-            </div>
-          </div>
-
-          <!-- 🥕 SLIDE 3 — Miercolazo -->
-          <div class="slide">
-            <div class="slide-image">
-              <img src="https://www.cardenasmarkets.com/wp-content/uploads/fly-images/986/careers-bonus-image-sp-1462x1122-c.jpg" 
-                   alt="Miercolazo de Descuento">
-            </div>
-            <div class="slide-content">
-              <span class="badge">Promoción</span>
-              <h2>¡Miercolazo de Descuento!</h2>
-              <p>Ahorra en productos frescos cada miércoles. ¡Precios bajos, estilo Mexiquense!</p>
-              <a href="#ofertas" class="btn btn-primary">Ver ofertas</a>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Flechas -->
-        <button class="arrow prev">‹</button>
-        <button class="arrow next">›</button>
-      </div>
-    </div>
-  </section>
-
-  <style>
-    /* ====== CARRUSEL DESTACADO BASE ====== */
-    .feature-slider {
-      position: relative;
-      overflow: hidden;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-soft);
-      background: white;
-      max-width: 1200px;
-      margin: 3rem auto;
+    .menu a:hover {
+      background: rgba(29, 132, 69, 0.1);
     }
 
-    .slides {
-      display: flex;
-      transition: transform 0.8s ease, opacity 0.8s ease;
-    }
-
-    .slide {
-      flex: 0 0 100%;
-      display: flex;
-      align-items: stretch;
-      opacity: 0;
-      transform: translateX(100%);
-      transition: all 0.8s ease;
-    }
-    .slide.active {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    .slide-image {
-      flex: 1 1 50%;
-      height: 400px;
-    }
-    .slide-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center center;
-      border-radius: var(--radius) 0 0 var(--radius);
-      display: block;
-    }
-
-    .slide-content {
-      flex: 1 1 50%;
-      background: white;
-      padding: 3rem;
-      display: flex;
+    .hamburger {
+      display: none;
       flex-direction: column;
       justify-content: center;
-      height: 400px;
-      border-radius: 0 var(--radius) var(--radius) 0;
+      width: 35px;
+      height: 35px;
+      gap: 5px;
+      cursor: pointer;
     }
-    .slide-content h2 {
-      color: var(--verde-mex);
-      margin: 0.5rem 0;
-      font-size: 1.8rem;
-      line-height: 1.2;
+
+    .hamburger span {
+      width: 100%;
+      height: 3px;
+      background: var(--texto);
+      transition: var(--transition);
     }
-    .slide-content p {
-      color: var(--texto-claro);
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background: white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 0 0 12px 12px;
+      }
+
+      .menu.show {
+        display: flex;
+        animation: fadeIn 0.3s ease;
+      }
+
+      .hamburger { display: flex; }
+    }
+
+    /* =============================
+       🌅 SECCIÓN HERO
+    ============================== */
+    .hero {
+      background: var(--degradado-hero);
+      color: white;
+      padding: 4rem 1rem;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      font-weight: 300;
       margin-bottom: 1.5rem;
     }
 
-    .badge {
-      background: var(--rojo-fuego);
+    .btn {
+      background: var(--verde-mex);
       color: white;
-      padding: 0.3rem 0.8rem;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      text-transform: uppercase;
+      padding: 0.7rem 1.2rem;
+      border-radius: 8px;
+      transition: background var(--transition);
       width: fit-content;
+      display: inline-block;
+      margin-top: 0.5rem;
     }
 
-    .arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0,0,0,0.4);
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      font-size: 1.5rem;
-      cursor: pointer;
-      transition: background 0.3s;
-      z-index: 10;
-    }
-    .arrow:hover { background: rgba(0,0,0,0.7); }
-    .prev { left: 15px; }
-    .next { right: 15px; }
-
-    /* ====== 📱 RESPONSIVE OPTIMIZADO ====== */
-    @media (max-width: 768px) {
-      #promociones .slide {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: flex-start !important;
-        flex-wrap: nowrap !important;
-      }
-
-      #promociones .slide-image {
-        width: 100% !important;
-        height: auto !important;
-        max-height: 260px;
-      }
-      #promociones .slide-image img {
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: cover !important;
-        object-position: center !important;
-        border-radius: var(--radius) var(--radius) 0 0 !important;
-        display: block !important;
-      }
-
-      #promociones .slide-content {
-        width: 100% !important;
-        background: white;
-        padding: 1.4rem 1rem !important;
-        text-align: center;
-        border-radius: 0 0 var(--radius) var(--radius);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
-
-      #promociones .slide-content h2 {
-        font-size: 1.25rem;
-        margin-bottom: 0.4rem;
-        color: var(--verde-mex);
-      }
-      #promociones .slide-content p {
-        font-size: 0.9rem;
-        margin-bottom: 0.8rem;
-        color: var(--texto-claro);
-      }
-      #promociones .btn {
-        margin: 0 auto;
-        font-size: 0.9rem;
-        padding: 0.6rem 1.1rem;
-      }
-
-      #promociones .arrow {
-        bottom: 10px;
-        top: auto;
-        width: 32px;
-        height: 32px;
-        font-size: 1.2rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      #promociones .slide-image {
-        max-height: 210px;
-      }
-      #promociones .slide-content h2 {
-        font-size: 1.05rem;
-      }
-      #promociones .slide-content p {
-        font-size: 0.85rem;
-      }
+    .btn:hover {
+      background: var(--rojo-fuego);
     }
   </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="logo">El Mexiquense Market</div>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+      <nav class="menu" id="menu">
+        <a href="#inicio">Inicio</a>
+        <a href="#productos">Productos</a>
+        <a href="#ofertas">Ofertas</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="inicio">
+    <h1>El Sabor de México en Cada Compra</h1>
+    <p>Frescura diaria • Precios justos • Calidad garantizada</p>
+    <a href="#ofertas" class="btn">Ver Ofertas</a>
+  </section>
+<!-- ================= CARRUSEL DESTACADO ================= -->
+<section id="promociones" class="section" style="padding-top:2rem;">
+  <div class="container" style="max-width:1200px; margin:auto; overflow:hidden;">
+    <div class="feature-slider" style="position:relative; border-radius:16px; box-shadow:0 6px 20px rgba(0,0,0,0.1); overflow:hidden; background:white;">
+      <div class="slides">
+
+        <!-- Slide 1 -->
+        <div class="slide active" style="display:flex; align-items:stretch; flex-wrap:wrap;">
+          <div class="slide-image" style="flex:1 1 50%;">
+            <img src="https://www.cardenasmarkets.com/wp-content/uploads/fly-images/3644/cardenas-rewards-las-vegas-carousel-1462x1122-c.jpg"
+                 alt="Ofertas exclusivas" style="width:100%; height:100%; object-fit:cover;">
+          </div>
+          <div class="slide-content" style="flex:1 1 50%; display:flex; flex-direction:column; justify-content:center; padding:2rem;">
+            <span style="background:#D45438; color:white; padding:0.3rem 0.8rem; border-radius:999px; font-size:0.8rem; text-transform:uppercase; width:fit-content;">Ofertas</span>
+            <h2 style="color:#1D8445; margin:0.8rem 0;">Descubre ofertas exclusivas</h2>
+            <p style="color:#666;">¡Encuentra descuentos increíbles en tus productos mexicanos favoritos!</p>
+            <a href="#ofertas" class="btn" style="margin-top:1rem;">Ver más</a>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide" style="display:none; align-items:stretch; flex-wrap:wrap;">
+          <div class="slide-image" style="flex:1 1 50%;">
+            <img src="https://st2.depositphotos.com/1799455/7612/i/450/depositphotos_76127411-stock-photo-hand-throwing-a-dollar-paper.jpg"
+                 alt="Envía dinero" style="width:100%; height:100%; object-fit:cover;">
+          </div>
+          <div class="slide-content" style="flex:1 1 50%; display:flex; flex-direction:column; justify-content:center; padding:2rem;">
+            <span style="background:#D45438; color:white; padding:0.3rem 0.8rem; border-radius:999px; font-size:0.8rem; text-transform:uppercase; width:fit-content;">Servicios</span>
+            <h2 style="color:#1D8445; margin:0.8rem 0;">Envía dinero a tus familiares</h2>
+            <p style="color:#666;">Rápido, seguro y confiable — envía dinero a toda Latinoamérica con las mejores tarifas.</p>
+            <a href="#contacto" class="btn" style="margin-top:1rem;">Más detalles</a>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide" style="display:none; align-items:stretch; flex-wrap:wrap;">
+          <div class="slide-image" style="flex:1 1 50%;">
+            <img src="https://www.cardenasmarkets.com/wp-content/uploads/fly-images/986/careers-bonus-image-sp-1462x1122-c.jpg"
+                 alt="Miercolazo de Descuento" style="width:100%; height:100%; object-fit:cover;">
+          </div>
+          <div class="slide-content" style="flex:1 1 50%; display:flex; flex-direction:column; justify-content:center; padding:2rem;">
+            <span style="background:#D45438; color:white; padding:0.3rem 0.8rem; border-radius:999px; font-size:0.8rem; text-transform:uppercase; width:fit-content;">Promoción</span>
+            <h2 style="color:#1D8445; margin:0.8rem 0;">¡Miercolazo de Descuento!</h2>
+            <p style="color:#666;">Ahorra en productos frescos cada miércoles. ¡Precios bajos, estilo Mexiquense!</p>
+            <a href="#ofertas" class="btn" style="margin-top:1rem;">Ver ofertas</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Flechas -->
+      <button class="arrow prev" style="position:absolute; top:50%; left:15px; transform:translateY(-50%); background:rgba(0,0,0,0.4); color:white; border:none; border-radius:50%; width:40px; height:40px; font-size:1.5rem; cursor:pointer;">‹</button>
+      <button class="arrow next" style="position:absolute; top:50%; right:15px; transform:translateY(-50%); background:rgba(0,0,0,0.4); color:white; border:none; border-radius:50%; width:40px; height:40px; font-size:1.5rem; cursor:pointer;">›</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CARRUSEL JS ================= -->
+<script>
+  const slides = document.querySelectorAll('#promociones .slide');
+  let currentSlide = 0;
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.style.display = (i === index) ? 'flex' : 'none';
+    });
+  }
+
+  document.querySelector('#promociones .next').addEventListener('click', () => {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  });
+
+  document.querySelector('#promociones .prev').addEventListener('click', () => {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    showSlide(currentSlide);
+  });
+
+  setInterval(() => {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }, 6000);
+
+  showSlide(currentSlide);
+</script>
+
+<!-- RESPONSIVE MOBILE FIX -->
+<style>
+@media (max-width: 768px) {
+  #promociones .slide {
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  #promociones .slide-image {
+    order: 1;
+    width: 100% !important;
+    height: auto !important;
+    max-height: 300px;
+  }
+
+  #promociones .slide-content {
+    order: 2;
+    padding: 1.2rem 1rem !important;
+    text-align: center;
+  }
+
+  #promociones .slide-content h2 {
+    font-size: 1.3rem;
+  }
+
+  #promociones .slide-content p {
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+  }
+
+  #promociones .btn {
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+  }
+
+  #promociones .arrow {
+    width: 32px;
+    height: 32px;
+    font-size: 1.2rem;
+  }
+}
+</style>
+<!-- ================= PRODUCTOS DESTACADOS ================= -->
+<section id="productos" class="section" style="padding:3rem 1rem;">
+  <div class="container" style="max-width:1200px; margin:auto;">
+    <h2 style="text-align:center; color:#1D8445; margin-bottom:1.5rem;">Productos Destacados</h2>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1.5rem;">
+      <div style="background:white; border-radius:16px; box-shadow:0 6px 20px rgba(0,0,0,0.08); padding:1rem; text-align:center;">
+        <img src="https://images.unsplash.com/photo-1601050690597-6c59b68e16ab?q=80&w=800" alt="Frutas frescas" style="border-radius:12px; width:100%; height:180px; object-fit:cover;">
+        <h3 style="color:#1D8445; margin:0.8rem 0 0.3rem;">Frutas Frescas</h3>
+        <p style="color:#666; font-size:0.9rem;">La mejor calidad todos los días.</p>
+      </div>
+      <div style="background:white; border-radius:16px; box-shadow:0 6px 20px rgba(0,0,0,0.08); padding:1rem; text-align:center;">
+        <img src="https://images.unsplash.com/photo-1574323347401-f5e1e8b7d6ce?q=80&w=800" alt="Verduras" style="border-radius:12px; width:100%; height:180px; object-fit:cover;">
+        <h3 style="color:#1D8445; margin:0.8rem 0 0.3rem;">Verduras del Campo</h3>
+        <p style="color:#666; font-size:0.9rem;">Frescura garantizada cada día.</p>
+      </div>
+      <div style="background:white; border-radius:16px; box-shadow:0 6px 20px rgba(0,0,0,0.08); padding:1rem; text-align:center;">
+        <img src="https://images.unsplash.com/photo-1587915090183-47e57c1c7e07?q=80&w=800" alt="Panadería" style="border-radius:12px; width:100%; height:180px; object-fit:cover;">
+        <h3 style="color:#1D8445; margin:0.8rem 0 0.3rem;">Panadería Tradicional</h3>
+        <p style="color:#666; font-size:0.9rem;">Hecho con amor y recetas caseras.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= OFERTAS DEL DÍA ================= -->
+<section id="ofertas" class="section" style="background:#FAFAFA; padding:3rem 1rem;">
+  <div class="container" style="max-width:1200px; margin:auto;">
+    <h2 style="text-align:center; color:#D45438; margin-bottom:2rem;">Ofertas del Día</h2>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1.5rem;">
+      <div style="background:white; border-radius:16px; overflow:hidden; box-shadow:0 6px 20px rgba(0,0,0,0.08);">
+        <img src="https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?q=80&w=800" alt="Tomate" style="width:100%; height:180px; object-fit:cover;">
+        <div style="padding:1rem;">
+          <h3 style="color:#1D8445;">Tomate Saladet</h3>
+          <p style="margin:0.3rem 0; color:#666;">De $29.90 a <strong style="color:#D45438;">$19.90</strong></p>
+        </div>
+      </div>
+      <div style="background:white; border-radius:16px; overflow:hidden; box-shadow:0 6px 20px rgba(0,0,0,0.08);">
+        <img src="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?q=80&w=800" alt="Aguacate" style="width:100%; height:180px; object-fit:cover;">
+        <div style="padding:1rem;">
+          <h3 style="color:#1D8445;">Aguacate Hass</h3>
+          <p style="margin:0.3rem 0; color:#666;">De $79.90 a <strong style="color:#D45438;">$59.90</strong></p>
+        </div>
+      </div>
+      <div style="background:white; border-radius:16px; overflow:hidden; box-shadow:0 6px 20px rgba(0,0,0,0.08);">
+        <img src="https://images.unsplash.com/photo-1542528180-a1208c5169a8?q=80&w=800" alt="Chile Jalapeño" style="width:100%; height:180px; object-fit:cover;">
+        <div style="padding:1rem;">
+          <h3 style="color:#1D8445;">Chile Jalapeño</h3>
+          <p style="margin:0.3rem 0; color:#666;">De $39.90 a <strong style="color:#D45438;">$26.90</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RECETAS CON AMOR ================= -->
+<section id="recetas" class="section" style="padding:3rem 1rem;">
+  <div class="container" style="max-width:1200px; margin:auto;">
+    <h2 style="text-align:center; color:#1D8445; margin-bottom:1.5rem;">Recetas con Amor</h2>
+    <div style="display:flex; overflow-x:auto; gap:1rem; scroll-snap-type:x mandatory;">
+      <div style="min-width:260px; background:white; border-radius:16px; box-shadow:0 6px 20px rgba(0,0,0,0.08); scroll-snap-align:start; overflow:hidden;">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=800" alt="Chilaquiles" style="width:100%; height:180px; object-fit:cover;">
+        <div style="padding:1rem;"><h3 style="color:#1D8445;">Chilaquiles Verdes</h3><p style="color:#666; font-size:0.9rem;">Una receta clásica mexicana llena de sabor.</p></div>
+      </div>
+      <div style="min-width:260px; background:white; border-radius:16px; box-shadow:0 6px 20px rgba(0,0,0,0.08); scroll-snap-align:start; overflow:hidden;">
+        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=800" alt="Tacos al Pastor" style="width:100%; height:180px; object-fit:cover;">
+        <div style="padding:1rem;"><h3 style="color:#1D8445;">Tacos al Pastor</h3><p style="color:#666; font-size:0.9rem;">Perfectos para disfrutar con piña y cilantro.</p></div>
+      </div>
+      <div style="min-width:260px; background:white; border-radius:16px; box-shadow:0 6px 20px rgba(0,0,0,0.08); scroll-snap-align:start; overflow:hidden;">
+        <img src="https://images.unsplash.com/photo-1625944528249-18b14fef82de?q=80&w=800" alt="Guacamole" style="width:100%; height:180px; object-fit:cover;">
+        <div style="padding:1rem;"><h3 style="color:#1D8445;">Guacamole Cremoso</h3><p style="color:#666; font-size:0.9rem;">Ideal para acompañar tus platillos favoritos.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACTO Y UBICACIÓN ================= -->
+<section id="contacto" class="section" style="background:#FAFAFA; padding:3rem 1rem;">
+  <div class="container" style="max-width:1200px; margin:auto;">
+    <h2 style="text-align:center; color:#1D8445; margin-bottom:2rem;">Contáctanos</h2>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;">
+      <div style="background:white; border-radius:16px; box-shadow:0 6px 20px rgba(0,0,0,0.08); padding:1.5rem;">
+        <form>
+          <label>Nombre</label><br>
+          <input type="text" style="width:100%; padding:0.6rem; border-radius:8px; border:1px solid #ccc; margin-bottom:0.8rem;">
+          <label>Correo</label><br>
+          <input type="email" style="width:100%; padding:0.6rem; border-radius:8px; border:1px solid #ccc; margin-bottom:0.8rem;">
+          <label>Mensaje</label><br>
+          <textarea rows="4" style="width:100%; padding:0.6rem; border-radius:8px; border:1px solid #ccc; margin-bottom:0.8rem;"></textarea>
+          <button type="submit" class="btn">Enviar</button>
+        </form>
+      </div>
+      <div style="border-radius:16px; overflow:hidden; box-shadow:0 6px 20px rgba(0,0,0,0.08);">
+        <iframe src="https://www.google.com/maps?q=Z%C3%B3calo%20CDMX&output=embed" width="100%" height="100%" style="min-height:300px; border:0;" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer style="background:white; text-align:center; padding:1.5rem 1rem; border-top:1px solid #eee; color:#666;">
+  <p>© <span id="year"></span> El Mexiquense Market — Todos los derechos reservados.</p>
+</footer>
+
+<!-- SCRIPT GLOBAL -->
+<script>
+  // Año dinámico
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Menú hamburguesa
+  const hamb = document.getElementById('hamburger');
+  const menu = document.getElementById('menu');
+  hamb.addEventListener('click', () => menu.classList.toggle('show'));
+</script>
+</body>
+</html>
