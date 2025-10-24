@@ -249,10 +249,11 @@
       z-index: 10;
     }
 /* 📱 RESPONSIVE MÓVIL */
+/* 📱 RESPONSIVE MÓVIL */
 @media (max-width: 768px) {
   .feature-slider {
     margin: 2rem auto;
-    max-height: 80vh;
+    max-height: none;
   }
 
   .slides {
@@ -268,22 +269,23 @@
 
   .slide-image {
     width: 100%;
-    height: 45vh; /* altura proporcional */
+    height: auto;
   }
 
   .slide-image img {
     width: 100%;
-    height: 100%;
-    object-fit: cover; /* llena el espacio sin distorsión */
-    object-position: center center;
+    height: 250px; /* mismo alto que la primera */
+    object-fit: cover; /* llena el espacio igual */
+    object-position: center center; /* centra perfectamente */
     border-radius: var(--radius) var(--radius) 0 0;
+    display: block;
   }
 
   .slide-content {
-    padding: 1.2rem 1rem;
-    text-align: center;
-    height: auto;
     background: white;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -298,11 +300,13 @@
   .slide-content p {
     font-size: 0.9rem;
     margin-bottom: 1rem;
+    color: var(--texto-claro);
   }
 
   .btn {
-    padding: 0.6rem 1rem;
     font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+    margin: 0 auto;
   }
 
   .arrow {
@@ -311,14 +315,14 @@
   }
 }
 
-/* 📱 Teléfonos pequeños */
+/* 📱 Teléfonos más pequeños */
 @media (max-width: 480px) {
-  .slide-image {
-    height: 38vh; /* un poco más compacta */
+  .slide-image img {
+    height: 220px; /* igual proporcional más chico */
   }
 
   .slide-content {
-    padding: 1rem 0.8rem;
+    padding: 1rem;
   }
 
   .slide-content h2 {
@@ -335,6 +339,7 @@
     padding: 0.5rem 0.9rem;
   }
 }
+
     .arrow:hover { background: rgba(0, 0, 0, 0.7); }
     .prev { left: 15px; }
     .next { right: 15px; }
