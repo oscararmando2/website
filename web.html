@@ -300,19 +300,7 @@
     const menu = document.getElementById('menu');
     hamb.addEventListener('click', () => menu.classList.toggle('show'));
 
-    const slides = document.querySelectorAll('#promociones .slide');
-    let currentSlide = 0;
-    const showSlide = (index) => {
-      slides.forEach((s,i)=>{
-        s.style.opacity = i===index ? '1':'0';
-        s.style.visibility = i===index?'visible':'hidden';
-        s.style.position = i===index?'relative':'absolute';
-      });
-    };
-    document.querySelector('.next').onclick = ()=>{ currentSlide=(currentSlide+1)%slides.length; showSlide(currentSlide); };
-    document.querySelector('.prev').onclick = ()=>{ currentSlide=(currentSlide-1+slides.length)%slides.length; showSlide(currentSlide); };
-    setInterval(()=>{ currentSlide=(currentSlide+1)%slides.length; showSlide(currentSlide); },6000);
-    showSlide(currentSlide);
+  
   </script>
 </body>
 </html>
