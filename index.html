@@ -5,7 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>El Mexiquense Market — Frescura y Sabor Auténtico</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
   <style>
+    /* =============================
+       🎨 PALETA Y VARIABLES GLOBALES
+    ============================== */
     :root {
       --verde-mex: #1D8445;
       --rojo-fuego: #D45438;
@@ -15,482 +19,376 @@
       --texto-claro: #666;
       --degradado-hero: linear-gradient(135deg, var(--verde-mex), var(--rojo-fuego));
       --radius: 16px;
-      --shadow: 0 6px 20px rgba(0,0,0,0.1);
+      --shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
       --transition: 0.3s ease;
     }
 
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{
-      font-family:'Poppins',sans-serif;
-      background:var(--blanco-crema);
-      color:var(--texto);
-      overflow-x:hidden;
-      scroll-behavior:smooth;
-    }
-    a{text-decoration:none;color:inherit}
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    header{
-      position:sticky;
-      top:0;
-      z-index:1000;
-      background:rgba(255,255,255,0.9);
-      backdrop-filter:blur(10px);
-      box-shadow:0 1px 4px rgba(0,0,0,0.05);
-      animation:fadeDown 0.8s ease forwards;
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--blanco-crema);
+      color: var(--texto);
+      overflow-x: hidden;
+      scroll-behavior: smooth;
     }
-    @keyframes fadeDown {
-      from {opacity:0; transform:translateY(-10px);}
-      to {opacity:1; transform:translateY(0);}
+
+    a { text-decoration: none; color: inherit; }
+
+    /* =============================
+       🧭 ENCABEZADO
+    ============================== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+      animation: fadeDown 0.8s ease forwards;
     }
-    .nav{
-      max-width:1200px;
-      margin:auto;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:0.8rem 1rem;
+
+    .nav {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.8rem 1rem;
     }
-    .logo{
-      font-weight:600;
-      font-size:1.2rem;
-      color:var(--verde-mex);
+
+    .logo {
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: var(--verde-mex);
     }
-    .menu{
-      display:flex;
-      gap:1rem;
+
+    .menu {
+      display: flex;
+      gap: 1rem;
       transition: all var(--transition);
     }
-    .menu a{
-      padding:0.5rem 0.9rem;
-      border-radius:999px;
-      transition:background var(--transition);
-    }
-    .menu a:hover{
-      background:rgba(29,132,69,0.1);
-    }
-    .hamburger{
-      display:none;
-      flex-direction:column;
-      justify-content:center;
-      width:35px;
-      height:35px;
-      gap:5px;
-      cursor:pointer;
-    }
-    .hamburger span{
-      display:block;
-      width:100%;
-      height:3px;
-      background:var(--texto);
-      transition:var(--transition);
+
+    .menu a {
+      padding: 0.5rem 0.9rem;
+      border-radius: 999px;
+      transition: background var(--transition);
     }
 
-    @media(max-width:768px){
-      .menu{
-        display:none;
-        position:absolute;
-        top:100%;
-        left:0;
-        width:100%;
-        flex-direction:column;
-        background:white;
-        box-shadow:0 4px 10px rgba(0,0,0,0.1);
-        border-radius:0 0 12px 12px;
-        overflow:hidden;
-      }
-      .menu.show{
-        display:flex;
-        animation:fadeIn 0.3s ease;
-      }
-      .hamburger{
-        display:flex;
-      }
+    .menu a:hover {
+      background: rgba(29, 132, 69, 0.1);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      width: 35px;
+      height: 35px;
+      gap: 5px;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      width: 100%;
+      height: 3px;
+      background: var(--texto);
+      transition: var(--transition);
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes fadeIn {
-      from{opacity:0;transform:translateY(-10px);}
-      to{opacity:1;transform:translateY(0);}
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    /* HERO */
-    .hero{
-      background:var(--degradado-hero);
-      color:white;
-      padding:4rem 1rem;
-      text-align:center;
-      animation:fadeInUp 1s ease;
+    @media (max-width: 768px) {
+      .menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background: white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 0 0 12px 12px;
+      }
+
+      .menu.show {
+        display: flex;
+        animation: fadeIn 0.3s ease;
+      }
+
+      .hamburger { display: flex; }
     }
-    .hero h1{
-      font-size:2.2rem;
-      margin-bottom:0.5rem;
+
+    /* =============================
+       🌅 SECCIÓN HERO + CARRUSEL
+    ============================== */
+    .hero {
+      background: var(--degradado-hero);
+      color: white;
+      padding: 4rem 1rem;
+      text-align: center;
     }
-    .hero p{
-      max-width:600px;
-      margin:auto;
-      opacity:0.9;
+
+    .hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
     }
-    /* ==== CARRUSEL DESTACADO AJUSTADO ==== */
-.feature-slider {
-  position: relative;
-  overflow: hidden;
-  max-width: 1200px;
-  margin: 3rem auto;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  background: white;
-}
 
-/* Apila las slides unas sobre otras */
-.slides {
-  position: relative;
-  width: 100%;
-  height: 400px;
-}
-
-.slide {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: stretch;
-  justify-content: space-between;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 1s ease-in-out;
-}
-
-.slide.active {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.slide-image {
-  flex: 1 1 50%;
-}
-
-.slide-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  border-radius: var(--radius) 0 0 var(--radius);
-}
-
-.slide-content {
-  flex: 1 1 50%;
-  background: white;
-  padding: 3rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.slide-content h2 {
-  color: var(--verde-mex);
-  margin: 0.5rem 0;
-  font-size: 1.8rem;
-  line-height: 1.2;
-}
-
-.slide-content p {
-  color: var(--texto-claro);
-  margin-bottom: 1.5rem;
-}
-
-.badge {
-  background: var(--rojo-fuego);
-  color: white;
-  padding: 0.3rem 0.8rem;
-  border-radius: 999px;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  width: fit-content;
-}
-
-.btn {
-  background: var(--verde-mex);
-  color: white;
-  padding: 0.7rem 1.2rem;
-  border-radius: 8px;
-  transition: background var(--transition);
-  width: fit-content;
-}
-.btn:hover {
-  background: var(--rojo-fuego);
-}
-
-.arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.4);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  font-size: 1.5rem;
-  transition: background 0.3s;
-  z-index: 10;
-}
-.arrow:hover {
-  background: rgba(0,0,0,0.7);
-}
-.prev { left: 15px; }
-.next { right: 15px; }
-/* RESPONSIVE: móvil apila imagen arriba y texto abajo */
-@media (max-width: 768px) {
-  .feature-slider {
-    margin: 2rem auto;
-    max-height: 80vh; /* limita el alto total del carrusel */
-  }
-
-  .slides {
-    height: auto;
-  }
-
-  .slide {
-    position: relative;
-    flex-direction: column;
-  }
-
-  .slide-image {
-    flex: none;
-  }
-
-  .slide-image img {
-    border-radius: var(--radius) var(--radius) 0 0;
-    height: 35vh; /* altura relativa a la pantalla */
-    object-fit: cover;
-  }
-
-  .slide-content {
-    padding: 1.2rem 1rem;
-    text-align: center;
-    height: auto;
-    min-height: 25vh; /* texto ocupa el resto del espacio */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .slide-content h2 {
-    font-size: 1.3rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .slide-content p {
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-  }
-
-  .btn {
-    padding: 0.6rem 1rem;
-    font-size: 0.9rem;
-    margin: 0 auto;
-  }
-
-  .arrow {
-    bottom: 10px;
-    top: auto;
-  }
-}
-/* más compacto en teléfonos pequeños */
-@media (max-width: 480px) {
-  .slide-image img {
-    height: 32vh;
-  }
-  .slide-content {
-    min-height: 22vh;
-    padding: 1rem 0.8rem;
-  }
-  .slide-content h2 {
-    font-size: 1.1rem;
-  }
-  .slide-content p {
-    font-size: 0.85rem;
-    margin-bottom: 0.8rem;
-  }
-  .btn {
-    font-size: 0.85rem;
-    padding: 0.5rem 0.9rem;
-  }
-}
-/* ==== CENTRADO VERTICAL UNIFORME EN TODAS LAS SLIDES ==== */
-.slide {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.slide-image {
-  flex: 1 1 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.slide-image img {
-  width: 100%;
-  height: 100%;
-  max-height: 400px;
-  object-fit: cover;
-  object-position: center;
-  border-radius: var(--radius) 0 0 var(--radius);
-}
-
-.slide-content {
-  flex: 1 1 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: left;
-}
-
-/* CENTRADO Y PROPORCIÓN EN MÓVIL */
-@media (max-width: 768px) {
-  .slide {
-    flex-direction: column;
-  }
-
-  .slide-image {
-    width: 100%;
-    height: 35vh;
-    justify-content: center;
-  }
-
-  .slide-image img {
-    width: 100%;
-    height: 100%;
-    border-radius: var(--radius) var(--radius) 0 0;
-    object-fit: cover;
-  }
-
-  .slide-content {
-    width: 100%;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    min-height: 25vh;
-    padding: 1.2rem 1rem;
-  }
-
-  .slide-content h2 {
-    font-size: 1.3rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .slide-content p {
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-  }
-
-  .btn {
-    padding: 0.6rem 1rem;
-    font-size: 0.9rem;
-  }
-}
-
-    /* SECCIONES */
-    section{
-      padding:3rem 1rem;
-      max-width:1200px;
-      margin:auto;
+    /* === CARRUSEL DESTACADO === */
+    .feature-slider {
+      position: relative;
+      overflow: hidden;
+      max-width: 1200px;
+      margin: 3rem auto;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      background: white;
     }
-    /* TARJETAS */
-    .cards{
-      display:grid;
-      gap:1.5rem;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+    .slides {
+      position: relative;
+      width: 100%;
+      height: 400px;
     }
-    /* Scroll horizontal para tarjetas */
-.cards-scroll {
-  display: flex;
-  gap: 1rem;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding-bottom: 1rem;
-  scrollbar-width: thin;
-  scroll-behavior: smooth;
-}
-.cards-scroll::-webkit-scrollbar {
-  height: 8px;
-}
-.cards-scroll::-webkit-scrollbar-thumb {
-  background: rgba(0,0,0,0.2);
-  border-radius: 4px;
-}
-.cards-scroll .card {
-  flex: 0 0 clamp(240px, 28vw, 300px);
-  scroll-snap-align: start;
-}
-    .card{
-      background:white;
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      overflow:hidden;
-      text-align:center;
-      transition:transform var(--transition),box-shadow var(--transition);
-      opacity:0;
-      transform:translateY(30px);
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 1s ease-in-out;
     }
-    .card.in{
-      opacity:1;
-      transform:translateY(0);
+
+    .slide.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .slide-image,
+    .slide-content {
+      flex: 1 1 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .slide-image img {
+      width: 100%;
+      height: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: var(--radius) 0 0 var(--radius);
+    }
+
+    .slide-content {
+      background: white;
+      padding: 3rem;
+      text-align: left;
+    }
+
+    .slide-content h2 {
+      color: var(--verde-mex);
+      margin: 0.5rem 0;
+      font-size: 1.8rem;
+      line-height: 1.2;
+    }
+
+    .slide-content p {
+      color: var(--texto-claro);
+      margin-bottom: 1.5rem;
+    }
+
+    .badge {
+      background: var(--rojo-fuego);
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      width: fit-content;
+    }
+
+    .btn {
+      background: var(--verde-mex);
+      color: white;
+      padding: 0.7rem 1.2rem;
+      border-radius: 8px;
+      transition: background var(--transition);
+      width: fit-content;
+    }
+
+    .btn:hover {
+      background: var(--rojo-fuego);
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.4);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      font-size: 1.5rem;
+      transition: background 0.3s;
+      z-index: 10;
+    }
+
+    .arrow:hover { background: rgba(0, 0, 0, 0.7); }
+    .prev { left: 15px; }
+    .next { right: 15px; }
+
+    /* 📱 RESPONSIVE MÓVIL */
+    @media (max-width: 768px) {
+      .feature-slider {
+        margin: 2rem auto;
+        max-height: 80vh;
+      }
+
+      .slides { height: auto; }
+
+      .slide {
+        position: relative;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .slide-image img {
+        height: 35vh;
+        border-radius: var(--radius) var(--radius) 0 0;
+      }
+
+      .slide-content {
+        padding: 1.2rem 1rem;
+        text-align: center;
+        min-height: 25vh;
+      }
+
+      .slide-content h2 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+      .slide-content p { font-size: 0.9rem; margin-bottom: 1rem; }
+
+      .btn { margin: 0 auto; font-size: 0.9rem; padding: 0.6rem 1rem; }
+
+      .arrow { bottom: 10px; top: auto; }
+    }
+
+    /* Teléfonos pequeños */
+    @media (max-width: 480px) {
+      .slide-image img { height: 32vh; }
+      .slide-content {
+        min-height: 22vh;
+        padding: 1rem 0.8rem;
+      }
+      .slide-content h2 { font-size: 1.1rem; }
+      .slide-content p { font-size: 0.85rem; margin-bottom: 0.8rem; }
+      .btn { font-size: 0.85rem; padding: 0.5rem 0.9rem; }
+    }
+
+    /* =============================
+       🧱 SECCIONES GENERALES
+    ============================== */
+    section {
+      padding: 3rem 1rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    /* Tarjetas horizontales */
+    .cards-scroll {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 1rem;
+      scrollbar-width: thin;
+      scroll-behavior: smooth;
+    }
+
+    .cards-scroll::-webkit-scrollbar { height: 8px; }
+    .cards-scroll::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 4px;
+    }
+
+    .cards-scroll .card {
+      flex: 0 0 clamp(240px, 28vw, 300px);
+      scroll-snap-align: start;
+    }
+
+    .cards {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .card {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      text-align: center;
+      transition: transform var(--transition), box-shadow var(--transition);
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .card.in {
+      opacity: 1;
+      transform: translateY(0);
       transition: all 0.8s ease;
     }
-    .card:hover{
-      transform:translateY(-8px);
-      box-shadow:0 10px 30px rgba(0,0,0,0.15);
-    }
-    .card img{
-      width:100%;
-      aspect-ratio:1/1;
-      object-fit:cover;
-      transition:transform 0.5s ease;
-    }
-    .card:hover img{
-      transform:scale(1.05);
-    }
-    .card h3{
-      margin:0.8rem 0;
-      font-size:1rem;
-    }
-    .card p{
-      font-size:0.9rem;
-      color:var(--texto-claro);
-      padding:0 1rem 1rem;
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     }
 
-    footer{
-      background:#111;
-      color:#ccc;
-      text-align:center;
-      padding:1.5rem 0;
-      margin-top:3rem;
-      animation:fadeIn 1s ease;
+    .card img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      transition: transform 0.5s ease;
     }
-    @media (max-width: 480px) {
-  .slide-content {
-    min-height: 140px; /* aún más compacto */
-    padding: 1rem 0.8rem;
-  }
 
-  .slide-content h2 {
-    font-size: 1.1rem;
-  }
+    .card:hover img { transform: scale(1.05); }
 
-  .slide-content p {
-    font-size: 0.85rem;
-    margin-bottom: 0.8rem;
-  }
+    .card h3 {
+      margin: 0.8rem 0;
+      font-size: 1rem;
+    }
 
-  .btn {
-    font-size: 0.85rem;
-    padding: 0.5rem 0.9rem;
-  }
-}
+    .card p {
+      font-size: 0.9rem;
+      color: var(--texto-claro);
+      padding: 0 1rem 1rem;
+    }
 
+    /* =============================
+       ⚫️ PIE DE PÁGINA
+    ============================== */
+    footer {
+      background: #111;
+      color: #ccc;
+      text-align: center;
+      padding: 1.5rem 0;
+      margin-top: 3rem;
+    }
   </style>
 </head>
 <body>
@@ -508,179 +406,188 @@
       </nav>
     </div>
   </header>
+
   <section class="hero" id="inicio">
     <!-- Carrusel destacado -->
-<section id="destacados" class="feature-slider">
-  <div class="slides">
-    <div class="slide active">
-      <div class="slide-image">
-        <img src="https://www.cardenasmarkets.com/wp-content/uploads/fly-images/3644/cardenas-rewards-las-vegas-carousel-1462x1122-c.jpg" alt="Ofertas Exclusivas">
-      </div>
-      <div class="slide-content">
-        <span class="badge">Ofertas</span>
-        <h2>Descubre ofertas exclusivas</h2>
-        <p>¡Encuentra descuentos increíbles en tus productos mexicanos favoritos!</p>
-        <a href="#" class="btn">Ver más</a>
-      </div>
-    </div>
+    <section id="destacados" class="feature-slider">
+      <div class="slides">
+        <div class="slide active">
+          <div class="slide-image">
+            <img src="https://www.cardenasmarkets.com/wp-content/uploads/fly-images/3644/cardenas-rewards-las-vegas-carousel-1462x1122-c.jpg" alt="Ofertas Exclusivas" />
+          </div>
+          <div class="slide-content">
+            <span class="badge">Ofertas</span>
+            <h2>Descubre ofertas exclusivas</h2>
+            <p>¡Encuentra descuentos increíbles en tus productos mexicanos favoritos!</p>
+            <a href="#" class="btn">Ver más</a>
+          </div>
+        </div>
 
-    <div class="slide">
-      <div class="slide-image">
-        <img src="https://www.cardenasmarkets.com/wp-content/uploads/fly-images/986/careers-bonus-image-sp-1462x1122-c.jpg" alt="Únete al equipo">
-      </div>
-      <div class="slide-content">
-        <span class="badge">Promociones</span>
-        <h2>¡Miercolazo de Descuento!</h2>
-        <p>Descubre los precios especiales que tenemos para ti, porque Precios Bajos = Precio Mexiquense</p>
-        <a href="#" class="btn">Ver más</a>
-      </div>
-    </div>
+        <div class="slide">
+          <div class="slide-image">
+            <img src="https://www.cardenasmarkets.com/wp-content/uploads/fly-images/986/careers-bonus-image-sp-1462x1122-c.jpg" alt="Únete al equipo" />
+          </div>
+          <div class="slide-content">
+            <span class="badge">Promociones</span>
+            <h2>¡Miercolazo de Descuento!</h2>
+            <p>Descubre los precios especiales que tenemos para ti, porque Precios Bajos = Precio Mexiquense</p>
+            <a href="#" class="btn">Ver más</a>
+          </div>
+        </div>
 
-    <div class="slide">
-      <div class="slide-image">
-        <img src="https://paxful.com/university/_next/image?url=https%3A%2F%2Fpaxful.com%2Funiversity%2Fwp-content%2Fuploads%2F2021%2F06%2FHow-to-Send-Money-to-Latin-America-with-Paxful.png&w=1080&q=75" alt="Envíos de dinero">
+        <div class="slide">
+          <div class="slide-image">
+            <img src="https://paxful.com/university/_next/image?url=https%3A%2F%2Fpaxful.com%2Funiversity%2Fwp-content%2Fuploads%2F2021%2F06%2FHow-to-Send-Money-to-Latin-America-with-Paxful.png&w=1080&q=75" alt="Envíos de dinero" />
+          </div>
+          <div class="slide-content">
+            <span class="badge">Servicios</span>
+            <h2>Envíos de dinero a México</h2>
+            <p>Rápidos, seguros y confiables — envía dinero a tus seres queridos con la mejor tasa.</p>
+            <a href="#" class="btn">Más detalles</a>
+          </div>
+        </div>
       </div>
-      <div class="slide-content">
-        <span class="badge">Servicios</span>
-        <h2>Envíos de dinero a México</h2>
-        <p>Rápidos, seguros y confiables — envía dinero a tus seres queridos con la mejor tasa.</p>
-        <a href="#" class="btn">Más detalles</a>
-      </div>
-    </div>
-  </div>
 
-  <button class="arrow prev">‹</button>
-  <button class="arrow next">›</button>
-</section>
+      <button class="arrow prev">‹</button>
+      <button class="arrow next">›</button>
+    </section>
+
     <h1>Bienvenido a El Mexiquense Market</h1>
   </section>
-<section id="productos">
-  <h2 style="text-align:center;margin-bottom:1rem;">Pensamos en ti</h2>
 
-  <!-- AQUÍ EL CONTENEDOR CORRECTO -->
-  <div class="cards-scroll">
-    <div class="card" data-animate>
-      <img src="https://i.pinimg.com/736x/70/54/c0/7054c0ba8a85132b8749a81709d5aab5.jpg" alt="Frutas y verduras">
-      <h3>Frutas y Verduras</h3>
-      <p>Productos frescos seleccionados cada día para ti.</p>
-    </div>
+  <!-- SECCIÓN PRODUCTOS -->
+  <section id="productos">
+    <h2 style="text-align:center;margin-bottom:1rem;">Pensamos en ti</h2>
 
-    <div class="card" data-animate>
-      <img src="https://chequeexpress.com/wp-content/uploads/2025/04/cheque-express-website-7.png" alt="Cambio de Cheques">
-      <h3>Cambio de Cheques</h3>
-      <p>Las mejores tasas las encuentras con nosotros.</p>
-    </div>
+    <div class="cards-scroll">
+      <div class="card" data-animate>
+        <img src="https://i.pinimg.com/736x/70/54/c0/7054c0ba8a85132b8749a81709d5aab5.jpg" alt="Frutas y verduras" />
+        <h3>Frutas y Verduras</h3>
+        <p>Productos frescos seleccionados cada día para ti.</p>
+      </div>
 
-    <div class="card" data-animate>
-      <img src="https://www.agrolatam.com/files/image/33/33138/5e316336acded.jpg" alt="Carnicería">
-      <h3>Carnicería</h3>
-      <p>Cortes de calidad para tu mesa.</p>
-    </div>
+      <div class="card" data-animate>
+        <img src="https://chequeexpress.com/wp-content/uploads/2025/04/cheque-express-website-7.png" alt="Cambio de Cheques" />
+        <h3>Cambio de Cheques</h3>
+        <p>Las mejores tasas las encuentras con nosotros.</p>
+      </div>
 
-    <div class="card" data-animate>
-      <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=1200&auto=format&fit=crop" alt="Abarrotes">
-      <h3>Abarrotes</h3>
-      <p>Todo lo que necesitas para tu despensa.</p>
-    </div>
+      <div class="card" data-animate>
+        <img src="https://www.agrolatam.com/files/image/33/33138/5e316336acded.jpg" alt="Carnicería" />
+        <h3>Carnicería</h3>
+        <p>Cortes de calidad para tu mesa.</p>
+      </div>
 
-    <div class="card" data-animate>
-      <img src="https://img.freepik.com/vector-premium/transferencia-dinero-pago-linea-envie-reciba-dinero-forma-inalambrica-su-telefono-telefono-aplicacion-pago-bancario-flujo-capital-ganancia-ahorro-o-economia-financiera-dinero-linea-telefono-movil_435184-568.jpg" alt="Envios">
-      <h3>Envíos</h3>
-      <p>Fácil, seguro, rápido y a toda Latinoamérica.</p>
+      <div class="card" data-animate>
+        <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=1200&auto=format&fit=crop" alt="Abarrotes" />
+        <h3>Abarrotes</h3>
+        <p>Todo lo que necesitas para tu despensa.</p>
+      </div>
+
+      <div class="card" data-animate>
+        <img src="https://img.freepik.com/vector-premium/transferencia-dinero-pago-linea-envie-reciba-dinero-forma-inalambrica-su-telefono-telefono-aplicacion-pago-bancario-flujo-capital-ganancia-ahorro-o-economia-financiera-dinero-linea-telefono-movil_435184-568.jpg" alt="Envios" />
+        <h3>Envíos</h3>
+        <p>Fácil, seguro, rápido y a toda Latinoamérica.</p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- SECCIÓN OFERTAS -->
   <section id="ofertas" style="background:var(--gris-suave);">
     <h2 style="text-align:center;margin-bottom:1rem;">Ofertas del Día</h2>
     <div class="cards">
       <div class="card" data-animate>
-        <img src="https://images.unsplash.com/photo-1506806732259-39c2d0268443?q=80&w=1200&auto=format&fit=crop" alt="Naranjas jugosas">
+        <img src="https://images.unsplash.com/photo-1506806732259-39c2d0268443?q=80&w=1200&auto=format&fit=crop" alt="Naranjas jugosas" />
         <h3>Naranja para jugo</h3>
         <p><del>$34.90</del> <strong style="color:var(--rojo-fuego);">$27.90</strong></p>
       </div>
       <div class="card" data-animate>
-        <img src="https://w7.pngwing.com/pngs/455/522/png-transparent-slice-avocado-fruit-avocado-avocado-food-photography-desktop-wallpaper-thumbnail.png" alt="Aguacates">
+        <img src="https://w7.pngwing.com/pngs/455/522/png-transparent-slice-avocado-fruit-avocado-avocado-food-photography-desktop-wallpaper-thumbnail.png" alt="Aguacates" />
         <h3>Aguacate Hass</h3>
         <p><del>$59.90</del> <strong style="color:var(--rojo-fuego);">$39.90</strong></p>
       </div>
       <div class="card" data-animate>
-        <img src="https://images.unsplash.com/photo-1604908176997-4310a2c4757c?q=80&w=1200&auto=format&fit=crop" alt="Carne fresca">
+        <img src="https://images.unsplash.com/photo-1604908176997-4310a2c4757c?q=80&w=1200&auto=format&fit=crop" alt="Carne fresca" />
         <h3>Diezmillo de res</h3>
         <p><del>$169.90</del> <strong style="color:var(--rojo-fuego);">$139.90</strong></p>
       </div>
     </div>
   </section>
 
+  <!-- SECCIÓN CONTACTO -->
   <section id="contacto">
     <h2 style="text-align:center;margin-bottom:1rem;">Contáctanos</h2>
-    <p style="text-align:center;color:var(--texto-claro);margin-bottom:2rem;">Visítanos o escríbenos para más información.</p>
+    <p style="text-align:center;color:var(--texto-claro);margin-bottom:2rem;">
+      Visítanos o escríbenos para más información.
+    </p>
     <div style="display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));align-items:center;">
       <div style="text-align:center;">
         <p><strong>Dirección:</strong> 123 Calle Principal, Ciudad de México</p>
         <p><strong>Teléfono:</strong> +52 55 1234 5678</p>
         <p><strong>Email:</strong> contacto@elmexiquense.com</p>
       </div>
-      <iframe style="width:100%;height:250px;border:0;border-radius:var(--radius);box-shadow:var(--shadow);" loading="lazy" allowfullscreen
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3011.627165778934!2d-99.133208!3d19.432607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1f92aa4d2b3bb%3A0x6d5d7d5d0d3!2sEl%20Mexiquense%20Market!5e0!3m2!1ses!2smx!4v1680000000000">
-      </iframe>
+      <iframe style="width:100%;height:250px;border:0;border-radius:var(--radius);box-shadow:var(--shadow);" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3011.627165778934!2d-99.133208!3d19.432607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1f92aa4d2b3bb%3A0x6d5d7d5d0d3!2sEl%20Mexiquense%20Market!5e0!3m2!1ses!2smx!4v1680000000000"></iframe>
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer>
     <p>© <span id="year"></span> El Mexiquense Market — Todos los derechos reservados.</p>
   </footer>
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-    const burger=document.getElementById('hamburger');
-    const menu=document.getElementById('menu');
-    burger.addEventListener('click',()=>menu.classList.toggle('show'));
+    // Año automático
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Animación de aparición al hacer scroll
-    const cards=document.querySelectorAll('[data-animate]');
-    const io=new IntersectionObserver(entries=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
-          entry.target.classList.add('in');
+    // Menú responsive
+    const burger = document.getElementById("hamburger");
+    const menu = document.getElementById("menu");
+    burger.addEventListener("click", () => menu.classList.toggle("show"));
+
+    // Animación de aparición
+    const cards = document.querySelectorAll("[data-animate]");
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in");
           io.unobserve(entry.target);
         }
       });
-    },{threshold:0.2});
-    cards.forEach(card=>io.observe(card));
-  // Carrusel destacado automático con efecto fade optimizado
-const slides = document.querySelectorAll('.slide');
-let current = 0;
-const totalSlides = slides.length;
+    }, { threshold: 0.2 });
+    cards.forEach(card => io.observe(card));
 
-function showSlide(index) {
-  slides.forEach((s, i) => {
-    s.classList.remove('active');
-    s.style.opacity = '0';
-    s.style.pointerEvents = 'none';
-  });
-  slides[index].classList.add('active');
-  slides[index].style.opacity = '1';
-  slides[index].style.pointerEvents = 'auto';
-}
+    // Carrusel automático
+    const slides = document.querySelectorAll(".slide");
+    let current = 0;
+    const total = slides.length;
 
-// Botones manuales
-document.querySelector('.next').onclick = () => {
-  current = (current + 1) % totalSlides;
-  showSlide(current);
-};
-document.querySelector('.prev').onclick = () => {
-  current = (current - 1 + totalSlides) % totalSlides;
-  showSlide(current);
-};
+    function showSlide(i) {
+      slides.forEach(s => {
+        s.classList.remove("active");
+        s.style.opacity = "0";
+        s.style.pointerEvents = "none";
+      });
+      slides[i].classList.add("active");
+      slides[i].style.opacity = "1";
+      slides[i].style.pointerEvents = "auto";
+    }
 
-// AutoPlay cada 5 segundos
-setInterval(() => {
-  current = (current + 1) % totalSlides;
-  showSlide(current);
-}, 5000);
+    document.querySelector(".next").onclick = () => {
+      current = (current + 1) % total;
+      showSlide(current);
+    };
 
-// Mostrar la primera al cargar
-showSlide(0);
+    document.querySelector(".prev").onclick = () => {
+      current = (current - 1 + total) % total;
+      showSlide(current);
+    };
+
+    setInterval(() => {
+      current = (current + 1) % total;
+      showSlide(current);
+    }, 5000);
+
+    showSlide(0);
   </script>
 </body>
 </html>
