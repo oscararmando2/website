@@ -238,9 +238,13 @@
 }
 .prev { left: 15px; }
 .next { right: 15px; }
-
 /* RESPONSIVE: móvil apila imagen arriba y texto abajo */
 @media (max-width: 768px) {
+  .feature-slider {
+    margin: 2rem auto;
+    max-height: 80vh; /* limita el alto total del carrusel */
+  }
+
   .slides {
     height: auto;
   }
@@ -250,19 +254,26 @@
     flex-direction: column;
   }
 
+  .slide-image {
+    flex: none;
+  }
+
   .slide-image img {
     border-radius: var(--radius) var(--radius) 0 0;
-    height: 200px;
+    height: 35vh; /* altura relativa a la pantalla */
+    object-fit: cover;
   }
+
   .slide-content {
     padding: 1.2rem 1rem;
     text-align: center;
     height: auto;
-    min-height: 180px; /* mantiene un alto equilibrado */
+    min-height: 25vh; /* texto ocupa el resto del espacio */
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
+
   .slide-content h2 {
     font-size: 1.3rem;
     margin-bottom: 0.5rem;
@@ -280,10 +291,32 @@
   }
 
   .arrow {
-    bottom: 12px;
+    bottom: 10px;
     top: auto;
   }
 }
+/* más compacto en teléfonos pequeños */
+@media (max-width: 480px) {
+  .slide-image img {
+    height: 32vh;
+  }
+  .slide-content {
+    min-height: 22vh;
+    padding: 1rem 0.8rem;
+  }
+  .slide-content h2 {
+    font-size: 1.1rem;
+  }
+  .slide-content p {
+    font-size: 0.85rem;
+    margin-bottom: 0.8rem;
+  }
+  .btn {
+    font-size: 0.85rem;
+    padding: 0.5rem 0.9rem;
+  }
+}
+
     /* SECCIONES */
     section{
       padding:3rem 1rem;
