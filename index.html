@@ -87,6 +87,7 @@
       width:100%;
       background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.04) 100%);
       padding: 1.25rem 0 2.25rem;
+      position:relative;
     }
     .promos{
       display:flex; gap: var(--gap);
@@ -109,7 +110,11 @@
     }
     /* Desktop: 3 por vista */
     @media (min-width: 1024px){
-      .promo-card{ min-width: calc( (var(--container) - 2*var(--gap)) / 3 ); }
+      .promo-card{
+        min-width: calc( (var(--container) - 2*var(--gap)) / 3 );
+        aspect-ratio: 3 / 5;              /* Un poco más alta en desktop */
+        min-height: 540px;
+      }
     }
     .promo-media{ flex: 1 0 55%; position:relative; }
     .promo-media img{
@@ -119,7 +124,7 @@
     }
     .promo-body{
       flex: 1 0 45%;
-      padding: 1.1rem 1rem 1.25rem;
+      padding: 1.1rem 1rem 1.8rem;
       display:flex; flex-direction:column; justify-content:flex-start; gap:.55rem;
     }
     .badge{
@@ -129,22 +134,194 @@
     }
     .promo-title{ margin:.2rem 0 .25rem; font-size: clamp(1.1rem, 2.3vw, 1.35rem); line-height:1.2; }
     .promo-text{ color:var(--muted); font-size:.98rem; }
-    .promo-cta{ margin-top:auto; align-self:flex-start; }
+    .promo-cta{
+      margin-top:auto;
+      align-self:center;
+    }
+    @media (max-width: 680px){
+      .promo-card{
+        aspect-ratio:auto;
+        min-height: 520px;
+      }
+      .promo-media{
+        flex: 0 0 auto;
+        min-height: 260px;
+      }
+      .promo-body{
+        flex: 1 1 auto;
+        padding-bottom: 2.2rem;
+      }
+      .promo-cta{
+        margin-left:auto;
+        margin-right:auto;
+      }
+    }
 
     /* Flechas para scroll del contenedor */
     .carousel-controls{
-      width:var(--container); margin: .5rem auto 0;
-      display:flex; justify-content:space-between; gap:1rem; padding:0 4px;
+      pointer-events:none;
+      position:absolute;
+      inset:0;
+      top:50%;
+      transform: translateY(-50%);
+      width:100%;
+      max-width:var(--container);
+      margin:0 auto;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding: 0 clamp(.35rem, 3vw, 1.5rem);
+      z-index:2;
     }
     .cbtn{
-      border:0; width:40px; height:40px; border-radius:999px; cursor:pointer;
-      background:rgba(0,0,0,.65); color:white; font-size:1.35rem; line-height:1;
-      display:grid; place-items:center; transition:.2s;
+      pointer-events:auto;
+      border:0;
+      width:34px;
+      height:34px;
+      border-radius:50%;
+      cursor:pointer;
+      background:var(--verde);
+      color:white;
+      font-size:1.2rem;
+      line-height:1;
+      display:grid;
+      place-items:center;
+      box-shadow:0 12px 22px rgba(29,132,69,.25);
+      transition:.2s ease;
     }
-    .cbtn:hover{ background:rgba(0,0,0,.85); transform: translateY(-1px); }
+    .cbtn:hover,
+    .cbtn:focus-visible{
+      background:#166b36;
+      transform: translateY(-1px) scale(1.02);
+      outline:none;
+    }
+    @media (max-width: 680px){
+      .carousel-controls{
+        padding: 0 .5rem;
+        top:52%;
+      }
+      .cbtn{
+        width:30px;
+        height:30px;
+        font-size:1.05rem;
+      }
+    }
+
+    /* ===== FEATURE: Canasta de frutas ===== */
+    .feature-canasta{
+      background:white;
+      padding: clamp(3rem, 6vw, 4.5rem) 1rem;
+    }
+    .feature-grid{
+      width:var(--container);
+      margin:0 auto;
+      display:grid;
+      gap: clamp(1.5rem, 5vw, 3rem);
+      align-items:center;
+    }
+    @media (min-width: 840px){
+      .feature-grid{
+        grid-template-columns: 1.05fr 0.95fr;
+      }
+    }
+    .feature-media{
+      margin:0;
+      position:relative;
+      border-radius:26px;
+      overflow:hidden;
+      min-height:280px;
+      box-shadow: var(--shadow);
+      isolation:isolate;
+    }
+    .feature-media::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(160deg, rgba(29,132,69,.18) 0%, rgba(0,0,0,0) 60%);
+      mix-blend-mode:multiply;
+      pointer-events:none;
+    }
+    .feature-media img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+    .feature-copy span{
+      display:inline-block;
+      text-transform:uppercase;
+      letter-spacing:3px;
+      font-size:.75rem;
+      font-weight:700;
+      color:var(--rojo);
+      margin-bottom:.55rem;
+    }
+    .feature-copy h2{
+      font-size: clamp(1.65rem, 4vw, 2.35rem);
+      margin:0 0 .8rem;
+      color:var(--verde);
+      line-height:1.15;
+    }
+    .feature-copy{
+      display:flex;
+      flex-direction:column;
+    }
+    .feature-copy p{
+      margin:0;
+      color:var(--muted);
+      font-size:1rem;
+    }
+    .feature-list{
+      list-style:none;
+      padding:0;
+      margin:1.3rem 0 1.8rem;
+      display:grid;
+      gap:.65rem;
+    }
+    .feature-list li{
+      position:relative;
+      padding-left:1.9rem;
+      font-weight:500;
+      color:var(--texto);
+    }
+    .feature-list li::before{
+      content:"✔";
+      position:absolute;
+      left:0;
+      top:50%;
+      transform:translateY(-50%);
+      width:1.1rem;
+      height:1.1rem;
+      border-radius:50%;
+      background:rgba(29,132,69,.12);
+      color:var(--verde);
+      display:grid;
+      place-items:center;
+      font-size:.7rem;
+      font-weight:700;
+    }
+    .feature-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.75rem;
+      align-items:center;
+      margin-top:.5rem;
+    }
+    .feature-note{
+      font-size:.85rem;
+      color:var(--muted);
+      margin-top:.75rem;
+    }
     @media (max-width: 520px){
-      .carousel-controls{ padding: 0 10px; }
-      .cbtn{ width:36px; height:36px; font-size:1.15rem; }
+      .feature-grid{
+        text-align:center;
+      }
+      .feature-list{
+        text-align:left;
+        margin:1rem auto 1.5rem;
+      }
+      .feature-actions{
+        justify-content:center;
+      }
     }
 
     /* ===== Otras secciones (demo) ===== */
@@ -254,6 +431,30 @@
     </div>
   </section>
 
+  <!-- ===== FEATURE: Canasta de frutas ===== -->
+  <section class="feature-canasta" id="canasta-frutas">
+    <div class="feature-grid">
+      <figure class="feature-media">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80" alt="Canasta de frutas tropicales coloridas">
+      </figure>
+      <div class="feature-copy">
+        <span>Canasta de frutas</span>
+        <h2>Frescura colorida lista para compartir</h2>
+        <p>Disfruta nuestra selección diaria con mangos, piñas, cítricos y berries preparados a mano por nuestros expertos en mercado.</p>
+        <ul class="feature-list">
+          <li>Selección de temporada con productores locales.</li>
+          <li>Presentación lista para regalar o disfrutar en familia.</li>
+          <li>Incluye nota personalizada y empaque ecológico.</li>
+        </ul>
+        <div class="feature-actions">
+          <a class="btn" href="#productos">Pide la tuya</a>
+          <a class="btn btn-outline" href="#contacto">Agenda entrega</a>
+        </div>
+        <p class="feature-note">Entrega el mismo día en compras antes de las 12:00 p.m.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== SECCIONES DEMO ===== -->
   <section id="productos" class="section">
     <h2 class="section-title">Productos destacados</h2>
@@ -298,7 +499,6 @@
     function getStep(){
       const card = track.querySelector('.promo-card');
       if(!card) return 300;
-      const styles = window.getComputedStyle(card);
       const gap = parseFloat(window.getComputedStyle(track).columnGap || window.getComputedStyle(track).gap || 16);
       return card.getBoundingClientRect().width + (isNaN(gap) ? 16 : gap);
     }
