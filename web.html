@@ -297,14 +297,15 @@ box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      width: 44px;
-      height: 44px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
       border: none;
-      background: rgba(255, 255, 255, 0.9);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+      background: var(--blanco-crema);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+      border: 2px solid rgba(29, 132, 69, 0.25);
       color: var(--verde-mex);
-      font-size: 1.4rem;
+      font-size: 1.25rem;
       cursor: pointer;
       display: none;
       align-items: center;
@@ -314,17 +315,18 @@ box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     }
 
     .promos-nav:hover {
-      background: rgba(29, 132, 69, 0.9);
+      background: var(--verde-mex);
       color: white;
+      border-color: transparent;
       transform: translateY(-50%) scale(1.05);
     }
 
     .promos-nav.prev {
-      left: clamp(0.5rem, 2vw, 1.5rem);
+      left: clamp(1rem, 6vw, 4rem);
     }
 
     .promos-nav.next {
-      right: clamp(0.5rem, 2vw, 1.5rem);
+      right: clamp(1rem, 6vw, 4rem);
     }
 
     @media (min-width: 640px) {
@@ -344,6 +346,60 @@ box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         display: inline-flex;
         }
       }
+
+    /* === CANASTA DE FRUTAS DESTACADA === */
+    .feature-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: clamp(3rem, 7vw, 4.5rem) 1.5rem;
+      display: grid;
+      gap: clamp(1.5rem, 4vw, 3rem);
+      align-items: center;
+    }
+
+    .feature-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .feature-content span {
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--rojo-fuego);
+      font-weight: 600;
+    }
+
+    .feature-content h2 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      color: var(--verde-mex);
+      margin: 0;
+    }
+
+    .feature-content p {
+      color: var(--texto-claro);
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+
+    .feature-media {
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 18px 38px rgba(0, 0, 0, 0.12);
+    }
+
+    .feature-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @media (min-width: 880px) {
+      .feature-section {
+        grid-template-columns: 1.1fr 1fr;
+      }
+    }
 
     /* === RESTO DE SECCIONES === */
     section {
@@ -466,7 +522,20 @@ box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     </div>
   </section>
 
-   <!-- === RESTO DE SECCIONES SIMPLIFICADAS === -->
+  <!-- === CANASTA DE FRUTAS === -->
+  <section class="feature-section" id="canasta-frutas">
+    <div class="feature-content">
+      <span>canasta de frutas</span>
+      <h2>Colores y vitaminas directas del mercado</h2>
+      <p>Disfruta nuestra canasta especial con selección diaria de frutas tropicales, cítricos y berries. Ideal para compartir en familia o sorprender a tus invitados con un regalo lleno de frescura.</p>
+      <a class="promo-btn" href="#ofertas">Ordenar ahora</a>
+    </div>
+    <div class="feature-media" aria-hidden="true">
+      <img src="https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?auto=format&fit=crop&w=1200&q=80" alt="Canasta de frutas variadas con colores vibrantes" loading="lazy">
+    </div>
+  </section>
+
+  <!-- === RESTO DE SECCIONES SIMPLIFICADAS === -->
    <section id="productos">
     <h2 class="section-title">Productos Destacados</h2>
     <p style="text-align:center;color:var(--texto-claro);">Frescura garantizada en cada compra.</p>
