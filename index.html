@@ -110,7 +110,11 @@
     }
     /* Desktop: 3 por vista */
     @media (min-width: 1024px){
-      .promo-card{ min-width: calc( (var(--container) - 2*var(--gap)) / 3 ); }
+      .promo-card{
+        min-width: calc( (var(--container) - 2*var(--gap)) / 3 );
+        aspect-ratio: 3 / 5;              /* Un poco más alta en desktop */
+        min-height: 540px;
+      }
     }
     .promo-media{ flex: 1 0 55%; position:relative; }
     .promo-media img{
