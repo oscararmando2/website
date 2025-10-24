@@ -4,225 +4,365 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>El Mexiquense Market — Frescura y Sabor Auténtico</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
   <style>
     :root {
       --verde-mex: #1D8445;
       --rojo-fuego: #D45438;
       --blanco-crema: #FAFAFA;
       --texto: #2D2D2D;
-      --texto-claro: #666;
-      --radius: 16px;
-      --shadow-soft: 0 6px 20px rgba(0,0,0,0.1);
+      --texto-claro: #6B6B6B;
+      --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.1);
+      --promo-gap: clamp(1rem, 2.8vw, 1.6rem);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
-      font-family: 'Poppins', sans-serif;
+      font-family: "Poppins", "Segoe UI", Arial, sans-serif;
       background: var(--blanco-crema);
       color: var(--texto);
       overflow-x: hidden;
     }
-    a { text-decoration: none; color: inherit; }
 
+     a {
+      color: inherit;
+      text-decoration: none;
+    }
+    
     /* === NAV === */
     header {
-      position: sticky; top: 0; z-index: 999;
-      background: rgba(255,255,255,0.95);
+    osition: sticky;
+      top: 0;
+      z-index: 999;
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     }
-    .nav {
-      max-width: 1200px; margin:auto;
-      display:flex; align-items:center; justify-content:space-between;
+    
+    .nav { 
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       padding: 0.8rem 1rem;
     }
-    .logo { font-weight: 600; color: var(--verde-mex); font-size:1.2rem; }
 
-    .menu { display:flex; gap:1rem; }
-    .menu a { padding: 0.5rem 0.9rem; border-radius:999px; transition:0.3s; }
-    .menu a:hover { background: rgba(29,132,69,0.1); }
+    logo {
+      font-weight: 600;
+      color: var(--verde-mex);
+      font-size: 1.2rem;
+    }
 
-    .hamb { display:none; flex-direction:column; gap:5px; cursor:pointer; }
-    .hamb span { width:28px; height:3px; background: var(--texto); border-radius:2px; }
+    .menu {
+      display: flex;
+      gap: 1rem;
+    }
 
-    @media(max-width:768px){
+    .menu a {
+      padding: 0.5rem 0.9rem;
+      border-radius: 999px;
+      transition: 0.3s;
+    }
+
+    .menu a:hover {
+      background: rgba(29, 132, 69, 0.1);
+    }
+
+    .hamb {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+
+    hamb span {
+      width: 28px;
+      height: 3px;
+      background: var(--texto);
+      border-radius: 2px;
+    }
+
+    @media (max-width: 768px) {
       .menu {
-        display:none; flex-direction:column;
-        position:absolute; left:0; top:100%; width:100%;
-        background:white; border-radius:0 0 12px 12px;
-        box-shadow:0 4px 10px rgba(0,0,0,0.1);
+      display: none;
+        flex-direction: column;
+        position: absolute;
+        left: 0;
+        top: 100%;
+        width: 100%;
+        background: white;
+        border-radius: 0 0 12px 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       }
-      .menu.show { display:flex; }
-      .hamb { display:flex; }
+
+      .menu.show {
+        display: flex;
+      }
+
+      .hamb {
+        display: flex;
+      }
     }
 
     /* === HERO === */
     .hero {
       background: linear-gradient(135deg, var(--verde-mex), var(--rojo-fuego));
-      color: white; text-align:center;
+      color: white; 
+      text-align:center;
       padding: 4rem 1rem;
     }
-    .hero h1 { font-size:2.2rem; margin-bottom:0.5rem; }
-    .hero p { font-size:1.1rem; font-weight:300; margin-bottom:1.5rem; }
-    .btn {
-      display:inline-block;
-      background: var(--verde-mex); color:white;
-      padding:0.7rem 1.2rem; border-radius:8px;
-      transition:0.3s; font-weight:600;
-    }
-    .btn:hover { background: var(--rojo-fuego); }
 
-    /* === CARRUSEL DESTACADO === */
- #promociones { padding:0; margin:0; }
-    .carrusel-moderno {
-      position: relative;
-      width: 100%;
-      height: min(85vh, 640px);
-      overflow: hidden;
-      background: #000;
+    .hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
     }
-  carrusel-slide {
-      position: absolute;
-      inset: 0;
+
+    .hero p {
+      font-size: 1.1rem;
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--verde-mex);
+      color: white;
+      padding: 0.7rem 1.2rem;
+      border-radius: 999px;
+      transition: 0.3s;
+      font-weight: 600;
+    }
+
+    .btn:hover {
+      background: var(--rojo-fuego);
+    }
+
+    /* === CARRUSEL TARJETAS PROMOCIONALES === */
+    #promociones {
+      background: var(--blanco-crema);
+      padding: clamp(2.5rem, 6vw, 4rem) 1.5rem;
+    }
+
+    .promos-shell {
+      max-width: 1200px;
+      margin: 0 auto;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 1.5rem;
-      padding: 0 2rem;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 1s ease-in-out;
+      gap: clamp(1.5rem, 4vw, 2.5rem);
     }
-     .carrusel-slide.active {
-      opacity: 1;
-      pointer-events: auto;
-      z-index: 1;
+
+    .promos-head {
+      text-align: center;
     }
-    carrusel-slide img {
-      position: absolute;
-      inset: 0;
+
+    .promos-head span {
+      display: inline-block;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--rojo-fuego);
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .promos-head h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      color: var(--verde-mex);
+      margin-bottom: 0.4rem;
+    }
+
+    .promos-head p {
+      color: var(--texto-claro);
+      max-width: 620px;
+      margin: 0.4rem auto 0;
+    }
+
+    .promos-carousel {
+      position: relative;
+    }
+
+    .promos-track {
+      --card-width: min(88vw, 340px);
+      display: flex;
+      gap: var(--promo-gap);
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 0 calc((100% - var(--card-width)) / 2) 0.75rem;
+      scroll-padding-inline: calc((100% - var(--card-width)) / 2);
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+    }
+
+    .promos-track::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .promos-track::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 999px;
+    }
+
+    .promo-card {
+      flex: 0 0 var(--card-width);
+      max-width: var(--card-width);
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      aspect-ratio: 3 / 4;
+      scroll-snap-align: center;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      background: white;
+    }
+
+    .promo-card:focus-within,
+    .promo-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.16);
+    }
+
+    .promo-media {
+      overflow: hidden;
+      height: 100%;
+    }
+
+    .promo-media img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center;
-      filter: brightness(0.65);
-      transform: scale(1.05);
-      transition: transform 9s ease;
+      display: block;
     }
-   .carrusel-slide.active img { transform: scale(1.12); }
-    .carrusel-overlay {
-      position: relative;
-      z-index: 2;
-      width: min(80%, 640px);
-      text-align: center;
-      color: #fff;
-      background: rgba(0, 0, 0, 0.55);
-      padding: 2.2rem 2.5rem;
-      border-radius: 18px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
-      backdrop-filter: blur(6px);
+
+    .promo-content {
+      background: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 1.2rem;
+      gap: 0.75rem;
+      height: 100%;
     }
-    .carrusel-overlay span {
-      display: inline-block;
-      background: var(--rojo-fuego);
-      color: white;
-      padding: 0.3rem 0.9rem;
+
+    .promo-tag {
+      align-self: flex-start;
+      padding: 0.2rem 0.75rem;
+      background: rgba(29, 132, 69, 0.15);
+      color: var(--verde-mex);
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 1.2px;
       border-radius: 999px;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 0.6rem;
     }
-    .carrusel-overlay h2 {
-      font-size: clamp(1.8rem, 2.6vw, 2.4rem);
-      margin-bottom: 0.6rem;
+
+    .promo-content h3 {
+      font-size: 1.1rem;
+      color: var(--texto);
+      line-height: 1.3;
     }
-    .carrusel-overlay p {
-      font-size: clamp(1rem, 1.5vw, 1.1rem);
-      color: rgba(255,255,255,0.85);
-      margin-bottom: 1.2rem;
+
+    .promo-content p {
+      color: var(--texto-claro);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      flex: 1;
     }
-    .carrusel-btn {
+
+    .promo-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      align-self: flex-start;
+      padding: 0.6rem 1.4rem;
+      border-radius: 999px;
+      background: var(--verde-mex);
+      color: white;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: background 0.3s ease;
+    }
+
+    .promo-btn:hover {
+      background: var(--rojo-fuego);
+    }
+
+    .promos-nav {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
       width: 44px;
       height: 44px;
-      border: none;
       border-radius: 50%;
-      background: rgba(0, 0, 0, 0.45);
-      color: white;
-      font-size: 1.6rem;
+      border: none;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+      color: var(--verde-mex);
+      font-size: 1.4rem;
       cursor: pointer;
-      transition: background 0.3s ease;
-      z-index: 3;
-    }
-    .carrusel-btn:hover { background: rgba(0, 0, 0, 0.7); }
-    .carrusel-btn.prev { left: 1.5rem; }
-    .carrusel-btn.next { right: 1.5rem; }
-    
-    @media (min-width: 1200px) {
-      .carrusel-overlay { padding: 2.5rem 3.5rem; }
+      display: none;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s ease, transform 0.3s ease;
+      z-index: 5;
     }
 
-    @media (max-width: 1024px) {
-      .carrusel-overlay { width: min(88%, 580px); }
-    }
-    
-    @media (max-width: 768px) {
-      .carrusel-moderno {
-        height: 100svh;
-        max-height: none;
-        padding: clamp(1.2rem, 4vh, 2rem) 0;
-      }
-      .carrusel-slide {
-        position: absolute;
-        height: 100%;
-        justify-content: flex-start;
-        gap: clamp(1.2rem, 4vh, 1.8rem);
-        padding: 0 clamp(1.2rem, 5vw, 2rem);
-      }
-      .carrusel-slide img {
-        position: relative;
-        height: clamp(230px, 52svh, 360px);
-        width: 100%;
-        border-radius: 20px;
-        filter: brightness(0.9);
-        transform: scale(1.02);
-      }
-      .carrusel-slide.active img { transform: scale(1.07); }
-      .carrusel-overlay {
-        background: rgba(255, 255, 255, 0.95);
-        color: var(--texto);
-        backdrop-filter: none;
-        width: min(92%, 500px);
-        padding: clamp(1.4rem, 5vw, 1.9rem) clamp(1.2rem, 6vw, 2rem);
-        box-shadow: var(--shadow-soft);
-      }
-      .carrusel-overlay span { background: var(--verde-mex); }
-      .carrusel-overlay p { color: var(--texto-claro); }
-      .carrusel-btn {
-        top: auto;
-        bottom: clamp(1.5rem, 5vh, 2.5rem);
-        width: 38px;
-        height: 38px;
-        font-size: 1.4rem;
-      }
-     .carrusel-btn.prev { left: clamp(1.2rem, 5vw, 2rem); }
-      .carrusel-btn.next { right: clamp(1.2rem, 5vw, 2rem); }
+    .promos-nav:hover {
+      background: rgba(29, 132, 69, 0.9);
+      color: white;
+      transform: translateY(-50%) scale(1.05);
     }
 
-    @media (max-width: 480px) {
-      .carrusel-overlay h2 { font-size: 1.35rem; }
-      .carrusel-overlay p { font-size: 0.95rem; }
+    .promos-nav.prev {
+      left: clamp(0.5rem, 2vw, 1.5rem);
     }
 
-    /* === SECCIONES RESTO === */
-    section { padding:3rem 1rem; max-width:1200px; margin:auto; }
-    h2.section-title { text-align:center; margin-bottom:1.5rem; color:var(--verde-mex); }
+    .promos-nav.next {
+      right: clamp(0.5rem, 2vw, 1.5rem);
+    }
+
+    @media (min-width: 640px) {
+      .promos-track {
+        --card-width: min(60vw, 320px);
+   }
+      }
+
+    @media (min-width: 960px) {
+      .promos-track {
+        --card-width: calc((100% - (var(--promo-gap) * 2)) / 3);
+        padding-inline: clamp(0.5rem, 2vw, 1.5rem);
+        scroll-padding-inline: clamp(0.5rem, 2vw, 1.5rem);
+      }
+
+      .promos-nav {
+        display: inline-flex;
+        }
+      }
+
+    /* === RESTO DE SECCIONES === */
+    section {
+      padding: 3rem 1rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h2.section-title {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: var(--verde-mex);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      color: #666;
+    }
   </style>
 </head>
 
@@ -249,47 +389,85 @@
     <a href="#ofertas" class="btn">Ver Ofertas</a>
   </section>
 
-<!-- 🌮 NUEVO CARRUSEL DESTACADO -->
+  <!-- 🌮 CARRUSEL DE PROMOCIONES -->
   <section id="promociones">
-    <div class="carrusel-moderno">
-      <div class="carrusel-slide active">
-        <img src="https://www.cardenasmarkets.com/wp-content/uploads/fly-images/3644/cardenas-rewards-las-vegas-carousel-1462x1122-c.jpg" alt="Ofertas exclusivas" loading="lazy">
-        <div class="carrusel-overlay">
-          <span>Ofertas</span>
-          <h2>Descubre ofertas exclusivas</h2>
-          <p>¡Encuentra descuentos increíbles en tus productos mexicanos favoritos!</p>
-          <a href="#ofertas" class="btn">Ver más</a>
+    <div class="promos-shell">
+      <div class="promos-head">
+        <span>nuestras promociones</span>
+        <h2>Especiales destacados de la semana</h2>
+        <p>Tarjetas promocionales con productos frescos, servicios y eventos que no te puedes perder en El Mexiquense Market.</p>
+         </div>
+
+       <div class="promos-carousel">
+        <button class="promos-nav prev" aria-label="Anterior" type="button">&#10094;</button>
+        <div class="promos-track" id="promosTrack">
+          <article class="promo-card">
+            <div class="promo-media">
+              <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80" alt="Frutas frescas en canastas coloridas" loading="lazy">
+            </div>
+            <div class="promo-content">
+              <span class="promo-tag">OFERTA</span>
+              <h3>Frutas frescas de temporada</h3>
+              <p>Piñas, mangos y guayabas con descuentos especiales toda la semana. ¡Llévate la frescura a casa!</p>
+              <a class="promo-btn" href="#ofertas">Ver más</a>
+            </div>
+          </article>
+
+           <article class="promo-card">
+            <div class="promo-media">
+              <img src="https://images.unsplash.com/photo-1528696892704-5e1122852276?auto=format&fit=crop&w=900&q=80" alt="Carnes marinadas listas para asar" loading="lazy">
+            </div>
+            <div class="promo-content">
+              <span class="promo-tag">PROMOCIÓN</span>
+              <h3>Carne marinada lista para la parrilla</h3>
+              <p>Preparada con recetas auténticas para un asado perfecto. Compra 2 kilos y recibe un paquete extra.</p>
+              <a class="promo-btn" href="#productos">Ver más</a>
+            </div>
+          </article> 
+
+          <article class="promo-card">
+            <div class="promo-media">
+              <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=80" alt="Pan dulce tradicional mexicano" loading="lazy">
+            </div>
+            <div class="promo-content">
+              <span class="promo-tag">DULCERÍA</span>
+              <h3>Pan dulce recién horneado</h3>
+              <p>Conchas, orejas y cuernitos con café gratis antes de las 10 a. m. ¡Despierta con sabor casero!</p>
+              <a class="promo-btn" href="#productos">Ver más</a>
+            </div>
+          </article>
+
+          <article class="promo-card">
+            <div class="promo-media">
+              <img src="https://images.unsplash.com/photo-1618325856931-d8c3e7541f09?auto=format&fit=crop&w=900&q=80" alt="Persona enviando dinero desde el supermercado" loading="lazy">
+            </div>
+            <div class="promo-content">
+              <span class="promo-tag">SERVICIO</span>
+              <h3>Envíos de dinero sin complicaciones</h3>
+              <p>Apoya a tu familia en México y Centroamérica con transferencias seguras y tipos de cambio preferenciales.</p>
+              <a class="promo-btn" href="#contacto">Ver más</a>
+            </div>
+          </article>
+
+          <article class="promo-card">
+            <div class="promo-media">
+              <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80" alt="Evento culinario con degustaciones" loading="lazy">
+            </div>
+            <div class="promo-content">
+              <span class="promo-tag">EVENTO</span>
+              <h3>Degustación de salsas artesanales</h3>
+              <p>Prueba recetas familiares con ingredientes locales y vota por tu favorita este fin de semana.</p>
+              <a class="promo-btn" href="#contacto">Ver más</a>
+            </div>
+          </article>
         </div>
+        <button class="promos-nav next" aria-label="Siguiente" type="button">&#10095;</button>
       </div>
- 
-   <div class="carrusel-slide">
-        <img src="https://st2.depositphotos.com/1799455/7612/i/450/depositphotos_76127411-stock-photo-hand-throwing-a-dollar-paper.jpg" alt="Envía dinero" loading="lazy">
-        <div class="carrusel-overlay">
-          <span>Servicios</span>
-          <h2>Envía dinero a tus familiares</h2>
-          <p>Rápido, seguro y confiable — envía dinero a toda Latinoamérica.</p>
-          <a href="#contacto" class="btn">Más detalles</a>
-        </div>
-    </div>
-
-   <div class="carrusel-slide">
-        <img src="https://www.cardenasmarkets.com/wp-content/uploads/fly-images/986/careers-bonus-image-sp-1462x1122-c.jpg" alt="Miercolazo de descuento" loading="lazy">
-        <div class="carrusel-overlay">
-          <span>Promoción</span>
-          <h2>¡Miercolazo de Descuento!</h2>
-          <p>Ahorra en productos frescos cada miércoles. ¡Precios bajos, estilo Mexiquense!</p>
-          <a href="#ofertas" class="btn">Ver ofertas</a>
-        </div>
-    </div>
-
-    <button class="carrusel-btn prev" aria-label="Anterior">‹</button>
-      <button class="carrusel-btn next" aria-label="Siguiente">›</button>
     </div>
   </section>
 
-  
-  <!-- === RESTO DE SECCIONES SIMPLIFICADAS (productos, ofertas, contacto...) === -->
-  <section id="productos">
+   <!-- === RESTO DE SECCIONES SIMPLIFICADAS === -->
+   <section id="productos">
     <h2 class="section-title">Productos Destacados</h2>
     <p style="text-align:center;color:var(--texto-claro);">Frescura garantizada en cada compra.</p>
   </section>
@@ -302,7 +480,7 @@
     <h2 class="section-title">Contáctanos</h2>
   </section>
 
-  <footer style="text-align:center;padding:1.5rem;color:#666;">© <span id="year"></span> El Mexiquense Market</footer>
+   <footer>© <span id="year"></span> El Mexiquense Market</footer>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
@@ -311,38 +489,99 @@
     const menu = document.getElementById('menu');
     hamb.addEventListener('click', () => menu.classList.toggle('show'));
 
-    const carruselSlides = document.querySelectorAll('.carrusel-slide');
-    const nextBtn = document.querySelector('.carrusel-btn.next');
-    const prevBtn = document.querySelector('.carrusel-btn.prev');
+     const track = document.getElementById('promosTrack');
+    const cards = track ? Array.from(track.querySelectorAll('.promo-card')) : [];
+    const prevBtn = document.querySelector('.promos-nav.prev');
+    const nextBtn = document.querySelector('.promos-nav.next');
 
-    if (carruselSlides.length && nextBtn && prevBtn) {
-      let carruselIndex = 0;
-      let carruselTimer;
+    if (track && cards.length && prevBtn && nextBtn) {
+      let currentIndex = 0;
+      let autoTimer;
 
-      const activateSlide = (index) => {
-        carruselSlides.forEach((slide, i) => {
-          slide.classList.toggle('active', i === index);
-        });
+      const getGap = () => {
+        const styles = getComputedStyle(track);
+        const gapValue = parseFloat(styles.columnGap || styles.gap || '0');
+        return Number.isNaN(gapValue) ? 0 : gapValue;
       };
 
-      const goToSlide = (index) => {
-        carruselIndex = (index + carruselSlides.length) % carruselSlides.length;
-        activateSlide(carruselIndex);
+      const getStep = () => {
+        const firstCard = cards[0];
+        if (!firstCard) return 0;
+        const cardWidth = firstCard.getBoundingClientRect().width;
+        return cardWidth + getGap();
+      };
+
+      const getVisibleCount = () => {
+        const step = getStep();
+        if (!step) return 1;
+        return Math.max(1, Math.round(track.clientWidth / step));
+      };
+
+      const clampIndex = (index) => {
+        const visible = getVisibleCount();
+        const maxIndex = Math.max(0, cards.length - visible);
+        if (index < 0) return maxIndex;
+        if (index > maxIndex) return 0;
+        return index;
+      };
+
+      const goToIndex = (index, behavior = 'smooth') => {
+        const step = getStep();
+        if (!step) return;
+        currentIndex = clampIndex(index);
+        const target = step * currentIndex;
+        track.scrollTo({ left: target, behavior });
+      };
+
+      const restartTimer = () => {
+        clearInterval(autoTimer);
+        autoTimer = setInterval(() => goToIndex(currentIndex + 1), 6000);
+      };
+
+      const updateIndexFromScroll = () => {
+        const step = getStep();
+        if (!step) return;
+        currentIndex = Math.round(track.scrollLeft / step);
+      };
+
+      const goNext = () => {
+        goToIndex(currentIndex + 1);
         restartTimer();
       };
 
-      const nextSlide = () => goToSlide(carruselIndex + 1);
-      const prevSlide = () => goToSlide(carruselIndex - 1);
-
-      const restartTimer = () => {
-        clearInterval(carruselTimer);
-        carruselTimer = setInterval(nextSlide, 7000);
+      const goPrev = () => {
+        goToIndex(currentIndex - 1);
+        restartTimer();
       };
 
-      nextBtn.addEventListener('click', nextSlide);
-      prevBtn.addEventListener('click', prevSlide);
+      prevBtn.addEventListener('click', goPrev);
+      nextBtn.addEventListener('click', goNext);
 
-      activateSlide(0);
+      const pauseAuto = () => clearInterval(autoTimer);
+      const resumeAuto = () => restartTimer();
+
+      ['mousedown', 'mouseenter', 'focusin'].forEach((evt) => {
+        track.addEventListener(evt, pauseAuto);
+      });
+
+      ['mouseup', 'mouseleave', 'focusout'].forEach((evt) => {
+        track.addEventListener(evt, resumeAuto);
+      });
+
+      track.addEventListener('touchstart', pauseAuto, { passive: true });
+      track.addEventListener('touchend', resumeAuto, { passive: true });
+
+      track.addEventListener('scroll', () => {
+        updateIndexFromScroll();
+      }, { passive: true });
+
+      window.addEventListener('resize', () => {
+        updateIndexFromScroll();
+        goToIndex(currentIndex, 'auto');
+        restartTimer();
+      });
+
+      goToIndex(0, 'auto');
       restartTimer();
     }
   </script>
