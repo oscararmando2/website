@@ -1,379 +1,171 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>El Mexiquense Market — Frescura y Sabor Auténtico</title>
+  <meta name="description" content="El Mexiquense Market: frescura diaria, precios justos, ofertas y recetas para tu cocina." />
+  <meta name="theme-color" content="#1D8445" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
-    :root {
-      --verde-mex: #1D8445;
-      --rojo-fuego: #D45438;
-      --blanco-crema: #FAFAFA;
+    :root{
+      --verde: #1D8445;
+      --rojo: #D45438;
+      --blanco: #FFFFFF;
+      --crema: #FAFAFA;
       --texto: #2D2D2D;
-      --texto-claro: #6B6B6B;
-      --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.1);
-      --promo-gap: clamp(1rem, 2.8vw, 1.6rem);
+      --muted: #666;
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(0,0,0,.08);
+      --gap: 1rem;
+      --container: min(1200px, 92vw);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    /* Reset básico */
+    *,*::before,*::after{ box-sizing: border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0; font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+      color:var(--texto); background:var(--crema); line-height:1.5;
     }
+    img{ max-width:100%; display:block; }
+    a{ color:inherit; text-decoration:none; }
+    .container{ width:var(--container); margin:0 auto; }
+    .section{ padding: 3.5rem 0; }
 
-    body {
-      font-family: "Poppins", "Segoe UI", Arial, sans-serif;
-      background: var(--blanco-crema);
-      color: var(--texto);
-      overflow-x: hidden;
-    }
-
-     a {
-      color: inherit;
-      text-decoration: none;
-    }
-    
-    /* === NAV === */
-    header {
-    osition: sticky;
-      top: 0;
-      z-index: 999;
-      background: rgba(255, 255, 255, 0.95);
+    /* ===== NAV ===== */
+    header{
+      position: sticky; top:0; z-index:1000;
+      background:rgba(255,255,255,.96);
       backdrop-filter: blur(10px);
-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      border-bottom:1px solid #eee;
     }
-    
-    .nav { 
-      max-width: 1200px;
-      margin: auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.8rem 1rem;
+    .nav{
+      height:72px; display:flex; align-items:center; justify-content:space-between; gap:.75rem;
+      width:var(--container); margin:0 auto;
     }
-
-    logo {
-      font-weight: 600;
-      color: var(--verde-mex);
-      font-size: 1.2rem;
+    .brand{ font-weight:700; color:var(--verde); letter-spacing:.2px; }
+    .menu{ display:flex; gap:1rem; }
+    .menu a{ padding:.5rem .9rem; border-radius:999px; transition:.25s; }
+    .menu a:hover{ background: rgba(29,132,69,.12); }
+    .hamb{
+      display:none; width:40px; height:40px; border:0; background:transparent; cursor:pointer;
     }
-
-    .menu {
-      display: flex;
-      gap: 1rem;
+    .hamb span, .hamb::before, .hamb::after{
+      content:""; display:block; width:26px; height:3px; margin:6px auto; background:#333; border-radius:2px; transition:.25s;
     }
-
-    .menu a {
-      padding: 0.5rem 0.9rem;
-      border-radius: 999px;
-      transition: 0.3s;
-    }
-
-    .menu a:hover {
-      background: rgba(29, 132, 69, 0.1);
-    }
-
-    .hamb {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-    }
-
-    hamb span {
-      width: 28px;
-      height: 3px;
-      background: var(--texto);
-      border-radius: 2px;
-    }
-
-    @media (max-width: 768px) {
-      .menu {
-      display: none;
-        flex-direction: column;
-        position: absolute;
-        left: 0;
-        top: 100%;
-        width: 100%;
-        background: white;
-        border-radius: 0 0 12px 12px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    @media (max-width: 880px){
+      .menu{
+        position:absolute; left:0; right:0; top:72px; display:none; flex-direction:column;
+        background:var(--blanco); border-bottom:1px solid #eee; padding:.75rem 1rem;
       }
-
-      .menu.show {
-        display: flex;
-      }
-
-      .hamb {
-        display: flex;
-      }
+      .menu.show{ display:flex; }
+      .hamb{ display:block; }
     }
 
-    /* === HERO === */
-    .hero {
-      background: linear-gradient(135deg, var(--verde-mex), var(--rojo-fuego));
-      color: white; 
-      text-align:center;
-      padding: 4rem 1rem;
+    /* ===== HERO ===== */
+    .hero{
+      background: linear-gradient(135deg, #1D8445 0%, #D45438 100%);
+      color:white; text-align:center; padding: 4.5rem 1rem 3.2rem;
+    }
+    .hero h1{ font-size: clamp(2rem, 5.5vw, 3.2rem); margin:0 0 .5rem; line-height:1.08; }
+    .hero p{ font-size:clamp(1rem, 2.5vw, 1.2rem); opacity:.95; margin:0 0 1.25rem; }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+      background:var(--verde); color:white; font-weight:700;
+      padding:.75rem 1.15rem; border-radius:10px; border:2px solid transparent; transition:.25s;
+      box-shadow: var(--shadow);
+    }
+    .btn:hover{ background:#166b36; transform: translateY(-1px); }
+    .btn-outline{ background:white; color:var(--verde); border-color:var(--verde); }
+    .btn-outline:hover{ background:var(--verde); color:white; }
+
+    /* ===== PROMOS “estilo Cardenas”: imagen arriba + tarjeta blanca ===== */
+    #promociones{ padding: 0; }
+    .promos-wrap{
+      width:100%;
+      background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.04) 100%);
+      padding: 1.25rem 0 2.25rem;
+    }
+    .promos{
+      display:flex; gap: var(--gap);
+      width:var(--container); margin:0 auto;
+      overflow-x:auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+      padding: .25rem;
+    }
+    .promos::-webkit-scrollbar{ height:10px; }
+    .promos::-webkit-scrollbar-thumb{ background:#ddd; border-radius:999px; }
+    .promo-card{
+      scroll-snap-align:center;
+      background: var(--blanco);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      display:flex; flex-direction:column;
+      min-width: clamp(86%, 420px, 92%);   /* Móvil: 1 tarjeta centrada */
+      aspect-ratio: 3 / 4;                 /* Alto total vertical (tipo revista) */
+      position:relative;
+    }
+    /* Desktop: 3 por vista */
+    @media (min-width: 1024px){
+      .promo-card{ min-width: calc( (var(--container) - 2*var(--gap)) / 3 ); }
+    }
+    .promo-media{ flex: 1 0 55%; position:relative; }
+    .promo-media img{
+      position:absolute; inset:0; width:100%; height:100%;
+      object-fit: cover; object-position: center;
+      filter: saturate(1.05) contrast(1.02);
+    }
+    .promo-body{
+      flex: 1 0 45%;
+      padding: 1.1rem 1rem 1.25rem;
+      display:flex; flex-direction:column; justify-content:flex-start; gap:.55rem;
+    }
+    .badge{
+      align-self:flex-start; font-size:.75rem; font-weight:800; letter-spacing:.4px;
+      background: var(--rojo); color:white; padding:.28rem .6rem; border-radius:999px;
+      box-shadow: 0 6px 16px rgba(212,84,56,.15);
+    }
+    .promo-title{ margin:.2rem 0 .25rem; font-size: clamp(1.1rem, 2.3vw, 1.35rem); line-height:1.2; }
+    .promo-text{ color:var(--muted); font-size:.98rem; }
+    .promo-cta{ margin-top:auto; align-self:flex-start; }
+
+    /* Flechas para scroll del contenedor */
+    .carousel-controls{
+      width:var(--container); margin: .5rem auto 0;
+      display:flex; justify-content:space-between; gap:1rem; padding:0 4px;
+    }
+    .cbtn{
+      border:0; width:40px; height:40px; border-radius:999px; cursor:pointer;
+      background:rgba(0,0,0,.65); color:white; font-size:1.35rem; line-height:1;
+      display:grid; place-items:center; transition:.2s;
+    }
+    .cbtn:hover{ background:rgba(0,0,0,.85); transform: translateY(-1px); }
+    @media (max-width: 520px){
+      .carousel-controls{ padding: 0 10px; }
+      .cbtn{ width:36px; height:36px; font-size:1.15rem; }
     }
 
-    .hero h1 {
-      font-size: 2.2rem;
-      margin-bottom: 0.5rem;
+    /* ===== Otras secciones (demo) ===== */
+    .section-title{
+      text-align:center; color:var(--verde); margin:0 0 1.2rem; font-size: clamp(1.3rem, 3vw, 1.8rem);
     }
+    .muted{ color:var(--muted); text-align:center; }
 
-    .hero p {
-      font-size: 1.1rem;
-      font-weight: 300;
-      margin-bottom: 1.5rem;
-    }
-
-    .btn {
-      display: inline-block;
-      background: var(--verde-mex);
-      color: white;
-      padding: 0.7rem 1.2rem;
-      border-radius: 999px;
-      transition: 0.3s;
-      font-weight: 600;
-    }
-
-    .btn:hover {
-      background: var(--rojo-fuego);
-    }
-
-    /* === CARRUSEL TARJETAS PROMOCIONALES === */
-    #promociones {
-      background: var(--blanco-crema);
-      padding: clamp(2.5rem, 6vw, 4rem) 1.5rem;
-    }
-
-    .promos-shell {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: clamp(1.5rem, 4vw, 2.5rem);
-    }
-
-    .promos-head {
-      text-align: center;
-    }
-
-    .promos-head span {
-      display: inline-block;
-      font-size: 0.75rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--rojo-fuego);
-      font-weight: 600;
-      margin-bottom: 0.4rem;
-    }
-
-    .promos-head h2 {
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
-      color: var(--verde-mex);
-      margin-bottom: 0.4rem;
-    }
-
-    .promos-head p {
-      color: var(--texto-claro);
-      max-width: 620px;
-      margin: 0.4rem auto 0;
-    }
-
-    .promos-carousel {
-      position: relative;
-    }
-
-    .promos-track {
-      --card-width: min(88vw, 340px);
-      display: flex;
-      gap: var(--promo-gap);
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      padding: 0 calc((100% - var(--card-width)) / 2) 0.75rem;
-      scroll-padding-inline: calc((100% - var(--card-width)) / 2);
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
-    }
-
-    .promos-track::-webkit-scrollbar {
-      height: 8px;
-    }
-
-    .promos-track::-webkit-scrollbar-thumb {
-      background: rgba(0, 0, 0, 0.2);
-      border-radius: 999px;
-    }
-
-    .promo-card {
-      flex: 0 0 var(--card-width);
-      max-width: var(--card-width);
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: var(--shadow-soft);
-      display: grid;
-      grid-template-rows: 1fr 1fr;
-      aspect-ratio: 3 / 4;
-      scroll-snap-align: center;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-      background: white;
-    }
-
-    .promo-card:focus-within,
-    .promo-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.16);
-    }
-
-    .promo-media {
-      overflow: hidden;
-      height: 100%;
-    }
-
-    .promo-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .promo-content {
-      background: white;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 1.2rem;
-      gap: 0.75rem;
-      height: 100%;
-    }
-
-    .promo-tag {
-      align-self: flex-start;
-      padding: 0.2rem 0.75rem;
-      background: rgba(29, 132, 69, 0.15);
-      color: var(--verde-mex);
-      font-weight: 600;
-      font-size: 0.75rem;
-      letter-spacing: 1.2px;
-      border-radius: 999px;
-    }
-
-    .promo-content h3 {
-      font-size: 1.1rem;
-      color: var(--texto);
-      line-height: 1.3;
-    }
-
-    .promo-content p {
-      color: var(--texto-claro);
-      font-size: 0.95rem;
-      line-height: 1.5;
-      flex: 1;
-    }
-
-    .promo-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      align-self: flex-start;
-      padding: 0.6rem 1.4rem;
-      border-radius: 999px;
-      background: var(--verde-mex);
-      color: white;
-      font-weight: 600;
-      font-size: 0.9rem;
-      transition: background 0.3s ease;
-    }
-
-    .promo-btn:hover {
-      background: var(--rojo-fuego);
-    }
-
-    .promos-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      border: none;
-      background: rgba(255, 255, 255, 0.9);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-      color: var(--verde-mex);
-      font-size: 1.4rem;
-      cursor: pointer;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.3s ease, transform 0.3s ease;
-      z-index: 5;
-    }
-
-    .promos-nav:hover {
-      background: rgba(29, 132, 69, 0.9);
-      color: white;
-      transform: translateY(-50%) scale(1.05);
-    }
-
-    .promos-nav.prev {
-      left: clamp(0.5rem, 2vw, 1.5rem);
-    }
-
-    .promos-nav.next {
-      right: clamp(0.5rem, 2vw, 1.5rem);
-    }
-
-    @media (min-width: 640px) {
-      .promos-track {
-        --card-width: min(60vw, 320px);
-   }
-      }
-
-    @media (min-width: 960px) {
-      .promos-track {
-        --card-width: calc((100% - (var(--promo-gap) * 2)) / 3);
-        padding-inline: clamp(0.5rem, 2vw, 1.5rem);
-        scroll-padding-inline: clamp(0.5rem, 2vw, 1.5rem);
-      }
-
-      .promos-nav {
-        display: inline-flex;
-        }
-      }
-
-    /* === RESTO DE SECCIONES === */
-    section {
-      padding: 3rem 1rem;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    h2.section-title {
-      text-align: center;
-      margin-bottom: 1.5rem;
-      color: var(--verde-mex);
-    }
-
-    footer {
-      text-align: center;
-      padding: 1.5rem;
-      color: #666;
-    }
+    /* Footer */
+    footer{ border-top:1px solid #eee; background:white; color:#666; }
+    footer .foot{ width:var(--container); margin:0 auto; padding:1.25rem 0; display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
   </style>
 </head>
-
 <body>
-  <!-- === NAV === -->
+
+  <!-- ===== NAV ===== -->
   <header>
     <div class="nav">
-      <div class="logo">El Mexiquense Market</div>
-      <div class="hamb" id="hamb"><span></span><span></span><span></span></div>
-      <nav class="menu" id="menu">
+      <div class="brand">El Mexiquense Market</div>
+      <button class="hamb" id="hamb" aria-label="Abrir menú" aria-controls="menu" aria-expanded="false"><span></span></button>
+      <nav class="menu" id="menu" aria-label="Menú principal">
         <a href="#inicio">Inicio</a>
         <a href="#promociones">Promociones</a>
         <a href="#productos">Productos</a>
@@ -383,208 +175,166 @@ box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     </div>
   </header>
 
-  <!-- === HERO === -->
-  <section class="hero" id="inicio">
-    <h1>El Sabor de México en Cada Compra</h1>
-    <p>Frescura diaria • Precios justos • Calidad garantizada</p>
-    <a href="#ofertas" class="btn">Ver Ofertas</a>
+  <!-- ===== HERO ===== -->
+  <section id="inicio" class="hero">
+    <div class="container">
+      <h1>El Sabor de México en Cada Compra</h1>
+      <p>Frescura diaria • Precios justos • Calidad garantizada</p>
+      <a class="btn" href="#promociones">Ver promociones</a>
+      <a class="btn btn-outline" href="#ofertas" style="margin-left:.5rem;">Ofertas del día</a>
+    </div>
   </section>
 
-  <!-- 🌮 CARRUSEL DE PROMOCIONES -->
-  <section id="promociones">
-    <div class="promos-shell">
-      <div class="promos-head">
-        <span>nuestras promociones</span>
-        <h2>Especiales destacados de la semana</h2>
-        <p>Tarjetas promocionales con productos frescos, servicios y eventos que no te puedes perder en El Mexiquense Market.</p>
-         </div>
+  <!-- ===== CARRUSEL: tarjetas imagen+blanco ===== -->
+  <section id="promociones" aria-label="Promociones destacadas">
+    <div class="promos-wrap">
+      <div class="promos" id="promosTrack">
+        <!-- Card 1 -->
+        <article class="promo-card">
+          <div class="promo-media" aria-hidden="true">
+            <img src="https://www.cardenasmarkets.com/wp-content/uploads/fly-images/3644/cardenas-rewards-las-vegas-carousel-1462x1122-c.jpg"
+                 alt="Promoción de ofertas exclusivas — productos frescos" loading="lazy">
+          </div>
+          <div class="promo-body">
+            <span class="badge">OFERTA</span>
+            <h3 class="promo-title">Descubre ofertas exclusivas</h3>
+            <p class="promo-text">Descuentos especiales en tus productos mexicanos favoritos.</p>
+            <a class="btn promo-cta" href="#ofertas">Ver más</a>
+          </div>
+        </article>
 
-       <div class="promos-carousel">
-        <button class="promos-nav prev" aria-label="Anterior" type="button">&#10094;</button>
-        <div class="promos-track" id="promosTrack">
-          <article class="promo-card">
-            <div class="promo-media">
-              <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80" alt="Frutas frescas en canastas coloridas" loading="lazy">
-            </div>
-            <div class="promo-content">
-              <span class="promo-tag">OFERTA</span>
-              <h3>Frutas frescas de temporada</h3>
-              <p>Piñas, mangos y guayabas con descuentos especiales toda la semana. ¡Llévate la frescura a casa!</p>
-              <a class="promo-btn" href="#ofertas">Ver más</a>
-            </div>
-          </article>
+        <!-- Card 2 -->
+        <article class="promo-card">
+          <div class="promo-media" aria-hidden="true">
+            <img src="https://st2.depositphotos.com/1799455/7612/i/450/depositphotos_76127411-stock-photo-hand-throwing-a-dollar-paper.jpg"
+                 alt="Servicio para envío de dinero" loading="lazy">
+          </div>
+          <div class="promo-body">
+            <span class="badge">SERVICIO</span>
+            <h3 class="promo-title">Envía dinero a tu familia</h3>
+            <p class="promo-text">Rápido y seguro a toda Latinoamérica con excelentes tarifas.</p>
+            <a class="btn promo-cta" href="#contacto">Más detalles</a>
+          </div>
+        </article>
 
-           <article class="promo-card">
-            <div class="promo-media">
-              <img src="https://images.unsplash.com/photo-1528696892704-5e1122852276?auto=format&fit=crop&w=900&q=80" alt="Carnes marinadas listas para asar" loading="lazy">
-            </div>
-            <div class="promo-content">
-              <span class="promo-tag">PROMOCIÓN</span>
-              <h3>Carne marinada lista para la parrilla</h3>
-              <p>Preparada con recetas auténticas para un asado perfecto. Compra 2 kilos y recibe un paquete extra.</p>
-              <a class="promo-btn" href="#productos">Ver más</a>
-            </div>
-          </article> 
+        <!-- Card 3 -->
+        <article class="promo-card">
+          <div class="promo-media" aria-hidden="true">
+            <img src="https://www.cardenasmarkets.com/wp-content/uploads/fly-images/986/careers-bonus-image-sp-1462x1122-c.jpg"
+                 alt="Miércoles de descuentos" loading="lazy">
+          </div>
+          <div class="promo-body">
+            <span class="badge">PROMOCIÓN</span>
+            <h3 class="promo-title">¡Miercolazo de Descuento!</h3>
+            <p class="promo-text">Ahorra en frutas y verduras frescas cada miércoles.</p>
+            <a class="btn promo-cta" href="#ofertas">Ver ofertas</a>
+          </div>
+        </article>
 
-          <article class="promo-card">
-            <div class="promo-media">
-              <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=80" alt="Pan dulce tradicional mexicano" loading="lazy">
-            </div>
-            <div class="promo-content">
-              <span class="promo-tag">DULCERÍA</span>
-              <h3>Pan dulce recién horneado</h3>
-              <p>Conchas, orejas y cuernitos con café gratis antes de las 10 a. m. ¡Despierta con sabor casero!</p>
-              <a class="promo-btn" href="#productos">Ver más</a>
-            </div>
-          </article>
+        <!-- Card 4 (ejemplo extra) -->
+        <article class="promo-card">
+          <div class="promo-media" aria-hidden="true">
+            <img src="https://images.unsplash.com/photo-1601050690597-6c59b68e16ab?q=80&w=1600&auto=format&fit=crop"
+                 alt="Caja de frutas variadas" loading="lazy">
+          </div>
+          <div class="promo-body">
+            <span class="badge">NUEVO</span>
+            <h3 class="promo-title">Canasta de frutas premium</h3>
+            <p class="promo-text">Calidad de temporada para tu mesa, al mejor precio.</p>
+            <a class="btn promo-cta" href="#productos">Comprar</a>
+          </div>
+        </article>
+      </div>
 
-          <article class="promo-card">
-            <div class="promo-media">
-              <img src="https://images.unsplash.com/photo-1618325856931-d8c3e7541f09?auto=format&fit=crop&w=900&q=80" alt="Persona enviando dinero desde el supermercado" loading="lazy">
-            </div>
-            <div class="promo-content">
-              <span class="promo-tag">SERVICIO</span>
-              <h3>Envíos de dinero sin complicaciones</h3>
-              <p>Apoya a tu familia en México y Centroamérica con transferencias seguras y tipos de cambio preferenciales.</p>
-              <a class="promo-btn" href="#contacto">Ver más</a>
-            </div>
-          </article>
-
-          <article class="promo-card">
-            <div class="promo-media">
-              <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80" alt="Evento culinario con degustaciones" loading="lazy">
-            </div>
-            <div class="promo-content">
-              <span class="promo-tag">EVENTO</span>
-              <h3>Degustación de salsas artesanales</h3>
-              <p>Prueba recetas familiares con ingredientes locales y vota por tu favorita este fin de semana.</p>
-              <a class="promo-btn" href="#contacto">Ver más</a>
-            </div>
-          </article>
-        </div>
-        <button class="promos-nav next" aria-label="Siguiente" type="button">&#10095;</button>
+      <!-- controles -->
+      <div class="carousel-controls">
+        <button class="cbtn" id="prevBtn" aria-label="Anterior">‹</button>
+        <button class="cbtn" id="nextBtn" aria-label="Siguiente">›</button>
       </div>
     </div>
   </section>
 
-   <!-- === RESTO DE SECCIONES SIMPLIFICADAS === -->
-   <section id="productos">
-    <h2 class="section-title">Productos Destacados</h2>
-    <p style="text-align:center;color:var(--texto-claro);">Frescura garantizada en cada compra.</p>
+  <!-- ===== SECCIONES DEMO ===== -->
+  <section id="productos" class="section">
+    <h2 class="section-title">Productos destacados</h2>
+    <p class="muted">Frescura garantizada en cada compra.</p>
   </section>
 
-  <section id="ofertas">
-    <h2 class="section-title">Ofertas del Día</h2>
+  <section id="ofertas" class="section" style="background:white;">
+    <h2 class="section-title" style="color:var(--rojo)">Ofertas del día</h2>
+    <p class="muted">Aprovecha precios irresistibles por tiempo limitado.</p>
   </section>
 
-  <section id="contacto">
+  <section id="contacto" class="section">
     <h2 class="section-title">Contáctanos</h2>
+    <p class="muted">Zócalo, CDMX — Escríbenos por WhatsApp o visítanos.</p>
   </section>
 
-   <footer>© <span id="year"></span> El Mexiquense Market</footer>
+  <footer>
+    <div class="foot">
+      <span>© <span id="year"></span> El Mexiquense Market</span>
+      <a class="btn btn-outline" href="#inicio">Volver arriba</a>
+    </div>
+  </footer>
 
   <script>
+    // Año dinámico
     document.getElementById('year').textContent = new Date().getFullYear();
 
+    // Menú hamburguesa accesible
     const hamb = document.getElementById('hamb');
     const menu = document.getElementById('menu');
-    hamb.addEventListener('click', () => menu.classList.toggle('show'));
+    hamb.addEventListener('click', () => {
+      const open = menu.classList.toggle('show');
+      hamb.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
 
-     const track = document.getElementById('promosTrack');
-    const cards = track ? Array.from(track.querySelectorAll('.promo-card')) : [];
-    const prevBtn = document.querySelector('.promos-nav.prev');
-    const nextBtn = document.querySelector('.promos-nav.next');
+    // ===== Carrusel por scroll-snap (robusto en móvil) =====
+    const track = document.getElementById('promosTrack');
+    const prev = document.getElementById('prevBtn');
+    const next = document.getElementById('nextBtn');
 
-    if (track && cards.length && prevBtn && nextBtn) {
-      let currentIndex = 0;
-      let autoTimer;
-
-      const getGap = () => {
-        const styles = getComputedStyle(track);
-        const gapValue = parseFloat(styles.columnGap || styles.gap || '0');
-        return Number.isNaN(gapValue) ? 0 : gapValue;
-      };
-
-      const getStep = () => {
-        const firstCard = cards[0];
-        if (!firstCard) return 0;
-        const cardWidth = firstCard.getBoundingClientRect().width;
-        return cardWidth + getGap();
-      };
-
-      const getVisibleCount = () => {
-        const step = getStep();
-        if (!step) return 1;
-        return Math.max(1, Math.round(track.clientWidth / step));
-      };
-
-      const clampIndex = (index) => {
-        const visible = getVisibleCount();
-        const maxIndex = Math.max(0, cards.length - visible);
-        if (index < 0) return maxIndex;
-        if (index > maxIndex) return 0;
-        return index;
-      };
-
-      const goToIndex = (index, behavior = 'smooth') => {
-        const step = getStep();
-        if (!step) return;
-        currentIndex = clampIndex(index);
-        const target = step * currentIndex;
-        track.scrollTo({ left: target, behavior });
-      };
-
-      const restartTimer = () => {
-        clearInterval(autoTimer);
-        autoTimer = setInterval(() => goToIndex(currentIndex + 1), 6000);
-      };
-
-      const updateIndexFromScroll = () => {
-        const step = getStep();
-        if (!step) return;
-        currentIndex = Math.round(track.scrollLeft / step);
-      };
-
-      const goNext = () => {
-        goToIndex(currentIndex + 1);
-        restartTimer();
-      };
-
-      const goPrev = () => {
-        goToIndex(currentIndex - 1);
-        restartTimer();
-      };
-
-      prevBtn.addEventListener('click', goPrev);
-      nextBtn.addEventListener('click', goNext);
-
-      const pauseAuto = () => clearInterval(autoTimer);
-      const resumeAuto = () => restartTimer();
-
-      ['mousedown', 'mouseenter', 'focusin'].forEach((evt) => {
-        track.addEventListener(evt, pauseAuto);
-      });
-
-      ['mouseup', 'mouseleave', 'focusout'].forEach((evt) => {
-        track.addEventListener(evt, resumeAuto);
-      });
-
-      track.addEventListener('touchstart', pauseAuto, { passive: true });
-      track.addEventListener('touchend', resumeAuto, { passive: true });
-
-      track.addEventListener('scroll', () => {
-        updateIndexFromScroll();
-      }, { passive: true });
-
-      window.addEventListener('resize', () => {
-        updateIndexFromScroll();
-        goToIndex(currentIndex, 'auto');
-        restartTimer();
-      });
-
-      goToIndex(0, 'auto');
-      restartTimer();
+    // Pequeño helper para conocer el ancho de una tarjeta + gap
+    function getStep(){
+      const card = track.querySelector('.promo-card');
+      if(!card) return 300;
+      const styles = window.getComputedStyle(card);
+      const gap = parseFloat(window.getComputedStyle(track).columnGap || window.getComputedStyle(track).gap || 16);
+      return card.getBoundingClientRect().width + (isNaN(gap) ? 16 : gap);
     }
+
+    prev.addEventListener('click', ()=> track.scrollBy({ left: -getStep(), behavior:'smooth' }));
+    next.addEventListener('click', ()=> track.scrollBy({ left:  getStep(), behavior:'smooth' }));
+
+    // Autoplay suave: avanza, y si llega al final vuelve al inicio
+    let auto = setInterval(()=> {
+      const maxScroll = track.scrollWidth - track.clientWidth - 4;
+      if (track.scrollLeft >= maxScroll) {
+        track.scrollTo({ left: 0, behavior:'smooth' });
+      } else {
+        track.scrollBy({ left: getStep(), behavior:'smooth' });
+      }
+    }, 6000);
+
+    // Pausar autoplay si el usuario interactúa
+    ['pointerdown','touchstart','wheel','keydown','focusin'].forEach(evt=>{
+      track.addEventListener(evt, ()=> { clearInterval(auto); }, { passive:true });
+    });
+
+    // Accesibilidad básica con teclado para botones
+    prev.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') prev.click(); });
+    next.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') next.click(); });
+
+    // Suavizar anclas (fallback)
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href');
+        if(id.length>1 && document.querySelector(id)){
+          e.preventDefault();
+          document.querySelector(id).scrollIntoView({ behavior:'smooth', block:'start' });
+        }
+      });
+    });
   </script>
 </body>
 </html>
