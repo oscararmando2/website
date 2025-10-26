@@ -403,6 +403,39 @@
       font-weight:700;
       color:var(--rojo);
     }
+    .price-stack{
+      margin-top:auto;
+      display:flex;
+      flex-direction:column;
+      gap:.15rem;
+    }
+    .price-before{
+      font-size:.9rem;
+      color:var(--muted);
+      text-decoration:line-through;
+    }
+    .price-now{
+      font-size:1.2rem;
+      font-weight:700;
+      color:var(--rojo);
+    }
+    .offers-grid{
+      width:var(--container);
+      margin:2.5rem auto 0;
+      display:flex;
+      gap:1.25rem;
+      overflow-x:auto;
+      padding-bottom:.75rem;
+      scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch;
+    }
+    .offers-grid::-webkit-scrollbar{
+      height:10px;
+    }
+    .offers-grid::-webkit-scrollbar-thumb{
+      background:rgba(0,0,0,.15);
+      border-radius:999px;
+    }
     @media (min-width: 1024px){
       .product-carousel{
         justify-content:center;
@@ -918,6 +951,189 @@
   <section id="ofertas" class="section" style="background:white;">
     <h2 class="section-title" style="color:var(--rojo)">Ofertas del día</h2>
     <p class="muted">Aprovecha precios irresistibles por tiempo limitado.</p>
+    <div class="offers-grid" role="list" aria-label="Ofertas destacadas">
+      <article class="product-card" role="listitem">
+        <div class="product-media" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1506806732259-39c2d0268443?auto=format&fit=crop&w=800&q=80" alt="Tomates roma frescos" loading="lazy">
+        </div>
+        <div class="product-body">
+          <h3 class="product-title">Tomate Roma</h3>
+          <p class="product-info">Perfectos para tus salsas y ensaladas favoritas.</p>
+          <div class="price-stack">
+            <span class="price-before">Antes: $0.79 lb</span>
+            <span class="price-now">Ahora: $0.40 lb</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" role="listitem">
+        <div class="product-media" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80" alt="Aguacates hass enteros" loading="lazy">
+        </div>
+        <div class="product-body">
+          <h3 class="product-title">Aguacate Hass</h3>
+          <p class="product-info">Maduración lista para preparar guacamole cremoso.</p>
+          <div class="price-stack">
+            <span class="price-before">Antes: $1.89 c/u</span>
+            <span class="price-now">Ahora: $1.29 c/u</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" role="listitem">
+        <div class="product-media" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1587593810167-1ee9c6bfb2ef?auto=format&fit=crop&w=800&q=80" alt="Pechuga de pollo fresca en tabla de cortar" loading="lazy">
+        </div>
+        <div class="product-body">
+          <h3 class="product-title">Pechuga de Pollo</h3>
+          <p class="product-info">Filetes sin hueso ideales para cocinar a la plancha.</p>
+          <div class="price-stack">
+            <span class="price-before">Antes: $3.99 lb</span>
+            <span class="price-now">Ahora: $2.79 lb</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" role="listitem">
+        <div class="product-media" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1604908176778-3daa9b812eb1?auto=format&fit=crop&w=800&q=80" alt="Bloque de queso fresco" loading="lazy">
+        </div>
+        <div class="product-body">
+          <h3 class="product-title">Queso Fresco Artesanal</h3>
+          <p class="product-info">Textura suave y sabor ligero para tus platillos.</p>
+          <div class="price-stack">
+            <span class="price-before">Antes: $5.49</span>
+            <span class="price-now">Ahora: $4.25</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" role="listitem">
+        <div class="product-media" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1504713722161-128640987773?auto=format&fit=crop&w=800&q=80" alt="Tortillas de maíz recién hechas" loading="lazy">
+        </div>
+        <div class="product-body">
+          <h3 class="product-title">Tortillas de Maíz Frescas</h3>
+          <p class="product-info">Paquete diario caliente listo para tu mesa.</p>
+          <div class="price-stack">
+            <span class="price-before">Antes: $3.50 paquete</span>
+            <span class="price-now">Ahora: $2.75 paquete</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" role="listitem">
+        <div class="product-media" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1603048305487-246a5ac76770?auto=format&fit=crop&w=800&q=80" alt="Frijoles pintos a granel" loading="lazy">
+        </div>
+        <div class="product-body">
+          <h3 class="product-title">Frijoles Pintos a Granel</h3>
+          <p class="product-info">Seleccionados y listos para tus guisos caseros.</p>
+          <div class="price-stack">
+            <span class="price-before">Antes: $1.49 lb</span>
+            <span class="price-now">Ahora: $0.99 lb</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" role="listitem">
+        <div class="product-media" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1570696565225-4c2d9373629d?auto=format&fit=crop&w=800&q=80" alt="Saco de arroz" loading="lazy">
+        </div>
+        <div class="product-body">
+          <h3 class="product-title">Arroz Jazmín 16 lb</h3>
+          <p class="product-info">Grano aromático ideal para acompañar tus platillos.</p>
+          <div class="price-stack">
+            <span class="price-before">Antes: $12.99</span>
+            <span class="price-now">Ahora: $9.99</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" role="listitem">
+        <div class="product-media" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1601000938259-9e31fbc24c34?auto=format&fit=crop&w=800&q=80" alt="Chiles jalapeños frescos" loading="lazy">
+        </div>
+        <div class="product-body">
+          <h3 class="product-title">Chiles Jalapeños</h3>
+          <p class="product-info">Picor auténtico para tus salsas y marinados.</p>
+          <div class="price-stack">
+            <span class="price-before">Antes: $1.19 lb</span>
+            <span class="price-now">Ahora: $0.69 lb</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" role="listitem">
+        <div class="product-media" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1615485737457-3ab1d1c0be1d?auto=format&fit=crop&w=800&q=80" alt="Mangos ataulfo maduros" loading="lazy">
+        </div>
+        <div class="product-body">
+          <h3 class="product-title">Mango Ataulfo</h3>
+          <p class="product-info">Dulce y jugoso, perfecto para licuados o postres.</p>
+          <div class="price-stack">
+            <span class="price-before">Antes: $1.49 c/u</span>
+            <span class="price-now">Ahora: $0.89 c/u</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" role="listitem">
+        <div class="product-media" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=800&q=80" alt="Crema mexicana en frasco" loading="lazy">
+        </div>
+        <div class="product-body">
+          <h3 class="product-title">Crema Mexicana</h3>
+          <p class="product-info">Consistencia cremosa para chilaquiles y antojitos.</p>
+          <div class="price-stack">
+            <span class="price-before">Antes: $3.79</span>
+            <span class="price-now">Ahora: $2.99</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" role="listitem">
+        <div class="product-media" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1483695028939-5bb13f8648b0?auto=format&fit=crop&w=800&q=80" alt="Pan bolillo recién horneado" loading="lazy">
+        </div>
+        <div class="product-body">
+          <h3 class="product-title">Bolillo Recién Horneado</h3>
+          <p class="product-info">Corteza crujiente y migajón suave todas las tardes.</p>
+          <div class="price-stack">
+            <span class="price-before">Antes: $0.59 c/u</span>
+            <span class="price-now">Ahora: $0.30 c/u</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" role="listitem">
+        <div class="product-media" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?auto=format&fit=crop&w=800&q=80" alt="Taza de café de olla" loading="lazy">
+        </div>
+        <div class="product-body">
+          <h3 class="product-title">Café de Olla Molido</h3>
+          <p class="product-info">Notas de canela y piloncillo para tus mañanas.</p>
+          <div class="price-stack">
+            <span class="price-before">Antes: $8.99</span>
+            <span class="price-now">Ahora: $6.79</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" role="listitem">
+        <div class="product-media" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1543353071-10c8ba85a904?auto=format&fit=crop&w=800&q=80" alt="Racimos de uvas rojas" loading="lazy">
+        </div>
+        <div class="product-body">
+          <h3 class="product-title">Uva Roja Sin Semilla</h3>
+          <p class="product-info">Dulces y crujientes para snacks saludables.</p>
+          <div class="price-stack">
+            <span class="price-before">Antes: $2.49 lb</span>
+            <span class="price-now">Ahora: $1.69 lb</span>
+          </div>
+        </div>
+      </article>
+    </div>
   </section>
 
   <section id="contacto" class="section">
