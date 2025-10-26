@@ -538,7 +538,7 @@
 }
 .recipes-collection{
   background:white;
-  display:none;
+  display:block;
 }
 .recipes-collection.active{
   display:block;
@@ -678,6 +678,12 @@
   .recipes-collection__header h2{ width:100%; }
 }
 
+@media (max-width: 768px){
+  .page-home .recipes-collection{
+    display:none;
+  }
+}
+
     /* ===== Otras secciones (demo) ===== */
     .section-title{
       text-align:center; color:var(--verde); margin:0 0 1.2rem; font-size: clamp(1.3rem, 3vw, 1.8rem);
@@ -689,7 +695,7 @@
     footer .foot{ width:var(--container); margin:0 auto; padding:1.25rem 0; display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
   </style>
 </head>
-<body>
+<body class="page-home" data-page="home">
 
   <!-- ===== NAV ===== -->
   <header>
@@ -902,23 +908,10 @@
         <h2 id="recetas-title" class="recipes-hero__title">Inspiración fresca al estilo El Mexiquense</h2>
         <p class="recipes-hero__description">Encuentra platillos auténticos y bebidas refrescantes en un solo lugar. Cada visita descubre nuevas ideas para sorprender a la familia, inspiradas en la energía del banner de Cardenas Markets.</p>
         <div class="recipes-hero__actions">
-          <button class="btn btn-inverse" type="button" id="viewMoreRecipes" aria-controls="recetas-completas" aria-expanded="false">Ver Más</button>
+          <a class="btn btn-inverse" href="recetas/" id="viewMoreRecipesLink">Ver Más</a>
         </div>
       </div>
       <div class="recipes-preview" id="recipesPreview" role="list" aria-live="polite"></div>
-    </div>
-  </section>
-
-  <section id="recetas-completas" class="section recipes-collection" aria-labelledby="recetas-collection-title" hidden aria-hidden="true">
-    <div class="container">
-      <div class="recipes-collection__header">
-        <div>
-          <span>Recetario completo</span>
-          <h2 id="recetas-collection-title">Todas nuestras recetas</h2>
-          <p>Explora la colección completa con tiempos, etiquetas y enlaces a cada preparación. Perfecta para planear tu menú semanal o descubrir algo nuevo cuando lo necesites.</p>
-        </div>
-      </div>
-      <div class="recipes-grid" id="recipesList" role="list" aria-live="polite"></div>
     </div>
   </section>
 
@@ -1093,8 +1086,10 @@
 
     const previewContainer = document.getElementById('recipesPreview');
     const listContainer = document.getElementById('recipesList');
-    const viewMoreBtn = document.getElementById('viewMoreRecipes');
-    const fullCollectionSection = document.getElementById('recetas-completas');
+    const currentPath = window.location.pathname.replace(/\/+$/, '');
+    const isRecipesPath = currentPath.endsWith('/recetas') || currentPath.endsWith('/recetas/index.html');
+    const pageType = document.body.dataset.page || (isRecipesPath ? 'recetas' : 'home');
+    const isRecipesPage = pageType === 'recetas' || isRecipesPath;
     const clockIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2Zm0 18a8 8 0 1 1 8-8 8.009 8.009 0 0 1-8 8Zm.5-13h-1a.5.5 0 0 0-.5.5V13a1 1 0 0 0 .553.894l3.5 1.75a.5.5 0 0 0 .447-.894L12.5 12.382Z"></path></svg>';
     const arrowIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.172 12 8.222 7.05l1.414-1.414L16 12l-6.364 6.364-1.414-1.414Z"></path></svg>';
 
@@ -1129,27 +1124,40 @@
       return card;
     }
 
-    if(previewContainer && listContainer){
-      const randomized = shuffle(recipesData);
-      randomized.slice(0, 3).forEach(recipe => {
+    if(previewContainer){
+      const randomizedPreview = shuffle(recipesData);
+      const itemsToShow = isRecipesPage ? randomizedPreview.slice(0, 4) : randomizedPreview.slice(0, 3);
+      itemsToShow.forEach(recipe => {
         previewContainer.appendChild(createPreviewCard(recipe));
-      });
-      randomized.forEach(recipe => {
-        listContainer.appendChild(createRecipeCard(recipe));
       });
     }
 
-    if(viewMoreBtn && fullCollectionSection){
-      viewMoreBtn.addEventListener('click', () => {
-        if(fullCollectionSection.hasAttribute('hidden')){
-          fullCollectionSection.removeAttribute('hidden');
-          fullCollectionSection.classList.add('active');
-          fullCollectionSection.setAttribute('aria-hidden', 'false');
-          viewMoreBtn.setAttribute('aria-expanded', 'true');
-        }
-        fullCollectionSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if(isRecipesPage && listContainer){
+      const randomizedList = shuffle(recipesData);
+      randomizedList.forEach(recipe => {
+        listContainer.appendChild(createRecipeCard(recipe));
       });
     }
   </script>
 </body>
 </html>
+
+  <!-- Vista previa productos destacados:
+  Harina P.A.N. Maíz Blanco — $4.99
+  Maseca Maíz Instantáneo — $3.99
+  Frijoles Negros Listos — $2.79
+  Salsa Picante Artesanal — $5.49
+  Queso Fresco Artesanal — $6.89
+  Chiles Poblanos Frescos — $3.49
+  Pan Dulce Variado — $7.25
+  Recetas incluidas (se muestran 3 al azar en el banner y la colección completa vive en /recetas/):
+  Carnitas estilo Michoacán — 75 min
+  Camarones a la diabla — 35 min
+  Ensalada de nopales fresca — 20 min
+  Margarita de tuna — 10 min
+  Paletas de sandía y kiwi — 15 min + congelado
+  Tamales verdes con pollo — 90 min
+  Tostadas de tinga — 40 min
+  Pozole rojo estilo Jalisco — 2 h
+  Chilaquiles verdes con huevo — 25 min
+  -->
