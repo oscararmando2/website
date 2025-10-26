@@ -994,7 +994,14 @@
 
     /* ===== Contacto ===== */
     #contacto{
-      background:white;
+      background:linear-gradient(180deg, #ffffff 0%, #f3f6f4 100%);
+    }
+    .contact-heading{
+      text-align:center;
+      max-width:600px;
+      margin:0 auto 2.5rem;
+      display:grid;
+      gap:.65rem;
     }
     .contact-grid{
       width:var(--container);
@@ -1007,38 +1014,90 @@
     .contact-info{
       display:flex;
       flex-direction:column;
-      gap:1.2rem;
+      gap:1.5rem;
     }
     .contact-highlights{
       display:grid;
-      gap:1rem;
+      gap:1.2rem;
     }
+    .contact-card,
     .contact-item{
       display:flex;
       align-items:flex-start;
-      gap:.8rem;
+      gap:.9rem;
+      padding:1.1rem 1.2rem;
+      border-radius:18px;
+      background:white;
+      box-shadow:0 18px 36px rgba(24,67,45,.08);
+      border:1px solid rgba(29,132,69,.08);
     }
+    .contact-card svg,
     .contact-item svg{
       width:24px;
       height:24px;
       flex-shrink:0;
       fill:var(--verde);
     }
-    .contact-hours{
-      background:rgba(29,132,69,.08);
-      border-radius:16px;
-      padding:1rem 1.2rem;
+    .contact-card strong,
+    .contact-card h3{
+      display:block;
+      margin:0 0 .35rem;
+      font-size:1.05rem;
       color:var(--texto);
+    }
+    .contact-card p{
+      margin:0;
+      color:var(--muted);
       font-size:.95rem;
       line-height:1.6;
     }
+    .contact-meta{
+      display:flex;
+      flex-direction:column;
+      gap:.35rem;
+    }
+    .contact-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.6rem;
+      margin-top:.75rem;
+    }
+    .contact-links a{
+      font-weight:600;
+      color:var(--verde);
+      display:inline-flex;
+      align-items:center;
+      gap:.35rem;
+      font-size:.92rem;
+    }
+    .contact-hours{
+      background:rgba(29,132,69,.08);
+      border-radius:20px;
+      padding:1.3rem 1.4rem;
+      color:var(--texto);
+      font-size:.96rem;
+      line-height:1.7;
+      box-shadow:0 18px 32px rgba(29,132,69,.15);
+    }
     .contact-hours strong{ display:block; margin-bottom:.35rem; color:var(--verde); }
-    .contact-map iframe{
+    .contact-maps{
+      display:grid;
+      gap:1.2rem;
+    }
+    .contact-maps iframe{
       width:100%;
       min-height:260px;
       border:0;
       border-radius:18px;
       box-shadow: var(--shadow);
+    }
+    .contact-map-label{
+      font-size:.85rem;
+      font-weight:600;
+      letter-spacing:.02em;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin-bottom:.45rem;
     }
     .contact-form form{
       display:grid;
@@ -1073,8 +1132,17 @@
     .contact-form button{
       justify-self:start;
     }
+    @media (max-width: 860px){
+      .contact-grid{
+        grid-template-columns:1fr;
+      }
+    }
     @media (max-width: 640px){
       .contact-form button{ justify-self:stretch; }
+      .contact-hours{ text-align:center; }
+      .contact-links{ justify-content:center; }
+      .contact-card{ text-align:left; }
+      .contact-maps iframe{ min-height:220px; }
     }
 
     /* ===== Otras secciones (demo) ===== */
@@ -1667,41 +1735,61 @@
 
   <section id="contacto" class="section" aria-labelledby="contacto-title">
     <div class="container">
-      <h2 id="contacto-title" class="section-title">Contáctanos</h2>
-      <p class="muted">Visítanos en el corazón del Centro Histórico o escríbenos para recibir ofertas personalizadas.</p>
+      <div class="contact-heading">
+        <h2 id="contacto-title" class="section-title">Contáctanos</h2>
+        <p class="muted">Conecta con nuestro equipo y visita cualquiera de nuestras tiendas en Missouri para disfrutar de productos frescos y atención personalizada.</p>
+      </div>
       <div class="contact-grid">
         <div class="contact-info">
           <div class="contact-highlights">
-            <div class="contact-item">
+            <article class="contact-card">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 6.13 12.18 6.39 12.46a1 1 0 0 0 1.44 0C12.87 21.18 19 14.25 19 9a7 7 0 0 0-7-7Zm0 17.44C10.12 17.24 7 12.66 7 9a5 5 0 0 1 10 0c0 3.66-3.12 8.24-5 10.44ZM12 6a3 3 0 1 0 3 3 3 3 0 0 0-3-3Z"></path></svg>
-              <div>
-                <strong>Zócalo, Ciudad de México</strong>
-                <p style="margin:.25rem 0 0;">Plaza de la Constitución s/n, Centro Histórico.<br><a href="https://maps.google.com/?q=Z%C3%B3calo+CDMX" target="_blank" rel="noopener">Abrir en Google Maps</a></p>
+              <div class="contact-meta">
+                <h3>Overland</h3>
+                <p>#1 · 9525 Lackland Rd, Overland, MO 63114, Estados Unidos</p>
+                <div class="contact-links">
+                  <a href="https://maps.google.com/?q=9525+Lackland+Rd,+Overland,+MO+63114" target="_blank" rel="noopener">Ver en Google Maps</a>
+                  <a href="tel:+13144284919">Llamar: +1 314-428-4919</a>
+                </div>
               </div>
-            </div>
-            <div class="contact-item">
+            </article>
+            <article class="contact-card">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 6.13 12.18 6.39 12.46a1 1 0 0 0 1.44 0C12.87 21.18 19 14.25 19 9a7 7 0 0 0-7-7Zm0 17.44C10.12 17.24 7 12.66 7 9a5 5 0 0 1 10 0c0 3.66-3.12 8.24-5 10.44ZM12 6a3 3 0 1 0 3 3 3 3 0 0 0-3-3Z"></path></svg>
+              <div class="contact-meta">
+                <h3>St. Charles</h3>
+                <p>#2 · 1009 S Duchesne Dr, St Charles, MO 63301, Estados Unidos</p>
+                <div class="contact-links">
+                  <a href="https://maps.google.com/?q=1009+S+Duchesne+Dr,+St+Charles,+MO+63301" target="_blank" rel="noopener">Ver en Google Maps</a>
+                  <a href="tel:+16363957150">Llamar: +1 636-395-7150</a>
+                </div>
+              </div>
+            </article>
+            <article class="contact-card">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.534 15.534 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24 11.72 11.72 0 0 0 3.68.59 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.47a1 1 0 0 1 1 1 11.72 11.72 0 0 0 .59 3.68 1 1 0 0 1-.25 1.01Z"></path></svg>
-              <div>
-                <strong>Llámanos</strong>
-                <p style="margin:.25rem 0 0;">Teléfono: <a href="tel:+525512345678">+52 55 1234 5678</a><br>WhatsApp: <a href="https://wa.me/525512345678" target="_blank" rel="noopener">+52 55 1234 5678</a></p>
+              <div class="contact-meta">
+                <h3>Atención personalizada</h3>
+                <p>Escríbenos para recibir cotizaciones y programas de lealtad para tu familia o negocio.</p>
+                <div class="contact-links">
+                  <a href="tel:+13144284919">Central: +1 314-428-4919</a>
+                  <a href="mailto:mexi.quense1086@gmail.com">mexi.quense1086@gmail.com</a>
+                </div>
               </div>
-            </div>
-            <div class="contact-item">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 2-8 5-8-5ZM4 18V8l8 5 8-5v10Z"></path></svg>
-              <div>
-                <strong>Correo</strong>
-                <p style="margin:.25rem 0 0;">mexi.quense1086@gmail.com<br>Síguenos en redes para conocer ofertas exclusivas.</p>
-              </div>
-            </div>
+            </article>
           </div>
           <div class="contact-hours">
             <strong>Horarios de atención</strong>
-            <p>Lunes a viernes: 8:00 a.m. – 9:00 p.m.</p>
-            <p>Sábados: 8:00 a.m. – 8:00 p.m.</p>
-            <p>Domingos y festivos: 9:00 a.m. – 6:00 p.m.</p>
+            <p>Todos los días: 9:00 a.m. – 9:00 p.m.</p>
+            <p>Encuéntranos los siete días de la semana con cajas abiertas y servicio en español e inglés.</p>
           </div>
-          <div class="contact-map" aria-label="Mapa con la ubicación en el Zócalo de la Ciudad de México">
-            <iframe src="https://maps.google.com/maps?q=Z%C3%B3calo%20CDMX&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy" allowfullscreen title="Mapa del Zócalo de la Ciudad de México" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="contact-maps" aria-label="Mapa de nuestras ubicaciones">
+            <div>
+              <div class="contact-map-label">Overland</div>
+              <iframe src="https://maps.google.com/maps?q=9525%20Lackland%20Rd%2C%20Overland%2C%20MO%2063114&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy" allowfullscreen title="Mapa de la tienda en Overland, Missouri" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div>
+              <div class="contact-map-label">St. Charles</div>
+              <iframe src="https://maps.google.com/maps?q=1009%20S%20Duchesne%20Dr%2C%20St%20Charles%2C%20MO%2063301&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy" allowfullscreen title="Mapa de la tienda en St. Charles, Missouri" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
           </div>
         </div>
         <div class="contact-form">
