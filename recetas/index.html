@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Recetas — El Mexiquense Market</title>
   <meta name="description" content="Descubre todas las recetas de El Mexiquense Market: inspiración fresca para cada momento.">
+  <meta http-equiv="Cache-Control" content="public, max-age=604800">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root{
@@ -21,6 +22,8 @@
     }
 
     *,*::before,*::after{ box-sizing:border-box; }
+    html{ height:100%; scroll-behavior:smooth; }
+    body{ height:100%; }
     body{
       margin:0;
       font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
@@ -53,7 +56,8 @@
     .brand{ font-weight:700; color:var(--verde); letter-spacing:.2px; }
     .menu{ display:flex; gap:1rem; }
     .menu a{ padding:.5rem .9rem; border-radius:999px; transition:.25s; }
-    .menu a:hover, .menu a:focus-visible{ background: rgba(29,132,69,.12); }
+    .menu a:hover,
+    .menu a:focus-visible{ background: rgba(29,132,69,.12); outline:none; }
     .menu a.active{ background: rgba(29,132,69,.12); color:var(--verde); font-weight:600; }
     .hamb{
       display:none;
@@ -62,6 +66,7 @@
       border:0;
       background:transparent;
       cursor:pointer;
+      position:relative;
     }
     .hamb span, .hamb::before, .hamb::after{
       content:"";
@@ -73,6 +78,9 @@
       border-radius:2px;
       transition:.25s;
     }
+    .hamb[aria-expanded="true"] span{ opacity:0; }
+    .hamb[aria-expanded="true"]::before{ transform:translateY(9px) rotate(45deg); }
+    .hamb[aria-expanded="true"]::after{ transform:translateY(-9px) rotate(-45deg); }
     @media (max-width: 880px){
       .menu{
         position:absolute;
@@ -206,19 +214,30 @@
       background:rgba(255,255,255,.35);
       border-radius:999px;
     }
-    .preview-card{
-      flex:0 0 auto;
-      min-width: clamp(210px, 48vw, 260px);
-      background: rgba(255,255,255,.12);
-      border-radius:18px;
-      padding:1.1rem 1.2rem;
-      display:flex;
-      flex-direction:column;
-      gap:.45rem;
-      backdrop-filter: blur(6px);
-      border:1px solid rgba(255,255,255,.18);
-      scroll-snap-align:start;
-    }
+.preview-card{
+  flex:0 0 auto;
+  min-width: clamp(210px, 48vw, 260px);
+  background: rgba(255,255,255,.12);
+  border-radius:18px;
+  padding:1.1rem 1.2rem;
+  display:flex;
+  flex-direction:column;
+  gap:.45rem;
+  backdrop-filter: blur(6px);
+  border:1px solid rgba(255,255,255,.18);
+  scroll-snap-align:start;
+}
+.preview-card__cta{
+  margin-top:auto;
+  font-weight:600;
+  color:#fff;
+  font-size:.85rem;
+  text-decoration:underline;
+}
+.preview-card__cta:focus-visible{
+  outline:2px solid #fff;
+  outline-offset:3px;
+}
     .preview-card__tag{
       font-size:.72rem;
       text-transform:uppercase;
@@ -280,6 +299,35 @@
       color:var(--muted);
       max-width:560px;
     }
+    .filter-bar{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.6rem;
+      align-items:center;
+    }
+    .filter-btn{
+      border:1px solid rgba(29,132,69,.3);
+      background:rgba(29,132,69,.08);
+      color:var(--verde);
+      padding:.55rem 1.1rem;
+      border-radius:999px;
+      font-weight:600;
+      font-family:inherit;
+      cursor:pointer;
+      transition:background .2s ease, color .2s ease, border-color .2s ease;
+    }
+    .filter-btn:hover,
+    .filter-btn:focus-visible{
+      background:var(--verde);
+      color:white;
+      outline:none;
+    }
+    .filter-btn.is-active{
+      background:var(--verde);
+      color:white;
+      border-color:var(--verde);
+      box-shadow:0 10px 20px rgba(29,132,69,.2);
+    }
     .recipes-grid{
       display:grid;
       gap:1.5rem;
@@ -298,6 +346,9 @@
     .recipe-card:hover{
       transform: translateY(-6px);
       box-shadow:0 18px 32px rgba(0,0,0,.12);
+    }
+    .recipe-card--highlight{
+      box-shadow:0 0 0 3px rgba(29,132,69,.28), var(--shadow);
     }
     .recipe-card__media{
       position:relative;
@@ -489,7 +540,7 @@
         <div class="recipes-hero__content">
           <span class="recipes-hero__eyebrow">Recetario</span>
           <h1 id="recetas-title" class="recipes-hero__title">Todas las recetas de El Mexiquense</h1>
-          <p class="recipes-hero__description">Explora bebidas, platillos típicos y postres listos para sorprender a tu familia. Cada visita te recibe con nuevas ideas inspiradas en el banner de Cardenas Markets.</p>
+          <p class="recipes-hero__description">Explora entradas frescas, platos fuertes reconfortantes y postres irresistibles elaborados con sabores mexicanos auténticos.</p>
           <div class="recipes-hero__actions">
             <a class="btn btn-outline" href="../index.html#recetas">Volver al inicio</a>
           </div>
@@ -504,7 +555,13 @@
           <div>
             <span>Recetario completo</span>
             <h2 id="recetas-collection-title">Explora cada preparación</h2>
-            <p>Consulta tiempos, etiquetas y vínculos a los pasos completos de cada platillo. Guarda tus favoritos para la próxima reunión familiar.</p>
+            <p>Consulta tiempos, ingredientes y pasos detallados para recrear tus platillos preferidos sin salir de casa.</p>
+          </div>
+          <div class="filter-bar" role="toolbar" aria-label="Filtrar recetas por categoría">
+            <button class="filter-btn is-active" type="button" data-filter="all" aria-pressed="true">Todas</button>
+            <button class="filter-btn" type="button" data-filter="entrantes" aria-pressed="false">Entrantes</button>
+            <button class="filter-btn" type="button" data-filter="principales" aria-pressed="false">Platos fuertes</button>
+            <button class="filter-btn" type="button" data-filter="postres" aria-pressed="false">Postres</button>
           </div>
         </div>
         <div class="recipes-grid" id="recipesList" role="list" aria-live="polite"></div>
@@ -520,10 +577,7 @@
   </footer>
 
   <script>
-    const yearEl = document.getElementById('year');
-    if(yearEl){
-      yearEl.textContent = new Date().getFullYear();
-    }
+    document.getElementById('year').textContent = new Date().getFullYear();
 
     const hamb = document.getElementById('hamb');
     const menu = document.getElementById('menu');
@@ -532,252 +586,302 @@
         const open = menu.classList.toggle('show');
         hamb.setAttribute('aria-expanded', open ? 'true' : 'false');
       });
+      document.querySelectorAll("#menu a").forEach(link => {
+        link.addEventListener('click', () => {
+          if(window.innerWidth <= 880 && menu.classList.contains('show')){
+            menu.classList.remove('show');
+            hamb.setAttribute('aria-expanded', 'false');
+          }
+        });
+      });
     }
+
+    document.querySelectorAll("a[href^='#']").forEach(anchor=>{
+      anchor.addEventListener('click', e=>{
+        const id = anchor.getAttribute('href');
+        if(id.length>1 && document.querySelector(id)){
+          e.preventDefault();
+          document.querySelector(id).scrollIntoView({ behavior:'smooth', block:'start' });
+        }
+      });
+    });
 
     const recipesData = [
       {
-        title: 'Carnitas estilo Michoacán',
-        description: 'Cerdo jugoso cocinado lentamente con naranja, especias y un toque de refresco para lograr el dorado perfecto.',
-        time: '75 min',
-        tag: 'Favoritos',
-        yield: '6 porciones',
-        image: 'https://images.unsplash.com/photo-1612874742237-6526221588e3?auto=format&fit=crop&w=900&q=80',
-        alt: 'Tacos de carnitas con cilantro y cebolla',
+        slug: 'guacamole-cremoso',
+        title: 'Guacamole cremoso tradicional',
+        description: 'Aguacates de temporada machacados con cilantro, cebolla morada y jugo de limón recién exprimido.',
+        time: '15 min',
+        tag: 'Entrada fresca',
+        category: 'entrantes',
+        yield: '4 porciones',
+        image: 'https://images.unsplash.com/photo-1543332164-6e82f355bad1?auto=format&fit=crop&w=900&q=80',
+        alt: 'Tazón de guacamole cremoso acompañado con totopos crujientes',
         ingredients: [
-          '1.5 kg de carne de cerdo (maciza y costilla)',
-          '1 taza de jugo de naranja natural',
-          '1/2 taza de refresco de cola',
-          '4 dientes de ajo machacados',
-          '1 hoja de laurel',
-          '1 cucharada de sal gruesa',
-          'Aceite o manteca suficiente para dorar'
+          '3 aguacates Hass maduros',
+          '1/4 taza de cebolla morada finamente picada',
+          '1 chile serrano sin semillas, picado (opcional)',
+          '2 cucharadas de cilantro fresco picado',
+          'Jugo de 1 limón grande',
+          'Sal de mar al gusto',
+          'Totopos de maíz para acompañar'
         ],
         steps: [
-          'Corta la carne en trozos grandes y sécala con toallas de papel para obtener un dorado uniforme.',
-          'Coloca la carne en una olla amplia junto con el jugo de naranja, el refresco, ajo, laurel y sal.',
-          'Cocina a fuego medio, tapado, hasta que la carne esté suave y los líquidos se reduzcan casi por completo.',
-          'Destapa, aumenta a fuego medio-alto y permite que la carne se dore en su propia grasa hasta quedar crujiente.',
-          'Sirve caliente dentro de tortillas con cilantro, cebolla y salsa al gusto.'
+          'Corta los aguacates por la mitad, retira el hueso y coloca la pulpa en un tazón amplio.',
+          'Machaca suavemente con un tenedor hasta obtener una textura cremosa con algunos trozos.',
+          'Incorpora cebolla, chile, cilantro y jugo de limón; mezcla hasta integrar.',
+          'Sazona con sal y sirve de inmediato con totopos.'
         ],
-        tips: 'Acompaña con frijoles refritos y rábanos frescos para equilibrar la grasa.'
+        tips: 'Para conservar el color verde, cubre el guacamole con plástico adherente en contacto directo con la mezcla.'
       },
       {
-        title: 'Camarones a la diabla',
-        description: 'Salsa picante de chile de árbol y guajillo con camarones salteados al instante, servidos con arroz y limón.',
+        slug: 'sopa-de-tortilla',
+        title: 'Sopa de tortilla ahumada',
+        description: 'Caldo de jitomate tatemado con chiles secos, coronado con tiras de tortilla crujiente y aguacate.',
         time: '35 min',
-        tag: 'Mariscos',
-        yield: '4 porciones',
-        image: 'https://images.unsplash.com/photo-1604908177443-88b7a4b09e07?auto=format&fit=crop&w=900&q=80',
-        alt: 'Camarones en salsa roja picante con arroz',
+        tag: 'Entrada caliente',
+        category: 'entrantes',
+        yield: '6 porciones',
+        image: 'https://images.unsplash.com/photo-1504753793650-d4a2b783c15e?auto=format&fit=crop&w=900&q=80',
+        alt: 'Tazón de sopa de tortilla con aguacate y crema',
         ingredients: [
-          '700 g de camarones medianos, pelados y desvenados',
-          '6 chiles de árbol secos',
-          '3 chiles guajillo sin semillas',
+          '6 tortillas de maíz cortadas en tiras',
+          '4 jitomates maduros',
+          '2 chiles pasilla secos sin semillas',
           '2 dientes de ajo',
-          '1/2 taza de puré de tomate',
-          '2 cucharadas de mantequilla',
-          '1 cucharada de aceite vegetal',
-          'Sal y pimienta al gusto'
+          '1/4 de cebolla blanca',
+          '1.5 litros de caldo de pollo',
+          'Aceite vegetal para freír',
+          'Sal y pimienta al gusto',
+          'Crema, aguacate y queso panela para servir'
         ],
         steps: [
-          'Hierve los chiles 5 minutos y licúalos con ajo, puré de tomate y media taza del agua de cocción.',
-          'Sazona los camarones con sal y pimienta.',
-          'Derrite la mantequilla con el aceite en un sartén y saltea los camarones 2 minutos por lado; retira y reserva.',
-          'Vierte la salsa en el sartén, cocina 5 minutos hasta espesar y regresa los camarones.',
-          'Cocina 2 minutos más, ajusta sal y sirve con arroz blanco y rodajas de limón.'
+          'Fríe las tiras de tortilla en aceite caliente hasta que estén doradas y reserva sobre papel absorbente.',
+          'Tuesta los chiles pasilla ligeramente, hidrátalos en agua caliente y licúalos con jitomates, ajo y cebolla.',
+          'Vierte la salsa en una olla con un poco de aceite, cocina 5 minutos y añade el caldo de pollo.',
+          'Hierve 10 minutos, rectifica sazón y sirve con tortilla frita, crema, aguacate y queso.'
         ],
-        tips: 'Puedes agregar jugo de naranja a la salsa para un contraste dulce-picante.'
+        tips: 'Agrega unas gotas de limón al momento de servir para resaltar los sabores ahumados.'
       },
       {
-        title: 'Ensalada de nopales fresca',
-        description: 'Nopales asados con jitomate, cebolla morada, cilantro y queso fresco, aliñados con limón.',
-        time: '20 min',
-        tag: 'Ligero',
-        yield: '4 porciones',
-        image: 'https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=900&q=80',
-        alt: 'Ensalada de nopales con jitomate y queso fresco',
+        slug: 'elote-callejero',
+        title: 'Elote callejero con queso cotija',
+        description: 'Maíz asado al carbón con mayonesa de chipotle, queso cotija y chile en polvo al gusto.',
+        time: '25 min',
+        tag: 'Antojo callejero',
+        category: 'entrantes',
+        yield: '6 elotes',
+        image: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?auto=format&fit=crop&w=900&q=80',
+        alt: 'Elote callejero cubierto con queso cotija y chile en polvo',
         ingredients: [
-          '6 pencas de nopal medianas, limpias',
-          '2 jitomates roma en cubos',
-          '1/2 cebolla morada en plumas finas',
-          '1/2 taza de cilantro picado',
-          '150 g de queso fresco desmoronado',
-          '2 limones, el jugo',
-          '2 cucharadas de aceite de oliva',
-          'Sal y pimienta al gusto'
+          '6 elotes blancos cocidos o al vapor',
+          '2 cucharadas de mantequilla derretida',
+          '1/2 taza de mayonesa con un toque de chipotle',
+          '1/4 taza de crema ácida',
+          '1 taza de queso cotija rallado',
+          '2 limones cortados en cuartos',
+          'Chile en polvo y sal al gusto'
         ],
         steps: [
-          'Asa los nopales en un comal o sartén caliente hasta que cambien de color y pierdan la baba.',
-          'Corta en tiras y colócalos en un tazón con jitomate, cebolla y cilantro.',
-          'Mezcla el jugo de limón con aceite, sal y pimienta para formar el aderezo.',
-          'Baña la ensalada con el aderezo y termina con queso fresco desmoronado.',
-          'Sirve fría o a temperatura ambiente.'
+          'Barniza los elotes con mantequilla y ásalos en un comal o parrilla hasta dorar por todos lados.',
+          'Mezcla la mayonesa con la crema hasta obtener una salsa tersa.',
+          'Unta cada elote con la salsa, espolvorea queso cotija y chile en polvo.',
+          'Sirve con gajos de limón para exprimir al gusto.'
         ],
-        tips: 'Agrega cubos de aguacate justo antes de servir para un toque cremoso.'
+        tips: 'Inserta palitos de madera en la base del elote para facilitar servirlos en reuniones.'
       },
       {
-        title: 'Margarita de tuna',
-        description: 'Coctel refrescante con licor de naranja, tequila y puré de tuna roja servida frappé.',
-        time: '10 min',
-        tag: 'Bebidas',
-        yield: '4 copas',
-        image: 'https://images.unsplash.com/photo-1514361892635-d56c7e72f27a?auto=format&fit=crop&w=900&q=80',
-        alt: 'Vaso de margarita rosa con sal de chile',
-        ingredients: [
-          '4 tunas rojas peladas y en cubos',
-          '1 taza de tequila blanco',
-          '1/2 taza de licor de naranja',
-          '1/2 taza de jugo de limón',
-          '2 tazas de hielo',
-          'Sal con chile para escarchar'
-        ],
-        steps: [
-          'Licúa las tunas con el tequila, licor de naranja, jugo de limón y hielo hasta obtener un frappé espeso.',
-          'Escarcha los vasos con jugo de limón y sal con chile.',
-          'Sirve de inmediato y decora con rodajas de limón o cubos de tuna.'
-        ],
-        tips: 'Añade unas hojas de menta al licuado para un aroma fresco.'
-      },
-      {
-        title: 'Paletas de sandía y kiwi',
-        description: 'Capas de fruta fresca con un toque de limón y chile en polvo. Perfectas para los días calurosos.',
-        time: '15 min + congelado',
-        tag: 'Postre',
-        yield: '8 paletas',
+        slug: 'carnitas-michoacan',
+        title: 'Carnitas estilo Michoacán',
+        description: 'Cocción lenta con naranja, canela y laurel para obtener carne de cerdo jugosa y dorada.',
+        time: '2 h',
+        tag: 'Plato fuerte',
+        category: 'principales',
+        yield: '8 porciones',
         image: 'https://images.unsplash.com/photo-1525755662778-989d0524087e?auto=format&fit=crop&w=900&q=80',
-        alt: 'Paletas heladas de sandía y kiwi con chile',
+        alt: 'Carnitas servidas en cazuela de cobre con tortillas',
         ingredients: [
-          '4 tazas de sandía en cubos sin semillas',
-          '4 kiwis pelados',
-          '1/4 taza de azúcar o miel',
-          '2 cucharadas de jugo de limón',
-          '1 cucharadita de chile en polvo opcional'
+          '1.5 kg de carne de cerdo (maciza, costilla y cuero)',
+          '1 taza de jugo de naranja natural',
+          '1 taza de refresco de cola',
+          '4 dientes de ajo machacados',
+          '2 hojas de laurel',
+          '1 rama de canela',
+          '1 cucharada de sal de grano',
+          '1 cucharadita de pimienta negra',
+          'Tortillas de maíz y salsas para acompañar'
         ],
         steps: [
-          'Licúa la sandía con la mitad del jugo de limón y la mitad del endulzante; vierte en moldes hasta la mitad y congela 30 minutos.',
-          'Licúa los kiwis con el resto del jugo y endulzante.',
-          'Rellena los moldes con la mezcla de kiwi, espolvorea chile en polvo y coloca los palitos.',
-          'Congela al menos 4 horas antes de desmoldar.'
+          'Coloca la carne en una olla amplia y agrega jugo de naranja, refresco, ajo, laurel, canela, sal y pimienta.',
+          'Cocina a fuego medio tapado durante 45 minutos hasta que la carne esté suave.',
+          'Destapa y cocina a fuego medio-alto moviendo ocasionalmente hasta que la grasa se funda y las carnitas doren.',
+          'Escurre ligeramente y sirve con tortillas calientes y salsas.'
         ],
-        tips: 'Para desmoldar fácilmente, sumerge los moldes unos segundos en agua tibia.'
+        tips: 'Para un dorado uniforme, mueve las piezas constantemente durante los últimos 10 minutos de cocción.'
       },
       {
-        title: 'Tamales verdes con pollo',
-        description: 'Masa esponjosa rellena de pollo en salsa verde tomatillo, cocidos al vapor en hojas de maíz.',
-        time: '90 min',
-        tag: 'Tradicional',
-        yield: '18 tamales',
-        image: 'https://images.unsplash.com/photo-1528834352184-42f2d5592edf?auto=format&fit=crop&w=900&q=80',
-        alt: 'Tamales verdes servidos en hoja de maíz',
+        slug: 'tacos-al-pastor',
+        title: 'Tacos al pastor caseros',
+        description: 'Lomo de cerdo marinado con achiote, chiles secos y piña, servido con cebolla y cilantro.',
+        time: '1 h 10 min',
+        tag: 'Plato fuerte',
+        category: 'principales',
+        yield: '12 tacos',
+        image: 'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=900&q=80',
+        alt: 'Tacos al pastor con piña y cilantro sobre tabla de madera',
         ingredients: [
-          '18 hojas de maíz remojadas',
-          '1 kg de masa para tortillas',
-          '200 g de manteca vegetal batida',
-          '1 taza de caldo de pollo caliente',
-          '2 pechugas de pollo cocidas y deshebradas',
-          '8 tomatillos',
-          '4 chiles serranos',
-          '1/4 de cebolla',
-          '2 dientes de ajo',
-          '1 manojo pequeño de cilantro',
+          '1 kg de lomo de cerdo en rebanadas delgadas',
+          '3 chiles guajillos desvenados',
+          '2 chiles anchos desvenados',
+          '3 dientes de ajo',
+          '1/4 taza de vinagre de manzana',
+          '2 cucharadas de pasta de achiote',
+          '1/2 taza de jugo de piña',
+          '1 cucharadita de comino molido',
+          '1/2 cucharadita de orégano seco',
+          'Sal y pimienta al gusto',
+          '1 piña en rebanadas, cebolla blanca y cilantro picado',
+          'Tortillas de maíz para servir'
+        ],
+        steps: [
+          'Hidrata los chiles en agua caliente y licúalos con ajo, vinagre, achiote, jugo de piña y especias.',
+          'Marina la carne con la salsa al menos 30 minutos en refrigeración.',
+          'Dora la piña en una plancha; reserva. Cocina la carne en tandas hasta que se caramelice.',
+          'Pica finamente la carne y sirve en tortillas con piña, cebolla, cilantro y salsa al gusto.'
+        ],
+        tips: 'Congela la carne marinada 20 minutos antes de cortarla para obtener rebanadas muy finas.'
+      },
+      {
+        slug: 'mole-poblano',
+        title: 'Mole poblano con pollo',
+        description: 'Salsa de chiles, especias y chocolate servida sobre pollo tierno y ajonjolí tostado.',
+        time: '1 h 45 min',
+        tag: 'Plato fuerte',
+        category: 'principales',
+        yield: '6 porciones',
+        image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=900&q=80',
+        alt: 'Plato de mole poblano con ajonjolí servido con arroz',
+        ingredients: [
+          '6 piezas de pollo cocidas en caldo con sal',
+          '8 chiles mulatos sin semillas',
+          '6 chiles anchos sin semillas',
+          '4 chiles pasilla sin semillas',
+          '3 jitomates asados',
+          '1/2 cebolla asada',
+          '2 dientes de ajo asados',
+          '1 tortilla de maíz tostada',
+          '1 bolillo o pan dulce frito',
+          '1/4 taza de almendras',
+          '1/4 taza de cacahuates',
+          '2 cucharadas de semillas de ajonjolí + extra para decorar',
+          '1 raja de canela, 2 clavos y 4 pimientas gordas',
+          '50 g de chocolate de mesa',
+          'Caldo de pollo necesario',
           'Sal al gusto'
         ],
         steps: [
-          'Bate la manteca con la masa hasta que esponje, añadiendo poco a poco el caldo caliente.',
-          'Hierve tomatillos, chiles, cebolla y ajo; licúa con cilantro y sazona con sal para formar la salsa.',
-          'Mezcla la mitad de la salsa con el pollo deshebrado.',
-          'Coloca dos cucharadas de masa sobre cada hoja, rellena con pollo y cierra los tamales.',
-          'Cocina al vapor 60 minutos o hasta que se despeguen fácilmente de la hoja.',
-          'Sirve con el resto de la salsa verde caliente.'
+          'Tuesta los chiles en comal, remójalos en agua caliente 10 minutos y licúalos con jitomate, cebolla y ajo.',
+          'Fríe en una cazuela con manteca las almendras, cacahuates, ajonjolí, tortilla y pan hasta dorar.',
+          'Licúa lo frito con especias y suficiente caldo para obtener una pasta tersa.',
+          'Combina ambas salsas en la cazuela, cocina 20 minutos, agrega el chocolate y diluye con caldo hasta espesar.',
+          'Integra las piezas de pollo, hierve 10 minutos más y sirve con ajonjolí tostado.'
         ],
-        tips: 'Si la masa flota en agua fría está lista para rellenar; agrega más caldo si está muy seca.'
+        tips: 'Si prefieres una textura más fina, cuela la salsa antes de regresar al fuego.'
       },
       {
-        title: 'Tostadas de tinga',
-        description: 'Pollo deshebrado con chipotle, cebolla caramelizada y crema fresca sobre tostadas crujientes.',
-        time: '40 min',
-        tag: 'Antojitos',
-        yield: '10 tostadas',
-        image: 'https://images.unsplash.com/photo-1514516430032-7d0e0cd29b1e?auto=format&fit=crop&w=900&q=80',
-        alt: 'Tostadas con tinga de pollo y aguacate',
+        slug: 'churros-chocolate',
+        title: 'Churros con chocolate espeso',
+        description: 'Masa frita espolvoreada con azúcar y canela acompañada de chocolate caliente.',
+        time: '45 min',
+        tag: 'Dulce tradicional',
+        category: 'postres',
+        yield: '20 churros',
+        image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80',
+        alt: 'Churros recién hechos con taza de chocolate espeso',
         ingredients: [
-          '2 pechugas de pollo cocidas y deshebradas',
-          '1 cebolla blanca fileteada',
-          '2 dientes de ajo picados',
-          '3 jitomates guajillo',
-          '2 chiles chipotles adobados',
-          '1 hoja de laurel',
-          '2 cucharadas de aceite',
-          'Sal y pimienta al gusto',
-          '10 tostadas de maíz',
-          'Crema, lechuga y aguacate para servir'
+          '1 taza de agua',
+          '1/2 taza de mantequilla',
+          '1 cucharada de azúcar',
+          '1 taza de harina de trigo',
+          '3 huevos medianos',
+          '1 cucharadita de extracto de vainilla',
+          'Aceite vegetal para freír',
+          'Azúcar y canela molida para espolvorear',
+          '200 g de chocolate semiamargo',
+          '1 taza de leche entera'
         ],
         steps: [
-          'Licúa jitomates, chipotles y una taza de caldo o agua hasta obtener una salsa tersa.',
-          'Acitrona la cebolla en aceite, agrega ajo y cocina hasta que esté transparente.',
-          'Vierte la salsa, añade laurel y cocina 5 minutos.',
-          'Incorpora el pollo, sazona y cocina hasta espesar.',
-          'Sirve sobre tostadas con lechuga, crema y aguacate.'
+          'Hierve el agua con mantequilla y azúcar; agrega la harina de golpe y mezcla hasta formar una masa homogénea.',
+          'Incorpora los huevos uno a uno junto con la vainilla hasta obtener una mezcla suave.',
+          'Coloca la masa en una manga con duya estrellada y fríe tiras en aceite caliente hasta dorar.',
+          'Escurre sobre papel, espolvorea con azúcar y canela. Calienta la leche con chocolate hasta espesar y sirve como dip.'
         ],
-        tips: 'Para un toque ahumado extra añade una cucharada del adobo de los chipotles.'
+        tips: 'Deja reposar la masa 10 minutos antes de freír para que los churros queden más crujientes.'
       },
       {
-        title: 'Pozole rojo estilo Jalisco',
-        description: 'Caldo robusto con maíz cacahuazintle, chile ancho y cerdo tierno listo para las fiestas.',
-        time: '2 h',
-        tag: 'Celebración',
+        slug: 'tres-leches-cajeta',
+        title: 'Pastel tres leches con cajeta',
+        description: 'Bizcocho esponjoso bañado en mezcla de tres leches y cubierto con crema batida y cajeta.',
+        time: '1 h 30 min',
+        tag: 'Postre festivo',
+        category: 'postres',
+        yield: '10 porciones',
+        image: 'https://images.unsplash.com/photo-1505253758473-96b7015fcd40?auto=format&fit=crop&w=900&q=80',
+        alt: 'Rebanada de pastel tres leches con cajeta y frutos rojos',
+        ingredients: [
+          '6 huevos separados',
+          '1 taza de azúcar',
+          '1 taza de harina de trigo',
+          '1 cucharadita de polvo para hornear',
+          '1/2 taza de leche entera',
+          '1 lata de leche condensada',
+          '1 lata de leche evaporada',
+          '1 taza de media crema o crema para batir',
+          '1 taza de crema batida para decorar',
+          '1/2 taza de cajeta',
+          'Frutos rojos y canela para terminar'
+        ],
+        steps: [
+          'Bate las claras a punto de nieve, agrega el azúcar poco a poco y luego las yemas.',
+          'Incorpora harina y polvo para hornear con movimientos envolventes y añade la leche.',
+          'Hornea en molde engrasado a 180 °C durante 25 minutos o hasta que al insertar un palillo salga limpio.',
+          'Mezcla las tres leches y vierte sobre el pastel aún tibio; refrigera al menos 2 horas.',
+          'Decora con crema batida, cajeta tibia y frutos rojos.'
+        ],
+        tips: 'Pica el bizcocho con un tenedor antes de bañarlo para que absorba completamente la mezcla de leches.'
+      },
+      {
+        slug: 'arroz-con-leche',
+        title: 'Arroz con leche y canela',
+        description: 'Postre cremoso aromatizado con canela, vainilla y ralladura de naranja.',
+        time: '50 min',
+        tag: 'Postre casero',
+        category: 'postres',
         yield: '8 porciones',
-        image: 'https://images.unsplash.com/photo-1630431341413-4d13a392fa96?auto=format&fit=crop&w=900&q=80',
-        alt: 'Tazón de pozole rojo con rábanos y orégano',
+        image: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=80',
+        alt: 'Tazón de arroz con leche espolvoreado con canela',
         ingredients: [
-          '1.5 kg de carne de cerdo (espinazo y pierna)',
-          '500 g de maíz cacahuazintle precocido',
-          '4 chiles anchos',
-          '3 chiles guajillos',
-          '3 dientes de ajo',
-          '1/2 cebolla',
-          '1 cucharadita de orégano seco',
-          'Sal al gusto',
-          'Lechuga, rábanos, cebolla y limón para acompañar'
+          '1 taza de arroz de grano mediano',
+          '1 taza de agua',
+          '4 tazas de leche entera',
+          '1 raja de canela',
+          '1 trozo de cáscara de naranja',
+          '1/2 taza de azúcar',
+          '1/4 taza de pasas (opcional)',
+          '1 cucharadita de extracto de vainilla',
+          'Canela molida para espolvorear'
         ],
         steps: [
-          'Cocina el maíz precocido en una olla grande con suficiente agua hasta que reviente.',
-          'Añade la carne de cerdo, cebolla, ajo y sal; cocina 60 minutos o hasta que esté suave.',
-          'Desvena y remoja los chiles, licúa con un poco de caldo y cuela.',
-          'Agrega la salsa al pozole, cocina 20 minutos más y rectifica la sazón.',
-          'Sirve con lechuga, rábanos, cebolla, orégano y limón.'
+          'Enjuaga el arroz hasta que el agua salga clara y escurre bien.',
+          'Cocina el arroz con el agua, la canela y la cáscara de naranja hasta que se absorba el líquido.',
+          'Agrega la leche y el azúcar; cocina a fuego medio-bajo moviendo constantemente durante 20 minutos.',
+          'Incorpora las pasas y la vainilla, cocina 5 minutos más hasta obtener consistencia cremosa.',
+          'Retira la canela y la cáscara, sirve tibio o frío con canela molida.'
         ],
-        tips: 'Si prefieres un picante suave, sustituye los chiles de árbol por guajillos extras.'
-      },
-      {
-        title: 'Chilaquiles verdes con huevo',
-        description: 'Totopos crujientes bañados en salsa verde, crema y queso; perfectos para la mañana.',
-        time: '25 min',
-        tag: 'Desayuno',
-        yield: '4 porciones',
-        image: 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=900&q=80',
-        alt: 'Plato de chilaquiles verdes con huevo estrellado',
-        ingredients: [
-          '12 tortillas de maíz cortadas en triángulos',
-          '1 taza de aceite vegetal para freír',
-          '8 tomatillos',
-          '2 chiles serranos',
-          '1/4 de cebolla',
-          '1 diente de ajo',
-          '1/2 taza de cilantro',
-          '1 taza de caldo de pollo',
-          '4 huevos estrellados',
-          'Crema, queso fresco y cebolla morada para decorar'
-        ],
-        steps: [
-          'Fríe las tortillas hasta que queden crujientes y colócalas sobre papel absorbente.',
-          'Hierve tomatillos, chiles, cebolla y ajo; licúa con cilantro y caldo hasta formar una salsa tersa.',
-          'Calienta la salsa en un sartén amplio, sazona y agrega los totopos justo antes de servir.',
-          'Baña con crema, queso y cebolla; corona con un huevo estrellado en cada porción.'
-        ],
-        tips: 'Si deseas chilaquiles más crujientes, sirve la salsa aparte para que cada quien se sirva.'
+        tips: 'Si prefieres una textura más ligera, sustituye una taza de leche por media taza de leche evaporada y media de agua.'
       }
     ];
+    window.__RECIPES_DATA = recipesData;
 
     function shuffle(array){
       const arr = [...array];
@@ -788,6 +892,9 @@
       return arr;
     }
 
+    const previewContainer = document.getElementById('recipesPreview');
+    const listContainer = document.getElementById('recipesList');
+    const filterButtons = document.querySelectorAll('.filter-btn');
     const clockIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2Zm0 18a8 8 0 1 1 8-8 8.009 8.009 0 0 1-8 8Zm.5-13h-1a.5.5 0 0 0-.5.5V13a1 1 0 0 0 .553.894l3.5 1.75a.5.5 0 0 0 .447-.894L12.5 12.382Z"></path></svg>';
     const arrowIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.172 12 8.222 7.05l1.414-1.414L16 12l-6.364 6.364-1.414-1.414Z"></path></svg>';
     const servingIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21v-2h14v2Zm12-10.75a4 4 0 1 0-4 3.95A3.995 3.995 0 0 0 17 10.25Zm-6.5 0A2.5 2.5 0 1 1 13 12.7a2.5 2.5 0 0 1-2.5-2.45ZM5.27 17c.76-2.39 3.18-4 5.95-4s5.19 1.61 5.95 4ZM8 15.5a5.116 5.116 0 0 0-2.22 1.5h12.44A5.116 5.116 0 0 0 16 15.5a8.28 8.28 0 0 0-8 0Z"></path></svg>';
@@ -800,6 +907,7 @@
         <span class="preview-card__tag">${recipe.tag}</span>
         <h3 class="preview-card__title">${recipe.title}</h3>
         <div class="preview-card__meta">${clockIcon}<span>${recipe.time}</span></div>
+        <a class="preview-card__cta" href="#${recipe.slug}" aria-label="Ver receta de ${recipe.title}">Ver receta</a>
       `;
       return card;
     }
@@ -812,6 +920,8 @@
       const card = document.createElement('article');
       card.className = 'recipe-card';
       card.setAttribute('role', 'listitem');
+      card.dataset.category = recipe.category;
+      card.id = recipe.slug;
       const detailsId = `recipe-details-${index}`;
       card.innerHTML = `
         <div class="recipe-card__media" aria-hidden="true">
@@ -822,7 +932,7 @@
           <h3 class="recipe-card__title">${recipe.title}</h3>
           <p class="recipe-card__desc">${recipe.description}</p>
           <div class="recipe-card__meta">${clockIcon}<span>${recipe.time}</span></div>
-          <button class="recipe-card__link" type="button" aria-expanded="false" aria-controls="${detailsId}"><span class="recipe-card__linkText">Ver</span> ${arrowIcon}</button>
+          <button class="recipe-card__link" type="button" aria-expanded="false" aria-controls="${detailsId}" aria-label="Ver receta completa de ${recipe.title}"><span class="recipe-card__linkText">Ver</span> ${arrowIcon}</button>
           <div class="recipe-card__details" id="${detailsId}" hidden>
             <div class="recipe-card__yield">${servingIcon}<span>${recipe.yield}</span></div>
             <div class="recipe-card__section">
@@ -864,22 +974,72 @@
       return card;
     }
 
-    const previewContainer = document.getElementById('recipesPreview');
-    const listContainer = document.getElementById('recipesList');
+    let recipeCards = [];
+
+    function renderRecipes(){
+      if(!listContainer) return;
+      listContainer.innerHTML = '';
+      recipesData.forEach((recipe, index) => {
+        listContainer.appendChild(createRecipeCard(recipe, index));
+      });
+      recipeCards = Array.from(listContainer.querySelectorAll('.recipe-card'));
+    }
+
+    function setActiveFilter(filter){
+      filterButtons.forEach(btn => {
+        const isActive = btn.dataset.filter === filter || (filter === 'all' && btn.dataset.filter === 'all');
+        btn.classList.toggle('is-active', isActive);
+        btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
+    }
+
+    function applyFilter(filter){
+      if(!recipeCards.length) return;
+      recipeCards.forEach(card => {
+        const matches = filter === 'all' || card.dataset.category === filter;
+        card.style.display = matches ? '' : 'none';
+      });
+      setActiveFilter(filter);
+    }
 
     if(previewContainer){
-      const randomizedPreview = shuffle(recipesData);
-      randomizedPreview.slice(0, 4).forEach(recipe => {
+      shuffle(recipesData).slice(0, 4).forEach(recipe => {
         previewContainer.appendChild(createPreviewCard(recipe));
       });
     }
 
     if(listContainer){
-      const randomizedList = shuffle(recipesData);
-      randomizedList.forEach((recipe, index) => {
-        listContainer.appendChild(createRecipeCard(recipe, index));
-      });
+      renderRecipes();
+      applyFilter('all');
+      handleHashNavigation();
     }
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const filter = button.dataset.filter || 'all';
+        applyFilter(filter);
+      });
+    });
+
+    function handleHashNavigation(){
+      if(!recipeCards.length) return;
+      const hash = window.location.hash.replace('#', '');
+      if(!hash) return;
+      const targetCard = document.getElementById(hash);
+      if(targetCard){
+        const filter = targetCard.dataset.category || 'all';
+        applyFilter(filter);
+        recipeCards.forEach(card => card.classList.remove('recipe-card--highlight'));
+        setTimeout(() => {
+          targetCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          targetCard.classList.add('recipe-card--highlight');
+          setTimeout(() => targetCard.classList.remove('recipe-card--highlight'), 1200);
+        }, 120);
+      }
+    }
+
+    window.addEventListener('hashchange', handleHashNavigation);
   </script>
+
 </body>
 </html>
