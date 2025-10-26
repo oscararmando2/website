@@ -90,95 +90,182 @@
     /* ===== LOTERÍA BANNER ===== */
     .loteria-banner{
       position:relative;
-      padding: clamp(2.5rem, 6vw, 4.5rem) 0;
-      background: linear-gradient(135deg, #FFE8D6 0%, #FFF5EE 55%, #FFD3B6 100%);
+      padding: clamp(3rem, 6vw, 4.75rem) 0;
+      background:
+        linear-gradient(135deg, rgba(0,99,65,.18) 0%, rgba(254,223,0,.18) 35%, rgba(29,73,184,.18) 70%, rgba(206,17,38,.18) 100%),
+        #fdfdfd;
       overflow:hidden;
       opacity:0;
-      animation: bannerFadeIn .8s ease forwards;
+      animation: bannerFadeIn .85s ease forwards;
     }
     .loteria-banner::before,
     .loteria-banner::after{
       content:"";
       position:absolute;
-      width:240px; height:240px;
-      border-radius:50%;
-      background: rgba(212,84,56,.18);
-      filter: blur(0);
-      z-index:0;
+      inset:0;
+      pointer-events:none;
     }
-    .loteria-banner::before{ top:-120px; left:-80px; }
-    .loteria-banner::after{ bottom:-140px; right:-60px; background: rgba(29,132,69,.18); }
+    .loteria-banner::before{
+      background:
+        linear-gradient(90deg,
+          rgba(0,99,65,.35) 0% 16%,
+          rgba(255,255,255,.35) 16% 32%,
+          rgba(206,17,38,.35) 32% 48%,
+          rgba(254,223,0,.3) 48% 64%,
+          rgba(0,56,147,.3) 64% 80%,
+          rgba(206,17,38,.3) 80% 100%);
+      mask: linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,0));
+    }
+    .loteria-banner::after{
+      background: radial-gradient(circle at 15% 20%, rgba(0,99,65,.18) 0%, rgba(0,99,65,0) 55%),
+        radial-gradient(circle at 80% 25%, rgba(29,73,184,.18) 0%, rgba(29,73,184,0) 50%),
+        radial-gradient(circle at 60% 85%, rgba(255,215,0,.2) 0%, rgba(255,215,0,0) 55%);
+    }
     .loteria-content{
       position:relative;
       display:flex; align-items:center; justify-content:space-between;
-      gap:clamp(1.5rem, 4vw, 3.5rem);
+      gap:clamp(1.75rem, 4vw, 4rem);
       flex-wrap:wrap;
       z-index:1;
     }
     .loteria-text{ flex:1 1 320px; }
     .loteria-kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:.5rem;
+      padding:.3rem .85rem;
+      border-radius:999px;
+      background:rgba(0,56,147,.12);
+      color:#004225;
       text-transform:uppercase;
-      letter-spacing:.3em;
-      font-size:.75rem;
-      color:var(--rojo);
+      letter-spacing:.25em;
+      font-size:.7rem;
       font-weight:700;
-      margin:0 0 .75rem;
+      margin:0 0 1rem;
     }
     .loteria-title{
-      margin:0 0 1.1rem;
-      font-size: clamp(1.9rem, 4.2vw, 2.6rem);
-      line-height:1.12;
-      color:#C22E1F;
+      margin:0 0 1rem;
+      font-size: clamp(2.05rem, 4.6vw, 2.9rem);
+      line-height:1.1;
+      color:#193153;
+      text-shadow:0 1px 0 rgba(255,255,255,.8);
     }
-    .loteria-subtitle{
-      margin:0 0 .9rem;
+    .loteria-highlight{
+      margin:0 0 1.25rem;
+      font-size:1.05rem;
+      color:#4a4a4a;
+    }
+    .loteria-subheading{
+      margin:-.6rem 0 1rem;
+      font-size:.95rem;
       font-weight:600;
+      color:#1f2a44;
+      letter-spacing:.01em;
     }
     .loteria-tips{
       list-style:none;
-      padding:0; margin:0 0 1.5rem;
+      padding:0; margin:0 0 1.75rem;
       display:grid;
-      gap:.75rem;
+      gap:.8rem;
     }
     .loteria-tips li{
-      padding: .65rem .85rem;
-      border-radius:14px;
-      background:rgba(255,255,255,.8);
-      box-shadow:0 8px 20px rgba(0,0,0,.08);
-      font-size:.98rem;
+      padding:.75rem 1rem;
+      border-radius:18px;
+      background:rgba(255,255,255,.88);
+      box-shadow:0 14px 35px rgba(13,44,77,.08);
+      display:flex;
+      align-items:flex-start;
+      gap:.75rem;
+      color:#2f2f2f;
     }
+    .loteria-tips li::before{
+      content:"";
+      flex:0 0 18px;
+      height:18px;
+      border-radius:50%;
+      background:linear-gradient(135deg, #f9a602 0%, #d4312a 100%);
+      margin-top:.2rem;
+    }
+    .loteria-flags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.6rem;
+      margin:0 0 2rem;
+      padding:0;
+      list-style:none;
+    }
+    .loteria-flag{
+      display:flex;
+      align-items:center;
+      gap:.4rem;
+      padding:.4rem .8rem;
+      border-radius:999px;
+      background:rgba(255,255,255,.82);
+      box-shadow:0 12px 24px rgba(0,0,0,.08);
+      font-size:.82rem;
+      font-weight:600;
+      color:#1f2a44;
+    }
+    .flag-icon{
+      width:26px; height:18px;
+      border-radius:6px;
+      box-shadow:0 0 0 1px rgba(0,0,0,.08);
+    }
+    .flag-mexico{ background:linear-gradient(90deg,#006341 0% 33%,#ffffff 33% 66%,#ce1126 66%); }
+    .flag-colombia{ background:linear-gradient(180deg,#f9d616 0% 50%,#003893 50% 75%,#ce1126 75%); }
+    .flag-venezuela{ background:linear-gradient(180deg,#fcd116 0% 33%,#003893 33% 66%,#cf142b 66%); }
+    .flag-honduras{ background:linear-gradient(180deg,#0073cf 0% 25%,#ffffff 25% 75%,#0073cf 75%); }
+    .flag-elsalvador{ background:linear-gradient(180deg,#0047ab 0% 33%,#ffffff 33% 66%,#0047ab 66%); }
+    .flag-guatemala{ background:linear-gradient(90deg,#4997d0 0% 30%,#ffffff 30% 70%,#4997d0 70%); }
     .loteria-cta{
-      background:var(--rojo);
+      background:#ce1126;
       border-color:transparent;
-      box-shadow:0 12px 24px rgba(210,84,56,.25);
+      box-shadow:0 18px 30px rgba(206,17,38,.25);
     }
     .loteria-cta:hover,
     .loteria-cta:focus-visible{
-      background:#b83f29;
+      background:#ab0e20;
       transform: translateY(-2px) scale(1.02);
       outline:none;
     }
-    .loteria-figure{
-      flex:1 1 260px;
-      max-width:420px;
+    .loteria-media{
+      flex:1 1 280px;
+      max-width:460px;
       position:relative;
     }
-    .loteria-figure img{
+    .loteria-media::before{
+      content:"";
+      position:absolute;
+      inset:-6%;
+      background:linear-gradient(135deg, rgba(0,99,65,.4), rgba(29,73,184,.4));
+      border-radius:26px;
+      filter:blur(40px);
+      z-index:0;
+    }
+    .loteria-media img{
+      position:relative;
+      z-index:1;
       width:100%;
       height:100%;
       object-fit:cover;
-      border-radius:22px;
-      box-shadow:0 20px 45px rgba(0,0,0,.18);
+      border-radius:24px;
+      box-shadow:0 25px 45px rgba(25,49,83,.22);
     }
-    @media (max-width: 720px){
-      .loteria-banner{ padding:2.4rem 0; }
+    @media (max-width: 960px){
       .loteria-content{ justify-content:center; text-align:center; }
       .loteria-text{ flex-basis:100%; }
       .loteria-tips li{ text-align:left; }
-      .loteria-figure{ max-width:300px; }
+      .loteria-flags{ justify-content:center; }
+      .loteria-cta{ justify-self:center; }
+    }
+    @media (max-width: 600px){
+      .loteria-banner{ padding:2.75rem 0; }
+      .loteria-tips{ gap:.65rem; }
+      .loteria-tips li{ padding:.65rem .85rem; }
+      .loteria-media{ max-width:320px; }
     }
     @keyframes bannerFadeIn{
-      from{ opacity:0; transform: translateY(20px); }
+      from{ opacity:0; transform: translateY(24px); }
       to{ opacity:1; transform: translateY(0); }
     }
 
@@ -1248,6 +1335,36 @@
         </div>
       </div>
       <div class="recipes-preview" id="recipesPreview" role="list" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- ===== BANNER LOTERÍA ===== -->
+  <section class="loteria-banner" aria-labelledby="loteria-titulo">
+    <div class="container loteria-content">
+      <div class="loteria-text">
+        <span class="loteria-kicker">momentos en familia</span>
+        <h2 id="loteria-titulo" class="loteria-title">¡Juega a la lotería con tus familiares!</h2>
+        <p class="loteria-highlight">Celebra nuestras raíces latinas con un juego clásico lleno de color. Organiza tu tarde con música, botanas y mucha diversión.</p>
+        <ul class="loteria-flags" aria-label="Países que celebran la lotería con nosotros">
+          <li class="loteria-flag"><span class="flag-icon flag-mexico" role="img" aria-label="Bandera de México"></span><span>México</span></li>
+          <li class="loteria-flag"><span class="flag-icon flag-colombia" role="img" aria-label="Bandera de Colombia"></span><span>Colombia</span></li>
+          <li class="loteria-flag"><span class="flag-icon flag-venezuela" role="img" aria-label="Bandera de Venezuela"></span><span>Venezuela</span></li>
+          <li class="loteria-flag"><span class="flag-icon flag-honduras" role="img" aria-label="Bandera de Honduras"></span><span>Honduras</span></li>
+          <li class="loteria-flag"><span class="flag-icon flag-elsalvador" role="img" aria-label="Bandera de El Salvador"></span><span>El Salvador</span></li>
+          <li class="loteria-flag"><span class="flag-icon flag-guatemala" role="img" aria-label="Bandera de Guatemala"></span><span>Guatemala</span></li>
+        </ul>
+        <p class="loteria-subheading">Consejos rápidos:</p>
+        <ul class="loteria-tips">
+          <li>Prepara tus cartones: imprime o comparte cartas digitales para cada jugador.</li>
+          <li>Personaliza el ritmo: ajusta la velocidad automática o usa “Siguiente carta” para avanzar manualmente.</li>
+          <li>Activa el sonido: escucha el nombre de cada carta y anima el juego con narración.</li>
+          <li>Reinicia fácilmente: baraja de nuevo cuando se hayan mostrado todas las cartas.</li>
+        </ul>
+        <a class="btn loteria-cta" href="https://oscararmando2.github.io/Loteria/loteria.html" target="_blank" rel="noopener" aria-label="Jugar lotería en línea con tu familia">¡Juega ahora!</a>
+      </div>
+      <figure class="loteria-media">
+        <img src="https://images.unsplash.com/photo-1521577352947-9bb58764b69a?auto=format&fit=crop&w=900&q=80" alt="Familia latina jugando lotería con cartones coloridos" loading="lazy">
+      </figure>
     </div>
   </section>
 
