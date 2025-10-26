@@ -87,6 +87,101 @@
     .btn-outline{ background:white; color:var(--verde); border-color:var(--verde); }
     .btn-outline:hover{ background:var(--verde); color:white; }
 
+    /* ===== LOTERÍA BANNER ===== */
+    .loteria-banner{
+      position:relative;
+      padding: clamp(2.5rem, 6vw, 4.5rem) 0;
+      background: linear-gradient(135deg, #FFE8D6 0%, #FFF5EE 55%, #FFD3B6 100%);
+      overflow:hidden;
+      opacity:0;
+      animation: bannerFadeIn .8s ease forwards;
+    }
+    .loteria-banner::before,
+    .loteria-banner::after{
+      content:"";
+      position:absolute;
+      width:240px; height:240px;
+      border-radius:50%;
+      background: rgba(212,84,56,.18);
+      filter: blur(0);
+      z-index:0;
+    }
+    .loteria-banner::before{ top:-120px; left:-80px; }
+    .loteria-banner::after{ bottom:-140px; right:-60px; background: rgba(29,132,69,.18); }
+    .loteria-content{
+      position:relative;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:clamp(1.5rem, 4vw, 3.5rem);
+      flex-wrap:wrap;
+      z-index:1;
+    }
+    .loteria-text{ flex:1 1 320px; }
+    .loteria-kicker{
+      text-transform:uppercase;
+      letter-spacing:.3em;
+      font-size:.75rem;
+      color:var(--rojo);
+      font-weight:700;
+      margin:0 0 .75rem;
+    }
+    .loteria-title{
+      margin:0 0 1.1rem;
+      font-size: clamp(1.9rem, 4.2vw, 2.6rem);
+      line-height:1.12;
+      color:#C22E1F;
+    }
+    .loteria-subtitle{
+      margin:0 0 .9rem;
+      font-weight:600;
+    }
+    .loteria-tips{
+      list-style:none;
+      padding:0; margin:0 0 1.5rem;
+      display:grid;
+      gap:.75rem;
+    }
+    .loteria-tips li{
+      padding: .65rem .85rem;
+      border-radius:14px;
+      background:rgba(255,255,255,.8);
+      box-shadow:0 8px 20px rgba(0,0,0,.08);
+      font-size:.98rem;
+    }
+    .loteria-cta{
+      background:var(--rojo);
+      border-color:transparent;
+      box-shadow:0 12px 24px rgba(210,84,56,.25);
+    }
+    .loteria-cta:hover,
+    .loteria-cta:focus-visible{
+      background:#b83f29;
+      transform: translateY(-2px) scale(1.02);
+      outline:none;
+    }
+    .loteria-figure{
+      flex:1 1 260px;
+      max-width:420px;
+      position:relative;
+    }
+    .loteria-figure img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      border-radius:22px;
+      box-shadow:0 20px 45px rgba(0,0,0,.18);
+    }
+    @media (max-width: 720px){
+      .loteria-banner{ padding:2.4rem 0; }
+      .loteria-content{ justify-content:center; text-align:center; }
+      .loteria-text{ flex-basis:100%; }
+      .loteria-tips li{ text-align:left; }
+      .loteria-figure{ max-width:300px; }
+    }
+    @keyframes bannerFadeIn{
+      from{ opacity:0; transform: translateY(20px); }
+      to{ opacity:1; transform: translateY(0); }
+    }
+
     /* ===== PROMOS “estilo Cardenas”: imagen arriba + tarjeta blanca ===== */
     #promociones{ padding: 0; }
     .promos-wrap{
@@ -361,6 +456,7 @@
       scroll-snap-align:start;
       overflow:hidden;
       transition: transform .25s ease, box-shadow .25s ease;
+      position:relative;
     }
     .product-card:hover{
       transform: translateY(-6px);
@@ -423,28 +519,6 @@
     .price-current{ color:var(--rojo); font-size:1.05rem; font-weight:700; }
     .price-divider{ color:rgba(0,0,0,.25); }
     .price-unit{ font-weight:500; color:var(--muted); }
-    .product-price{
-      margin-top:auto;
-      font-size:1.15rem;
-      font-weight:700;
-      color:var(--rojo);
-    }
-    .price-stack{
-      margin-top:auto;
-      display:flex;
-      flex-direction:column;
-      gap:.15rem;
-    }
-    .price-before{
-      font-size:.9rem;
-      color:var(--muted);
-      text-decoration:line-through;
-    }
-    .price-now{
-      font-size:1.2rem;
-      font-weight:700;
-      color:var(--rojo);
-    }
     .offers-grid{
       width:var(--container);
       margin:2.5rem auto 0;
@@ -901,6 +975,27 @@
     </div>
   </section>
 
+  <!-- ===== BANNER LOTERÍA ===== -->
+  <section class="loteria-banner" aria-labelledby="loteria-titulo">
+    <div class="container loteria-content">
+      <div class="loteria-text">
+        <p class="loteria-kicker">momentos en familia</p>
+        <h2 id="loteria-titulo" class="loteria-title">¡Juega a la lotería con tus familiares!</h2>
+        <p class="loteria-subtitle">Consejos rápidos:</p>
+        <ul class="loteria-tips">
+          <li>Prepara tus cartones: Imprime o comparte cartas digitales para cada jugador.</li>
+          <li>Personaliza el ritmo: Ajusta la velocidad automática o usa “Siguiente carta” para avanzar manualmente.</li>
+          <li>Activa el sonido: Escucha el nombre de cada carta y anima el juego con la narración.</li>
+          <li>Reinicia fácilmente: Baraja de nuevo cuando se hayan mostrado todas las cartas.</li>
+        </ul>
+        <a class="btn loteria-cta" href="https://oscararmando2.github.io/Loteria/loteria.html" target="_blank" rel="noopener" aria-label="Jugar lotería en línea con tu familia">¡Juega ahora!</a>
+      </div>
+      <figure class="loteria-figure">
+        <img src="https://images.unsplash.com/photo-1581594549595-35f6edc9184c?auto=format&fit=crop&w=720&q=80" alt="Cartones de la lotería mexicana listos para jugar" loading="lazy">
+      </figure>
+    </div>
+  </section>
+
   <!-- ===== CARRUSEL: tarjetas imagen+blanco ===== -->
   <section id="promociones" aria-label="Promociones destacadas">
     <div class="promos-wrap">
@@ -1017,7 +1112,6 @@
               <span class="price-current">$4.99</span><span class="price-unit">/unidad</span>
             </span>
           </div>
-          <span class="product-price">$4.99</span>
         </div>
       </article>
 
@@ -1038,7 +1132,6 @@
               <span class="price-current">$3.99</span><span class="price-unit">/unidad</span>
             </span>
           </div>
-          <span class="product-price">$3.99</span>
         </div>
       </article>
 
@@ -1059,7 +1152,6 @@
               <span class="price-current">$2.79</span><span class="price-unit">/unidad</span>
             </span>
           </div>
-          <span class="product-price">$2.79</span>
         </div>
       </article>
 
@@ -1080,7 +1172,6 @@
               <span class="price-current">$5.49</span><span class="price-unit">/unidad</span>
             </span>
           </div>
-          <span class="product-price">$5.49</span>
         </div>
       </article>
 
@@ -1101,7 +1192,6 @@
               <span class="price-current">$6.89</span><span class="price-unit">/unidad</span>
             </span>
           </div>
-          <span class="product-price">$6.89</span>
         </div>
       </article>
 
@@ -1122,7 +1212,6 @@
               <span class="price-current">$3.49</span><span class="price-unit">/unidad</span>
             </span>
           </div>
-          <span class="product-price">$3.49</span>
         </div>
       </article>
 
@@ -1143,7 +1232,6 @@
               <span class="price-current">$7.25</span><span class="price-unit">/unidad</span>
             </span>
           </div>
-          <span class="product-price">$7.25</span>
         </div>
       </article>
     </div>
@@ -1155,7 +1243,6 @@
         <span class="recipes-hero__eyebrow">Recetas</span>
         <h2 id="recetas-title" class="recipes-hero__title">Inspiración fresca al estilo El Mexiquense</h2>
         <p class="recipes-hero__description">Encuentra platillos auténticos y bebidas refrescantes en un solo lugar. Cada visita trae nuevas ideas llenas de color y sabor mexicano para sorprender a tu familia.</p>
-        <p class="recipes-hero__description">Encuentra platillos auténticos y bebidas refrescantes en un solo lugar. Cada visita descubre nuevas ideas para sorprender a la familia, inspiradas en la energía del banner de Cardenas Markets.</p>
         <div class="recipes-hero__actions">
           <a class="btn btn-inverse" href="recetas/" id="viewMoreRecipesLink">Ver Más</a>
         </div>
@@ -1184,9 +1271,6 @@
               <span class="price-label price-label--now">Ahora:</span>
               <span class="price-current">$0.40</span><span class="price-unit">/lb</span>
             </span>
-          <div class="price-stack">
-            <span class="price-before">Antes: $0.79 lb</span>
-            <span class="price-now">Ahora: $0.40 lb</span>
           </div>
         </div>
       </article>
@@ -1207,9 +1291,6 @@
               <span class="price-label price-label--now">Ahora:</span>
               <span class="price-current">$1.29</span><span class="price-unit">/unidad</span>
             </span>
-          <div class="price-stack">
-            <span class="price-before">Antes: $1.89 c/u</span>
-            <span class="price-now">Ahora: $1.29 c/u</span>
           </div>
         </div>
       </article>
@@ -1230,9 +1311,6 @@
               <span class="price-label price-label--now">Ahora:</span>
               <span class="price-current">$2.79</span><span class="price-unit">/lb</span>
             </span>
-          <div class="price-stack">
-            <span class="price-before">Antes: $3.99 lb</span>
-            <span class="price-now">Ahora: $2.79 lb</span>
           </div>
         </div>
       </article>
@@ -1253,9 +1331,6 @@
               <span class="price-label price-label--now">Ahora:</span>
               <span class="price-current">$4.25</span><span class="price-unit">/unidad</span>
             </span>
-          <div class="price-stack">
-            <span class="price-before">Antes: $5.49</span>
-            <span class="price-now">Ahora: $4.25</span>
           </div>
         </div>
       </article>
@@ -1276,9 +1351,6 @@
               <span class="price-label price-label--now">Ahora:</span>
               <span class="price-current">$2.75</span><span class="price-unit">/paquete</span>
             </span>
-          <div class="price-stack">
-            <span class="price-before">Antes: $3.50 paquete</span>
-            <span class="price-now">Ahora: $2.75 paquete</span>
           </div>
         </div>
       </article>
@@ -1299,9 +1371,6 @@
               <span class="price-label price-label--now">Ahora:</span>
               <span class="price-current">$0.99</span><span class="price-unit">/lb</span>
             </span>
-          <div class="price-stack">
-            <span class="price-before">Antes: $1.49 lb</span>
-            <span class="price-now">Ahora: $0.99 lb</span>
           </div>
         </div>
       </article>
@@ -1322,9 +1391,6 @@
               <span class="price-label price-label--now">Ahora:</span>
               <span class="price-current">$9.99</span><span class="price-unit">/saco</span>
             </span>
-          <div class="price-stack">
-            <span class="price-before">Antes: $12.99</span>
-            <span class="price-now">Ahora: $9.99</span>
           </div>
         </div>
       </article>
@@ -1345,9 +1411,6 @@
               <span class="price-label price-label--now">Ahora:</span>
               <span class="price-current">$0.69</span><span class="price-unit">/lb</span>
             </span>
-          <div class="price-stack">
-            <span class="price-before">Antes: $1.19 lb</span>
-            <span class="price-now">Ahora: $0.69 lb</span>
           </div>
         </div>
       </article>
@@ -1368,9 +1431,6 @@
               <span class="price-label price-label--now">Ahora:</span>
               <span class="price-current">$0.89</span><span class="price-unit">/unidad</span>
             </span>
-          <div class="price-stack">
-            <span class="price-before">Antes: $1.49 c/u</span>
-            <span class="price-now">Ahora: $0.89 c/u</span>
           </div>
         </div>
       </article>
@@ -1391,9 +1451,6 @@
               <span class="price-label price-label--now">Ahora:</span>
               <span class="price-current">$2.99</span><span class="price-unit">/unidad</span>
             </span>
-          <div class="price-stack">
-            <span class="price-before">Antes: $3.79</span>
-            <span class="price-now">Ahora: $2.99</span>
           </div>
         </div>
       </article>
@@ -1414,9 +1471,6 @@
               <span class="price-label price-label--now">Ahora:</span>
               <span class="price-current">$0.30</span><span class="price-unit">/unidad</span>
             </span>
-          <div class="price-stack">
-            <span class="price-before">Antes: $0.59 c/u</span>
-            <span class="price-now">Ahora: $0.30 c/u</span>
           </div>
         </div>
       </article>
@@ -1437,9 +1491,6 @@
               <span class="price-label price-label--now">Ahora:</span>
               <span class="price-current">$6.79</span><span class="price-unit">/bolsa</span>
             </span>
-          <div class="price-stack">
-            <span class="price-before">Antes: $8.99</span>
-            <span class="price-now">Ahora: $6.79</span>
           </div>
         </div>
       </article>
@@ -1460,9 +1511,6 @@
               <span class="price-label price-label--now">Ahora:</span>
               <span class="price-current">$1.69</span><span class="price-unit">/lb</span>
             </span>
-          <div class="price-stack">
-            <span class="price-before">Antes: $2.49 lb</span>
-            <span class="price-now">Ahora: $1.69 lb</span>
           </div>
         </div>
       </article>
@@ -1696,87 +1744,6 @@
       }
     ];
     window.__RECIPES_DATA = recipesData;
-        title: 'Carnitas estilo Michoacán',
-        description: 'Cocción lenta en jugo de naranja, hierbas y especias para lograr carne jugosa por dentro y crujiente por fuera.',
-        time: '75 min',
-        tag: 'Plato fuerte',
-        image: 'https://images.unsplash.com/photo-1525755662778-989d0524087e?auto=format&fit=crop&w=900&q=80',
-        alt: 'Carnitas servidas en cazuela de cobre',
-        link: 'https://www.cardenasmarkets.com/recipes/'
-      },
-      {
-        title: 'Camarones a la diabla',
-        description: 'Salsa picante de chile guajillo y chipotle que equilibra el picor con notas ahumadas y cítricas.',
-        time: '35 min',
-        tag: 'Mariscos',
-        image: 'https://images.unsplash.com/photo-1552332386-f8dd00dc2f85?auto=format&fit=crop&w=900&q=80',
-        alt: 'Camarones a la diabla servidos con arroz verde',
-        link: 'https://www.cardenasmarkets.com/recipes/'
-      },
-      {
-        title: 'Ensalada de nopales fresca',
-        description: 'Nopales tiernos con jitomate, cebolla morada y queso fresco bañados en vinagreta cítrica.',
-        time: '20 min',
-        tag: 'Ensaladas',
-        image: 'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=900&q=80',
-        alt: 'Ensalada de nopales con jitomate y queso fresco',
-        link: 'https://www.cardenasmarkets.com/recipes/'
-      },
-      {
-        title: 'Margarita de tuna',
-        description: 'Refrescante combinación de tuna roja, limón y un toque de sal de gusano para brindar con amigos.',
-        time: '10 min',
-        tag: 'Bebidas',
-        image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80',
-        alt: 'Margarita rosa servida con sal en el borde',
-        link: 'https://www.cardenasmarkets.com/recipes/'
-      },
-      {
-        title: 'Paletas de sandía y kiwi',
-        description: 'Capas naturales de fruta fresca que conquistan a los más pequeños sin azúcares añadidos.',
-        time: '15 min + congelado',
-        tag: 'Postres',
-        image: 'https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=900&q=80',
-        alt: 'Paletas heladas de sandía y kiwi sobre hielo',
-        link: 'https://www.cardenasmarkets.com/recipes/'
-      },
-      {
-        title: 'Tamales verdes con pollo',
-        description: 'Receta clásica con salsa verde tatemada y masa esponjosa preparada con caldo casero.',
-        time: '90 min',
-        tag: 'Tradicional',
-        image: 'https://images.unsplash.com/photo-1543353071-10c8ba85a904?auto=format&fit=crop&w=900&q=80',
-        alt: 'Tamales verdes envueltos en hoja de maíz',
-        link: 'https://www.cardenasmarkets.com/recipes/'
-      },
-      {
-        title: 'Tostadas de tinga',
-        description: 'Pollo deshebrado con chipotle, cebolla caramelizada y crema fresca sobre tostadas crujientes.',
-        time: '40 min',
-        tag: 'Antojitos',
-        image: 'https://images.unsplash.com/photo-1514516430032-7d0e0cd29b1e?auto=format&fit=crop&w=900&q=80',
-        alt: 'Tostadas con tinga de pollo y aguacate',
-        link: 'https://www.cardenasmarkets.com/recipes/'
-      },
-      {
-        title: 'Pozole rojo estilo Jalisco',
-        description: 'Caldo robusto con maíz cacahuazintle, chile ancho y cerdo tierno listo para las fiestas.',
-        time: '2 h',
-        tag: 'Celebración',
-        image: 'https://images.unsplash.com/photo-1630431341413-4d13a392fa96?auto=format&fit=crop&w=900&q=80',
-        alt: 'Tazón de pozole rojo con rábanos y orégano',
-        link: 'https://www.cardenasmarkets.com/recipes/'
-      },
-      {
-        title: 'Chilaquiles verdes con huevo',
-        description: 'Totopos crujientes bañados en salsa verde, crema y queso; perfectos para la mañana.',
-        time: '25 min',
-        tag: 'Desayuno',
-        image: 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=900&q=80',
-        alt: 'Plato de chilaquiles verdes con huevo estrellado',
-        link: 'https://www.cardenasmarkets.com/recipes/'
-      }
-    ];
 
     function shuffle(array){
       const arr = [...array];
@@ -1789,13 +1756,6 @@
 
     const previewContainer = document.getElementById('recipesPreview');
     const clockIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2Zm0 18a8 8 0 1 1 8-8 8.009 8.009 0 0 1-8 8Zm.5-13h-1a.5.5 0 0 0-.5.5V13a1 1 0 0 0 .553.894l3.5 1.75a.5.5 0 0 0 .447-.894L12.5 12.382Z"></path></svg>';
-    const listContainer = document.getElementById('recipesList');
-    const currentPath = window.location.pathname.replace(/\/+$/, '');
-    const isRecipesPath = currentPath.endsWith('/recetas') || currentPath.endsWith('/recetas/index.html');
-    const pageType = document.body.dataset.page || (isRecipesPath ? 'recetas' : 'home');
-    const isRecipesPage = pageType === 'recetas' || isRecipesPath;
-    const clockIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2Zm0 18a8 8 0 1 1 8-8 8.009 8.009 0 0 1-8 8Zm.5-13h-1a.5.5 0 0 0-.5.5V13a1 1 0 0 0 .553.894l3.5 1.75a.5.5 0 0 0 .447-.894L12.5 12.382Z"></path></svg>';
-    const arrowIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.172 12 8.222 7.05l1.414-1.414L16 12l-6.364 6.364-1.414-1.414Z"></path></svg>';
 
     function createPreviewCard(recipe){
       const card = document.createElement('article');
@@ -1810,30 +1770,8 @@
       return card;
     }
 
-    function createRecipeCard(recipe){
-      const card = document.createElement('article');
-      card.className = 'recipe-card';
-      card.setAttribute('role', 'listitem');
-      card.innerHTML = `
-        <div class="recipe-card__media" aria-hidden="true">
-          <img src="${recipe.image}" alt="${recipe.alt}" loading="lazy">
-        </div>
-        <div class="recipe-card__body">
-          <span class="recipe-tag">${recipe.tag}</span>
-          <h3 class="recipe-card__title">${recipe.title}</h3>
-          <p class="recipe-card__desc">${recipe.description}</p>
-          <div class="recipe-card__meta">${clockIcon}<span>${recipe.time}</span></div>
-          <a class="recipe-card__link" href="${recipe.link}" target="_blank" rel="noopener">Ver detalle ${arrowIcon}</a>
-        </div>
-      `;
-      return card;
-    }
-
     if(previewContainer){
       shuffle(recipesData).slice(0, 3).forEach(recipe => {
-      const randomizedPreview = shuffle(recipesData);
-      const itemsToShow = isRecipesPage ? randomizedPreview.slice(0, 4) : randomizedPreview.slice(0, 3);
-      itemsToShow.forEach(recipe => {
         previewContainer.appendChild(createPreviewCard(recipe));
       });
     }
@@ -1901,10 +1839,6 @@
         } catch (error){
           if(status){ status.textContent = 'No pudimos enviar tu mensaje en este momento. Revisa tu conexión e inténtalo de nuevo.'; }
         }
-    if(isRecipesPage && listContainer){
-      const randomizedList = shuffle(recipesData);
-      randomizedList.forEach(recipe => {
-        listContainer.appendChild(createRecipeCard(recipe));
       });
     }
   </script>
