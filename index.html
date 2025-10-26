@@ -129,34 +129,15 @@
       z-index:1;
     }
     .loteria-text{ flex:1 1 320px; }
-    .loteria-kicker{
-      display:inline-flex;
-      align-items:center;
-      gap:.5rem;
-      padding:.3rem .85rem;
-      border-radius:999px;
-      background:rgba(0,56,147,.12);
-      color:#004225;
-      text-transform:uppercase;
-      letter-spacing:.25em;
-      font-size:.7rem;
-      font-weight:700;
-      margin:0 0 1rem;
-    }
     .loteria-title{
-      margin:0 0 1rem;
+      margin:0 0 1.25rem;
       font-size: clamp(2.05rem, 4.6vw, 2.9rem);
       line-height:1.1;
       color:#193153;
       text-shadow:0 1px 0 rgba(255,255,255,.8);
     }
-    .loteria-highlight{
-      margin:0 0 1.25rem;
-      font-size:1.05rem;
-      color:#4a4a4a;
-    }
     .loteria-subheading{
-      margin:-.6rem 0 1rem;
+      margin:0 0 1rem;
       font-size:.95rem;
       font-weight:600;
       color:#1f2a44;
@@ -186,37 +167,6 @@
       background:linear-gradient(135deg, #f9a602 0%, #d4312a 100%);
       margin-top:.2rem;
     }
-    .loteria-flags{
-      display:flex;
-      flex-wrap:wrap;
-      gap:.6rem;
-      margin:0 0 2rem;
-      padding:0;
-      list-style:none;
-    }
-    .loteria-flag{
-      display:flex;
-      align-items:center;
-      gap:.4rem;
-      padding:.4rem .8rem;
-      border-radius:999px;
-      background:rgba(255,255,255,.82);
-      box-shadow:0 12px 24px rgba(0,0,0,.08);
-      font-size:.82rem;
-      font-weight:600;
-      color:#1f2a44;
-    }
-    .flag-icon{
-      width:26px; height:18px;
-      border-radius:6px;
-      box-shadow:0 0 0 1px rgba(0,0,0,.08);
-    }
-    .flag-mexico{ background:linear-gradient(90deg,#006341 0% 33%,#ffffff 33% 66%,#ce1126 66%); }
-    .flag-colombia{ background:linear-gradient(180deg,#f9d616 0% 50%,#003893 50% 75%,#ce1126 75%); }
-    .flag-venezuela{ background:linear-gradient(180deg,#fcd116 0% 33%,#003893 33% 66%,#cf142b 66%); }
-    .flag-honduras{ background:linear-gradient(180deg,#0073cf 0% 25%,#ffffff 25% 75%,#0073cf 75%); }
-    .flag-elsalvador{ background:linear-gradient(180deg,#0047ab 0% 33%,#ffffff 33% 66%,#0047ab 66%); }
-    .flag-guatemala{ background:linear-gradient(90deg,#4997d0 0% 30%,#ffffff 30% 70%,#4997d0 70%); }
     .loteria-cta{
       background:#ce1126;
       border-color:transparent;
@@ -255,7 +205,6 @@
       .loteria-content{ justify-content:center; text-align:center; }
       .loteria-text{ flex-basis:100%; }
       .loteria-tips li{ text-align:left; }
-      .loteria-flags{ justify-content:center; }
       .loteria-cta{ justify-self:center; }
     }
     @media (max-width: 600px){
@@ -1342,17 +1291,7 @@
   <section class="loteria-banner" aria-labelledby="loteria-titulo">
     <div class="container loteria-content">
       <div class="loteria-text">
-        <span class="loteria-kicker">momentos en familia</span>
         <h2 id="loteria-titulo" class="loteria-title">¡Juega a la lotería con tus familiares!</h2>
-        <p class="loteria-highlight">Celebra nuestras raíces latinas con un juego clásico lleno de color. Organiza tu tarde con música, botanas y mucha diversión.</p>
-        <ul class="loteria-flags" aria-label="Países que celebran la lotería con nosotros">
-          <li class="loteria-flag"><span class="flag-icon flag-mexico" role="img" aria-label="Bandera de México"></span><span>México</span></li>
-          <li class="loteria-flag"><span class="flag-icon flag-colombia" role="img" aria-label="Bandera de Colombia"></span><span>Colombia</span></li>
-          <li class="loteria-flag"><span class="flag-icon flag-venezuela" role="img" aria-label="Bandera de Venezuela"></span><span>Venezuela</span></li>
-          <li class="loteria-flag"><span class="flag-icon flag-honduras" role="img" aria-label="Bandera de Honduras"></span><span>Honduras</span></li>
-          <li class="loteria-flag"><span class="flag-icon flag-elsalvador" role="img" aria-label="Bandera de El Salvador"></span><span>El Salvador</span></li>
-          <li class="loteria-flag"><span class="flag-icon flag-guatemala" role="img" aria-label="Bandera de Guatemala"></span><span>Guatemala</span></li>
-        </ul>
         <p class="loteria-subheading">Consejos rápidos:</p>
         <ul class="loteria-tips">
           <li>Prepara tus cartones: imprime o comparte cartas digitales para cada jugador.</li>
