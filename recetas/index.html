@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Recetas — El Mexiquense Market</title>
+  <meta name="description" content="Descubre todas las recetas de El Mexiquense Market: inspiración fresca para cada momento.">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --verde: #1D8445;
+      --rojo: #D45438;
+      --blanco: #FFFFFF;
+      --crema: #FAFAFA;
+      --texto: #2D2D2D;
+      --muted: #666;
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(0,0,0,.08);
+      --gap: 1rem;
+      --container: min(1200px, 92vw);
+    }
+
+    *,*::before,*::after{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+      color:var(--texto);
+      background:var(--crema);
+      line-height:1.5;
+    }
+    img{ max-width:100%; display:block; }
+    a{ color:inherit; text-decoration:none; }
+    .container{ width:var(--container); margin:0 auto; }
+    .section{ padding: 3.5rem 0; }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:rgba(255,255,255,.96);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid #eee;
+    }
+    .nav{
+      height:72px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:.75rem;
+      width:var(--container);
+      margin:0 auto;
+    }
+    .brand{ font-weight:700; color:var(--verde); letter-spacing:.2px; }
+    .menu{ display:flex; gap:1rem; }
+    .menu a{ padding:.5rem .9rem; border-radius:999px; transition:.25s; }
+    .menu a:hover, .menu a:focus-visible{ background: rgba(29,132,69,.12); }
+    .menu a.active{ background: rgba(29,132,69,.12); color:var(--verde); font-weight:600; }
+    .hamb{
+      display:none;
+      width:40px;
+      height:40px;
+      border:0;
+      background:transparent;
+      cursor:pointer;
+    }
+    .hamb span, .hamb::before, .hamb::after{
+      content:"";
+      display:block;
+      width:26px;
+      height:3px;
+      margin:6px auto;
+      background:#333;
+      border-radius:2px;
+      transition:.25s;
+    }
+    @media (max-width: 880px){
+      .menu{
+        position:absolute;
+        left:0;
+        right:0;
+        top:72px;
+        display:none;
+        flex-direction:column;
+        background:var(--blanco);
+        border-bottom:1px solid #eee;
+        padding:.75rem 1rem;
+      }
+      .menu.show{ display:flex; }
+      .hamb{ display:block; }
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.5rem;
+      background:var(--verde);
+      color:white;
+      font-weight:700;
+      padding:.75rem 1.15rem;
+      border-radius:10px;
+      border:2px solid transparent;
+      transition:.25s;
+      box-shadow: var(--shadow);
+    }
+    .btn:hover,
+    .btn:focus-visible{
+      background:#166b36;
+      transform: translateY(-1px);
+      outline:none;
+    }
+    .btn-outline{
+      background:white;
+      color:var(--verde);
+      border-color:var(--verde);
+    }
+    .btn-outline:hover,
+    .btn-outline:focus-visible{
+      background:var(--verde);
+      color:white;
+    }
+    .btn-inverse{
+      background:rgba(255,255,255,.12);
+      color:white;
+      border:2px solid rgba(255,255,255,.38);
+      box-shadow:none;
+    }
+    .btn-inverse:hover,
+    .btn-inverse:focus-visible{
+      background:white;
+      color:var(--verde);
+    }
+
+    .recipes-hero{
+      position:relative;
+      color:var(--blanco);
+      padding: clamp(3.5rem, 8vw, 5rem) 0;
+      overflow:hidden;
+      background: radial-gradient(circle at top left, rgba(212,84,56,.35), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(29,132,69,.45), transparent 60%),
+                  #1a1a1a;
+    }
+    .recipes-hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
+      opacity:.35;
+      mix-blend-mode:screen;
+      pointer-events:none;
+    }
+    .recipes-hero::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(125deg, rgba(26,26,26,.92) 0%, rgba(26,26,26,.55) 50%, rgba(26,26,26,.85) 100%);
+      pointer-events:none;
+    }
+    .recipes-hero .container{
+      position:relative;
+      display:grid;
+      gap: clamp(1.8rem, 4vw, 2.6rem);
+      z-index:1;
+    }
+    .recipes-hero__content{
+      max-width: min(620px, 90vw);
+      display:flex;
+      flex-direction:column;
+      gap:1rem;
+    }
+    .recipes-hero__eyebrow{
+      text-transform:uppercase;
+      letter-spacing:3px;
+      font-size:.78rem;
+      font-weight:700;
+      color:rgba(255,255,255,.7);
+    }
+    .recipes-hero__title{
+      margin:0;
+      font-size: clamp(2rem, 5vw, 2.9rem);
+      line-height:1.05;
+    }
+    .recipes-hero__description{
+      margin:0;
+      color:rgba(255,255,255,.82);
+      font-size:clamp(1rem, 2.4vw, 1.15rem);
+      line-height:1.6;
+    }
+    .recipes-hero__actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.75rem;
+      align-items:center;
+    }
+
+    .recipes-preview{
+      display:flex;
+      gap:1rem;
+      overflow-x:auto;
+      padding-bottom:.5rem;
+      scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch;
+    }
+    .recipes-preview::-webkit-scrollbar{ height:8px; }
+    .recipes-preview::-webkit-scrollbar-thumb{
+      background:rgba(255,255,255,.35);
+      border-radius:999px;
+    }
+    .preview-card{
+      flex:0 0 auto;
+      min-width: clamp(210px, 48vw, 260px);
+      background: rgba(255,255,255,.12);
+      border-radius:18px;
+      padding:1.1rem 1.2rem;
+      display:flex;
+      flex-direction:column;
+      gap:.45rem;
+      backdrop-filter: blur(6px);
+      border:1px solid rgba(255,255,255,.18);
+      scroll-snap-align:start;
+    }
+    .preview-card__tag{
+      font-size:.72rem;
+      text-transform:uppercase;
+      letter-spacing:.45px;
+      color:rgba(255,255,255,.75);
+    }
+    .preview-card__title{
+      margin:0;
+      font-size:1.05rem;
+      font-weight:700;
+      color:white;
+    }
+    .preview-card__meta{
+      display:flex;
+      align-items:center;
+      gap:.4rem;
+      color:rgba(255,255,255,.8);
+      font-size:.85rem;
+    }
+    .preview-card__meta svg{
+      width:16px;
+      height:16px;
+      fill:currentColor;
+    }
+
+    .recipes-collection{
+      background:white;
+      display:block;
+    }
+    .recipes-collection .container{
+      display:flex;
+      flex-direction:column;
+      gap:2.2rem;
+    }
+    .recipes-collection__header{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:1.25rem;
+    }
+    .recipes-collection__header span{
+      display:inline-block;
+      text-transform:uppercase;
+      letter-spacing:3px;
+      font-size:.75rem;
+      font-weight:700;
+      color:var(--rojo);
+      margin-bottom:.35rem;
+    }
+    .recipes-collection__header h2{
+      margin:0;
+      font-size: clamp(1.6rem, 4vw, 2.35rem);
+      color:var(--verde);
+      line-height:1.15;
+    }
+    .recipes-collection__header p{
+      margin:0;
+      color:var(--muted);
+      max-width:560px;
+    }
+    .recipes-grid{
+      display:grid;
+      gap:1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+    .recipe-card{
+      background:var(--blanco);
+      border-radius:20px;
+      overflow:hidden;
+      box-shadow: var(--shadow);
+      display:flex;
+      flex-direction:column;
+      transition: transform .25s ease, box-shadow .25s ease;
+      height:100%;
+    }
+    .recipe-card:hover{
+      transform: translateY(-6px);
+      box-shadow:0 18px 32px rgba(0,0,0,.12);
+    }
+    .recipe-card__media{
+      position:relative;
+      overflow:hidden;
+      aspect-ratio: 4 / 3;
+    }
+    .recipe-card__media img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition: transform .35s ease;
+    }
+    .recipe-card:hover .recipe-card__media img{
+      transform: scale(1.05);
+    }
+    .recipe-card__body{
+      display:flex;
+      flex-direction:column;
+      gap:.6rem;
+      padding:1.35rem 1.35rem 1.6rem;
+    }
+    .recipe-tag{
+      display:inline-flex;
+      align-self:flex-start;
+      padding:.3rem .75rem;
+      border-radius:999px;
+      background: rgba(29,132,69,.12);
+      color:var(--verde);
+      font-size:.75rem;
+      font-weight:700;
+      letter-spacing:.4px;
+      text-transform:uppercase;
+    }
+    .recipe-card__title{
+      margin:0;
+      font-size:1.25rem;
+      line-height:1.3;
+      color:var(--texto);
+    }
+    .recipe-card__desc{
+      margin:0;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+    .recipe-card__meta{
+      display:flex;
+      align-items:center;
+      gap:.4rem;
+      color:var(--muted);
+      font-weight:600;
+      font-size:.9rem;
+    }
+    .recipe-card__meta svg{
+      width:18px;
+      height:18px;
+      fill:currentColor;
+    }
+    .recipe-card__link{
+      margin-top:auto;
+      display:inline-flex;
+      align-items:center;
+      gap:.4rem;
+      color:var(--verde);
+      font-weight:600;
+      background:none;
+      border:0;
+      padding:0;
+      font-family:inherit;
+      font-size:1rem;
+      cursor:pointer;
+    }
+    .recipe-card__link svg{
+      width:18px;
+      height:18px;
+      fill:currentColor;
+      transition: transform .25s ease;
+    }
+    .recipe-card__link:hover svg,
+    .recipe-card__link:focus-visible svg{
+      transform: translateX(4px);
+    }
+    .recipe-card__link:focus-visible{
+      outline:2px solid rgba(29,132,69,.3);
+      outline-offset:4px;
+      border-radius:8px;
+    }
+    .recipe-card__link[aria-expanded="true"] svg{
+      transform: rotate(90deg);
+    }
+    .recipe-card__details{
+      margin-top:1.1rem;
+      padding-top:1.25rem;
+      border-top:1px solid #f1f1f1;
+      display:none;
+      flex-direction:column;
+      gap:1rem;
+    }
+    .recipe-card__details:not([hidden]){
+      display:flex;
+      animation:fadeIn .3s ease;
+    }
+    .recipe-card__details h4{
+      margin:0 0 .5rem;
+      font-size:1rem;
+      color:var(--verde);
+    }
+    .recipe-card__details p{
+      margin:0;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+    .recipe-card__yield{
+      display:flex;
+      align-items:center;
+      gap:.5rem;
+      font-weight:600;
+      color:var(--texto);
+    }
+    .recipe-card__yield svg{
+      width:18px;
+      height:18px;
+      fill:var(--verde);
+    }
+    .recipe-card__details ul,
+    .recipe-card__details ol{
+      margin:0;
+      padding-left:1.2rem;
+      display:grid;
+      gap:.4rem;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+    .recipe-card__tips{
+      padding:1rem 1.1rem;
+      border-radius:14px;
+      background:rgba(29,132,69,.08);
+      color:var(--texto);
+      font-size:.93rem;
+    }
+    @keyframes fadeIn{
+      from{ opacity:0; transform: translateY(-6px); }
+      to{ opacity:1; transform: translateY(0); }
+    }
+
+    footer{
+      border-top:1px solid #eee;
+      background:white;
+      color:#666;
+    }
+    footer .foot{
+      width:var(--container);
+      margin:0 auto;
+      padding:1.25rem 0;
+      display:flex;
+      justify-content:space-between;
+      gap:1rem;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    @media (max-width: 680px){
+      .recipes-preview{
+        padding-bottom:1rem;
+      }
+      .recipes-hero__actions{ justify-content:flex-start; }
+      footer .foot{ justify-content:center; text-align:center; }
+    }
+  </style>
+</head>
+<body class="page-recetas" data-page="recetas">
+  <header>
+    <div class="nav">
+      <div class="brand">El Mexiquense Market</div>
+      <button class="hamb" id="hamb" aria-label="Abrir menú" aria-controls="menu" aria-expanded="false"><span></span></button>
+      <nav class="menu" id="menu" aria-label="Menú principal">
+        <a href="../index.html#inicio">Inicio</a>
+        <a href="../index.html#promociones">Promociones</a>
+        <a href="../index.html#productos">Productos</a>
+        <a href="#recetas" class="active">Recetas</a>
+        <a href="../index.html#ofertas">Ofertas</a>
+        <a href="../index.html#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="recetas" class="recipes-hero" aria-labelledby="recetas-title">
+      <div class="container">
+        <div class="recipes-hero__content">
+          <span class="recipes-hero__eyebrow">Recetario</span>
+          <h1 id="recetas-title" class="recipes-hero__title">Todas las recetas de El Mexiquense</h1>
+          <p class="recipes-hero__description">Explora bebidas, platillos típicos y postres listos para sorprender a tu familia. Cada visita te recibe con nuevas ideas inspiradas en el banner de Cardenas Markets.</p>
+          <div class="recipes-hero__actions">
+            <a class="btn btn-outline" href="../index.html#recetas">Volver al inicio</a>
+          </div>
+        </div>
+        <div class="recipes-preview" id="recipesPreview" role="list" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section id="recetas-completas" class="section recipes-collection" aria-labelledby="recetas-collection-title">
+      <div class="container">
+        <div class="recipes-collection__header">
+          <div>
+            <span>Recetario completo</span>
+            <h2 id="recetas-collection-title">Explora cada preparación</h2>
+            <p>Consulta tiempos, etiquetas y vínculos a los pasos completos de cada platillo. Guarda tus favoritos para la próxima reunión familiar.</p>
+          </div>
+        </div>
+        <div class="recipes-grid" id="recipesList" role="list" aria-live="polite"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="foot">
+      <span>© <span id="year"></span> El Mexiquense Market</span>
+      <a class="btn btn-outline" href="#recetas">Volver arriba</a>
+    </div>
+  </footer>
+
+  <script>
+    const yearEl = document.getElementById('year');
+    if(yearEl){
+      yearEl.textContent = new Date().getFullYear();
+    }
+
+    const hamb = document.getElementById('hamb');
+    const menu = document.getElementById('menu');
+    if(hamb && menu){
+      hamb.addEventListener('click', () => {
+        const open = menu.classList.toggle('show');
+        hamb.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    }
+
+    const recipesData = [
+      {
+        title: 'Carnitas estilo Michoacán',
+        description: 'Cerdo jugoso cocinado lentamente con naranja, especias y un toque de refresco para lograr el dorado perfecto.',
+        time: '75 min',
+        tag: 'Favoritos',
+        yield: '6 porciones',
+        image: 'https://images.unsplash.com/photo-1612874742237-6526221588e3?auto=format&fit=crop&w=900&q=80',
+        alt: 'Tacos de carnitas con cilantro y cebolla',
+        ingredients: [
+          '1.5 kg de carne de cerdo (maciza y costilla)',
+          '1 taza de jugo de naranja natural',
+          '1/2 taza de refresco de cola',
+          '4 dientes de ajo machacados',
+          '1 hoja de laurel',
+          '1 cucharada de sal gruesa',
+          'Aceite o manteca suficiente para dorar'
+        ],
+        steps: [
+          'Corta la carne en trozos grandes y sécala con toallas de papel para obtener un dorado uniforme.',
+          'Coloca la carne en una olla amplia junto con el jugo de naranja, el refresco, ajo, laurel y sal.',
+          'Cocina a fuego medio, tapado, hasta que la carne esté suave y los líquidos se reduzcan casi por completo.',
+          'Destapa, aumenta a fuego medio-alto y permite que la carne se dore en su propia grasa hasta quedar crujiente.',
+          'Sirve caliente dentro de tortillas con cilantro, cebolla y salsa al gusto.'
+        ],
+        tips: 'Acompaña con frijoles refritos y rábanos frescos para equilibrar la grasa.'
+      },
+      {
+        title: 'Camarones a la diabla',
+        description: 'Salsa picante de chile de árbol y guajillo con camarones salteados al instante, servidos con arroz y limón.',
+        time: '35 min',
+        tag: 'Mariscos',
+        yield: '4 porciones',
+        image: 'https://images.unsplash.com/photo-1604908177443-88b7a4b09e07?auto=format&fit=crop&w=900&q=80',
+        alt: 'Camarones en salsa roja picante con arroz',
+        ingredients: [
+          '700 g de camarones medianos, pelados y desvenados',
+          '6 chiles de árbol secos',
+          '3 chiles guajillo sin semillas',
+          '2 dientes de ajo',
+          '1/2 taza de puré de tomate',
+          '2 cucharadas de mantequilla',
+          '1 cucharada de aceite vegetal',
+          'Sal y pimienta al gusto'
+        ],
+        steps: [
+          'Hierve los chiles 5 minutos y licúalos con ajo, puré de tomate y media taza del agua de cocción.',
+          'Sazona los camarones con sal y pimienta.',
+          'Derrite la mantequilla con el aceite en un sartén y saltea los camarones 2 minutos por lado; retira y reserva.',
+          'Vierte la salsa en el sartén, cocina 5 minutos hasta espesar y regresa los camarones.',
+          'Cocina 2 minutos más, ajusta sal y sirve con arroz blanco y rodajas de limón.'
+        ],
+        tips: 'Puedes agregar jugo de naranja a la salsa para un contraste dulce-picante.'
+      },
+      {
+        title: 'Ensalada de nopales fresca',
+        description: 'Nopales asados con jitomate, cebolla morada, cilantro y queso fresco, aliñados con limón.',
+        time: '20 min',
+        tag: 'Ligero',
+        yield: '4 porciones',
+        image: 'https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=900&q=80',
+        alt: 'Ensalada de nopales con jitomate y queso fresco',
+        ingredients: [
+          '6 pencas de nopal medianas, limpias',
+          '2 jitomates roma en cubos',
+          '1/2 cebolla morada en plumas finas',
+          '1/2 taza de cilantro picado',
+          '150 g de queso fresco desmoronado',
+          '2 limones, el jugo',
+          '2 cucharadas de aceite de oliva',
+          'Sal y pimienta al gusto'
+        ],
+        steps: [
+          'Asa los nopales en un comal o sartén caliente hasta que cambien de color y pierdan la baba.',
+          'Corta en tiras y colócalos en un tazón con jitomate, cebolla y cilantro.',
+          'Mezcla el jugo de limón con aceite, sal y pimienta para formar el aderezo.',
+          'Baña la ensalada con el aderezo y termina con queso fresco desmoronado.',
+          'Sirve fría o a temperatura ambiente.'
+        ],
+        tips: 'Agrega cubos de aguacate justo antes de servir para un toque cremoso.'
+      },
+      {
+        title: 'Margarita de tuna',
+        description: 'Coctel refrescante con licor de naranja, tequila y puré de tuna roja servida frappé.',
+        time: '10 min',
+        tag: 'Bebidas',
+        yield: '4 copas',
+        image: 'https://images.unsplash.com/photo-1514361892635-d56c7e72f27a?auto=format&fit=crop&w=900&q=80',
+        alt: 'Vaso de margarita rosa con sal de chile',
+        ingredients: [
+          '4 tunas rojas peladas y en cubos',
+          '1 taza de tequila blanco',
+          '1/2 taza de licor de naranja',
+          '1/2 taza de jugo de limón',
+          '2 tazas de hielo',
+          'Sal con chile para escarchar'
+        ],
+        steps: [
+          'Licúa las tunas con el tequila, licor de naranja, jugo de limón y hielo hasta obtener un frappé espeso.',
+          'Escarcha los vasos con jugo de limón y sal con chile.',
+          'Sirve de inmediato y decora con rodajas de limón o cubos de tuna.'
+        ],
+        tips: 'Añade unas hojas de menta al licuado para un aroma fresco.'
+      },
+      {
+        title: 'Paletas de sandía y kiwi',
+        description: 'Capas de fruta fresca con un toque de limón y chile en polvo. Perfectas para los días calurosos.',
+        time: '15 min + congelado',
+        tag: 'Postre',
+        yield: '8 paletas',
+        image: 'https://images.unsplash.com/photo-1525755662778-989d0524087e?auto=format&fit=crop&w=900&q=80',
+        alt: 'Paletas heladas de sandía y kiwi con chile',
+        ingredients: [
+          '4 tazas de sandía en cubos sin semillas',
+          '4 kiwis pelados',
+          '1/4 taza de azúcar o miel',
+          '2 cucharadas de jugo de limón',
+          '1 cucharadita de chile en polvo opcional'
+        ],
+        steps: [
+          'Licúa la sandía con la mitad del jugo de limón y la mitad del endulzante; vierte en moldes hasta la mitad y congela 30 minutos.',
+          'Licúa los kiwis con el resto del jugo y endulzante.',
+          'Rellena los moldes con la mezcla de kiwi, espolvorea chile en polvo y coloca los palitos.',
+          'Congela al menos 4 horas antes de desmoldar.'
+        ],
+        tips: 'Para desmoldar fácilmente, sumerge los moldes unos segundos en agua tibia.'
+      },
+      {
+        title: 'Tamales verdes con pollo',
+        description: 'Masa esponjosa rellena de pollo en salsa verde tomatillo, cocidos al vapor en hojas de maíz.',
+        time: '90 min',
+        tag: 'Tradicional',
+        yield: '18 tamales',
+        image: 'https://images.unsplash.com/photo-1528834352184-42f2d5592edf?auto=format&fit=crop&w=900&q=80',
+        alt: 'Tamales verdes servidos en hoja de maíz',
+        ingredients: [
+          '18 hojas de maíz remojadas',
+          '1 kg de masa para tortillas',
+          '200 g de manteca vegetal batida',
+          '1 taza de caldo de pollo caliente',
+          '2 pechugas de pollo cocidas y deshebradas',
+          '8 tomatillos',
+          '4 chiles serranos',
+          '1/4 de cebolla',
+          '2 dientes de ajo',
+          '1 manojo pequeño de cilantro',
+          'Sal al gusto'
+        ],
+        steps: [
+          'Bate la manteca con la masa hasta que esponje, añadiendo poco a poco el caldo caliente.',
+          'Hierve tomatillos, chiles, cebolla y ajo; licúa con cilantro y sazona con sal para formar la salsa.',
+          'Mezcla la mitad de la salsa con el pollo deshebrado.',
+          'Coloca dos cucharadas de masa sobre cada hoja, rellena con pollo y cierra los tamales.',
+          'Cocina al vapor 60 minutos o hasta que se despeguen fácilmente de la hoja.',
+          'Sirve con el resto de la salsa verde caliente.'
+        ],
+        tips: 'Si la masa flota en agua fría está lista para rellenar; agrega más caldo si está muy seca.'
+      },
+      {
+        title: 'Tostadas de tinga',
+        description: 'Pollo deshebrado con chipotle, cebolla caramelizada y crema fresca sobre tostadas crujientes.',
+        time: '40 min',
+        tag: 'Antojitos',
+        yield: '10 tostadas',
+        image: 'https://images.unsplash.com/photo-1514516430032-7d0e0cd29b1e?auto=format&fit=crop&w=900&q=80',
+        alt: 'Tostadas con tinga de pollo y aguacate',
+        ingredients: [
+          '2 pechugas de pollo cocidas y deshebradas',
+          '1 cebolla blanca fileteada',
+          '2 dientes de ajo picados',
+          '3 jitomates guajillo',
+          '2 chiles chipotles adobados',
+          '1 hoja de laurel',
+          '2 cucharadas de aceite',
+          'Sal y pimienta al gusto',
+          '10 tostadas de maíz',
+          'Crema, lechuga y aguacate para servir'
+        ],
+        steps: [
+          'Licúa jitomates, chipotles y una taza de caldo o agua hasta obtener una salsa tersa.',
+          'Acitrona la cebolla en aceite, agrega ajo y cocina hasta que esté transparente.',
+          'Vierte la salsa, añade laurel y cocina 5 minutos.',
+          'Incorpora el pollo, sazona y cocina hasta espesar.',
+          'Sirve sobre tostadas con lechuga, crema y aguacate.'
+        ],
+        tips: 'Para un toque ahumado extra añade una cucharada del adobo de los chipotles.'
+      },
+      {
+        title: 'Pozole rojo estilo Jalisco',
+        description: 'Caldo robusto con maíz cacahuazintle, chile ancho y cerdo tierno listo para las fiestas.',
+        time: '2 h',
+        tag: 'Celebración',
+        yield: '8 porciones',
+        image: 'https://images.unsplash.com/photo-1630431341413-4d13a392fa96?auto=format&fit=crop&w=900&q=80',
+        alt: 'Tazón de pozole rojo con rábanos y orégano',
+        ingredients: [
+          '1.5 kg de carne de cerdo (espinazo y pierna)',
+          '500 g de maíz cacahuazintle precocido',
+          '4 chiles anchos',
+          '3 chiles guajillos',
+          '3 dientes de ajo',
+          '1/2 cebolla',
+          '1 cucharadita de orégano seco',
+          'Sal al gusto',
+          'Lechuga, rábanos, cebolla y limón para acompañar'
+        ],
+        steps: [
+          'Cocina el maíz precocido en una olla grande con suficiente agua hasta que reviente.',
+          'Añade la carne de cerdo, cebolla, ajo y sal; cocina 60 minutos o hasta que esté suave.',
+          'Desvena y remoja los chiles, licúa con un poco de caldo y cuela.',
+          'Agrega la salsa al pozole, cocina 20 minutos más y rectifica la sazón.',
+          'Sirve con lechuga, rábanos, cebolla, orégano y limón.'
+        ],
+        tips: 'Si prefieres un picante suave, sustituye los chiles de árbol por guajillos extras.'
+      },
+      {
+        title: 'Chilaquiles verdes con huevo',
+        description: 'Totopos crujientes bañados en salsa verde, crema y queso; perfectos para la mañana.',
+        time: '25 min',
+        tag: 'Desayuno',
+        yield: '4 porciones',
+        image: 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=900&q=80',
+        alt: 'Plato de chilaquiles verdes con huevo estrellado',
+        ingredients: [
+          '12 tortillas de maíz cortadas en triángulos',
+          '1 taza de aceite vegetal para freír',
+          '8 tomatillos',
+          '2 chiles serranos',
+          '1/4 de cebolla',
+          '1 diente de ajo',
+          '1/2 taza de cilantro',
+          '1 taza de caldo de pollo',
+          '4 huevos estrellados',
+          'Crema, queso fresco y cebolla morada para decorar'
+        ],
+        steps: [
+          'Fríe las tortillas hasta que queden crujientes y colócalas sobre papel absorbente.',
+          'Hierve tomatillos, chiles, cebolla y ajo; licúa con cilantro y caldo hasta formar una salsa tersa.',
+          'Calienta la salsa en un sartén amplio, sazona y agrega los totopos justo antes de servir.',
+          'Baña con crema, queso y cebolla; corona con un huevo estrellado en cada porción.'
+        ],
+        tips: 'Si deseas chilaquiles más crujientes, sirve la salsa aparte para que cada quien se sirva.'
+      }
+    ];
+
+    function shuffle(array){
+      const arr = [...array];
+      for(let i = arr.length - 1; i > 0; i--){
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    const clockIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2Zm0 18a8 8 0 1 1 8-8 8.009 8.009 0 0 1-8 8Zm.5-13h-1a.5.5 0 0 0-.5.5V13a1 1 0 0 0 .553.894l3.5 1.75a.5.5 0 0 0 .447-.894L12.5 12.382Z"></path></svg>';
+    const arrowIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.172 12 8.222 7.05l1.414-1.414L16 12l-6.364 6.364-1.414-1.414Z"></path></svg>';
+    const servingIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21v-2h14v2Zm12-10.75a4 4 0 1 0-4 3.95A3.995 3.995 0 0 0 17 10.25Zm-6.5 0A2.5 2.5 0 1 1 13 12.7a2.5 2.5 0 0 1-2.5-2.45ZM5.27 17c.76-2.39 3.18-4 5.95-4s5.19 1.61 5.95 4ZM8 15.5a5.116 5.116 0 0 0-2.22 1.5h12.44A5.116 5.116 0 0 0 16 15.5a8.28 8.28 0 0 0-8 0Z"></path></svg>';
+
+    function createPreviewCard(recipe){
+      const card = document.createElement('article');
+      card.className = 'preview-card';
+      card.setAttribute('role', 'listitem');
+      card.innerHTML = `
+        <span class="preview-card__tag">${recipe.tag}</span>
+        <h3 class="preview-card__title">${recipe.title}</h3>
+        <div class="preview-card__meta">${clockIcon}<span>${recipe.time}</span></div>
+      `;
+      return card;
+    }
+
+    function buildList(items, element = 'li'){
+      return (items || []).map(item => `<${element}>${item}</${element}>`).join('');
+    }
+
+    function createRecipeCard(recipe, index){
+      const card = document.createElement('article');
+      card.className = 'recipe-card';
+      card.setAttribute('role', 'listitem');
+      const detailsId = `recipe-details-${index}`;
+      card.innerHTML = `
+        <div class="recipe-card__media" aria-hidden="true">
+          <img src="${recipe.image}" alt="${recipe.alt}" loading="lazy">
+        </div>
+        <div class="recipe-card__body">
+          <span class="recipe-tag">${recipe.tag}</span>
+          <h3 class="recipe-card__title">${recipe.title}</h3>
+          <p class="recipe-card__desc">${recipe.description}</p>
+          <div class="recipe-card__meta">${clockIcon}<span>${recipe.time}</span></div>
+          <button class="recipe-card__link" type="button" aria-expanded="false" aria-controls="${detailsId}"><span class="recipe-card__linkText">Ver</span> ${arrowIcon}</button>
+          <div class="recipe-card__details" id="${detailsId}" hidden>
+            <div class="recipe-card__yield">${servingIcon}<span>${recipe.yield}</span></div>
+            <div class="recipe-card__section">
+              <h4>Ingredientes</h4>
+              <ul>
+                ${buildList(recipe.ingredients)}
+              </ul>
+            </div>
+            <div class="recipe-card__section">
+              <h4>Preparación</h4>
+              <ol>
+                ${buildList(recipe.steps, 'li')}
+              </ol>
+            </div>
+            ${recipe.tips ? `<div class="recipe-card__tips"><strong>Tip:</strong> ${recipe.tips}</div>` : ''}
+          </div>
+        </div>
+      `;
+      const toggle = card.querySelector('.recipe-card__link');
+      const toggleText = card.querySelector('.recipe-card__linkText');
+      const details = card.querySelector('.recipe-card__details');
+
+      toggle.addEventListener('click', () => {
+        const isHidden = details.hasAttribute('hidden');
+        if(isHidden){
+          details.removeAttribute('hidden');
+          toggle.setAttribute('aria-expanded', 'true');
+          toggleText.textContent = 'Ocultar';
+          setTimeout(() => {
+            details.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+          }, 80);
+        } else {
+          details.setAttribute('hidden', '');
+          toggle.setAttribute('aria-expanded', 'false');
+          toggleText.textContent = 'Ver';
+        }
+      });
+
+      return card;
+    }
+
+    const previewContainer = document.getElementById('recipesPreview');
+    const listContainer = document.getElementById('recipesList');
+
+    if(previewContainer){
+      const randomizedPreview = shuffle(recipesData);
+      randomizedPreview.slice(0, 4).forEach(recipe => {
+        previewContainer.appendChild(createPreviewCard(recipe));
+      });
+    }
+
+    if(listContainer){
+      const randomizedList = shuffle(recipesData);
+      randomizedList.forEach((recipe, index) => {
+        listContainer.appendChild(createRecipeCard(recipe, index));
+      });
+    }
+  </script>
+</body>
+</html>
