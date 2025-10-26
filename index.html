@@ -324,6 +324,96 @@
       }
     }
 
+    /* ===== Productos destacados ===== */
+    .product-carousel{
+      margin: 2.5rem auto 0;
+      width: var(--container);
+      display:flex;
+      gap:1.25rem;
+      overflow-x:auto;
+      padding-bottom: .75rem;
+      scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch;
+    }
+    .product-carousel::-webkit-scrollbar{
+      height:10px;
+    }
+    .product-carousel::-webkit-scrollbar-thumb{
+      background:rgba(0,0,0,.15);
+      border-radius:999px;
+    }
+    .product-card{
+      flex:0 0 auto;
+      width: clamp(240px, 62vw, 280px);
+      min-width: clamp(240px, 62vw, 280px);
+      height: clamp(340px, 68vw, 380px);
+      background:white;
+      border-radius:18px;
+      box-shadow: var(--shadow);
+      display:flex;
+      flex-direction:column;
+      scroll-snap-align:start;
+      overflow:hidden;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .product-card:hover{
+      transform: translateY(-6px);
+      box-shadow: 0 18px 32px rgba(0,0,0,.12);
+    }
+    .product-media{
+      position:relative;
+      flex:0 0 55%;
+      height:55%;
+      min-height:55%;
+      overflow:hidden;
+    }
+    .product-media img{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+    .product-body{
+      flex:1 1 45%;
+      padding:1.25rem 1.2rem 1.6rem;
+      display:flex;
+      flex-direction:column;
+      gap:.55rem;
+    }
+    .product-title{
+      font-size:1.05rem;
+      font-weight:700;
+      margin:0;
+      color:var(--texto);
+    }
+    .product-info{
+      margin:0;
+      color:var(--muted);
+      font-size:.9rem;
+      min-height:2.8em;
+      display:-webkit-box;
+      -webkit-line-clamp:2;
+      -webkit-box-orient:vertical;
+      overflow:hidden;
+    }
+    .product-price{
+      margin-top:auto;
+      font-size:1.15rem;
+      font-weight:700;
+      color:var(--rojo);
+    }
+    @media (min-width: 1024px){
+      .product-carousel{
+        justify-content:center;
+      }
+      .product-card{
+        width:260px;
+        min-width:260px;
+        height:360px;
+      }
+    }
+
     /* ===== Otras secciones (demo) ===== */
     .section-title{
       text-align:center; color:var(--verde); margin:0 0 1.2rem; font-size: clamp(1.3rem, 3vw, 1.8rem);
@@ -460,6 +550,84 @@
   <section id="productos" class="section">
     <h2 class="section-title">Productos destacados</h2>
     <p class="muted">Frescura garantizada en cada compra.</p>
+    <div class="product-carousel" role="list">
+      <article class="product-card" role="listitem">
+        <div class="product-media" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1604908177063-1233ebd9ad29?auto=format&fit=crop&w=800&q=80" alt="Paquete de harina P.A.N." loading="lazy">
+        </div>
+        <div class="product-body">
+          <h3 class="product-title">Harina P.A.N. Maíz Blanco</h3>
+          <p class="product-info">Bolsa de 1 kg — perfecta para arepas y empanadas.</p>
+          <span class="product-price">$4.99</span>
+        </div>
+      </article>
+
+      <article class="product-card" role="listitem">
+        <div class="product-media" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=800&q=80" alt="Harina de maíz Maseca" loading="lazy">
+        </div>
+        <div class="product-body">
+          <h3 class="product-title">Maseca Maíz Instantáneo</h3>
+          <p class="product-info">Bolsa de 4 lb — ideal para tortillas y tamales.</p>
+          <span class="product-price">$3.99</span>
+        </div>
+      </article>
+
+      <article class="product-card" role="listitem">
+        <div class="product-media" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1514996937319-344454492b37?auto=format&fit=crop&w=800&q=80" alt="Frijoles negros listos para servir" loading="lazy">
+        </div>
+        <div class="product-body">
+          <h3 class="product-title">Frijoles Negros Listos</h3>
+          <p class="product-info">Lata de 29 oz — sazón casero en minutos.</p>
+          <span class="product-price">$2.79</span>
+        </div>
+      </article>
+
+      <article class="product-card" role="listitem">
+        <div class="product-media" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1604908177088-5c36eac5b9d9?auto=format&fit=crop&w=800&q=80" alt="Botella de salsa picante mexicana" loading="lazy">
+        </div>
+        <div class="product-body">
+          <h3 class="product-title">Salsa Picante Artesanal</h3>
+          <p class="product-info">Receta de chile de árbol — 250 ml.</p>
+          <span class="product-price">$5.49</span>
+        </div>
+      </article>
+
+      <article class="product-card" role="listitem">
+        <div class="product-media" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1576406439393-7b8310f0285b?auto=format&fit=crop&w=800&q=80" alt="Queso fresco mexicano" loading="lazy">
+        </div>
+        <div class="product-body">
+          <h3 class="product-title">Queso Fresco Artesanal</h3>
+          <p class="product-info">Rueda de 340 g — cremoso y ligero.</p>
+          <span class="product-price">$6.89</span>
+        </div>
+      </article>
+
+      <article class="product-card" role="listitem">
+        <div class="product-media" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1525755662778-989d0524087e?auto=format&fit=crop&w=800&q=80" alt="Caja de chiles poblanos frescos" loading="lazy">
+        </div>
+        <div class="product-body">
+          <h3 class="product-title">Chiles Poblanos Frescos</h3>
+          <p class="product-info">Bolsa de 5 unidades — selección premium.</p>
+          <span class="product-price">$3.49</span>
+        </div>
+      </article>
+
+      <article class="product-card" role="listitem">
+        <div class="product-media" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1609750715948-41ff3b1c14c4?auto=format&fit=crop&w=800&q=80" alt="Pan dulce mexicano" loading="lazy">
+        </div>
+        <div class="product-body">
+          <h3 class="product-title">Pan Dulce Variado</h3>
+          <p class="product-info">Paquete surtido de 6 piezas recién horneadas.</p>
+          <span class="product-price">$7.25</span>
+        </div>
+      </article>
+    </div>
   </section>
 
   <section id="ofertas" class="section" style="background:white;">
@@ -539,3 +707,13 @@
   </script>
 </body>
 </html>
+
+<!-- Vista previa productos destacados:
+Harina P.A.N. Maíz Blanco — $4.99
+Maseca Maíz Instantáneo — $3.99
+Frijoles Negros Listos — $2.79
+Salsa Picante Artesanal — $5.49
+Queso Fresco Artesanal — $6.89
+Chiles Poblanos Frescos — $3.49
+Pan Dulce Variado — $7.25
+-->
