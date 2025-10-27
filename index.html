@@ -1244,6 +1244,7 @@
       display:grid;
       gap: clamp(1.8rem, 4vw, 3.2rem);
       align-items:center;
+      justify-items:center;
     }
     @media (min-width: 900px){
       .loyalty-grid{
@@ -1251,13 +1252,26 @@
       }
     }
     .loyalty-copy{
-      background:rgba(255,255,255,.92);
+      background:rgba(255,255,255,.95);
       border-radius:26px;
-      padding: clamp(1.8rem, 4vw, 2.6rem);
+      padding: clamp(1.8rem, 4vw, 2.4rem);
       box-shadow:0 26px 48px rgba(29,132,69,.15);
       display:flex;
       flex-direction:column;
-      gap:1.1rem;
+      gap:.9rem;
+      width: clamp(240px, 48vw, 360px);
+      min-height: clamp(340px, 70vw, 360px);
+      justify-content:flex-start;
+      animation: loyaltyFloat 9s ease-in-out infinite;
+      animation-fill-mode: both;
+      transition: transform .35s ease, box-shadow .35s ease;
+      transform: translateY(0);
+    }
+    .loyalty-copy:hover,
+    .loyalty-copy:focus-within{
+      animation-play-state: paused;
+      transform: translateY(-10px) rotate(-0.8deg);
+      box-shadow:0 32px 56px rgba(29,132,69,.22);
     }
     .loyalty-kicker{
       display:inline-flex;
@@ -1315,7 +1329,7 @@
       font-weight:700;
     }
     .loyalty-note{
-      font-size:.9rem;
+      font-size:.85rem;
       color:var(--muted);
     }
     .loyalty-actions{
@@ -1323,14 +1337,18 @@
       flex-wrap:wrap;
       gap:.75rem;
       align-items:center;
+      margin-top:auto;
     }
     .loyalty-media{
       position:relative;
-      border-radius:30px;
+      border-radius:26px;
       overflow:hidden;
       box-shadow:0 28px 50px rgba(0,0,0,.18);
-      min-height:300px;
       isolation:isolate;
+      width: clamp(240px, 48vw, 360px);
+      min-height: clamp(340px, 70vw, 360px);
+      display:flex;
+      align-items:stretch;
     }
     .loyalty-media::before{
       content:"";
@@ -1344,6 +1362,15 @@
       width:100%;
       height:100%;
       object-fit:cover;
+      transition:transform .4s ease;
+    }
+    .loyalty-media:hover img,
+    .loyalty-media:focus-within img{
+      transform:scale(1.04);
+    }
+    @keyframes loyaltyFloat{
+      0%,100%{ transform:translateY(0); }
+      50%{ transform:translateY(-8px); }
     }
     @media (max-width: 720px){
       .loyalty-copy{
@@ -1356,8 +1383,24 @@
       .loyalty-benefits{
         text-align:left;
       }
+      .loyalty-copy,
+      .loyalty-media{
+        width:min(360px, 92vw);
+      }
       .loyalty-actions{
         justify-content:center;
+      }
+    }
+    @media (prefers-reduced-motion: reduce){
+      .loyalty-copy{
+        animation:none;
+      }
+      .loyalty-copy:hover,
+      .loyalty-copy:focus-within{
+        transform: translateY(0);
+      }
+      .loyalty-media img{
+        transition:none;
       }
     }
 
@@ -2012,17 +2055,17 @@
     <div class="loyalty-grid">
       <div class="loyalty-copy">
         <span class="loyalty-kicker">Programa de lealtad</span>
-        <h2 id="lealtad-titulo">Compra con nosotros y gana puntos por cada visita</h2>
-        <p>En El Mexiquense Market queremos agradecer tu preferencia con un programa de lealtad diseñado para premiar cada compra. Registra tus tickets, acumula puntos y canjéalos por descuentos exclusivos, experiencias gastronómicas especiales y regalos pensados para tu familia.</p>
+        <h2 id="lealtad-titulo">Gana recompensas en cada visita</h2>
+        <p>Súmate a Mexiquense Rewards y acumula puntos cada vez que llenas tu canasta.</p>
         <ul class="loyalty-benefits">
-          <li>Solicita tus gift cards en cajas y activa tus recompensas desde la primera compra.</li>
-          <li>Recibe puntos automáticos por cada dólar gastado y multiplica tus beneficios en eventos especiales.</li>
-          <li>Pregunta a nuestro equipo cómo convertirte en acreedor del programa y mantente informado de promociones VIP.</li>
+          <li>Activa tu tarjeta en cajas y empieza a sumar desde hoy.</li>
+          <li>Gana puntos por dólar y duplica en eventos especiales.</li>
+          <li>Accede a descuentos VIP y sorpresas exclusivas.</li>
         </ul>
-        <p class="loyalty-note">El registro es gratuito y solo necesitas tu número de teléfono o correo electrónico para comenzar a sumar beneficios.</p>
+        <p class="loyalty-note">Registro gratis con tu número o correo.</p>
         <div class="loyalty-actions" role="group" aria-label="Acciones del programa de lealtad">
-          <a class="btn" href="#contacto">Únete hoy mismo</a>
-          <a class="btn btn-outline" href="#contacto">Solicita información en tienda</a>
+          <a class="btn" href="#contacto">Inscríbete gratis</a>
+          <a class="btn btn-outline" href="#contacto">Conoce más en tienda</a>
         </div>
       </div>
       <figure class="loyalty-media">
