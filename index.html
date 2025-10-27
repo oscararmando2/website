@@ -7,6 +7,8 @@
   <meta name="description" content="El Mexiquense Market: frescura diaria, precios justos, ofertas y recetas para tu cocina." />
   <meta name="theme-color" content="#1D8445" />
   <meta http-equiv="Cache-Control" content="public, max-age=604800" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
@@ -30,6 +32,23 @@
     body{
       margin:0; font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
       color:var(--texto); background:var(--crema); line-height:1.5;
+    }
+    .skip-link{
+      position:absolute;
+      left:50%;
+      transform:translate(-50%, -120%);
+      padding:.75rem 1.15rem;
+      background:var(--verde);
+      color:var(--blanco);
+      border-radius:999px;
+      font-weight:600;
+      z-index:1100;
+      transition:transform .25s ease;
+    }
+    .skip-link:focus{
+      transform:translate(-50%, 10px);
+      outline:3px solid var(--blanco);
+      outline-offset:2px;
     }
     img{ max-width:100%; display:block; }
     a{ color:inherit; text-decoration:none; }
@@ -77,6 +96,13 @@
     }
     .hero h1{ font-size: clamp(2rem, 5.5vw, 3.2rem); margin:0 0 .5rem; line-height:1.08; }
     .hero p{ font-size:clamp(1rem, 2.5vw, 1.2rem); opacity:.95; margin:0 0 1.25rem; }
+    .hero-actions{
+      display:flex;
+      justify-content:center;
+      gap:.65rem;
+      flex-wrap:wrap;
+      margin-top:1.5rem;
+    }
     .btn{
       display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
       background:var(--verde); color:white; font-weight:700;
@@ -213,8 +239,8 @@
       }
     }
 
-    /* ===== FEATURE: Canasta de frutas ===== */
-    .feature-canasta{
+    /* ===== FEATURE: Tienda en línea ===== */
+    .feature-tienda{
       background:white;
       padding: clamp(3rem, 6vw, 4.5rem) 1rem;
     }
@@ -473,6 +499,115 @@
         min-width:260px;
         height:360px;
       }
+    }
+
+    /* ===== Nadie como el Mexiquense ===== */
+    .mexiquense-section{
+      background:linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(29,132,69,.06) 100%);
+      padding: clamp(3rem, 6vw, 4.5rem) 0;
+    }
+    .mexiquense-section .container{
+      display:flex;
+      flex-direction:column;
+      gap:1.75rem;
+    }
+    .mexiquense-header{
+      text-align:center;
+      display:flex;
+      flex-direction:column;
+      gap:.75rem;
+    }
+    .mexiquense-title{
+      margin:0;
+      font-size: clamp(1.8rem, 5vw, 2.4rem);
+      color:var(--verde);
+    }
+    .mexiquense-subtitle{
+      margin:0 auto;
+      max-width:540px;
+      color:var(--muted);
+      font-size:1rem;
+    }
+    .mexiquense-scroll{
+      width:var(--container);
+      margin:0 auto;
+      display:flex;
+      gap:1.2rem;
+      overflow-x:auto;
+      padding:.35rem 0 1rem;
+      scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch;
+    }
+    .mexiquense-scroll::-webkit-scrollbar{
+      height:10px;
+    }
+    .mexiquense-scroll::-webkit-scrollbar-thumb{
+      background:rgba(0,0,0,.15);
+      border-radius:999px;
+    }
+    .mexiquense-card{
+      flex:0 0 auto;
+      min-width: clamp(220px, 68vw, 260px);
+      background:var(--blanco);
+      border-radius:20px;
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      scroll-snap-align:start;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .mexiquense-card:hover{
+      transform: translateY(-6px);
+      box-shadow:0 18px 34px rgba(0,0,0,.14);
+    }
+    .mexiquense-card__media{
+      position:relative;
+      padding-top:60%;
+      overflow:hidden;
+      background:linear-gradient(135deg, rgba(29,132,69,.08), rgba(212,84,56,.08));
+    }
+    .mexiquense-card__media img{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition: transform .4s ease;
+    }
+    .mexiquense-card:hover .mexiquense-card__media img{
+      transform: scale(1.05);
+    }
+    .mexiquense-card__body{
+      padding:1.2rem 1.3rem 1.4rem;
+      display:flex;
+      flex-direction:column;
+      gap:.65rem;
+    }
+    .mexiquense-card__title{
+      margin:0;
+      font-size:1.02rem;
+      font-weight:700;
+      color:var(--texto);
+    }
+    .mexiquense-card__price{
+      margin:0;
+      font-size:1.05rem;
+      font-weight:700;
+      color:var(--rojo);
+    }
+    .mexiquense-card__note{
+      margin:0;
+      font-size:.85rem;
+      color:var(--muted);
+    }
+    @media (max-width: 620px){
+      .mexiquense-section .container{
+        align-items:flex-start;
+        text-align:left;
+      }
+      .mexiquense-header{ align-items:flex-start; text-align:left; }
+      .mexiquense-subtitle{ max-width:100%; }
     }
 
     /* ===== Recetas ===== */
@@ -1143,6 +1278,7 @@
   </style>
 </head>
 <body class="page-home" data-page="home">
+  <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
 
   <!-- ===== NAV ===== -->
   <header>
@@ -1160,13 +1296,16 @@
     </div>
   </header>
 
+  <main id="contenido-principal" tabindex="-1">
   <!-- ===== HERO ===== -->
   <section id="inicio" class="hero">
     <div class="container">
       <h1>El Sabor de México en Cada Compra</h1>
       <p>Frescura diaria • Precios justos • Calidad garantizada</p>
-      <a class="btn" href="#promociones">Ver promociones</a>
-      <a class="btn btn-outline" href="#ofertas" style="margin-left:.5rem;">Ofertas del día</a>
+      <div class="hero-actions" role="group" aria-label="Acciones destacadas">
+        <a class="btn" href="#promociones">Ver promociones</a>
+        <a class="btn btn-outline" href="#ofertas">Ofertas del día</a>
+      </div>
     </div>
   </section>
 
@@ -1240,42 +1379,42 @@
     </div>
   </section>
 
-  <!-- ===== FEATURE: Canasta de frutas ===== -->
-  <section class="feature-canasta" id="canasta-frutas">
+  <!-- ===== FEATURE: Tienda en línea ===== -->
+  <section class="feature-tienda" id="tienda-en-linea">
     <div class="feature-grid">
       <figure class="feature-media">
-        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80" alt="Canasta de frutas tropicales coloridas">
+        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1600&q=80" alt="Persona comprando frutas y abarrotes desde un teléfono móvil">
       </figure>
       <div class="feature-copy">
-        <span>Canasta de frutas</span>
-        <h2>Frescura colorida lista para compartir</h2>
-        <p>Disfruta nuestra selección diaria con mangos, piñas, cítricos y berries preparados a mano por nuestros expertos en mercado.</p>
+        <span>Tienda en línea</span>
+        <h2>Compra tus favoritos sin salir de casa</h2>
+        <p>Haz tu súper en minutos y recibe productos frescos, ingredientes auténticos y antojitos mexicanos directo a tu puerta.</p>
         <ul class="feature-list">
-          <li>Selección de temporada con productores locales.</li>
-          <li>Presentación lista para regalar o disfrutar en familia.</li>
-          <li>Incluye nota personalizada y empaque ecológico.</li>
+          <li>Inventario actualizado con ofertas exclusivas en línea.</li>
+          <li>Entrega a domicilio o recolección rápida en tienda.</li>
+          <li>Pagos seguros y confirmación inmediata de tu pedido.</li>
         </ul>
         <div class="feature-actions">
-          <a class="btn" href="#productos">Pide la tuya</a>
-          <a class="btn btn-outline" href="#contacto">Agenda entrega</a>
+          <a class="btn" href="https://latinstorenearme.com/" target="_blank" rel="noopener">Comprar en línea</a>
+          <a class="btn btn-outline" href="#contacto">Habla con un asesor</a>
         </div>
-        <p class="feature-note">Entrega el mismo día en compras antes de las 12:00 p.m.</p>
+        <p class="feature-note">Pedidos en línea disponibles 24/7 y entregas el mismo día según disponibilidad.</p>
       </div>
     </div>
   </section>
 
   <!-- ===== SECCIONES DEMO ===== -->
   <section id="productos" class="section">
-    <h2 class="section-title">Productos destacados</h2>
-    <p class="muted">Frescura garantizada en cada compra.</p>
+    <h2 class="section-title">MIERCOLAZO DE DESCUENTO %</h2>
+    <p class="muted">Promos que se renuevan cada miércoles con 24 horas de ahorro y, el resto de la semana, sorpresas relámpago cada dos minutos.</p>
     <div class="product-carousel" role="list">
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>Oferta Limitada</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span><span class="timer countdown-timer">--:--:--</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1604908177063-1233ebd9ad29?auto=format&fit=crop&w=800&q=80" alt="Paquete de harina P.A.N." loading="lazy">
         </div>
         <div class="product-body">
-          <h3 class="product-title">Harina P.A.N. Maíz Blanco</h3>
+          <h3 class="product-title">MIERCOLAZO DE DESCUENTO %</h3>
           <p class="product-info">Bolsa de 1 kg — perfecta para arepas y empanadas.</p>
           <div class="price-stack" aria-label="Precio promocional de Harina P.A.N. Maíz Blanco">
             <span class="price-mixed">
@@ -1290,12 +1429,12 @@
       </article>
 
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>Oferta Limitada</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span><span class="timer countdown-timer">--:--:--</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=800&q=80" alt="Harina de maíz Maseca" loading="lazy">
         </div>
         <div class="product-body">
-          <h3 class="product-title">Maseca Maíz Instantáneo</h3>
+          <h3 class="product-title">MIERCOLAZO DE DESCUENTO %</h3>
           <p class="product-info">Bolsa de 4 lb — ideal para tortillas y tamales.</p>
           <div class="price-stack" aria-label="Precio promocional de Maseca Maíz Instantáneo">
             <span class="price-mixed">
@@ -1310,12 +1449,12 @@
       </article>
 
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>Oferta Limitada</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span><span class="timer countdown-timer">--:--:--</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1514996937319-344454492b37?auto=format&fit=crop&w=800&q=80" alt="Frijoles negros listos para servir" loading="lazy">
         </div>
         <div class="product-body">
-          <h3 class="product-title">Frijoles Negros Listos</h3>
+          <h3 class="product-title">MIERCOLAZO DE DESCUENTO %</h3>
           <p class="product-info">Lata de 29 oz — sazón casero en minutos.</p>
           <div class="price-stack" aria-label="Precio promocional de Frijoles Negros Listos">
             <span class="price-mixed">
@@ -1330,12 +1469,12 @@
       </article>
 
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>Oferta Limitada</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span><span class="timer countdown-timer">--:--:--</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1604908177088-5c36eac5b9d9?auto=format&fit=crop&w=800&q=80" alt="Botella de salsa picante mexicana" loading="lazy">
         </div>
         <div class="product-body">
-          <h3 class="product-title">Salsa Picante Artesanal</h3>
+          <h3 class="product-title">MIERCOLAZO DE DESCUENTO %</h3>
           <p class="product-info">Receta de chile de árbol — 250 ml.</p>
           <div class="price-stack" aria-label="Precio promocional de Salsa Picante Artesanal">
             <span class="price-mixed">
@@ -1350,12 +1489,12 @@
       </article>
 
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>Oferta Limitada</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span><span class="timer countdown-timer">--:--:--</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1576406439393-7b8310f0285b?auto=format&fit=crop&w=800&q=80" alt="Queso fresco mexicano" loading="lazy">
         </div>
         <div class="product-body">
-          <h3 class="product-title">Queso Fresco Artesanal</h3>
+          <h3 class="product-title">MIERCOLAZO DE DESCUENTO %</h3>
           <p class="product-info">Rueda de 340 g — cremoso y ligero.</p>
           <div class="price-stack" aria-label="Precio promocional de Queso Fresco Artesanal">
             <span class="price-mixed">
@@ -1370,12 +1509,12 @@
       </article>
 
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>Oferta Limitada</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span><span class="timer countdown-timer">--:--:--</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1525755662778-989d0524087e?auto=format&fit=crop&w=800&q=80" alt="Caja de chiles poblanos frescos" loading="lazy">
         </div>
         <div class="product-body">
-          <h3 class="product-title">Chiles Poblanos Frescos</h3>
+          <h3 class="product-title">MIERCOLAZO DE DESCUENTO %</h3>
           <p class="product-info">Bolsa de 5 unidades — selección premium.</p>
           <div class="price-stack" aria-label="Precio promocional de Chiles Poblanos Frescos">
             <span class="price-mixed">
@@ -1390,12 +1529,12 @@
       </article>
 
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>Oferta Limitada</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span><span class="timer countdown-timer">--:--:--</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1609750715948-41ff3b1c14c4?auto=format&fit=crop&w=800&q=80" alt="Pan dulce mexicano" loading="lazy">
         </div>
         <div class="product-body">
-          <h3 class="product-title">Pan Dulce Variado</h3>
+          <h3 class="product-title">MIERCOLAZO DE DESCUENTO %</h3>
           <p class="product-info">Paquete surtido de 6 piezas recién horneadas.</p>
           <div class="price-stack" aria-label="Precio promocional de Pan Dulce Variado">
             <span class="price-mixed">
@@ -1425,6 +1564,148 @@
     </div>
   </section>
 
+  <section class="mexiquense-section" aria-labelledby="mexiquense-title">
+    <div class="container">
+      <div class="mexiquense-header">
+        <h2 id="mexiquense-title" class="mexiquense-title">Nadie como el Mexiquense</h2>
+        <p class="mexiquense-subtitle">Productos a precios que solo encontrarás con nosotros.</p>
+      </div>
+    </div>
+    <div class="mexiquense-scroll" role="list" aria-label="Productos exclusivos Nadie como el Mexiquense">
+      <article class="mexiquense-card" role="listitem">
+        <figure class="mexiquense-card__media" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1589923188900-85dae523342b?auto=format&fit=crop&w=700&q=80" alt="Cartón de huevos frescos Best Choice" loading="lazy">
+        </figure>
+        <div class="mexiquense-card__body">
+          <h3 class="mexiquense-card__title">Huevo Best Choice 12 pack</h3>
+          <p class="mexiquense-card__price">$1.99</p>
+          <p class="mexiquense-card__note">Perfectos para tus desayunos diarios.</p>
+        </div>
+      </article>
+
+      <article class="mexiquense-card" role="listitem">
+        <figure class="mexiquense-card__media" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=700&q=80" alt="Botellas de leche Prairie Farms" loading="lazy">
+        </figure>
+        <div class="mexiquense-card__body">
+          <h3 class="mexiquense-card__title">Leche Prairie Farms</h3>
+          <p class="mexiquense-card__price">$1.99</p>
+          <p class="mexiquense-card__note">Galón fresco y cremoso para toda la familia.</p>
+        </div>
+      </article>
+
+      <article class="mexiquense-card" role="listitem">
+        <figure class="mexiquense-card__media" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1604908178395-52a6c1af8b67?auto=format&fit=crop&w=700&q=80" alt="Paquete de tortillas de maíz" loading="lazy">
+        </figure>
+        <div class="mexiquense-card__body">
+          <h3 class="mexiquense-card__title">Tortillas Guerrero 80 ct</h3>
+          <p class="mexiquense-card__price">$3.49</p>
+          <p class="mexiquense-card__note">Suaves y listas para tus tacos favoritos.</p>
+        </div>
+      </article>
+
+      <article class="mexiquense-card" role="listitem">
+        <figure class="mexiquense-card__media" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1586201375761-83865001e31b?auto=format&fit=crop&w=700&q=80" alt="Manojos de cilantro fresco" loading="lazy">
+        </figure>
+        <div class="mexiquense-card__body">
+          <h3 class="mexiquense-card__title">Cilantro Fresco por manojo</h3>
+          <p class="mexiquense-card__price">$0.69</p>
+          <p class="mexiquense-card__note">Aromático, ideal para salsas y guisos.</p>
+        </div>
+      </article>
+
+      <article class="mexiquense-card" role="listitem">
+        <figure class="mexiquense-card__media" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1580915411954-282cb1b0d780?auto=format&fit=crop&w=700&q=80" alt="Queso fresco redondo sobre tabla" loading="lazy">
+        </figure>
+        <div class="mexiquense-card__body">
+          <h3 class="mexiquense-card__title">Queso Fresco El Mexiquense</h3>
+          <p class="mexiquense-card__price">$2.99</p>
+          <p class="mexiquense-card__note">Tradición artesanal para tus platillos.</p>
+        </div>
+      </article>
+
+      <article class="mexiquense-card" role="listitem">
+        <figure class="mexiquense-card__media" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=700&q=80" alt="Varios chiles secos y especias" loading="lazy">
+        </figure>
+        <div class="mexiquense-card__body">
+          <h3 class="mexiquense-card__title">Variedad de Chiles Secos</h3>
+          <p class="mexiquense-card__price">$4.50</p>
+          <p class="mexiquense-card__note">Ancho, guajillo y pasilla listos para tu mole.</p>
+        </div>
+      </article>
+
+      <article class="mexiquense-card" role="listitem">
+        <figure class="mexiquense-card__media" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=700&q=80" alt="Bolsa de café tostado" loading="lazy">
+        </figure>
+        <div class="mexiquense-card__body">
+          <h3 class="mexiquense-card__title">Café de Olla Molido 12 oz</h3>
+          <p class="mexiquense-card__price">$5.75</p>
+          <p class="mexiquense-card__note">Notas de canela y piloncillo recién tostadas.</p>
+        </div>
+      </article>
+
+      <article class="mexiquense-card" role="listitem">
+        <figure class="mexiquense-card__media" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1612874471953-1dd91e5dba4e?auto=format&fit=crop&w=700&q=80" alt="Racimo de plátanos maduros" loading="lazy">
+        </figure>
+        <div class="mexiquense-card__body">
+          <h3 class="mexiquense-card__title">Plátano Macho por libra</h3>
+          <p class="mexiquense-card__price">$0.79</p>
+          <p class="mexiquense-card__note">Imprescindibles para tostones y postres.</p>
+        </div>
+      </article>
+
+      <article class="mexiquense-card" role="listitem">
+        <figure class="mexiquense-card__media" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1580915411970-82ebaddea1a3?auto=format&fit=crop&w=700&q=80" alt="Paquete de crema mexicana" loading="lazy">
+        </figure>
+        <div class="mexiquense-card__body">
+          <h3 class="mexiquense-card__title">Crema Mexicana 16 oz</h3>
+          <p class="mexiquense-card__price">$2.59</p>
+          <p class="mexiquense-card__note">Textura suave para enchiladas y antojitos.</p>
+        </div>
+      </article>
+
+      <article class="mexiquense-card" role="listitem">
+        <figure class="mexiquense-card__media" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1505252585461-04db1eb84625?auto=format&fit=crop&w=700&q=80" alt="Frasco de salsa verde" loading="lazy">
+        </figure>
+        <div class="mexiquense-card__body">
+          <h3 class="mexiquense-card__title">Salsa Verde Casera 24 oz</h3>
+          <p class="mexiquense-card__price">$3.25</p>
+          <p class="mexiquense-card__note">Hecha con tomatillo y cilantro fresco.</p>
+        </div>
+      </article>
+
+      <article class="mexiquense-card" role="listitem">
+        <figure class="mexiquense-card__media" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1516685018646-549198525c1b?auto=format&fit=crop&w=700&q=80" alt="Bolsa de arroz integral" loading="lazy">
+        </figure>
+        <div class="mexiquense-card__body">
+          <h3 class="mexiquense-card__title">Arroz Integral 5 lb</h3>
+          <p class="mexiquense-card__price">$3.99</p>
+          <p class="mexiquense-card__note">Fuente de energía para toda la semana.</p>
+        </div>
+      </article>
+
+      <article class="mexiquense-card" role="listitem">
+        <figure class="mexiquense-card__media" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1453831210728-695502f9f795?auto=format&fit=crop&w=700&q=80" alt="Varios chiles serranos" loading="lazy">
+        </figure>
+        <div class="mexiquense-card__body">
+          <h3 class="mexiquense-card__title">Chile Serrano por libra</h3>
+          <p class="mexiquense-card__price">$1.19</p>
+          <p class="mexiquense-card__note">Picor vibrante para tus salsas caseras.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
   <!-- ===== BANNER LOTERÍA ===== -->
   <section class="loteria-banner" aria-labelledby="loteria-titulo">
     <div class="container loteria-content">
@@ -1447,16 +1728,16 @@
   </section>
 
   <section id="ofertas" class="section" style="background:white;">
-    <h2 class="section-title" style="color:var(--rojo)">Ofertas del día</h2>
-    <p class="muted">Aprovecha precios irresistibles por tiempo limitado.</p>
+    <h2 class="section-title" style="color:var(--rojo)">MIERCOLAZO DE DESCUENTO %</h2>
+    <p class="muted">Cuenta regresiva permanente: los miércoles duran 24 horas y el resto de la semana rotan cada dos minutos.</p>
     <div class="offers-grid" role="list" aria-label="Ofertas destacadas">
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>Oferta Limitada</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span><span class="timer countdown-timer">--:--:--</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1506806732259-39c2d0268443?auto=format&fit=crop&w=800&q=80" alt="Tomates roma frescos" loading="lazy">
         </div>
         <div class="product-body">
-          <h3 class="product-title">Tomate Roma</h3>
+          <h3 class="product-title">MIERCOLAZO DE DESCUENTO %</h3>
           <p class="product-info">Perfectos para tus salsas y ensaladas favoritas.</p>
           <div class="price-stack" aria-label="Oferta actual de Tomate Roma">
             <span class="price-mixed">
@@ -1471,12 +1752,12 @@
       </article>
 
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>Oferta Limitada</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span><span class="timer countdown-timer">--:--:--</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80" alt="Aguacates hass enteros" loading="lazy">
         </div>
         <div class="product-body">
-          <h3 class="product-title">Aguacate Hass</h3>
+          <h3 class="product-title">MIERCOLAZO DE DESCUENTO %</h3>
           <p class="product-info">Maduración lista para preparar guacamole cremoso.</p>
           <div class="price-stack" aria-label="Oferta actual de Aguacate Hass">
             <span class="price-mixed">
@@ -1491,12 +1772,12 @@
       </article>
 
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>Oferta Limitada</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span><span class="timer countdown-timer">--:--:--</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1587593810167-1ee9c6bfb2ef?auto=format&fit=crop&w=800&q=80" alt="Pechuga de pollo fresca en tabla de cortar" loading="lazy">
         </div>
         <div class="product-body">
-          <h3 class="product-title">Pechuga de Pollo</h3>
+          <h3 class="product-title">MIERCOLAZO DE DESCUENTO %</h3>
           <p class="product-info">Filetes sin hueso ideales para cocinar a la plancha.</p>
           <div class="price-stack" aria-label="Oferta actual de Pechuga de Pollo">
             <span class="price-mixed">
@@ -1511,12 +1792,12 @@
       </article>
 
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>Oferta Limitada</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span><span class="timer countdown-timer">--:--:--</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1604908176778-3daa9b812eb1?auto=format&fit=crop&w=800&q=80" alt="Bloque de queso fresco" loading="lazy">
         </div>
         <div class="product-body">
-          <h3 class="product-title">Queso Fresco Artesanal</h3>
+          <h3 class="product-title">MIERCOLAZO DE DESCUENTO %</h3>
           <p class="product-info">Textura suave y sabor ligero para tus platillos.</p>
           <div class="price-stack" aria-label="Oferta actual de Queso Fresco Artesanal">
             <span class="price-mixed">
@@ -1531,12 +1812,12 @@
       </article>
 
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>Oferta Limitada</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span><span class="timer countdown-timer">--:--:--</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1504713722161-128640987773?auto=format&fit=crop&w=800&q=80" alt="Tortillas de maíz recién hechas" loading="lazy">
         </div>
         <div class="product-body">
-          <h3 class="product-title">Tortillas de Maíz Frescas</h3>
+          <h3 class="product-title">MIERCOLAZO DE DESCUENTO %</h3>
           <p class="product-info">Paquete diario caliente listo para tu mesa.</p>
           <div class="price-stack" aria-label="Oferta actual de Tortillas de Maíz Frescas">
             <span class="price-mixed">
@@ -1551,12 +1832,12 @@
       </article>
 
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>Oferta Limitada</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span><span class="timer countdown-timer">--:--:--</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1603048305487-246a5ac76770?auto=format&fit=crop&w=800&q=80" alt="Frijoles pintos a granel" loading="lazy">
         </div>
         <div class="product-body">
-          <h3 class="product-title">Frijoles Pintos a Granel</h3>
+          <h3 class="product-title">MIERCOLAZO DE DESCUENTO %</h3>
           <p class="product-info">Seleccionados y listos para tus guisos caseros.</p>
           <div class="price-stack" aria-label="Oferta actual de Frijoles Pintos a Granel">
             <span class="price-mixed">
@@ -1571,12 +1852,12 @@
       </article>
 
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>Oferta Limitada</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span><span class="timer countdown-timer">--:--:--</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1570696565225-4c2d9373629d?auto=format&fit=crop&w=800&q=80" alt="Saco de arroz" loading="lazy">
         </div>
         <div class="product-body">
-          <h3 class="product-title">Arroz Jazmín 16 lb</h3>
+          <h3 class="product-title">MIERCOLAZO DE DESCUENTO %</h3>
           <p class="product-info">Grano aromático ideal para acompañar tus platillos.</p>
           <div class="price-stack" aria-label="Oferta actual de Arroz Jazmín 16 lb">
             <span class="price-mixed">
@@ -1591,12 +1872,12 @@
       </article>
 
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>Oferta Limitada</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span><span class="timer countdown-timer">--:--:--</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1601000938259-9e31fbc24c34?auto=format&fit=crop&w=800&q=80" alt="Chiles jalapeños frescos" loading="lazy">
         </div>
         <div class="product-body">
-          <h3 class="product-title">Chiles Jalapeños</h3>
+          <h3 class="product-title">MIERCOLAZO DE DESCUENTO %</h3>
           <p class="product-info">Picor auténtico para tus salsas y marinados.</p>
           <div class="price-stack" aria-label="Oferta actual de Chiles Jalapeños">
             <span class="price-mixed">
@@ -1611,12 +1892,12 @@
       </article>
 
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>Oferta Limitada</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span><span class="timer countdown-timer">--:--:--</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1615485737457-3ab1d1c0be1d?auto=format&fit=crop&w=800&q=80" alt="Mangos ataulfo maduros" loading="lazy">
         </div>
         <div class="product-body">
-          <h3 class="product-title">Mango Ataulfo</h3>
+          <h3 class="product-title">MIERCOLAZO DE DESCUENTO %</h3>
           <p class="product-info">Dulce y jugoso, perfecto para licuados o postres.</p>
           <div class="price-stack" aria-label="Oferta actual de Mango Ataulfo">
             <span class="price-mixed">
@@ -1631,12 +1912,12 @@
       </article>
 
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>Oferta Limitada</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span><span class="timer countdown-timer">--:--:--</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=800&q=80" alt="Crema mexicana en frasco" loading="lazy">
         </div>
         <div class="product-body">
-          <h3 class="product-title">Crema Mexicana</h3>
+          <h3 class="product-title">MIERCOLAZO DE DESCUENTO %</h3>
           <p class="product-info">Consistencia cremosa para chilaquiles y antojitos.</p>
           <div class="price-stack" aria-label="Oferta actual de Crema Mexicana">
             <span class="price-mixed">
@@ -1651,12 +1932,12 @@
       </article>
 
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>Oferta Limitada</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span><span class="timer countdown-timer">--:--:--</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1483695028939-5bb13f8648b0?auto=format&fit=crop&w=800&q=80" alt="Pan bolillo recién horneado" loading="lazy">
         </div>
         <div class="product-body">
-          <h3 class="product-title">Bolillo Recién Horneado</h3>
+          <h3 class="product-title">MIERCOLAZO DE DESCUENTO %</h3>
           <p class="product-info">Corteza crujiente y migajón suave todas las tardes.</p>
           <div class="price-stack" aria-label="Oferta actual de Bolillo Recién Horneado">
             <span class="price-mixed">
@@ -1671,12 +1952,12 @@
       </article>
 
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>Oferta Limitada</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span><span class="timer countdown-timer">--:--:--</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?auto=format&fit=crop&w=800&q=80" alt="Taza de café de olla" loading="lazy">
         </div>
         <div class="product-body">
-          <h3 class="product-title">Café de Olla Molido</h3>
+          <h3 class="product-title">MIERCOLAZO DE DESCUENTO %</h3>
           <p class="product-info">Notas de canela y piloncillo para tus mañanas.</p>
           <div class="price-stack" aria-label="Oferta actual de Café de Olla Molido">
             <span class="price-mixed">
@@ -1691,12 +1972,12 @@
       </article>
 
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>Oferta Limitada</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span><span class="timer countdown-timer">--:--:--</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1543353071-10c8ba85a904?auto=format&fit=crop&w=800&q=80" alt="Racimos de uvas rojas" loading="lazy">
         </div>
         <div class="product-body">
-          <h3 class="product-title">Uva Roja Sin Semilla</h3>
+          <h3 class="product-title">MIERCOLAZO DE DESCUENTO %</h3>
           <p class="product-info">Dulces y crujientes para snacks saludables.</p>
           <div class="price-stack" aria-label="Oferta actual de Uva Roja Sin Semilla">
             <span class="price-mixed">
@@ -1791,6 +2072,8 @@
     </div>
   </section>
 
+  </main>
+
   <footer>
     <div class="foot">
       <span>© <span id="year"></span> El Mexiquense Market</span>
@@ -1799,6 +2082,50 @@
   </footer>
 
   <script>
+    // Corrección de restauración de scroll al recargar en Safari
+    (function(){
+      const ua = navigator.userAgent || '';
+      const isSafari = /Safari/i.test(ua) && !/Chrome|CriOS|Chromium|Android|Edg/i.test(ua);
+      if (!isSafari || window.location.hash) {
+        return;
+      }
+
+      function getNavigationEntry(){
+        if (window.performance && typeof window.performance.getEntriesByType === 'function') {
+          const entries = window.performance.getEntriesByType('navigation');
+          if (entries && entries.length) {
+            return entries[0];
+          }
+        }
+        return null;
+      }
+
+      const navigationEntry = getNavigationEntry();
+      const isReloadNavigation = navigationEntry ? navigationEntry.type === 'reload' : (window.performance && window.performance.navigation ? window.performance.navigation.type === 1 : false);
+      if (!isReloadNavigation) {
+        return;
+      }
+
+      let previousRestoration = null;
+      if ('scrollRestoration' in history) {
+        previousRestoration = history.scrollRestoration;
+        history.scrollRestoration = 'manual';
+      }
+
+      const resetScroll = function(){
+        window.scrollTo(0, 0);
+        if (previousRestoration !== null) {
+          history.scrollRestoration = previousRestoration;
+        }
+      };
+
+      if (document.readyState === 'complete') {
+        resetScroll();
+      } else {
+        window.addEventListener('load', resetScroll, { once: true });
+      }
+    }());
+
     // Año dinámico
     document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -1846,22 +2173,74 @@
         }
       }, 6000);
 
+      const stopAutoScroll = () => {
+        if (auto) {
+          clearInterval(auto);
+          auto = null;
+        }
+      };
+
       ['pointerdown','touchstart','wheel','keydown','focusin'].forEach(evt=>{
-        track.addEventListener(evt, ()=> { clearInterval(auto); }, { passive:true });
+        track.addEventListener(evt, stopAutoScroll, { passive:true });
+      });
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState !== 'visible') {
+          stopAutoScroll();
+        }
       });
 
       prev.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') prev.click(); });
       next.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') next.click(); });
     }
 
-    // Suavizar anclas (fallback)
-    document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
-      anchor.addEventListener('click', e=>{
-        const id = anchor.getAttribute('href');
-        if(id.length>1 && document.querySelector(id)){
-          e.preventDefault();
-          document.querySelector(id).scrollIntoView({ behavior:'smooth', block:'start' });
+    // Navegación accesible con desplazamiento suave
+    const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', event => {
+        const hash = anchor.getAttribute('href');
+        if (!hash || hash.length <= 1) {
+          return;
         }
+
+        const target = document.querySelector(hash);
+        if (!target) {
+          return;
+        }
+
+        event.preventDefault();
+        const behavior = prefersReducedMotion ? 'auto' : 'smooth';
+        target.scrollIntoView({ behavior, block: 'start' });
+
+        const focusTarget = () => {
+          const previousTabIndex = target.getAttribute('tabindex');
+          const needsTemporaryTabIndex = target.tabIndex === -1;
+          if (needsTemporaryTabIndex) {
+            target.setAttribute('tabindex', '-1');
+          }
+
+          if (typeof target.focus === 'function') {
+            target.focus({ preventScroll: true });
+          }
+
+          if (needsTemporaryTabIndex) {
+            target.addEventListener('blur', () => {
+              if (previousTabIndex !== null) {
+                target.setAttribute('tabindex', previousTabIndex);
+              } else {
+                target.removeAttribute('tabindex');
+              }
+            }, { once: true });
+          }
+        };
+
+        if (window.history && typeof window.history.pushState === 'function') {
+          window.history.pushState(null, '', hash);
+        } else {
+          window.location.hash = hash;
+        }
+
+        window.setTimeout(focusTarget, prefersReducedMotion ? 0 : 250);
       });
     });
 
@@ -1992,24 +2371,14 @@
     }
 
     // ===== Ofertas del día =====
-    const offersSection = document.getElementById('ofertas');
-    function refreshOffersVisibility(){
-      if(!offersSection) return;
-      const today = new Date();
-      if(today.getDay() === 3){
-        offersSection.style.display = '';
-      } else {
-        offersSection.style.display = 'none';
-      }
-    }
-    refreshOffersVisibility();
-    setInterval(refreshOffersVisibility, 60 * 60 * 1000);
-
     const countdownTimers = document.querySelectorAll('.countdown-timer');
     function formatPart(value){ return String(value).padStart(2, '0'); }
+    const twoMinuteDuration = 2 * 60 * 1000;
+    let twoMinuteCycleStart = null;
     function updateCountdown(){
       const now = new Date();
       if(now.getDay() === 3){
+        twoMinuteCycleStart = null;
         const start = new Date(now);
         start.setHours(0,0,0,0);
         let diff = start.getTime() + 24*60*60*1000 - now.getTime();
@@ -2022,9 +2391,17 @@
           timer.setAttribute('aria-label', `Tiempo restante ${parseInt(hours,10)} horas, ${parseInt(minutes,10)} minutos y ${parseInt(seconds,10)} segundos`);
         });
       } else {
+        const nowTime = now.getTime();
+        if(twoMinuteCycleStart === null || nowTime - twoMinuteCycleStart >= twoMinuteDuration){
+          twoMinuteCycleStart = nowTime;
+        }
+        let diff = twoMinuteDuration - (nowTime - twoMinuteCycleStart);
+        if(diff < 0){ diff = 0; }
+        const minutes = formatPart(Math.floor(diff / 60000));
+        const seconds = formatPart(Math.floor((diff % 60000) / 1000));
         countdownTimers.forEach(timer => {
-          timer.textContent = '--:--:--';
-          timer.setAttribute('aria-label', 'La próxima oferta limitada comienza el miércoles');
+          timer.textContent = `00:${minutes}:${seconds}`;
+          timer.setAttribute('aria-label', `Nueva sorpresa en ${parseInt(minutes,10)} minutos y ${parseInt(seconds,10)} segundos`);
         });
       }
     }
@@ -2059,23 +2436,3 @@
   </script>
 </body>
 </html>
-
-  <!-- Vista previa productos destacados:
-  Harina P.A.N. Maíz Blanco — $4.99
-  Maseca Maíz Instantáneo — $3.99
-  Frijoles Negros Listos — $2.79
-  Salsa Picante Artesanal — $5.49
-  Queso Fresco Artesanal — $6.89
-  Chiles Poblanos Frescos — $3.49
-  Pan Dulce Variado — $7.25
-  Recetas destacadas actuales:
-  Guacamole cremoso tradicional — 15 min
-  Sopa de tortilla ahumada — 35 min
-  Elote callejero con queso cotija — 25 min
-  Carnitas estilo Michoacán — 2 h
-  Tacos al pastor caseros — 1 h 10 min
-  Mole poblano con pollo — 1 h 45 min
-  Churros con chocolate espeso — 45 min
-  Pastel tres leches con cajeta — 1 h 30 min
-  Arroz con leche y canela — 50 min
-  -->
