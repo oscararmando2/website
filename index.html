@@ -1220,6 +1220,147 @@
       to{ opacity:1; transform: translateY(0); }
     }
 
+    /* ===== Programa de Lealtad ===== */
+    .loyalty-section{
+      position:relative;
+      background:linear-gradient(130deg, rgba(29,132,69,.1), rgba(212,84,56,.08));
+      padding: clamp(3rem, 6vw, 4.5rem) 0;
+      overflow:hidden;
+    }
+    .loyalty-section::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:radial-gradient(circle at 12% 18%, rgba(29,132,69,.18) 0%, rgba(29,132,69,0) 55%),
+                 radial-gradient(circle at 88% 82%, rgba(212,84,56,.18) 0%, rgba(212,84,56,0) 60%);
+      pointer-events:none;
+      opacity:.8;
+    }
+    .loyalty-grid{
+      position:relative;
+      z-index:1;
+      width:var(--container);
+      margin:0 auto;
+      display:grid;
+      gap: clamp(1.8rem, 4vw, 3.2rem);
+      align-items:center;
+    }
+    @media (min-width: 900px){
+      .loyalty-grid{
+        grid-template-columns: 1.05fr .95fr;
+      }
+    }
+    .loyalty-copy{
+      background:rgba(255,255,255,.92);
+      border-radius:26px;
+      padding: clamp(1.8rem, 4vw, 2.6rem);
+      box-shadow:0 26px 48px rgba(29,132,69,.15);
+      display:flex;
+      flex-direction:column;
+      gap:1.1rem;
+    }
+    .loyalty-kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:.4rem;
+      padding:.35rem .75rem;
+      border-radius:999px;
+      font-size:.75rem;
+      font-weight:700;
+      letter-spacing:.45px;
+      text-transform:uppercase;
+      background:rgba(29,132,69,.16);
+      color:var(--verde);
+      align-self:flex-start;
+    }
+    .loyalty-copy h2{
+      margin:0;
+      font-size: clamp(1.65rem, 3.8vw, 2.3rem);
+      color:var(--verde);
+      line-height:1.2;
+    }
+    .loyalty-copy p{
+      margin:0;
+      color:var(--muted);
+      font-size:1rem;
+      line-height:1.65;
+    }
+    .loyalty-benefits{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:grid;
+      gap:.75rem;
+    }
+    .loyalty-benefits li{
+      position:relative;
+      padding-left:2rem;
+      font-weight:600;
+      color:var(--texto);
+    }
+    .loyalty-benefits li::before{
+      content:"★";
+      position:absolute;
+      left:0;
+      top:50%;
+      transform:translateY(-50%);
+      width:1.35rem;
+      height:1.35rem;
+      border-radius:50%;
+      background:rgba(212,84,56,.16);
+      color:var(--rojo);
+      display:grid;
+      place-items:center;
+      font-size:.8rem;
+      font-weight:700;
+    }
+    .loyalty-note{
+      font-size:.9rem;
+      color:var(--muted);
+    }
+    .loyalty-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.75rem;
+      align-items:center;
+    }
+    .loyalty-media{
+      position:relative;
+      border-radius:30px;
+      overflow:hidden;
+      box-shadow:0 28px 50px rgba(0,0,0,.18);
+      min-height:300px;
+      isolation:isolate;
+    }
+    .loyalty-media::before{
+      content:"";
+      position:absolute;
+      inset:-8%;
+      background:linear-gradient(135deg, rgba(29,132,69,.45), rgba(212,84,56,.35));
+      filter:blur(46px);
+      z-index:-1;
+    }
+    .loyalty-media img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+    @media (max-width: 720px){
+      .loyalty-copy{
+        text-align:center;
+        align-items:center;
+      }
+      .loyalty-kicker{
+        align-self:center;
+      }
+      .loyalty-benefits{
+        text-align:left;
+      }
+      .loyalty-actions{
+        justify-content:center;
+      }
+    }
+
     /* ===== Contacto ===== */
     #contacto{
       background:linear-gradient(180deg, #ffffff 0%, #f3f6f4 100%);
@@ -1863,6 +2004,29 @@
       </div>
       <figure class="loteria-media">
         <img src="https://scontent-qro1-1.xx.fbcdn.net/v/t39.30808-6/571212017_798623846483485_7127450510447971433_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=k85onK-uoksQ7kNvwFN9vpC&_nc_oc=AdkOs_X8Xe9v8-FmMhUw73-zUF3tP_rMVC4LAgpnjeYqdJvTaIy1AV9Ajsm7pGTpbT7UC343ZU7IWabB9fDJXLRs&_nc_zt=23&_nc_ht=scontent-qro1-1.xx&_nc_gid=spn32O9SaqxemaDoB0Q0dw&oh=00_AfdNUdeaS7Py7iYsODwLHXbvRPwl5gBF3K9pZXwQBfunhA&oe=69047F1B" loading="lazy">
+      </figure>
+    </div>
+  </section>
+
+  <section class="loyalty-section" aria-labelledby="lealtad-titulo">
+    <div class="loyalty-grid">
+      <div class="loyalty-copy">
+        <span class="loyalty-kicker">Programa de lealtad</span>
+        <h2 id="lealtad-titulo">Compra con nosotros y gana puntos por cada visita</h2>
+        <p>En El Mexiquense Market queremos agradecer tu preferencia con un programa de lealtad diseñado para premiar cada compra. Registra tus tickets, acumula puntos y canjéalos por descuentos exclusivos, experiencias gastronómicas especiales y regalos pensados para tu familia.</p>
+        <ul class="loyalty-benefits">
+          <li>Solicita tus gift cards en cajas y activa tus recompensas desde la primera compra.</li>
+          <li>Recibe puntos automáticos por cada dólar gastado y multiplica tus beneficios en eventos especiales.</li>
+          <li>Pregunta a nuestro equipo cómo convertirte en acreedor del programa y mantente informado de promociones VIP.</li>
+        </ul>
+        <p class="loyalty-note">El registro es gratuito y solo necesitas tu número de teléfono o correo electrónico para comenzar a sumar beneficios.</p>
+        <div class="loyalty-actions" role="group" aria-label="Acciones del programa de lealtad">
+          <a class="btn" href="#contacto">Únete hoy mismo</a>
+          <a class="btn btn-outline" href="#contacto">Solicita información en tienda</a>
+        </div>
+      </div>
+      <figure class="loyalty-media">
+        <img src="https://scontent-qro1-2.xx.fbcdn.net/v/t39.30808-6/571357553_820620220947661_1769160049778936694_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=fJlBiQ6hpygQ7kNvwGTfVk7&_nc_oc=AdmLYoGeTCiulqB18SU1zxA6WdD8wbAQOFOS_fTYv8Is-OnZdLjpG26-E_6zLQ7uKFXzQaT8xevkI1yTpdgF-_mC&_nc_zt=23&_nc_ht=scontent-qro1-2.xx&_nc_gid=asxY_d-nG4L0_NpuMlWprg&oh=00_Afcf5aqJJsrbJavwCIiPZ2muAKgmKc3xHi7QN4afMks8wQ&oe=69059838" alt="Clientes felices mostrando sus tarjetas de lealtad en El Mexiquense Market" loading="lazy">
       </figure>
     </div>
   </section>
