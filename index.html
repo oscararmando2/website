@@ -2050,6 +2050,24 @@
   </footer>
 
   <script>
+    // Forzar posición inicial al recargar en navegadores que restauran el scroll (ej. Safari)
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+
+    const resetScrollTop = () => {
+      if (!window.location.hash) {
+        window.scrollTo(0, 0);
+      }
+    };
+
+    window.addEventListener('load', resetScrollTop);
+    window.addEventListener('pageshow', (event) => {
+      if (event.persisted) {
+        resetScrollTop();
+      }
+    });
+
     // Año dinámico
     document.getElementById('year').textContent = new Date().getFullYear();
 
