@@ -7,6 +7,8 @@
   <meta name="description" content="El Mexiquense Market: frescura diaria, precios justos, ofertas y recetas para tu cocina." />
   <meta name="theme-color" content="#1D8445" />
   <meta http-equiv="Cache-Control" content="public, max-age=604800" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
@@ -30,6 +32,23 @@
     body{
       margin:0; font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
       color:var(--texto); background:var(--crema); line-height:1.5;
+    }
+    .skip-link{
+      position:absolute;
+      left:50%;
+      transform:translate(-50%, -120%);
+      padding:.75rem 1.15rem;
+      background:var(--verde);
+      color:var(--blanco);
+      border-radius:999px;
+      font-weight:600;
+      z-index:1100;
+      transition:transform .25s ease;
+    }
+    .skip-link:focus{
+      transform:translate(-50%, 10px);
+      outline:3px solid var(--blanco);
+      outline-offset:2px;
     }
     img{ max-width:100%; display:block; }
     a{ color:inherit; text-decoration:none; }
@@ -77,6 +96,13 @@
     }
     .hero h1{ font-size: clamp(2rem, 5.5vw, 3.2rem); margin:0 0 .5rem; line-height:1.08; }
     .hero p{ font-size:clamp(1rem, 2.5vw, 1.2rem); opacity:.95; margin:0 0 1.25rem; }
+    .hero-actions{
+      display:flex;
+      justify-content:center;
+      gap:.65rem;
+      flex-wrap:wrap;
+      margin-top:1.5rem;
+    }
     .btn{
       display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
       background:var(--verde); color:white; font-weight:700;
@@ -1252,6 +1278,7 @@
   </style>
 </head>
 <body class="page-home" data-page="home">
+  <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
 
   <!-- ===== NAV ===== -->
   <header>
@@ -1269,13 +1296,16 @@
     </div>
   </header>
 
+  <main id="contenido-principal" tabindex="-1">
   <!-- ===== HERO ===== -->
   <section id="inicio" class="hero">
     <div class="container">
       <h1>El Sabor de México en Cada Compra</h1>
       <p>Frescura diaria • Precios justos • Calidad garantizada</p>
-      <a class="btn" href="#promociones">Ver promociones</a>
-      <a class="btn btn-outline" href="#ofertas" style="margin-left:.5rem;">Ofertas del día</a>
+      <div class="hero-actions" role="group" aria-label="Acciones destacadas">
+        <a class="btn" href="#promociones">Ver promociones</a>
+        <a class="btn btn-outline" href="#ofertas">Ofertas del día</a>
+      </div>
     </div>
   </section>
 
@@ -1544,7 +1574,7 @@
     <div class="mexiquense-scroll" role="list" aria-label="Productos exclusivos Nadie como el Mexiquense">
       <article class="mexiquense-card" role="listitem">
         <figure class="mexiquense-card__media" aria-hidden="true">
-          <img src="https://images.unsplash.com/photo-1589923188900-85dae523342b?auto=format&fit=crop&w=700&q=80" alt="Cartón de huevos frescos Best Choice">
+          <img src="https://images.unsplash.com/photo-1589923188900-85dae523342b?auto=format&fit=crop&w=700&q=80" alt="Cartón de huevos frescos Best Choice" loading="lazy">
         </figure>
         <div class="mexiquense-card__body">
           <h3 class="mexiquense-card__title">Huevo Best Choice 12 pack</h3>
@@ -1555,7 +1585,7 @@
 
       <article class="mexiquense-card" role="listitem">
         <figure class="mexiquense-card__media" aria-hidden="true">
-          <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=700&q=80" alt="Botellas de leche Prairie Farms">
+          <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=700&q=80" alt="Botellas de leche Prairie Farms" loading="lazy">
         </figure>
         <div class="mexiquense-card__body">
           <h3 class="mexiquense-card__title">Leche Prairie Farms</h3>
@@ -1566,7 +1596,7 @@
 
       <article class="mexiquense-card" role="listitem">
         <figure class="mexiquense-card__media" aria-hidden="true">
-          <img src="https://images.unsplash.com/photo-1604908178395-52a6c1af8b67?auto=format&fit=crop&w=700&q=80" alt="Paquete de tortillas de maíz">
+          <img src="https://images.unsplash.com/photo-1604908178395-52a6c1af8b67?auto=format&fit=crop&w=700&q=80" alt="Paquete de tortillas de maíz" loading="lazy">
         </figure>
         <div class="mexiquense-card__body">
           <h3 class="mexiquense-card__title">Tortillas Guerrero 80 ct</h3>
@@ -1577,7 +1607,7 @@
 
       <article class="mexiquense-card" role="listitem">
         <figure class="mexiquense-card__media" aria-hidden="true">
-          <img src="https://images.unsplash.com/photo-1586201375761-83865001e31b?auto=format&fit=crop&w=700&q=80" alt="Manojos de cilantro fresco">
+          <img src="https://images.unsplash.com/photo-1586201375761-83865001e31b?auto=format&fit=crop&w=700&q=80" alt="Manojos de cilantro fresco" loading="lazy">
         </figure>
         <div class="mexiquense-card__body">
           <h3 class="mexiquense-card__title">Cilantro Fresco por manojo</h3>
@@ -1588,7 +1618,7 @@
 
       <article class="mexiquense-card" role="listitem">
         <figure class="mexiquense-card__media" aria-hidden="true">
-          <img src="https://images.unsplash.com/photo-1580915411954-282cb1b0d780?auto=format&fit=crop&w=700&q=80" alt="Queso fresco redondo sobre tabla">
+          <img src="https://images.unsplash.com/photo-1580915411954-282cb1b0d780?auto=format&fit=crop&w=700&q=80" alt="Queso fresco redondo sobre tabla" loading="lazy">
         </figure>
         <div class="mexiquense-card__body">
           <h3 class="mexiquense-card__title">Queso Fresco El Mexiquense</h3>
@@ -1599,7 +1629,7 @@
 
       <article class="mexiquense-card" role="listitem">
         <figure class="mexiquense-card__media" aria-hidden="true">
-          <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=700&q=80" alt="Varios chiles secos y especias">
+          <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=700&q=80" alt="Varios chiles secos y especias" loading="lazy">
         </figure>
         <div class="mexiquense-card__body">
           <h3 class="mexiquense-card__title">Variedad de Chiles Secos</h3>
@@ -1610,7 +1640,7 @@
 
       <article class="mexiquense-card" role="listitem">
         <figure class="mexiquense-card__media" aria-hidden="true">
-          <img src="https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=700&q=80" alt="Bolsa de café tostado">
+          <img src="https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=700&q=80" alt="Bolsa de café tostado" loading="lazy">
         </figure>
         <div class="mexiquense-card__body">
           <h3 class="mexiquense-card__title">Café de Olla Molido 12 oz</h3>
@@ -1621,7 +1651,7 @@
 
       <article class="mexiquense-card" role="listitem">
         <figure class="mexiquense-card__media" aria-hidden="true">
-          <img src="https://images.unsplash.com/photo-1612874471953-1dd91e5dba4e?auto=format&fit=crop&w=700&q=80" alt="Racimo de plátanos maduros">
+          <img src="https://images.unsplash.com/photo-1612874471953-1dd91e5dba4e?auto=format&fit=crop&w=700&q=80" alt="Racimo de plátanos maduros" loading="lazy">
         </figure>
         <div class="mexiquense-card__body">
           <h3 class="mexiquense-card__title">Plátano Macho por libra</h3>
@@ -1632,7 +1662,7 @@
 
       <article class="mexiquense-card" role="listitem">
         <figure class="mexiquense-card__media" aria-hidden="true">
-          <img src="https://images.unsplash.com/photo-1580915411970-82ebaddea1a3?auto=format&fit=crop&w=700&q=80" alt="Paquete de crema mexicana">
+          <img src="https://images.unsplash.com/photo-1580915411970-82ebaddea1a3?auto=format&fit=crop&w=700&q=80" alt="Paquete de crema mexicana" loading="lazy">
         </figure>
         <div class="mexiquense-card__body">
           <h3 class="mexiquense-card__title">Crema Mexicana 16 oz</h3>
@@ -1643,7 +1673,7 @@
 
       <article class="mexiquense-card" role="listitem">
         <figure class="mexiquense-card__media" aria-hidden="true">
-          <img src="https://images.unsplash.com/photo-1505252585461-04db1eb84625?auto=format&fit=crop&w=700&q=80" alt="Frasco de salsa verde">
+          <img src="https://images.unsplash.com/photo-1505252585461-04db1eb84625?auto=format&fit=crop&w=700&q=80" alt="Frasco de salsa verde" loading="lazy">
         </figure>
         <div class="mexiquense-card__body">
           <h3 class="mexiquense-card__title">Salsa Verde Casera 24 oz</h3>
@@ -1654,7 +1684,7 @@
 
       <article class="mexiquense-card" role="listitem">
         <figure class="mexiquense-card__media" aria-hidden="true">
-          <img src="https://images.unsplash.com/photo-1516685018646-549198525c1b?auto=format&fit=crop&w=700&q=80" alt="Bolsa de arroz integral">
+          <img src="https://images.unsplash.com/photo-1516685018646-549198525c1b?auto=format&fit=crop&w=700&q=80" alt="Bolsa de arroz integral" loading="lazy">
         </figure>
         <div class="mexiquense-card__body">
           <h3 class="mexiquense-card__title">Arroz Integral 5 lb</h3>
@@ -1665,7 +1695,7 @@
 
       <article class="mexiquense-card" role="listitem">
         <figure class="mexiquense-card__media" aria-hidden="true">
-          <img src="https://images.unsplash.com/photo-1453831210728-695502f9f795?auto=format&fit=crop&w=700&q=80" alt="Varios chiles serranos">
+          <img src="https://images.unsplash.com/photo-1453831210728-695502f9f795?auto=format&fit=crop&w=700&q=80" alt="Varios chiles serranos" loading="lazy">
         </figure>
         <div class="mexiquense-card__body">
           <h3 class="mexiquense-card__title">Chile Serrano por libra</h3>
@@ -2042,6 +2072,8 @@
     </div>
   </section>
 
+  </main>
+
   <footer>
     <div class="foot">
       <span>© <span id="year"></span> El Mexiquense Market</span>
@@ -2050,23 +2082,49 @@
   </footer>
 
   <script>
-    // Forzar posición inicial al recargar en navegadores que restauran el scroll (ej. Safari)
-    if ('scrollRestoration' in history) {
-      history.scrollRestoration = 'manual';
-    }
+    // Corrección de restauración de scroll al recargar en Safari
+    (function(){
+      const ua = navigator.userAgent || '';
+      const isSafari = /Safari/i.test(ua) && !/Chrome|CriOS|Chromium|Android|Edg/i.test(ua);
+      if (!isSafari || window.location.hash) {
+        return;
+      }
 
-    const resetScrollTop = () => {
-      if (!window.location.hash) {
+      function getNavigationEntry(){
+        if (window.performance && typeof window.performance.getEntriesByType === 'function') {
+          const entries = window.performance.getEntriesByType('navigation');
+          if (entries && entries.length) {
+            return entries[0];
+          }
+        }
+        return null;
+      }
+
+      const navigationEntry = getNavigationEntry();
+      const isReloadNavigation = navigationEntry ? navigationEntry.type === 'reload' : (window.performance && window.performance.navigation ? window.performance.navigation.type === 1 : false);
+      if (!isReloadNavigation) {
+        return;
+      }
+
+      let previousRestoration = null;
+      if ('scrollRestoration' in history) {
+        previousRestoration = history.scrollRestoration;
+        history.scrollRestoration = 'manual';
+      }
+
+      const resetScroll = function(){
         window.scrollTo(0, 0);
-      }
-    };
+        if (previousRestoration !== null) {
+          history.scrollRestoration = previousRestoration;
+        }
+      };
 
-    window.addEventListener('load', resetScrollTop);
-    window.addEventListener('pageshow', (event) => {
-      if (event.persisted) {
-        resetScrollTop();
+      if (document.readyState === 'complete') {
+        resetScroll();
+      } else {
+        window.addEventListener('load', resetScroll, { once: true });
       }
-    });
+    }());
 
     // Año dinámico
     document.getElementById('year').textContent = new Date().getFullYear();
@@ -2115,22 +2173,74 @@
         }
       }, 6000);
 
+      const stopAutoScroll = () => {
+        if (auto) {
+          clearInterval(auto);
+          auto = null;
+        }
+      };
+
       ['pointerdown','touchstart','wheel','keydown','focusin'].forEach(evt=>{
-        track.addEventListener(evt, ()=> { clearInterval(auto); }, { passive:true });
+        track.addEventListener(evt, stopAutoScroll, { passive:true });
+      });
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState !== 'visible') {
+          stopAutoScroll();
+        }
       });
 
       prev.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') prev.click(); });
       next.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') next.click(); });
     }
 
-    // Suavizar anclas (fallback)
-    document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
-      anchor.addEventListener('click', e=>{
-        const id = anchor.getAttribute('href');
-        if(id.length>1 && document.querySelector(id)){
-          e.preventDefault();
-          document.querySelector(id).scrollIntoView({ behavior:'smooth', block:'start' });
+    // Navegación accesible con desplazamiento suave
+    const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', event => {
+        const hash = anchor.getAttribute('href');
+        if (!hash || hash.length <= 1) {
+          return;
         }
+
+        const target = document.querySelector(hash);
+        if (!target) {
+          return;
+        }
+
+        event.preventDefault();
+        const behavior = prefersReducedMotion ? 'auto' : 'smooth';
+        target.scrollIntoView({ behavior, block: 'start' });
+
+        const focusTarget = () => {
+          const previousTabIndex = target.getAttribute('tabindex');
+          const needsTemporaryTabIndex = target.tabIndex === -1;
+          if (needsTemporaryTabIndex) {
+            target.setAttribute('tabindex', '-1');
+          }
+
+          if (typeof target.focus === 'function') {
+            target.focus({ preventScroll: true });
+          }
+
+          if (needsTemporaryTabIndex) {
+            target.addEventListener('blur', () => {
+              if (previousTabIndex !== null) {
+                target.setAttribute('tabindex', previousTabIndex);
+              } else {
+                target.removeAttribute('tabindex');
+              }
+            }, { once: true });
+          }
+        };
+
+        if (window.history && typeof window.history.pushState === 'function') {
+          window.history.pushState(null, '', hash);
+        } else {
+          window.location.hash = hash;
+        }
+
+        window.setTimeout(focusTarget, prefersReducedMotion ? 0 : 250);
       });
     });
 
@@ -2328,23 +2438,3 @@
   </script>
 </body>
 </html>
-
-  <!-- Vista previa productos destacados:
-  Harina P.A.N. Maíz Blanco — $4.99
-  Maseca Maíz Instantáneo — $3.99
-  Frijoles Negros Listos — $2.79
-  Salsa Picante Artesanal — $5.49
-  Queso Fresco Artesanal — $6.89
-  Chiles Poblanos Frescos — $3.49
-  Pan Dulce Variado — $7.25
-  Recetas destacadas actuales:
-  Guacamole cremoso tradicional — 15 min
-  Sopa de tortilla ahumada — 35 min
-  Elote callejero con queso cotija — 25 min
-  Carnitas estilo Michoacán — 2 h
-  Tacos al pastor caseros — 1 h 10 min
-  Mole poblano con pollo — 1 h 45 min
-  Churros con chocolate espeso — 45 min
-  Pastel tres leches con cajeta — 1 h 30 min
-  Arroz con leche y canela — 50 min
-  -->
