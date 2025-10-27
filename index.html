@@ -503,111 +503,176 @@
 
     /* ===== Nadie como el Mexiquense ===== */
     .mexiquense-section{
-      background:linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(29,132,69,.06) 100%);
-      padding: clamp(3rem, 6vw, 4.5rem) 0;
+      position:relative;
+      padding: clamp(3.2rem, 7vw, 4.8rem) 0 clamp(3rem, 6.5vw, 4.5rem);
+      background:linear-gradient(135deg, rgba(29,132,69,.08) 0%, rgba(212,84,56,.08) 100%);
+      overflow:hidden;
+    }
+    .mexiquense-section::before,
+    .mexiquense-section::after{
+      content:"";
+      position:absolute;
+      width:420px;
+      height:420px;
+      border-radius:50%;
+      pointer-events:none;
+    }
+    .mexiquense-section::before{
+      top:-180px;
+      left:-120px;
+      background:radial-gradient(circle, rgba(29,132,69,.18) 0%, rgba(29,132,69,0) 70%);
+    }
+    .mexiquense-section::after{
+      bottom:-220px;
+      right:-160px;
+      background:radial-gradient(circle, rgba(212,84,56,.18) 0%, rgba(212,84,56,0) 70%);
     }
     .mexiquense-section .container{
+      position:relative;
+      z-index:1;
       display:flex;
       flex-direction:column;
-      gap:1.75rem;
+      gap: clamp(1.75rem, 4vw, 2.6rem);
     }
     .mexiquense-header{
-      text-align:center;
       display:flex;
-      flex-direction:column;
-      gap:.75rem;
+      flex-wrap:wrap;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:1.25rem;
     }
-    .mexiquense-title{
+    .mexiquense-kicker{
+      text-transform:uppercase;
+      letter-spacing:3px;
+      font-size:.72rem;
+      font-weight:700;
+      color:rgba(29,132,69,.75);
+      margin:0 0 .4rem;
+    }
+    .mexiquense-header h2{
       margin:0;
-      font-size: clamp(1.8rem, 5vw, 2.4rem);
+      font-size: clamp(1.7rem, 4vw, 2.35rem);
       color:var(--verde);
+      line-height:1.15;
     }
     .mexiquense-subtitle{
-      margin:0 auto;
-      max-width:540px;
+      margin:0;
+      max-width: clamp(320px, 40vw, 460px);
       color:var(--muted);
-      font-size:1rem;
+      font-size:.98rem;
     }
-    .mexiquense-scroll{
-      width:var(--container);
-      margin:0 auto;
+    .mexiquense-track{
       display:flex;
-      gap:1.2rem;
+      gap:1rem;
       overflow-x:auto;
-      padding:.35rem 0 1rem;
+      padding: .5rem 0 1.2rem;
       scroll-snap-type:x mandatory;
       -webkit-overflow-scrolling:touch;
     }
-    .mexiquense-scroll::-webkit-scrollbar{
+    .mexiquense-track::after{
+      content:"";
+      flex:0 0 clamp(.5rem, 2vw, 1.25rem);
+    }
+    .mexiquense-track::-webkit-scrollbar{
       height:10px;
     }
-    .mexiquense-scroll::-webkit-scrollbar-thumb{
-      background:rgba(0,0,0,.15);
+    .mexiquense-track::-webkit-scrollbar-thumb{
+      background:rgba(29,132,69,.25);
       border-radius:999px;
     }
     .mexiquense-card{
-      flex:0 0 auto;
-      min-width: clamp(220px, 68vw, 260px);
-      background:var(--blanco);
-      border-radius:20px;
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
-      scroll-snap-align:start;
-      transition: transform .25s ease, box-shadow .25s ease;
-    }
-    .mexiquense-card:hover{
-      transform: translateY(-6px);
-      box-shadow:0 18px 34px rgba(0,0,0,.14);
-    }
-    .mexiquense-card__media{
       position:relative;
-      padding-top:60%;
-      overflow:hidden;
-      background:linear-gradient(135deg, rgba(29,132,69,.08), rgba(212,84,56,.08));
-    }
-    .mexiquense-card__media img{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      transition: transform .4s ease;
-    }
-    .mexiquense-card:hover .mexiquense-card__media img{
-      transform: scale(1.05);
-    }
-    .mexiquense-card__body{
-      padding:1.2rem 1.3rem 1.4rem;
+      flex:0 0 auto;
+      min-width: clamp(200px, 60vw, 240px);
+      background:rgba(255,255,255,.96);
+      border-radius:18px;
+      padding:1.15rem 1.2rem 1.35rem;
+      box-shadow:0 16px 32px rgba(0,0,0,.08);
+      border:1px solid rgba(29,132,69,.08);
       display:flex;
       flex-direction:column;
       gap:.65rem;
+      scroll-snap-align:start;
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
     }
-    .mexiquense-card__title{
-      margin:0;
-      font-size:1.02rem;
+    .mexiquense-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:inherit;
+      background:linear-gradient(135deg, rgba(29,132,69,.18), rgba(212,84,56,.18));
+      opacity:0;
+      transition:opacity .3s ease;
+      z-index:-1;
+    }
+    .mexiquense-card:hover,
+    .mexiquense-card:focus-within{
+      transform: translateY(-6px);
+      box-shadow:0 24px 38px rgba(0,0,0,.12);
+      border-color:rgba(29,132,69,.25);
+    }
+    .mexiquense-card:hover::before,
+    .mexiquense-card:focus-within::before{
+      opacity:.22;
+    }
+    .mexiquense-card__tag{
+      align-self:flex-start;
+      display:inline-flex;
+      align-items:center;
+      gap:.3rem;
+      padding:.3rem .65rem;
+      border-radius:999px;
+      font-size:.72rem;
       font-weight:700;
-      color:var(--texto);
+      letter-spacing:.45px;
+      text-transform:uppercase;
+      background:rgba(29,132,69,.12);
+      color:var(--verde);
     }
-    .mexiquense-card__price{
+    .mexiquense-card h3{
       margin:0;
       font-size:1.05rem;
       font-weight:700;
-      color:var(--rojo);
+      color:var(--texto);
     }
-    .mexiquense-card__note{
+    .mexiquense-card p{
       margin:0;
-      font-size:.85rem;
       color:var(--muted);
+      font-size:.92rem;
+      line-height:1.5;
+    }
+    .mexiquense-card__price{
+      margin-top:auto;
+      display:flex;
+      flex-direction:column;
+      gap:.2rem;
+      font-weight:700;
+      color:var(--rojo);
+      font-size:1.05rem;
+    }
+    .mexiquense-card__price small{
+      font-weight:500;
+      color:rgba(0,0,0,.5);
+      font-size:.78rem;
+      letter-spacing:.2px;
+    }
+    .mexiquense-card__amount{
+      font-size: clamp(1.2rem, 3vw, 1.4rem);
+      line-height:1;
     }
     @media (max-width: 620px){
-      .mexiquense-section .container{
+      .mexiquense-header{
         align-items:flex-start;
-        text-align:left;
       }
-      .mexiquense-header{ align-items:flex-start; text-align:left; }
-      .mexiquense-subtitle{ max-width:100%; }
+      .mexiquense-subtitle{
+        max-width:100%;
+      }
+      .mexiquense-track{
+        gap:.85rem;
+      }
+      .mexiquense-card{
+        min-width: clamp(200px, 72vw, 240px);
+      }
     }
 
     /* ===== Recetas ===== */
@@ -1564,145 +1629,125 @@
     </div>
   </section>
 
-  <section class="mexiquense-section" aria-labelledby="mexiquense-title">
+  <section id="mexiquense" class="mexiquense-section" aria-labelledby="mexiquense-title">
     <div class="container">
       <div class="mexiquense-header">
-        <h2 id="mexiquense-title" class="mexiquense-title">Nadie como el Mexiquense</h2>
-        <p class="mexiquense-subtitle">Productos a precios que solo encontrarás con nosotros.</p>
+        <div>
+          <p class="mexiquense-kicker">Selección exclusiva</p>
+          <h2 id="mexiquense-title">Nadie como el Mexiquense</h2>
+        </div>
+        <p class="mexiquense-subtitle">Productos a precios que solo encontrarás con nosotros, listos para llevarte el auténtico sabor de casa.</p>
       </div>
-    </div>
-    <div class="mexiquense-scroll" role="list" aria-label="Productos exclusivos Nadie como el Mexiquense">
-      <article class="mexiquense-card" role="listitem">
-        <figure class="mexiquense-card__media" aria-hidden="true">
-          <img src="https://www.instacart.com/image-server/1200x1200/www.instacart.com/assets/domains/product-image/file/large_6a930469-dbc4-44d6-92ea-331416ff4953.jpeg" alt="Cartón de huevos frescos Best Choice" loading="lazy">
-        </figure>
-        <div class="mexiquense-card__body">
-          <h3 class="mexiquense-card__title">Huevo Best Choice 12 pack</h3>
-          <p class="mexiquense-card__price">$1.99</p>
-          <p class="mexiquense-card__note">Perfectos para tus desayunos diarios.</p>
-        </div>
-      </article>
-
-      <article class="mexiquense-card" role="listitem">
-        <figure class="mexiquense-card__media" aria-hidden="true">
-          <img src="https://i5.walmartimages.com/asr/bf947cb9-cc6e-4e5c-b54d-fcc4a57c07ec.9d934fa4ace6328c96fa0a0bd87a857f.png?odnHeight=768&odnWidth=768&odnBg=FFFFFF" alt="Botellas de leche Prairie Farms" loading="lazy">
-        </figure>
-        <div class="mexiquense-card__body">
-          <h3 class="mexiquense-card__title">Prairie Farms Dairy Milks</h3>
-          <p class="mexiquense-card__price">$3.99</p>
-          <p class="mexiquense-card__note">Galón fresco y cremoso para toda la familia.</p>
-        </div>
-      </article>
-
-      <article class="mexiquense-card" role="listitem">
-        <figure class="mexiquense-card__media" aria-hidden="true">
-          <img src="https://i5.walmartimages.com/asr/f856cd8c-8d0e-44fb-bc78-8389337fc262.203ad7ab8bf30ff1698d495192095a57.jpeg" alt="https://images-na.ssl-images-amazon.com/images/I/914C43kEYdL._AC_UL600_SR600,600_.jpg" loading="lazy">
-        </figure>
-        <div class="mexiquense-card__body">
-          <h3 class="mexiquense-card__title">Caja Tortillas El Milagro 80 ct</h3>
-          <p class="mexiquense-card__price">$3.49</p>
-          <p class="mexiquense-card__note">Suaves y listas para tus tacos favoritos.</p>
-        </div>
-      </article>
-
-      <article class="mexiquense-card" role="listitem">
-        <figure class="mexiquense-card__media" aria-hidden="true">
-          <img src="https://st2.depositphotos.com/1009329/9076/i/950/depositphotos_90760952-stock-photo-bunch-of-fresh-coriander-leaves.jpg" alt="Manojos de cilantro fresco" loading="lazy">
-        </figure>
-        <div class="mexiquense-card__body">
-          <h3 class="mexiquense-card__title">Cilantro Fresco por manojo</h3>
-          <p class="mexiquense-card__price">$0.69</p>
-          <p class="mexiquense-card__note">Aromático, ideal para salsas y guisos.</p>
-        </div>
-      </article>
-
-      <article class="mexiquense-card" role="listitem">
-        <figure class="mexiquense-card__media" aria-hidden="true">
-          <img src="https://cortesdist.com/wp-content/uploads/2024/12/8317-300x300.png" alt="Queso fresco redondo sobre tabla" loading="lazy">
-        </figure>
-        <div class="mexiquense-card__body">
-          <h3 class="mexiquense-card__title">La Finca Crema Mantequilla Olancho</h3>
-          <p class="mexiquense-card__price">$5.99</p>
-          <p class="mexiquense-card__note">Tradición artesanal para tus platillos.</p>
-        </div>
-      </article>
-
-      <article class="mexiquense-card" role="listitem">
-        <figure class="mexiquense-card__media" aria-hidden="true">
-          <img src="https://img.cdn4dd.com/cdn-cgi/image/fit=contain,width=1200,height=672,format=auto/https://doordash-static.s3.amazonaws.com/media/photosV2/632662dc-092a-445b-b9af-d964ae7b45df-retina-large.png" alt="Varios chiles secos y especias" loading="lazy">
-        </figure>
-        <div class="mexiquense-card__body">
-          <h3 class="mexiquense-card__title">Masecas 4 LB</h3>
-          <p class="mexiquense-card__price">$3.99</p>
-          <p class="mexiquense-card__note">Maseca regular, para tamales, nixta masa a solo $3,99 c/u</p>
-        </div>
-      </article>
-
-      <article class="mexiquense-card" role="listitem">
-        <figure class="mexiquense-card__media" aria-hidden="true">
-          <img src="https://m.media-amazon.com/images/I/71Lxe9rdyQL.jpg" loading="lazy">
-        </figure>
-        <div class="mexiquense-card__body">
-          <h3 class="mexiquense-card__title">Harina Pan 4 LB</h3>
-          <p class="mexiquense-card__price">$4.99</p>
-          <p class="mexiquense-card__note">Somos los reyes de la harina Pan, prepara tus arepas con ingredientes de alta calidad a precios justos.</p>
-        </div>
-      </article>
-
-      <article class="mexiquense-card" role="listitem">
-        <figure class="mexiquense-card__media" aria-hidden="true">
-          <img src="https://amarket.com.bo/cdn/shop/files/9000165_1024x1024.jpg?v=1712346074" alt="https://mercadoacasa.mx/cdn/shop/products/2502856-00-CH515Wx515H_580x.jpg?v=1587779675" loading="lazy">
-        </figure>
-        <div class="mexiquense-card__body">
-          <h3 class="mexiquense-card__title">Plátano Macho por libra</h3>
-          <p class="mexiquense-card__price">$0.79</p>
-          <p class="mexiquense-card__note">Imprescindibles para tostones y postres.</p>
-        </div>
-      </article>
-
-      <article class="mexiquense-card" role="listitem">
-        <figure class="mexiquense-card__media" aria-hidden="true">
-          <img src="https://chedrauimx.vtexassets.com/arquivos/ids/56850177-800-auto?v=638966924978270000&width=800&height=auto&aspect=true" alt="https://i5.walmartimages.com/asr/20a5b9b6-22f7-4008-80da-a84cf78faa8a.f5a9bbf53e5fd1a45f3b67ed40410ebd.png" loading="lazy">
-        </figure>
-        <div class="mexiquense-card__body">
-          <h3 class="mexiquense-card__title">Crema LALA Mexicana 16 oz</h3>
-          <p class="mexiquense-card__price">$3.59</p>
-          <p class="mexiquense-card__note">Textura suave para enchiladas y antojitos.</p>
-        </div>
-      </article>
-
-      <article class="mexiquense-card" role="listitem">
-        <figure class="mexiquense-card__media" aria-hidden="true">
-          <img src="https://naturalbalance.club/cdn/shop/products/SALSA-VERDE.png?v=1750086320" alt="Frasco de salsa verde" loading="lazy">
-        </figure>
-        <div class="mexiquense-card__body">
-          <h3 class="mexiquense-card__title">Salsa Verde Casera 24 oz</h3>
-          <p class="mexiquense-card__price">$5.79 LB</p>
-          <p class="mexiquense-card__note">Hecha con tomatillo y cilantro fresco.</p>
-        </div>
-      </article>
-
-      <article class="mexiquense-card" role="listitem">
-        <figure class="mexiquense-card__media" aria-hidden="true">
-          <img src="https://cortesdist.com/wp-content/uploads/2024/12/3101.png" alt="Bolsa de arroz integral" loading="lazy">
-        </figure>
-        <div class="mexiquense-card__body">
-          <h3 class="mexiquense-card__title">Jasmine Rice La Finca 5 lb</h3>
-          <p class="mexiquense-card__price">$6.99</p>
-          <p class="mexiquense-card__note">Fuente de energía para toda la semana.</p>
-        </div>
-      </article>
-
-      <article class="mexiquense-card" role="listitem">
-        <figure class="mexiquense-card__media" aria-hidden="true">
-          <img src="https://laleyendaagricola.com/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsiZGF0YSI6OTcwNzAxLCJwdXIiOiJibG9iX2lkIn19--c8f961d1ed247e1533637c0b55dec4546d80f233/eyJfcmFpbHMiOnsiZGF0YSI6eyJmb3JtYXQiOiJqcGciLCJyZXNpemVfdG9fZml0IjpbODAwLDgwMF19LCJwdXIiOiJ2YXJpYXRpb24ifX0=--1420d7fd3d20057726f0ef3c0043db24ca0403be/Sin%20t%C3%ADtulo.jpg?locale=es" alt="Varios chiles serranos" loading="lazy">
-        </figure>
-        <div class="mexiquense-card__body">
-          <h3 class="mexiquense-card__title">Chile Serrano por libra</h3>
-          <p class="mexiquense-card__price">$.89</p>
-          <p class="mexiquense-card__note">Picor vibrante para tus salsas caseras.</p>
-        </div>
-      </article>
+      <div class="mexiquense-track" role="list" aria-label="Tarjetas de promociones exclusivas del Mexiquense">
+        <article class="mexiquense-card" role="listitem">
+          <span class="mexiquense-card__tag">Básicos</span>
+          <h3>Huevo Best Choice 12 pack</h3>
+          <p>Docena fresca para desayunos llenos de energía.</p>
+          <div class="mexiquense-card__price" aria-label="Precio uno con 99">
+            <span class="mexiquense-card__amount">$1.99</span>
+            <small>Por cartón</small>
+          </div>
+        </article>
+        <article class="mexiquense-card" role="listitem">
+          <span class="mexiquense-card__tag">Lácteos</span>
+          <h3>Leche Prairie Farms 1L</h3>
+          <p>Suave y cremosa, perfecta para tus licuados matutinos.</p>
+          <div class="mexiquense-card__price" aria-label="Precio uno con 99">
+            <span class="mexiquense-card__amount">$1.99</span>
+            <small>Por litro</small>
+          </div>
+        </article>
+        <article class="mexiquense-card" role="listitem">
+          <span class="mexiquense-card__tag">Panadería</span>
+          <h3>Pan dulce tricolor</h3>
+          <p>La docena consentida para las tardes con cafecito.</p>
+          <div class="mexiquense-card__price" aria-label="Precio tres con 50">
+            <span class="mexiquense-card__amount">$3.50</span>
+            <small>Docena</small>
+          </div>
+        </article>
+        <article class="mexiquense-card" role="listitem">
+          <span class="mexiquense-card__tag">Cocina</span>
+          <h3>Tortillas Guerrero 30 ct</h3>
+          <p>Tortilla suave ideal para tacos y quesadillas al instante.</p>
+          <div class="mexiquense-card__price" aria-label="Precio dos con 79">
+            <span class="mexiquense-card__amount">$2.79</span>
+            <small>Por paquete</small>
+          </div>
+        </article>
+        <article class="mexiquense-card" role="listitem">
+          <span class="mexiquense-card__tag">Despensa</span>
+          <h3>Frijoles La Costeña 28 oz</h3>
+          <p>Sazón casero listo para calentar y servir.</p>
+          <div class="mexiquense-card__price" aria-label="Precio uno con 49">
+            <span class="mexiquense-card__amount">$1.49</span>
+            <small>Lata grande</small>
+          </div>
+        </article>
+        <article class="mexiquense-card" role="listitem">
+          <span class="mexiquense-card__tag">Cereales</span>
+          <h3>Arroz Mahatma 2 lb</h3>
+          <p>Grano suelto para acompañar cualquier platillo.</p>
+          <div class="mexiquense-card__price" aria-label="Precio uno con 99">
+            <span class="mexiquense-card__amount">$1.99</span>
+            <small>Bolsa</small>
+          </div>
+        </article>
+        <article class="mexiquense-card" role="listitem">
+          <span class="mexiquense-card__tag">Despensa</span>
+          <h3>Aceite Mazola 32 oz</h3>
+          <p>Ligero y rendidor para tus recetas fritas y horneadas.</p>
+          <div class="mexiquense-card__price" aria-label="Precio tres con 99">
+            <span class="mexiquense-card__amount">$3.99</span>
+            <small>Botella</small>
+          </div>
+        </article>
+        <article class="mexiquense-card" role="listitem">
+          <span class="mexiquense-card__tag">Lácteos</span>
+          <h3>Queso Panela El Mexiquense 14 oz</h3>
+          <p>Textura suave que se dora perfecto en la plancha.</p>
+          <div class="mexiquense-card__price" aria-label="Precio cuatro con 49">
+            <span class="mexiquense-card__amount">$4.49</span>
+            <small>Pieza</small>
+          </div>
+        </article>
+        <article class="mexiquense-card" role="listitem">
+          <span class="mexiquense-card__tag">Lácteos</span>
+          <h3>Crema La Vaquita 16 oz</h3>
+          <p>Cremosa y ligera para tus antojitos favoritos.</p>
+          <div class="mexiquense-card__price" aria-label="Precio dos con 59">
+            <span class="mexiquense-card__amount">$2.59</span>
+            <small>Envase</small>
+          </div>
+        </article>
+        <article class="mexiquense-card" role="listitem">
+          <span class="mexiquense-card__tag">Salsas</span>
+          <h3>Salsa Valentina 1 lt</h3>
+          <p>El toque picante que nunca falta en la mesa mexicana.</p>
+          <div class="mexiquense-card__price" aria-label="Precio dos con 29">
+            <span class="mexiquense-card__amount">$2.29</span>
+            <small>Botella</small>
+          </div>
+        </article>
+        <article class="mexiquense-card" role="listitem">
+          <span class="mexiquense-card__tag">Enlatados</span>
+          <h3>Chiles Jalapeños La Morena 26 oz</h3>
+          <p>Listos para picar y acompañar tus platillos.</p>
+          <div class="mexiquense-card__price" aria-label="Precio uno con 89">
+            <span class="mexiquense-card__amount">$1.89</span>
+            <small>Lata</small>
+          </div>
+        </article>
+        <article class="mexiquense-card" role="listitem">
+          <span class="mexiquense-card__tag">Gourmet</span>
+          <h3>Café de olla molido 12 oz</h3>
+          <p>Aroma especiado para iniciar el día con calidez.</p>
+          <div class="mexiquense-card__price" aria-label="Precio cinco con 99">
+            <span class="mexiquense-card__amount">$5.99</span>
+            <small>Bolsa</small>
+          </div>
+        </article>
+      </div>
     </div>
   </section>
 
