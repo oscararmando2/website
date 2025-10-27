@@ -794,17 +794,33 @@
     .loteria-content{
       position:relative;
       display:flex;
-      align-items:center;
+      align-items:stretch;
       justify-content:space-between;
       gap:clamp(1.5rem, 4vw, 4rem);
       flex-wrap:wrap;
       z-index:1;
     }
     .loteria-text{
-      flex:1 1 320px;
+      flex:1 1 340px;
       display:flex;
       flex-direction:column;
-      gap:1.4rem;
+      gap:1.25rem;
+      background:rgba(255,255,255,.92);
+      padding:clamp(1.8rem, 4vw, 2.9rem);
+      border-radius:26px;
+      box-shadow:0 22px 45px rgba(19,46,89,.16);
+      position:relative;
+      overflow:hidden;
+      isolation:isolate;
+    }
+    .loteria-text::before{
+      content:"";
+      position:absolute;
+      inset:-6% -8% auto -8%;
+      height:58%;
+      background:linear-gradient(135deg, rgba(29,132,69,.1), rgba(206,17,38,.05));
+      border-radius:32px;
+      z-index:-1;
     }
     .loteria-flags{
       list-style:none;
@@ -877,50 +893,20 @@
     }
     .loteria-title{
       margin:0;
-      font-size: clamp(2.1rem, 4.8vw, 3rem);
-      line-height:1.08;
+      font-size: clamp(2.2rem, 4.6vw, 3rem);
+      line-height:1.05;
       color:#193153;
       text-shadow:0 1px 0 rgba(255,255,255,.85);
-    }
-    .loteria-subheading{
-      margin:0;
-      font-size:1rem;
-      font-weight:600;
-      color:#1f2a44;
-      letter-spacing:.02em;
-    }
-    .loteria-tips{
-      list-style:none;
-      padding:0;
-      margin:0;
-      display:grid;
-      gap:.85rem;
-    }
-    .loteria-tips li{
-      padding:.75rem 1rem;
-      border-radius:18px;
-      background:rgba(255,255,255,.9);
-      box-shadow:0 14px 35px rgba(19,46,89,.08);
-      color:#2f2f2f;
-      font-size:.98rem;
-      display:flex;
-      gap:.6rem;
-      align-items:flex-start;
-    }
-    .loteria-tips li::before{
-      content:"";
-      flex:0 0 16px;
-      height:16px;
-      border-radius:50%;
-      background:linear-gradient(135deg,#f9a602 0%,#d4312a 100%);
-      margin-top:.25rem;
-      box-shadow:0 4px 10px rgba(212,49,42,.3);
+      max-width:20ch;
     }
     .loteria-cta{
       align-self:flex-start;
       background:#ce1126;
       border-color:transparent;
-      box-shadow:0 18px 32px rgba(206,17,38,.26);
+      box-shadow:0 20px 38px rgba(206,17,38,.28);
+      padding:clamp(.85rem, 2.2vw, 1rem) clamp(1.4rem, 4vw, 2.2rem);
+      font-size:1.05rem;
+      border-radius:14px;
     }
     .loteria-cta:hover,
     .loteria-cta:focus-visible{
@@ -932,6 +918,7 @@
       flex:1 1 280px;
       max-width:460px;
       position:relative;
+      align-self:center;
     }
     .loteria-media::before{
       content:"";
@@ -959,6 +946,7 @@
       .loteria-text{
         flex-basis:100%;
         align-items:center;
+        padding:clamp(1.6rem, 6vw, 2.4rem);
       }
       .loteria-flags{
         justify-content:center;
@@ -966,11 +954,9 @@
       .flag-chip{
         font-size:.82rem;
       }
-      .loteria-tips li{
-        text-align:left;
-      }
       .loteria-cta{
         align-self:center;
+        width:min(320px, 100%);
       }
     }
     @media (max-width: 640px){
@@ -980,11 +966,8 @@
       .loteria-media{
         max-width:320px;
       }
-      .loteria-tips{
-        gap:.7rem;
-      }
-      .loteria-tips li{
-        padding:.65rem .85rem;
+      .loteria-text{
+        gap:1.1rem;
       }
     }
     @keyframes loteriaFadeIn{
@@ -1452,13 +1435,6 @@
           <li><span class="flag-chip"><span class="flag-icon flag-gt" aria-hidden="true"></span><span class="flag-label">Guatemala</span></span></li>
         </ul>
         <h2 id="loteria-titulo" class="loteria-title">¡Juega a la lotería con tus familiares!</h2>
-        <p class="loteria-subheading">Consejos rápidos para una tarde llena de diversión:</p>
-        <ul class="loteria-tips">
-          <li>Prepara tus cartones: imprime o comparte cartas digitales para cada jugador.</li>
-          <li>Personaliza el ritmo: ajusta la velocidad automática o usa “Siguiente carta” para avanzar manualmente.</li>
-          <li>Activa el sonido: escucha el nombre de cada carta y anima el juego con narración.</li>
-          <li>Reinicia fácilmente: baraja de nuevo cuando se hayan mostrado todas las cartas.</li>
-        </ul>
         <a class="btn loteria-cta" href="https://oscararmando2.github.io/Loteria/loteria.html" target="_blank" rel="noopener" aria-label="Jugar lotería en línea con tu familia">¡Juega ahora!</a>
       </div>
       <figure class="loteria-media">
