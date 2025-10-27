@@ -683,21 +683,22 @@
     .mexiquense-card__price{
       margin-top:auto;
       display:flex;
-      flex-direction:column;
-      gap:.2rem;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:.7rem .9rem;
+      border-radius:12px;
+      background:rgba(29,132,69,.12);
+      color:var(--verde);
       font-weight:700;
-      color:var(--rojo);
-      font-size:1.05rem;
-    }
-    .mexiquense-card__price small{
-      font-weight:500;
-      color:rgba(0,0,0,.5);
-      font-size:.78rem;
-      letter-spacing:.2px;
+      letter-spacing:1.6px;
+      text-transform:uppercase;
+      min-height:3.2rem;
+      width:100%;
     }
     .mexiquense-card__amount{
-      font-size: clamp(1.2rem, 3vw, 1.4rem);
-      line-height:1.1;
+      font-size: clamp(1rem, 2.8vw, 1.1rem);
+      line-height:1.25;
     }
     @media (max-width: 620px){
       .mexiquense-header{
@@ -1688,9 +1689,8 @@
             <span class="mexiquense-card__tag">Básicos</span>
             <h3>Huevo Best Choice 12 pack</h3>
             <p>Docena fresca para desayunos llenos de energía.</p>
-            <div class="mexiquense-card__price" aria-label="Precio uno con 99">
-              <span class="mexiquense-card__amount">$1.99</span>
-              <small>Por cartón</small>
+            <div class="mexiquense-card__price" aria-label="Categoría: Básicos">
+              <span class="mexiquense-card__amount">BÁSICOS</span>
             </div>
           </div>
         </article>
@@ -1702,9 +1702,8 @@
             <span class="mexiquense-card__tag">Lácteos</span>
             <h3>Leche Prairie Farms 1L</h3>
             <p>Suave y cremosa, perfecta para tus licuados matutinos.</p>
-            <div class="mexiquense-card__price" aria-label="Precio uno con 99">
-              <span class="mexiquense-card__amount">$1.99</span>
-              <small>Por litro</small>
+            <div class="mexiquense-card__price" aria-label="Categoría: Lácteos">
+              <span class="mexiquense-card__amount">LÁCTEOS</span>
             </div>
           </div>
         </article>
@@ -1716,9 +1715,8 @@
             <span class="mexiquense-card__tag">Panadería</span>
             <h3>Pan dulce tricolor</h3>
             <p>La docena consentida para las tardes con cafecito.</p>
-            <div class="mexiquense-card__price" aria-label="Precio tres con 50">
-              <span class="mexiquense-card__amount">$3.50</span>
-              <small>Docena</small>
+            <div class="mexiquense-card__price" aria-label="Categoría: Panadería">
+              <span class="mexiquense-card__amount">PANADERÍA</span>
             </div>
           </div>
         </article>
@@ -1730,9 +1728,8 @@
             <span class="mexiquense-card__tag">Cocina</span>
             <h3>Tortillas Guerrero 30 ct</h3>
             <p>Tortilla suave ideal para tacos y quesadillas al instante.</p>
-            <div class="mexiquense-card__price" aria-label="Precio dos con 79">
-              <span class="mexiquense-card__amount">$2.79</span>
-              <small>Por paquete</small>
+            <div class="mexiquense-card__price" aria-label="Categoría: Cocina">
+              <span class="mexiquense-card__amount">COCINA</span>
             </div>
           </div>
         </article>
@@ -1744,9 +1741,8 @@
             <span class="mexiquense-card__tag">Despensa</span>
             <h3>Frijoles La Costeña 28 oz</h3>
             <p>Sazón casero listo para calentar y servir.</p>
-            <div class="mexiquense-card__price" aria-label="Precio uno con 49">
-              <span class="mexiquense-card__amount">$1.49</span>
-              <small>Lata grande</small>
+            <div class="mexiquense-card__price" aria-label="Categoría: Despensa">
+              <span class="mexiquense-card__amount">DESPENSA</span>
             </div>
           </div>
         </article>
@@ -1758,9 +1754,8 @@
             <span class="mexiquense-card__tag">Cereales</span>
             <h3>Arroz Mahatma 2 lb</h3>
             <p>Grano suelto para acompañar cualquier platillo.</p>
-            <div class="mexiquense-card__price" aria-label="Precio uno con 99">
-              <span class="mexiquense-card__amount">$1.99</span>
-              <small>Bolsa</small>
+            <div class="mexiquense-card__price" aria-label="Categoría: Cereales">
+              <span class="mexiquense-card__amount">CEREALES</span>
             </div>
           </div>
         </article>
@@ -1772,9 +1767,8 @@
             <span class="mexiquense-card__tag">Despensa</span>
             <h3>Aceite Mazola 32 oz</h3>
             <p>Ligero y rendidor para tus recetas fritas y horneadas.</p>
-            <div class="mexiquense-card__price" aria-label="Precio tres con 99">
-              <span class="mexiquense-card__amount">$3.99</span>
-              <small>Botella</small>
+            <div class="mexiquense-card__price" aria-label="Categoría: Despensa">
+              <span class="mexiquense-card__amount">DESPENSA</span>
             </div>
           </div>
         </article>
@@ -1786,9 +1780,8 @@
             <span class="mexiquense-card__tag">Lácteos</span>
             <h3>Queso Panela El Mexiquense 14 oz</h3>
             <p>Textura suave que se dora perfecto en la plancha.</p>
-            <div class="mexiquense-card__price" aria-label="Precio cuatro con 49">
-              <span class="mexiquense-card__amount">$4.49</span>
-              <small>Pieza</small>
+            <div class="mexiquense-card__price" aria-label="Categoría: Lácteos">
+              <span class="mexiquense-card__amount">LÁCTEOS</span>
             </div>
           </div>
         </article>
@@ -1800,9 +1793,8 @@
             <span class="mexiquense-card__tag">Lácteos</span>
             <h3>Crema La Vaquita 16 oz</h3>
             <p>Cremosa y ligera para tus antojitos favoritos.</p>
-            <div class="mexiquense-card__price" aria-label="Precio dos con 59">
-              <span class="mexiquense-card__amount">$2.59</span>
-              <small>Envase</small>
+            <div class="mexiquense-card__price" aria-label="Categoría: Lácteos">
+              <span class="mexiquense-card__amount">LÁCTEOS</span>
             </div>
           </div>
         </article>
@@ -1814,9 +1806,8 @@
             <span class="mexiquense-card__tag">Salsas</span>
             <h3>Salsa Valentina 1 lt</h3>
             <p>El toque picante que nunca falta en la mesa mexicana.</p>
-            <div class="mexiquense-card__price" aria-label="Precio dos con 29">
-              <span class="mexiquense-card__amount">$2.29</span>
-              <small>Botella</small>
+            <div class="mexiquense-card__price" aria-label="Categoría: Salsas">
+              <span class="mexiquense-card__amount">SALSAS</span>
             </div>
           </div>
         </article>
@@ -1828,9 +1819,8 @@
             <span class="mexiquense-card__tag">Enlatados</span>
             <h3>Chiles Jalapeños La Morena 26 oz</h3>
             <p>Listos para picar y acompañar tus platillos.</p>
-            <div class="mexiquense-card__price" aria-label="Precio uno con 89">
-              <span class="mexiquense-card__amount">$1.89</span>
-              <small>Lata</small>
+            <div class="mexiquense-card__price" aria-label="Categoría: Enlatados">
+              <span class="mexiquense-card__amount">ENLATADOS</span>
             </div>
           </div>
         </article>
@@ -1842,9 +1832,8 @@
             <span class="mexiquense-card__tag">Gourmet</span>
             <h3>Café de olla molido 12 oz</h3>
             <p>Aroma especiado para iniciar el día con calidez.</p>
-            <div class="mexiquense-card__price" aria-label="Precio cinco con 99">
-              <span class="mexiquense-card__amount">$5.99</span>
-              <small>Bolsa</small>
+            <div class="mexiquense-card__price" aria-label="Categoría: Gourmet">
+              <span class="mexiquense-card__amount">GOURMET</span>
             </div>
           </div>
         </article>
