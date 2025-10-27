@@ -2507,17 +2507,13 @@
 
     // ===== Ofertas del día =====
     const offersSection = document.getElementById('ofertas');
-    function refreshOffersVisibility(){
+    function syncOffersMode(){
       if(!offersSection) return;
-      const today = new Date();
-      if(today.getDay() === 3){
-        offersSection.style.display = '';
-      } else {
-        offersSection.style.display = 'none';
-      }
+      const isWednesday = new Date().getDay() === 3;
+      offersSection.dataset.offerMode = isWednesday ? 'wednesday' : 'flash';
     }
-    refreshOffersVisibility();
-    setInterval(refreshOffersVisibility, 60 * 60 * 1000);
+    syncOffersMode();
+    setInterval(syncOffersMode, 60 * 60 * 1000);
 
     const countdownTimers = document.querySelectorAll('.countdown-timer');
     function formatPart(value){ return String(value).padStart(2, '0'); }
