@@ -794,7 +794,7 @@
     .loteria-content{
       position:relative;
       display:flex;
-      align-items:stretch;
+      align-items:center;
       justify-content:space-between;
       gap:clamp(1.5rem, 4vw, 4rem);
       flex-wrap:wrap;
@@ -804,6 +804,9 @@
       flex:1 1 340px;
       display:flex;
       flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
       gap:1.25rem;
       background:rgba(255,255,255,.92);
       padding:clamp(1.8rem, 4vw, 2.9rem);
@@ -900,17 +903,17 @@
       max-width:20ch;
     }
     .loteria-cta{
-      align-self:flex-start;
-      background:#ce1126;
+      align-self:center;
+      background:var(--verde);
       border-color:transparent;
-      box-shadow:0 20px 38px rgba(206,17,38,.28);
+      box-shadow:0 20px 38px rgba(29,132,69,.28);
       padding:clamp(.85rem, 2.2vw, 1rem) clamp(1.4rem, 4vw, 2.2rem);
       font-size:1.05rem;
       border-radius:14px;
     }
     .loteria-cta:hover,
     .loteria-cta:focus-visible{
-      background:#b20e22;
+      background:#166b36;
       transform: translateY(-2px) scale(1.02);
       outline:none;
     }
