@@ -7,6 +7,8 @@
   <meta name="description" content="El Mexiquense Market: frescura diaria, precios justos, ofertas y recetas para tu cocina." />
   <meta name="theme-color" content="#1D8445" />
   <meta http-equiv="Cache-Control" content="public, max-age=604800" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
@@ -30,6 +32,23 @@
     body{
       margin:0; font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
       color:var(--texto); background:var(--crema); line-height:1.5;
+    }
+    .skip-link{
+      position:absolute;
+      left:50%;
+      transform:translate(-50%, -120%);
+      padding:.75rem 1.15rem;
+      background:var(--verde);
+      color:var(--blanco);
+      border-radius:999px;
+      font-weight:600;
+      z-index:1100;
+      transition:transform .25s ease;
+    }
+    .skip-link:focus{
+      transform:translate(-50%, 10px);
+      outline:3px solid var(--blanco);
+      outline-offset:2px;
     }
     img{ max-width:100%; display:block; }
     a{ color:inherit; text-decoration:none; }
@@ -77,6 +96,13 @@
     }
     .hero h1{ font-size: clamp(2rem, 5.5vw, 3.2rem); margin:0 0 .5rem; line-height:1.08; }
     .hero p{ font-size:clamp(1rem, 2.5vw, 1.2rem); opacity:.95; margin:0 0 1.25rem; }
+    .hero-actions{
+      display:flex;
+      justify-content:center;
+      gap:.65rem;
+      flex-wrap:wrap;
+      margin-top:1.5rem;
+    }
     .btn{
       display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
       background:var(--verde); color:white; font-weight:700;
@@ -213,8 +239,8 @@
       }
     }
 
-    /* ===== FEATURE: Canasta de frutas ===== */
-    .feature-canasta{
+    /* ===== FEATURE: Tienda en línea ===== */
+    .feature-tienda{
       background:white;
       padding: clamp(3rem, 6vw, 4.5rem) 1rem;
     }
@@ -1317,6 +1343,7 @@
   </style>
 </head>
 <body class="page-home" data-page="home">
+  <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
 
   <!-- ===== NAV ===== -->
   <header>
@@ -1334,13 +1361,16 @@
     </div>
   </header>
 
+  <main id="contenido-principal" tabindex="-1">
   <!-- ===== HERO ===== -->
   <section id="inicio" class="hero">
     <div class="container">
       <h1>El Sabor de México en Cada Compra</h1>
       <p>Frescura diaria • Precios justos • Calidad garantizada</p>
-      <a class="btn" href="#promociones">Ver promociones</a>
-      <a class="btn btn-outline" href="#ofertas" style="margin-left:.5rem;">Ofertas del día</a>
+      <div class="hero-actions" role="group" aria-label="Acciones destacadas">
+        <a class="btn" href="#promociones">Ver promociones</a>
+        <a class="btn btn-outline" href="#ofertas">Ofertas del día</a>
+      </div>
     </div>
   </section>
 
@@ -1394,13 +1424,13 @@
         <!-- Card 4 (ejemplo extra) -->
         <article class="promo-card">
           <div class="promo-media" aria-hidden="true">
-            <img src="https://images.unsplash.com/photo-1601050690597-6c59b68e16ab?q=80&w=1600&auto=format&fit=crop"
+            <img src="https://www.orderexpress.com/wp-content/uploads/2025/09/3.-Business-Transaction-Handing-Cash-For-Check-Cashing-Service-1.webp"
                  alt="Caja de frutas variadas" loading="lazy">
           </div>
           <div class="promo-body">
-            <span class="badge">NUEVO</span>
-            <h3 class="promo-title">Canasta de frutas premium</h3>
-            <p class="promo-text">Calidad de temporada para tu mesa, al mejor precio.</p>
+            <span class="badge">SERVICO</span>
+            <h3 class="promo-title">Cambio de cheques</h3>
+            <p class="promo-text"> ¡Convierte tus cheques en efectivo al instante con nosotros! Rápido, seguro y confiable, ¡hazlo hoy mismo! (Sujeto a disponibilidad de fondos). </p>
             <a class="btn promo-cta" href="#productos">Comprar</a>
           </div>
         </article>
@@ -1414,26 +1444,26 @@
     </div>
   </section>
 
-  <!-- ===== FEATURE: Canasta de frutas ===== -->
-  <section class="feature-canasta" id="canasta-frutas">
+  <!-- ===== FEATURE: Tienda en línea ===== -->
+  <section class="feature-tienda" id="tienda-en-linea">
     <div class="feature-grid">
       <figure class="feature-media">
-        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80" alt="Canasta de frutas tropicales coloridas">
+        <img src="https://eu-images.contentstack.com/v3/assets/blt58a1f8f560a1ab0e/blt01f058946e19f7af/669f121d49760471e08f42b3/online_20vs_20instore_20shopping-shutterstock-resized.jpg" alt="https://blinkco.io/wp-content/uploads/2022/02/supermarket-5202138_1280.jpg">
       </figure>
       <div class="feature-copy">
-        <span>Canasta de frutas</span>
-        <h2>Frescura colorida lista para compartir</h2>
-        <p>Disfruta nuestra selección diaria con mangos, piñas, cítricos y berries preparados a mano por nuestros expertos en mercado.</p>
+        <span>Tienda en línea</span>
+        <h2>Compra tus favoritos sin salir de casa</h2>
+        <p>Elige prodcutos elegibles en nuestra tienda en linea, recibe tus compras en la puerta de tu casa, productos auténticos para tus antojitos mexicanos.</p>
         <ul class="feature-list">
-          <li>Selección de temporada con productores locales.</li>
-          <li>Presentación lista para regalar o disfrutar en familia.</li>
-          <li>Incluye nota personalizada y empaque ecológico.</li>
+          <li>Inventario actualizado con ofertas exclusivas en línea.</li>
+          <li>Entrega a domicilio.</li>
+          <li>Pagos seguros y confirmación inmediata de tu pedido.</li>
         </ul>
         <div class="feature-actions">
-          <a class="btn" href="#productos">Pide la tuya</a>
-          <a class="btn btn-outline" href="#contacto">Agenda entrega</a>
+          <a class="btn" href="https://latinstorenearme.com/" target="_blank" rel="noopener">Comprar en línea</a>
+          <a class="btn btn-outline" href="#contacto">Habla con un asesor</a>
         </div>
-        <p class="feature-note">Entrega el mismo día en compras antes de las 12:00 p.m.</p>
+        <p class="feature-note">Pedidos en línea disponibles 24/7 en nuestra tienda en linea</p>
       </div>
     </div>
   </section>
@@ -1737,7 +1767,7 @@
         <a class="btn loteria-cta" href="https://oscararmando2.github.io/Loteria/loteria.html" target="_blank" rel="noopener" aria-label="Jugar lotería en línea con tu familia">¡Juega ahora!</a>
       </div>
       <figure class="loteria-media">
-        <img src="https://images.unsplash.com/photo-1521577352947-9bb58764b69a?auto=format&fit=crop&w=900&q=80" alt="Familia latina jugando lotería con cartones coloridos" loading="lazy">
+        <img src="https://scontent-qro1-1.xx.fbcdn.net/v/t39.30808-6/571212017_798623846483485_7127450510447971433_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=k85onK-uoksQ7kNvwFN9vpC&_nc_oc=AdkOs_X8Xe9v8-FmMhUw73-zUF3tP_rMVC4LAgpnjeYqdJvTaIy1AV9Ajsm7pGTpbT7UC343ZU7IWabB9fDJXLRs&_nc_zt=23&_nc_ht=scontent-qro1-1.xx&_nc_gid=spn32O9SaqxemaDoB0Q0dw&oh=00_AfdNUdeaS7Py7iYsODwLHXbvRPwl5gBF3K9pZXwQBfunhA&oe=69047F1B" loading="lazy">
       </figure>
     </div>
   </section>
@@ -2087,6 +2117,8 @@
     </div>
   </section>
 
+  </main>
+
   <footer>
     <div class="foot">
       <span>© <span id="year"></span> El Mexiquense Market</span>
@@ -2095,6 +2127,50 @@
   </footer>
 
   <script>
+    // Corrección de restauración de scroll al recargar en Safari
+    (function(){
+      const ua = navigator.userAgent || '';
+      const isSafari = /Safari/i.test(ua) && !/Chrome|CriOS|Chromium|Android|Edg/i.test(ua);
+      if (!isSafari || window.location.hash) {
+        return;
+      }
+
+      function getNavigationEntry(){
+        if (window.performance && typeof window.performance.getEntriesByType === 'function') {
+          const entries = window.performance.getEntriesByType('navigation');
+          if (entries && entries.length) {
+            return entries[0];
+          }
+        }
+        return null;
+      }
+
+      const navigationEntry = getNavigationEntry();
+      const isReloadNavigation = navigationEntry ? navigationEntry.type === 'reload' : (window.performance && window.performance.navigation ? window.performance.navigation.type === 1 : false);
+      if (!isReloadNavigation) {
+        return;
+      }
+
+      let previousRestoration = null;
+      if ('scrollRestoration' in history) {
+        previousRestoration = history.scrollRestoration;
+        history.scrollRestoration = 'manual';
+      }
+
+      const resetScroll = function(){
+        window.scrollTo(0, 0);
+        if (previousRestoration !== null) {
+          history.scrollRestoration = previousRestoration;
+        }
+      };
+
+      if (document.readyState === 'complete') {
+        resetScroll();
+      } else {
+        window.addEventListener('load', resetScroll, { once: true });
+      }
+    }());
+
     // Año dinámico
     document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -2142,22 +2218,74 @@
         }
       }, 6000);
 
+      const stopAutoScroll = () => {
+        if (auto) {
+          clearInterval(auto);
+          auto = null;
+        }
+      };
+
       ['pointerdown','touchstart','wheel','keydown','focusin'].forEach(evt=>{
-        track.addEventListener(evt, ()=> { clearInterval(auto); }, { passive:true });
+        track.addEventListener(evt, stopAutoScroll, { passive:true });
+      });
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState !== 'visible') {
+          stopAutoScroll();
+        }
       });
 
       prev.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') prev.click(); });
       next.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') next.click(); });
     }
 
-    // Suavizar anclas (fallback)
-    document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
-      anchor.addEventListener('click', e=>{
-        const id = anchor.getAttribute('href');
-        if(id.length>1 && document.querySelector(id)){
-          e.preventDefault();
-          document.querySelector(id).scrollIntoView({ behavior:'smooth', block:'start' });
+    // Navegación accesible con desplazamiento suave
+    const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', event => {
+        const hash = anchor.getAttribute('href');
+        if (!hash || hash.length <= 1) {
+          return;
         }
+
+        const target = document.querySelector(hash);
+        if (!target) {
+          return;
+        }
+
+        event.preventDefault();
+        const behavior = prefersReducedMotion ? 'auto' : 'smooth';
+        target.scrollIntoView({ behavior, block: 'start' });
+
+        const focusTarget = () => {
+          const previousTabIndex = target.getAttribute('tabindex');
+          const needsTemporaryTabIndex = target.tabIndex === -1;
+          if (needsTemporaryTabIndex) {
+            target.setAttribute('tabindex', '-1');
+          }
+
+          if (typeof target.focus === 'function') {
+            target.focus({ preventScroll: true });
+          }
+
+          if (needsTemporaryTabIndex) {
+            target.addEventListener('blur', () => {
+              if (previousTabIndex !== null) {
+                target.setAttribute('tabindex', previousTabIndex);
+              } else {
+                target.removeAttribute('tabindex');
+              }
+            }, { once: true });
+          }
+        };
+
+        if (window.history && typeof window.history.pushState === 'function') {
+          window.history.pushState(null, '', hash);
+        } else {
+          window.location.hash = hash;
+        }
+
+        window.setTimeout(focusTarget, prefersReducedMotion ? 0 : 250);
       });
     });
 
@@ -2366,23 +2494,3 @@
   </script>
 </body>
 </html>
-
-  <!-- Vista previa productos destacados:
-  Harina P.A.N. Maíz Blanco — $4.99
-  Maseca Maíz Instantáneo — $3.99
-  Frijoles Negros Listos — $2.79
-  Salsa Picante Artesanal — $5.49
-  Queso Fresco Artesanal — $6.89
-  Chiles Poblanos Frescos — $3.49
-  Pan Dulce Variado — $7.25
-  Recetas destacadas actuales:
-  Guacamole cremoso tradicional — 15 min
-  Sopa de tortilla ahumada — 35 min
-  Elote callejero con queso cotija — 25 min
-  Carnitas estilo Michoacán — 2 h
-  Tacos al pastor caseros — 1 h 10 min
-  Mole poblano con pollo — 1 h 45 min
-  Churros con chocolate espeso — 45 min
-  Pastel tres leches con cajeta — 1 h 30 min
-  Arroz con leche y canela — 50 min
-  -->
