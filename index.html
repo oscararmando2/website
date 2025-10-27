@@ -1244,20 +1244,38 @@
       display:grid;
       gap: clamp(1.8rem, 4vw, 3.2rem);
       align-items:center;
+      justify-items:center;
     }
     @media (min-width: 900px){
       .loyalty-grid{
         grid-template-columns: 1.05fr .95fr;
       }
     }
-    .loyalty-copy{
-      background:rgba(255,255,255,.92);
+    .loyalty-card{
+      width:min(100%, 400px);
+      min-width:300px;
+      padding:20px;
       border-radius:26px;
-      padding: clamp(1.8rem, 4vw, 2.6rem);
+      margin:0 auto;
+      min-height:340px;
+    }
+    .loyalty-copy{
+      background:rgba(255,255,255,.95);
       box-shadow:0 26px 48px rgba(29,132,69,.15);
       display:flex;
       flex-direction:column;
-      gap:1.1rem;
+      gap:.9rem;
+      justify-content:flex-start;
+      animation: loyaltyFloat 9s ease-in-out infinite;
+      animation-fill-mode: both;
+      transition: transform .35s ease, box-shadow .35s ease;
+      transform: translateY(0);
+    }
+    .loyalty-copy:hover,
+    .loyalty-copy:focus-within{
+      animation-play-state: paused;
+      transform: translateY(-10px) rotate(-0.8deg);
+      box-shadow:0 32px 56px rgba(29,132,69,.22);
     }
     .loyalty-kicker{
       display:inline-flex;
@@ -1315,7 +1333,7 @@
       font-weight:700;
     }
     .loyalty-note{
-      font-size:.9rem;
+      font-size:.85rem;
       color:var(--muted);
     }
     .loyalty-actions{
@@ -1323,14 +1341,18 @@
       flex-wrap:wrap;
       gap:.75rem;
       align-items:center;
+      margin-top:auto;
     }
     .loyalty-media{
       position:relative;
-      border-radius:30px;
       overflow:hidden;
       box-shadow:0 28px 50px rgba(0,0,0,.18);
-      min-height:300px;
       isolation:isolate;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:#ffffff url("https://scontent-qro1-2.xx.fbcdn.net/v/t39.30808-6/571357553_820620220947661_1769160049778936694_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=fJlBiQ6hpygQ7kNvwGTfVk7&_nc_oc=AdmLYoGeTCiulqB18SU1zxA6WdD8wbAQOFOS_fTYv8Is-OnZdLjpG26-E_6zLQ7uKFXzQaT8xevkI1yTpdgF-_mC&_nc_zt=23&_nc_ht=scontent-qro1-2.xx&_nc_gid=asxY_d-nG4L0_NpuMlWprg&oh=00_Afcf5aqJJsrbJavwCIiPZ2muAKgmKc3xHi7QN4afMks8wQ&oe=69059838") center/contain no-repeat;
+      background-color:#ffffff;
     }
     .loyalty-media::before{
       content:"";
@@ -1340,13 +1362,12 @@
       filter:blur(46px);
       z-index:-1;
     }
-    .loyalty-media img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
+    @keyframes loyaltyFloat{
+      0%,100%{ transform:translateY(0); }
+      50%{ transform:translateY(-8px); }
     }
     @media (max-width: 720px){
-      .loyalty-copy{
+      .loyalty-card{
         text-align:center;
         align-items:center;
       }
@@ -1358,6 +1379,15 @@
       }
       .loyalty-actions{
         justify-content:center;
+      }
+    }
+    @media (prefers-reduced-motion: reduce){
+      .loyalty-copy{
+        animation:none;
+      }
+      .loyalty-copy:hover,
+      .loyalty-copy:focus-within{
+        transform: translateY(0);
       }
     }
 
@@ -2010,24 +2040,19 @@
 
   <section class="loyalty-section" aria-labelledby="lealtad-titulo">
     <div class="loyalty-grid">
-      <div class="loyalty-copy">
+      <div class="loyalty-copy loyalty-card">
         <span class="loyalty-kicker">Programa de lealtad</span>
-        <h2 id="lealtad-titulo">Compra con nosotros y gana puntos por cada visita</h2>
-        <p>En El Mexiquense Market queremos agradecer tu preferencia con un programa de lealtad diseñado para premiar cada compra. Registra tus tickets, acumula puntos y canjéalos por descuentos exclusivos, experiencias gastronómicas especiales y regalos pensados para tu familia.</p>
+        <h2 id="lealtad-titulo">Tus compras regresan en ahorros</h2>
+        <p>Únete a Mexiquense Rewards y tus tickets se convierten en puntos canjeables por descuentos.</p>
         <ul class="loyalty-benefits">
-          <li>Solicita tus gift cards en cajas y activa tus recompensas desde la primera compra.</li>
-          <li>Recibe puntos automáticos por cada dólar gastado y multiplica tus beneficios en eventos especiales.</li>
-          <li>Pregunta a nuestro equipo cómo convertirte en acreedor del programa y mantente informado de promociones VIP.</li>
+          <li>Activa tu tarjeta en caja en solo minutos.</li>
+          <li>Canjea puntos por ahorros y sorpresas especiales.</li>
         </ul>
-        <p class="loyalty-note">El registro es gratuito y solo necesitas tu número de teléfono o correo electrónico para comenzar a sumar beneficios.</p>
         <div class="loyalty-actions" role="group" aria-label="Acciones del programa de lealtad">
-          <a class="btn" href="#contacto">Únete hoy mismo</a>
-          <a class="btn btn-outline" href="#contacto">Solicita información en tienda</a>
+          <a class="btn" href="#contacto">Únete sin costo</a>
         </div>
       </div>
-      <figure class="loyalty-media">
-        <img src="https://scontent-qro1-2.xx.fbcdn.net/v/t39.30808-6/571357553_820620220947661_1769160049778936694_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=fJlBiQ6hpygQ7kNvwGTfVk7&_nc_oc=AdmLYoGeTCiulqB18SU1zxA6WdD8wbAQOFOS_fTYv8Is-OnZdLjpG26-E_6zLQ7uKFXzQaT8xevkI1yTpdgF-_mC&_nc_zt=23&_nc_ht=scontent-qro1-2.xx&_nc_gid=asxY_d-nG4L0_NpuMlWprg&oh=00_Afcf5aqJJsrbJavwCIiPZ2muAKgmKc3xHi7QN4afMks8wQ&oe=69059838" alt="Clientes felices mostrando sus tarjetas de lealtad en El Mexiquense Market" loading="lazy">
-      </figure>
+      <figure class="loyalty-media loyalty-card" role="img" aria-label="Tarjeta de regalo del programa de lealtad de El Mexiquense Market"></figure>
     </div>
   </section>
 
