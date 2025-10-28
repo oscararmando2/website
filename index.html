@@ -357,6 +357,32 @@
     }
 
     /* ===== Productos destacados ===== */
+    #productos{
+      position:relative;
+      background:linear-gradient(135deg, #8b1e24 0%, #d84315 60%, #b71c1c 100%);
+      overflow:hidden;
+      isolation:isolate;
+    }
+    #productos::before{
+      content:"";
+      position:absolute;
+      inset:auto 0 -30% 0;
+      height:220px;
+      background:radial-gradient(circle at top, rgba(255,255,255,.25) 0%, transparent 70%);
+      opacity:.45;
+      pointer-events:none;
+      z-index:0;
+    }
+    #productos > *{
+      position:relative;
+      z-index:1;
+    }
+    #productos .section-title{
+      color:var(--blanco);
+    }
+    #productos .muted{
+      color:rgba(255,255,255,.85);
+    }
     .product-carousel{
       margin: 2.5rem auto 0;
       width: var(--container);
@@ -365,6 +391,7 @@
       overflow-x:auto;
       padding-bottom: .75rem;
       scroll-snap-type:x mandatory;
+      scroll-behavior:smooth;
       -webkit-overflow-scrolling:touch;
     }
     .product-carousel::-webkit-scrollbar{
@@ -386,12 +413,13 @@
       flex-direction:column;
       scroll-snap-align:start;
       overflow:hidden;
-      transition: transform .25s ease, box-shadow .25s ease;
+      transition: transform .4s cubic-bezier(.25,.1,.25,1), box-shadow .4s ease;
       position:relative;
     }
-    .product-card:hover{
-      transform: translateY(-6px);
-      box-shadow: 0 18px 32px rgba(0,0,0,.12);
+    .product-card:hover,
+    .product-card:focus-within{
+      transform: translateY(-8px);
+      box-shadow: 0 20px 36px rgba(0,0,0,.14);
     }
     .product-media{
       position:relative;
@@ -406,6 +434,12 @@
       width:100%;
       height:100%;
       object-fit:cover;
+      transition: transform .5s ease, filter .5s ease;
+    }
+    .product-card:hover .product-media img,
+    .product-card:focus-within .product-media img{
+      transform:scale(1.05);
+      filter:contrast(1.05) saturate(1.05);
     }
     .product-body{
       flex:1 1 45%;
@@ -852,10 +886,6 @@
 }
 .recipes-collection{
   background:white;
-  display:block;
-}
-.recipes-collection.active{
-  display:block;
 }
 .recipes-collection .container{
   display:flex;
@@ -1351,8 +1381,7 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      background:#ffffff url("https://scontent-qro1-2.xx.fbcdn.net/v/t39.30808-6/571357553_820620220947661_1769160049778936694_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=fJlBiQ6hpygQ7kNvwGTfVk7&_nc_oc=AdmLYoGeTCiulqB18SU1zxA6WdD8wbAQOFOS_fTYv8Is-OnZdLjpG26-E_6zLQ7uKFXzQaT8xevkI1yTpdgF-_mC&_nc_zt=23&_nc_ht=scontent-qro1-2.xx&_nc_gid=asxY_d-nG4L0_NpuMlWprg&oh=00_Afcf5aqJJsrbJavwCIiPZ2muAKgmKc3xHi7QN4afMks8wQ&oe=69059838") center/contain no-repeat;
-      background-color:#ffffff;
+      background:#ffffff url("https://scontent-qro1-2.xx.fbcdn.net/v/t39.30808-6/559231839_820793204263696_7658248066248306568_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=jjCmUp03oGoQ7kNvwFe-zQG&_nc_oc=AdmGwkwRu-89lgPKhmq6iJKf2fmIE7CspV8yKhLwysTIlgpk1i1kzrOaDEGGa6TvrjLjoWPbi1Q4Gn1KjbTmAy6t&_nc_zt=23&_nc_ht=scontent-qro1-2.xx&_nc_gid=VBikkWUKbCFstQAa9aueAw&oh=00_AfecVSqRkvjUwBWMAfr1cWddl15U7ywFqB23OBravf-9_w&oe=6905B52C") center/contain no-repeat;
     }
     .loyalty-media::before{
       content:"";
@@ -1600,7 +1629,6 @@
   <section id="promociones" aria-label="Promociones destacadas">
     <div class="promos-wrap">
       <div class="promos" id="promosTrack">
-        <!-- Card 1 -->
         <article class="promo-card">
           <div class="promo-media" aria-hidden="true">
             <img src="https://scontent-qro1-1.xx.fbcdn.net/v/t39.30808-6/571226658_798593186486551_7010603394357649170_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_ohc=X4Py_LF1FnYQ7kNvwGVLJec&_nc_oc=AdlECYia6yc_nPos7qaZw0EBvGYtFStcW0_NWiQRLre2uBX15Nyv0PVAZFY60X5WaFDTNKMfhFwCeb3W-OYU6ypr&_nc_zt=23&_nc_ht=scontent-qro1-1.xx&_nc_gid=9fFOjMLsPzQ-iCWFSnlvTw&oh=00_AfdA9aHCWJ8SQwi0EYZTlSCAfGH9VXsOYRofoBeycbygBQ&oe=6904723A"
@@ -1614,7 +1642,6 @@
           </div>
         </article>
 
-        <!-- Card 2 -->
         <article class="promo-card">
           <div class="promo-media" aria-hidden="true">
             <img src="https://st2.depositphotos.com/1799455/7612/i/450/depositphotos_76127411-stock-photo-hand-throwing-a-dollar-paper.jpg"
@@ -1628,7 +1655,6 @@
           </div>
         </article>
 
-        <!-- Card 3 -->
         <article class="promo-card">
           <div class="promo-media" aria-hidden="true">
 <img src="https://scontent-qro1-2.xx.fbcdn.net/v/t39.30808-6/571170452_820748727601477_8539968529484520597_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=GrDSF1iKCSUQ7kNvwF2oSfr&_nc_oc=AdkuMw5Vt8rMSIIKEUDGDhIyfDRGGfbTVJU90FR3j3se3lne0nOxJYnHTb5kBNDvrD-b8xHRgpA2_lGlp1UYjLXw&_nc_zt=23&_nc_ht=scontent-qro1-2.xx&_nc_gid=a2_zRM1OfpzuVyVv0VUbxw&oh=00_AfczIQt2-4ot9gKl5f-1HSU_zeB1ftK3CrhLadV3ZUKhQg&oe=6905E416"
@@ -1643,7 +1669,6 @@
           </div>
         </article>
         
-   <!-- Card 4 -->
         <article class="promo-card">
           <div class="promo-media" aria-hidden="true">
 <img src="https://scontent-qro1-1.xx.fbcdn.net/v/t39.30808-6/571212017_798623846483485_7127450510447971433_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=k85onK-uoksQ7kNvwFxwHv-&_nc_oc=AdkdOoNmTJDMuAwyQQEi2-YXLYschMqyxWhhCF9xrEaccC68wKj30_8EdFBovPw0wY-c001m7NvZ3HE9o_MKsn3_&_nc_zt=23&_nc_ht=scontent-qro1-1.xx&_nc_gid=UX2fvOlFvMx4B4mtN_NapA&oh=00_AfeEztc147rFSXeXjdrlhx8r4bCl2noHw8wbtsxRBamJUg&oe=6905985B"
@@ -1657,7 +1682,6 @@
           </div>
         </article>
 
-        <!-- Card 5 -->
         <article class="promo-card">
           <div class="promo-media" aria-hidden="true">
             <img src="https://scontent-qro1-2.xx.fbcdn.net/v/t39.30808-6/559231839_820793204263696_7658248066248306568_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=jjCmUp03oGoQ7kNvwFe-zQG&_nc_oc=AdmGwkwRu-89lgPKhmq6iJKf2fmIE7CspV8yKhLwysTIlgpk1i1kzrOaDEGGa6TvrjLjoWPbi1Q4Gn1KjbTmAy6t&_nc_zt=23&_nc_ht=scontent-qro1-2.xx&_nc_gid=VBikkWUKbCFstQAa9aueAw&oh=00_AfecVSqRkvjUwBWMAfr1cWddl15U7ywFqB23OBravf-9_w&oe=6905B52C"
@@ -1671,7 +1695,6 @@
           </div>
         </article>
 
-        <!-- Card 6 -->
         <article class="promo-card">
           <div class="promo-media" aria-hidden="true">
             <img src="https://img.freepik.com/fotos-premium/entrega-dolares-efectivo-otra-parte-aislada-sobre-fondo-blanco_199352-304.jpg"
@@ -1686,7 +1709,6 @@
           </div>
         </article>
 
-      <!-- controles -->
       <div class="carousel-controls">
         <button class="cbtn" id="prevBtn" aria-label="Anterior">‹</button>
         <button class="cbtn" id="nextBtn" aria-label="Siguiente">›</button>
@@ -1723,10 +1745,9 @@
   <section id="productos" class="section">
     <h2 class="section-title">MIERCOLAZO DE DESCUENTO %</h2>
     <p class="muted">Promos que se renuevan todos los miércoles..</p>
-    <p class="muted">Promociones validas solo el día 29 de Octubre</p> 
     <div class="product-carousel" role="list">
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>Harina Pan</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>Harina Pan</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://m.media-amazon.com/images/I/71Lxe9rdyQL.jpg" alt="Paquete de harina P.A.N." loading="lazy">
         </div>
@@ -1746,7 +1767,7 @@
       </article>
 
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=800&q=80" alt="Harina de maíz Maseca" loading="lazy">
         </div>
@@ -1766,7 +1787,7 @@
       </article>
 
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1514996937319-344454492b37?auto=format&fit=crop&w=800&q=80" alt="Frijoles negros listos para servir" loading="lazy">
         </div>
@@ -1786,7 +1807,7 @@
       </article>
 
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1604908177088-5c36eac5b9d9?auto=format&fit=crop&w=800&q=80" alt="Botella de salsa picante mexicana" loading="lazy">
         </div>
@@ -1806,7 +1827,7 @@
       </article>
 
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1576406439393-7b8310f0285b?auto=format&fit=crop&w=800&q=80" alt="Queso fresco mexicano" loading="lazy">
         </div>
@@ -1826,7 +1847,7 @@
       </article>
 
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1525755662778-989d0524087e?auto=format&fit=crop&w=800&q=80" alt="Caja de chiles poblanos frescos" loading="lazy">
         </div>
@@ -1846,7 +1867,7 @@
       </article>
 
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1609750715948-41ff3b1c14c4?auto=format&fit=crop&w=800&q=80" alt="Pan dulce mexicano" loading="lazy">
         </div>
@@ -1865,6 +1886,10 @@
         </div>
       </article>
     </div>
+    <p class="muted" aria-live="polite">
+      <span class="timer countdown-timer" role="timer">--:--:--</span>
+    </p>
+    <p class="muted">Promociones validas solo el día 29 de Octubre</p>
   </section>
 
   <section id="recetas" class="recipes-hero" aria-labelledby="recetas-title">
@@ -2095,7 +2120,7 @@
     <p class="muted">Cuenta regresiva permanente: los miércoles duran 24 horas y el resto de la semana rotan cada dos minutos.</p>
     <div class="offers-grid" role="list" aria-label="Ofertas destacadas">
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1506806732259-39c2d0268443?auto=format&fit=crop&w=800&q=80" alt="Tomates roma frescos" loading="lazy">
         </div>
@@ -2115,7 +2140,7 @@
       </article>
 
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80" alt="Aguacates hass enteros" loading="lazy">
         </div>
@@ -2135,7 +2160,7 @@
       </article>
 
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1587593810167-1ee9c6bfb2ef?auto=format&fit=crop&w=800&q=80" alt="Pechuga de pollo fresca en tabla de cortar" loading="lazy">
         </div>
@@ -2155,7 +2180,7 @@
       </article>
 
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1604908176778-3daa9b812eb1?auto=format&fit=crop&w=800&q=80" alt="Bloque de queso fresco" loading="lazy">
         </div>
@@ -2175,7 +2200,7 @@
       </article>
 
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1504713722161-128640987773?auto=format&fit=crop&w=800&q=80" alt="Tortillas de maíz recién hechas" loading="lazy">
         </div>
@@ -2195,7 +2220,7 @@
       </article>
 
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1603048305487-246a5ac76770?auto=format&fit=crop&w=800&q=80" alt="Frijoles pintos a granel" loading="lazy">
         </div>
@@ -2215,7 +2240,7 @@
       </article>
 
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1570696565225-4c2d9373629d?auto=format&fit=crop&w=800&q=80" alt="Saco de arroz" loading="lazy">
         </div>
@@ -2235,7 +2260,7 @@
       </article>
 
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1601000938259-9e31fbc24c34?auto=format&fit=crop&w=800&q=80" alt="Chiles jalapeños frescos" loading="lazy">
         </div>
@@ -2255,7 +2280,7 @@
       </article>
 
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1615485737457-3ab1d1c0be1d?auto=format&fit=crop&w=800&q=80" alt="Mangos ataulfo maduros" loading="lazy">
         </div>
@@ -2275,7 +2300,7 @@
       </article>
 
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=800&q=80" alt="Crema mexicana en frasco" loading="lazy">
         </div>
@@ -2295,7 +2320,7 @@
       </article>
 
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1483695028939-5bb13f8648b0?auto=format&fit=crop&w=800&q=80" alt="Pan bolillo recién horneado" loading="lazy">
         </div>
@@ -2315,7 +2340,7 @@
       </article>
 
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?auto=format&fit=crop&w=800&q=80" alt="Taza de café de olla" loading="lazy">
         </div>
@@ -2335,7 +2360,7 @@
       </article>
 
       <article class="product-card" role="listitem">
-        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span><span class="timer countdown-timer">--:--:--</span></span>
+        <span class="offer-badge" aria-live="polite"><span>MIERCOLAZO DE DESCUENTO %</span></span>
         <div class="product-media" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1543353071-10c8ba85a904?auto=format&fit=crop&w=800&q=80" alt="Racimos de uvas rojas" loading="lazy">
         </div>
