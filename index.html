@@ -55,7 +55,7 @@
     .container{ width:var(--container); margin:0 auto; }
     .section{ padding: 3.5rem 0; }
     .section-miercolazo{
-      background: linear-gradient(180deg, rgba(253,230,223,0.9) 0%, rgba(255,255,255,1) 100%);
+      background: linear-gradient(180deg, rgba(255,249,247,0.96) 0%, rgba(255,255,255,1) 50%, rgba(255,236,232,0.88) 100%);
     }
 
     /* ===== NAV ===== */
@@ -362,7 +362,7 @@
     /* ===== Productos destacados ===== */
     #productos{
       position:relative;
-      background:linear-gradient(135deg, #8b1e24 0%, #d84315 60%, #b71c1c 100%);
+      background:linear-gradient(135deg, rgba(255,252,251,0.98) 0%, rgba(255,255,255,1) 58%, rgba(255,236,232,0.9) 100%);
       overflow:hidden;
       isolation:isolate;
     }
@@ -371,8 +371,8 @@
       position:absolute;
       inset:auto 0 -30% 0;
       height:220px;
-      background:radial-gradient(circle at top, rgba(255,255,255,.25) 0%, transparent 70%);
-      opacity:.45;
+      background:radial-gradient(circle at top, rgba(212,84,56,.16) 0%, rgba(255,255,255,0) 70%);
+      opacity:.55;
       pointer-events:none;
       z-index:0;
     }
@@ -381,10 +381,10 @@
       z-index:1;
     }
     #productos .section-title{
-      color:var(--blanco);
+      color:var(--rojo);
     }
     #productos .muted{
-      color:rgba(255,255,255,.85);
+      color:var(--muted);
     }
     .product-carousel{
       margin: 2.5rem auto 0;
@@ -446,10 +446,10 @@
     }
     .product-body{
       flex:1 1 45%;
-      padding:1.25rem 1.2rem 1.6rem;
+      padding:1.15rem 1.2rem 1.45rem;
       display:flex;
       flex-direction:column;
-      gap:.55rem;
+      gap:.4rem;
     }
     .product-title{
       font-size:1.05rem;
@@ -468,7 +468,7 @@
       overflow:hidden;
     }
     .price-stack{
-      margin-top:auto;
+      margin-top:.4rem;
       font-weight:600;
       color:var(--texto);
       display:flex;
@@ -1763,7 +1763,6 @@
         </div>
         <div class="product-body">
           <h3 class="product-title">Harina P.A.N. Maíz Blanco</h3>
-          <p class="product-info">Bolsa de 1 kg — perfecta para arepas y empanadas.</p>
           <div class="price-stack" aria-label="Precio promocional de Harina P.A.N. Maíz Blanco">
             <span class="price-mixed">
               <span class="price-label">Antes:</span>
@@ -1783,7 +1782,6 @@
         </div>
         <div class="product-body">
           <h3 class="product-title">Maseca Maíz Instantáneo</h3>
-          <p class="product-info">Bolsa de 4 lb — ideal para tortillas y tamales.</p>
           <div class="price-stack" aria-label="Precio promocional de Maseca Maíz Instantáneo">
             <span class="price-mixed">
               <span class="price-label">Antes:</span>
@@ -1803,7 +1801,6 @@
         </div>
         <div class="product-body">
           <h3 class="product-title">Frijoles Negros Listos</h3>
-          <p class="product-info">Lata de 29 oz — sazón casero en minutos.</p>
           <div class="price-stack" aria-label="Precio promocional de Frijoles Negros Listos">
             <span class="price-mixed">
               <span class="price-label">Antes:</span>
@@ -1823,7 +1820,6 @@
         </div>
         <div class="product-body">
           <h3 class="product-title">Salsa Picante Artesanal</h3>
-          <p class="product-info">Receta de chile de árbol — 250 ml.</p>
           <div class="price-stack" aria-label="Precio promocional de Salsa Picante Artesanal">
             <span class="price-mixed">
               <span class="price-label">Antes:</span>
@@ -1843,7 +1839,6 @@
         </div>
         <div class="product-body">
           <h3 class="product-title">Queso Fresco Artesanal</h3>
-          <p class="product-info">Rueda de 340 g — cremoso y ligero.</p>
           <div class="price-stack" aria-label="Precio promocional de Queso Fresco Artesanal">
             <span class="price-mixed">
               <span class="price-label">Antes:</span>
@@ -1863,7 +1858,6 @@
         </div>
         <div class="product-body">
           <h3 class="product-title">Chiles Poblanos Selectos</h3>
-          <p class="product-info">Bolsa de 5 unidades — selección premium.</p>
           <div class="price-stack" aria-label="Precio promocional de Chiles Poblanos Frescos">
             <span class="price-mixed">
               <span class="price-label">Antes:</span>
@@ -1883,7 +1877,6 @@
         </div>
         <div class="product-body">
           <h3 class="product-title">Pan Dulce Variado</h3>
-          <p class="product-info">Paquete surtido de 6 piezas recién horneadas.</p>
           <div class="price-stack" aria-label="Precio promocional de Pan Dulce Variado">
             <span class="price-mixed">
               <span class="price-label">Antes:</span>
@@ -2137,7 +2130,6 @@
         </div>
         <div class="product-body">
           <h3 class="product-title">Tomate Roma Fresco</h3>
-          <p class="product-info">Perfectos para tus salsas y ensaladas favoritas.</p>
           <div class="price-stack" aria-label="Oferta actual de Tomate Roma">
             <span class="price-mixed">
               <span class="price-label">Antes:</span>
@@ -2157,7 +2149,6 @@
         </div>
         <div class="product-body">
           <h3 class="product-title">Aguacate Hass Seleccionado</h3>
-          <p class="product-info">Maduración lista para preparar guacamole cremoso.</p>
           <div class="price-stack" aria-label="Oferta actual de Aguacate Hass">
             <span class="price-mixed">
               <span class="price-label">Antes:</span>
@@ -2177,7 +2168,6 @@
         </div>
         <div class="product-body">
           <h3 class="product-title">Pechuga de Pollo Sin Hueso</h3>
-          <p class="product-info">Filetes sin hueso ideales para cocinar a la plancha.</p>
           <div class="price-stack" aria-label="Oferta actual de Pechuga de Pollo">
             <span class="price-mixed">
               <span class="price-label">Antes:</span>
@@ -2197,7 +2187,6 @@
         </div>
         <div class="product-body">
           <h3 class="product-title">Queso Fresco Artesanal</h3>
-          <p class="product-info">Textura suave y sabor ligero para tus platillos.</p>
           <div class="price-stack" aria-label="Oferta actual de Queso Fresco Artesanal">
             <span class="price-mixed">
               <span class="price-label">Antes:</span>
@@ -2217,7 +2206,6 @@
         </div>
         <div class="product-body">
           <h3 class="product-title">Tortillas de Maíz Frescas</h3>
-          <p class="product-info">Paquete diario caliente listo para tu mesa.</p>
           <div class="price-stack" aria-label="Oferta actual de Tortillas de Maíz Frescas">
             <span class="price-mixed">
               <span class="price-label">Antes:</span>
@@ -2237,7 +2225,6 @@
         </div>
         <div class="product-body">
           <h3 class="product-title">Frijol Pinto a Granel</h3>
-          <p class="product-info">Seleccionados y listos para tus guisos caseros.</p>
           <div class="price-stack" aria-label="Oferta actual de Frijoles Pintos a Granel">
             <span class="price-mixed">
               <span class="price-label">Antes:</span>
@@ -2257,7 +2244,6 @@
         </div>
         <div class="product-body">
           <h3 class="product-title">Arroz Jazmín 16 lb</h3>
-          <p class="product-info">Grano aromático ideal para acompañar tus platillos.</p>
           <div class="price-stack" aria-label="Oferta actual de Arroz Jazmín 16 lb">
             <span class="price-mixed">
               <span class="price-label">Antes:</span>
@@ -2277,7 +2263,6 @@
         </div>
         <div class="product-body">
           <h3 class="product-title">Chile Jalapeño Fresco</h3>
-          <p class="product-info">Picor auténtico para tus salsas y marinados.</p>
           <div class="price-stack" aria-label="Oferta actual de Chiles Jalapeños">
             <span class="price-mixed">
               <span class="price-label">Antes:</span>
@@ -2297,7 +2282,6 @@
         </div>
         <div class="product-body">
           <h3 class="product-title">Mango Ataulfo Dulce</h3>
-          <p class="product-info">Dulce y jugoso, perfecto para licuados o postres.</p>
           <div class="price-stack" aria-label="Oferta actual de Mango Ataulfo">
             <span class="price-mixed">
               <span class="price-label">Antes:</span>
@@ -2317,7 +2301,6 @@
         </div>
         <div class="product-body">
           <h3 class="product-title">Crema Mexicana Tradicional</h3>
-          <p class="product-info">Consistencia cremosa para chilaquiles y antojitos.</p>
           <div class="price-stack" aria-label="Oferta actual de Crema Mexicana">
             <span class="price-mixed">
               <span class="price-label">Antes:</span>
@@ -2337,7 +2320,6 @@
         </div>
         <div class="product-body">
           <h3 class="product-title">Bolillo Recién Horneado</h3>
-          <p class="product-info">Corteza crujiente y migajón suave todas las tardes.</p>
           <div class="price-stack" aria-label="Oferta actual de Bolillo Recién Horneado">
             <span class="price-mixed">
               <span class="price-label">Antes:</span>
@@ -2357,7 +2339,6 @@
         </div>
         <div class="product-body">
           <h3 class="product-title">Café de Olla Molido</h3>
-          <p class="product-info">Notas de canela y piloncillo para tus mañanas.</p>
           <div class="price-stack" aria-label="Oferta actual de Café de Olla Molido">
             <span class="price-mixed">
               <span class="price-label">Antes:</span>
@@ -2377,7 +2358,6 @@
         </div>
         <div class="product-body">
           <h3 class="product-title">Uva Roja Sin Semilla</h3>
-          <p class="product-info">Dulces y crujientes para snacks saludables.</p>
           <div class="price-stack" aria-label="Oferta actual de Uva Roja Sin Semilla">
             <span class="price-mixed">
               <span class="price-label">Antes:</span>
