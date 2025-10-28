@@ -54,6 +54,9 @@
     a{ color:inherit; text-decoration:none; }
     .container{ width:var(--container); margin:0 auto; }
     .section{ padding: 3.5rem 0; }
+    .section-miercolazo{
+      background: linear-gradient(180deg, rgba(253,230,223,0.9) 0%, rgba(255,255,255,1) 100%);
+    }
 
     /* ===== NAV ===== */
     header{
@@ -505,7 +508,7 @@
       position:absolute;
       top:12px;
       left:12px;
-      background:var(--rojo);
+      background:#ea7a60;
       color:white;
       padding:.35rem .65rem;
       border-radius:999px;
@@ -515,7 +518,7 @@
       display:flex;
       align-items:center;
       gap:.35rem;
-      box-shadow:0 10px 20px rgba(212,84,56,.25);
+      box-shadow:0 10px 20px rgba(234,122,96,.22);
     }
     .offer-badge .timer{
       font-family:'Poppins', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
@@ -2123,7 +2126,7 @@
     </div>
   </section>
 
-  <section id="ofertas" class="section" style="background:white;">
+  <section id="ofertas" class="section section-miercolazo">
     <h2 class="section-title" style="color:var(--rojo)">MIERCOLAZO DE DESCUENTO %</h2>
     <p class="muted">Cuenta regresiva permanente: los miércoles duran 24 horas y el resto de la semana rotan cada dos minutos.</p>
     <div class="offers-grid" role="list" aria-label="Ofertas destacadas">
