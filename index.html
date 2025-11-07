@@ -2797,15 +2797,37 @@
         nextWednesday.setHours(9,0,0,0);
         let diff = nextWednesday.getTime() - now.getTime();
         if(diff < 0){ diff = 0; }
-        const totalHours = Math.max(0, Math.floor(diff / 3600000));
-        const hours = formatPart(totalHours);
-        const minutes = formatPart(Math.floor((diff % 3600000) / 60000));
-        const seconds = formatPart(Math.floor((diff % 60000) / 1000));
+        
         if(countdownLabel){ countdownLabel.textContent = 'Comienza en'; }
-        countdownTimers.forEach(timer => {
-          timer.textContent = `${hours}:${minutes}:${seconds}`;
-          timer.setAttribute('aria-label', `Faltan ${totalHours} horas, ${parseInt(minutes,10)} minutos y ${parseInt(seconds,10)} segundos para comenzar`);
-        });
+        
+        // If 24 hours or more, show days format
+        if(diff >= 86400000){
+          const days = Math.floor(diff / 86400000);
+          const remainingDiff = diff % 86400000;
+          const hoursNum = Math.floor(remainingDiff / 3600000);
+          const minutesNum = Math.floor((remainingDiff % 3600000) / 60000);
+          const secondsNum = Math.floor((remainingDiff % 60000) / 1000);
+          const hours = formatPart(hoursNum);
+          const minutes = formatPart(minutesNum);
+          const seconds = formatPart(secondsNum);
+          const dayLabel = days === 1 ? 'día' : 'días';
+          countdownTimers.forEach(timer => {
+            timer.textContent = `${days} ${dayLabel}, ${hours}:${minutes}:${seconds}`;
+            timer.setAttribute('aria-label', `Faltan ${days} ${dayLabel}, ${hoursNum} horas, ${minutesNum} minutos y ${secondsNum} segundos para comenzar`);
+          });
+        } else {
+          // Less than 24 hours, show HH:MM:SS format
+          const hoursNum = Math.floor(diff / 3600000);
+          const minutesNum = Math.floor((diff % 3600000) / 60000);
+          const secondsNum = Math.floor((diff % 60000) / 1000);
+          const hours = formatPart(hoursNum);
+          const minutes = formatPart(minutesNum);
+          const seconds = formatPart(secondsNum);
+          countdownTimers.forEach(timer => {
+            timer.textContent = `${hours}:${minutes}:${seconds}`;
+            timer.setAttribute('aria-label', `Faltan ${hoursNum} horas, ${minutesNum} minutos y ${secondsNum} segundos para comenzar`);
+          });
+        }
       }
     }
     updateCountdown();
