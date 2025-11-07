@@ -2804,22 +2804,28 @@
         if(diff >= 86400000){
           const days = Math.floor(diff / 86400000);
           const remainingDiff = diff % 86400000;
-          const hours = formatPart(Math.floor(remainingDiff / 3600000));
-          const minutes = formatPart(Math.floor((remainingDiff % 3600000) / 60000));
-          const seconds = formatPart(Math.floor((remainingDiff % 60000) / 1000));
+          const hoursNum = Math.floor(remainingDiff / 3600000);
+          const minutesNum = Math.floor((remainingDiff % 3600000) / 60000);
+          const secondsNum = Math.floor((remainingDiff % 60000) / 1000);
+          const hours = formatPart(hoursNum);
+          const minutes = formatPart(minutesNum);
+          const seconds = formatPart(secondsNum);
           const dayLabel = days === 1 ? 'día' : 'días';
           countdownTimers.forEach(timer => {
             timer.textContent = `${days} ${dayLabel}, ${hours}:${minutes}:${seconds}`;
-            timer.setAttribute('aria-label', `Faltan ${days} ${dayLabel}, ${parseInt(hours,10)} horas, ${parseInt(minutes,10)} minutos y ${parseInt(seconds,10)} segundos para comenzar`);
+            timer.setAttribute('aria-label', `Faltan ${days} ${dayLabel}, ${hoursNum} horas, ${minutesNum} minutos y ${secondsNum} segundos para comenzar`);
           });
         } else {
           // Less than 24 hours, show HH:MM:SS format
-          const hours = formatPart(Math.floor(diff / 3600000));
-          const minutes = formatPart(Math.floor((diff % 3600000) / 60000));
-          const seconds = formatPart(Math.floor((diff % 60000) / 1000));
+          const hoursNum = Math.floor(diff / 3600000);
+          const minutesNum = Math.floor((diff % 3600000) / 60000);
+          const secondsNum = Math.floor((diff % 60000) / 1000);
+          const hours = formatPart(hoursNum);
+          const minutes = formatPart(minutesNum);
+          const seconds = formatPart(secondsNum);
           countdownTimers.forEach(timer => {
             timer.textContent = `${hours}:${minutes}:${seconds}`;
-            timer.setAttribute('aria-label', `Faltan ${parseInt(hours,10)} horas, ${parseInt(minutes,10)} minutos y ${parseInt(seconds,10)} segundos para comenzar`);
+            timer.setAttribute('aria-label', `Faltan ${hoursNum} horas, ${minutesNum} minutos y ${secondsNum} segundos para comenzar`);
           });
         }
       }
