@@ -1415,7 +1415,7 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      background:#ffffff url("https://scontent-qro1-2.xx.fbcdn.net/v/t39.30808-6/559231839_820793204263696_7658248066248306568_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=jjCmUp03oGoQ7kNvwFe-zQG&_nc_oc=AdmGwkwRu-89lgPKhmq6iJKf2fmIE7CspV8yKhLwysTIlgpk1i1kzrOaDEGGa6TvrjLjoWPbi1Q4Gn1KjbTmAy6t&_nc_zt=23&_nc_ht=scontent-qro1-2.xx&_nc_gid=VBikkWUKbCFstQAa9aueAw&oh=00_AfecVSqRkvjUwBWMAfr1cWddl15U7ywFqB23OBravf-9_w&oe=6905B52C") center/contain no-repeat;
+      background:#ffffff url("LOYAL.jpg") center/contain no-repeat;
     }
     .loyalty-media::before{
       content:"";
@@ -1631,7 +1631,7 @@
 
     /* Footer */
     footer{ border-top:1px solid #eee; background:white; color:#666; }
-    footer .foot{ width:var(--container); margin:0 auto; padding:1.25rem 0; display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
+    footer .foot{ width:var(--container); margin:0 auto; padding:1.25rem 0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1rem; text-align:center; }
   </style>
 </head>
 <body class="page-home" data-page="home">
@@ -2531,7 +2531,7 @@
     }());
 
     // Año dinámico
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('year').textContent = '2026';
 
     // Menú hamburguesa accesible
     const hamb = document.getElementById('hamb');
