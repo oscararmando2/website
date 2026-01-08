@@ -658,6 +658,9 @@
       border-radius: 20px;
       scroll-snap-align:start;
     }
+    /* Animated rotating gradient for glowing border effect 
+       40% width ensures gradient bar is narrow enough to create border appearance
+       150% height ensures full coverage during rotation */
     .mexiquense-cardBox::before {
       content: "";
       position: absolute;
@@ -665,7 +668,7 @@
       height: 150%;
       background: linear-gradient(to right, #FF0080, #FF8C00, #40E0D0);
       animation: glowing 5s linear infinite;
-      transform-origin: center;
+      z-index: 1;
     }
     @keyframes glowing {
       0% {
