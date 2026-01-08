@@ -170,4 +170,4 @@ Si tienes preguntas o problemas:
 
 ---
 
-**Nota**: El cambio es mínimo y quirúrgico. Solo se modificó la URL del servicio de formularios y se agregaron campos de configuración. El JavaScript y el resto del HTML permanecen intactos.
+**Nota**: Los cambios son mínimos y quirúrgicos. Solo se modificó la URL del servicio de formularios y se agregaron campos de configuración. El JavaScript y el resto del HTML permanecen intactos.

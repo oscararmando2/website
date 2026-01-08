@@ -2,13 +2,16 @@
 
 ## ⚠️ Nota Importante sobre Privacidad del Correo
 
-El correo electrónico `mexi.quense1086@gmail.com` está visible en el código HTML del formulario. Esto es intencional dado que:
+El correo electrónico `mexi.quense1086@gmail.com` está visible en el código HTML del formulario. Esta es una **solución práctica e inmediata** que permite activar el formulario sin crear cuentas adicionales.
+
+**Consideraciones:**
 1. El correo ya aparece públicamente en la sección de contacto del sitio
-2. Se requería una solución simple sin crear cuentas adicionales
+2. Esta configuración permite activación inmediata sin registro
+3. **RECOMENDACIÓN**: Para uso a largo plazo en producción, considera migrar a Form ID (ver sección abajo)
 
 **Si recibes spam**, puedes:
-- Activar el CAPTCHA (ver sección de configuración abajo)
-- Crear una cuenta en FormSubmit.co para usar un Form ID en lugar del correo directo
+1. **Inmediato**: Activar el CAPTCHA (ver sección de configuración abajo)
+2. **Recomendado**: Migrar a Form ID privado (requiere cuenta gratuita de FormSubmit)
 
 ## Servicio Utilizado
 
