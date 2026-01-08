@@ -1,5 +1,15 @@
 # Configuración del Formulario de Contacto
 
+## ⚠️ Nota Importante sobre Privacidad del Correo
+
+El correo electrónico `mexi.quense1086@gmail.com` está visible en el código HTML del formulario. Esto es intencional dado que:
+1. El correo ya aparece públicamente en la sección de contacto del sitio
+2. Se requería una solución simple sin crear cuentas adicionales
+
+**Si recibes spam**, puedes:
+- Activar el CAPTCHA (ver sección de configuración abajo)
+- Crear una cuenta en FormSubmit.co para usar un Form ID en lugar del correo directo
+
 ## Servicio Utilizado
 
 El formulario de contacto utiliza **FormSubmit.co**, un servicio gratuito que permite recibir mensajes del formulario web directamente por correo electrónico sin necesidad de configurar un servidor backend.
@@ -61,6 +71,23 @@ Si comienzas a recibir spam, puedes activar el CAPTCHA:
 2. Busca: `<input type="hidden" name="_captcha" value="false">`
 3. Cámbialo a: `<input type="hidden" name="_captcha" value="true">`
 4. Guarda los cambios
+
+### Opción Alternativa: Usar Form ID (Más Privado)
+
+Para mayor privacidad y evitar que el correo esté visible en el código:
+
+1. Crea una cuenta gratuita en https://formsubmit.co/
+2. Registra tu correo y obtén un Form ID único
+3. Cambia la acción del formulario de:
+   ```html
+   <form action="https://formsubmit.co/mexi.quense1086@gmail.com">
+   ```
+   A:
+   ```html
+   <form action="https://formsubmit.co/f/tu-form-id">
+   ```
+
+Esto ocultará tu correo del código fuente pero requiere crear una cuenta.
 
 ## Soporte
 
