@@ -398,7 +398,7 @@
     /* ===== Productos destacados ===== */
     #productos{
       position:relative;
-      background:linear-gradient(135deg, rgba(255,252,251,0.98) 0%, rgba(255,255,255,1) 58%, rgba(255,236,232,0.9) 100%);
+      background:linear-gradient(135deg, rgba(212,84,56,0.15) 0%, rgba(212,84,56,0.08) 50%, rgba(212,84,56,0.15) 100%);
       overflow:hidden;
       isolation:isolate;
     }
@@ -1456,7 +1456,7 @@
       text-transform:uppercase;
       background:rgba(29,132,69,.16);
       color:var(--verde);
-      align-self:flex-start;
+      align-self:center;
     }
     .loyalty-copy h2{
       margin:0;
@@ -2035,7 +2035,7 @@
       <span class="countdown-label" data-timer-label>Termina en</span>
       <span class="timer countdown-timer" role="timer">--:--:--</span>
     </p>
-    <p class="muted">Promociones validas solo el día Miércoles 12 Noviembre</p>
+    <p class="muted" id="promo-date">Promociones válidas solo el día Miércoles 12 Noviembre</p>
   </section>
 
   <section id="recetas" class="recipes-hero" aria-labelledby="recetas-title">
@@ -2662,6 +2662,111 @@
           if(status){ status.textContent = 'No pudimos enviar tu mensaje en este momento. Revisa tu conexión e inténtalo de nuevo.'; }
         }
       });
+    }
+
+    // ===== Miercolazo Countdown Timer =====
+    function getNextWednesday(fromDate = new Date()) {
+      const date = new Date(fromDate);
+      const dayOfWeek = date.getDay();
+      const daysUntilWednesday = (3 - dayOfWeek + 7) % 7;
+      
+      // If today is Wednesday, check if we're past end of day (9 PM)
+      if (daysUntilWednesday === 0) {
+        const currentHour = date.getHours();
+        // If it's past 9 PM (21:00), move to next Wednesday
+        if (currentHour >= 21) {
+          date.setDate(date.getDate() + 7);
+        }
+        // Otherwise stay on current Wednesday
+      } else {
+        // Move to next Wednesday
+        date.setDate(date.getDate() + daysUntilWednesday);
+      }
+      
+      return date;
+    }
+
+    function isCurrentlyWednesday() {
+      const now = new Date();
+      const dayOfWeek = now.getDay();
+      const hour = now.getHours();
+      
+      // Wednesday is day 3, and promotion runs from 9 AM to 9 PM
+      return dayOfWeek === 3 && hour >= 9 && hour < 21;
+    }
+
+    function formatWednesdayDate(date) {
+      const months = [
+        'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+        'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+      ];
+      
+      const day = date.getDate();
+      const month = months[date.getMonth()];
+      const year = date.getFullYear();
+      
+      return `Miércoles ${day} ${month} ${year}`;
+    }
+
+    function updateMiercolazoCountdown() {
+      const timerElement = document.querySelector('.countdown-timer');
+      const labelElement = document.querySelector('[data-timer-label]');
+      const dateElement = document.getElementById('promo-date');
+      
+      if (!timerElement || !labelElement || !dateElement) return;
+      
+      const now = new Date();
+      const nextWednesday = getNextWednesday(now);
+      const isWednesday = isCurrentlyWednesday();
+      
+      let targetTime;
+      
+      if (isWednesday) {
+        // If it's Wednesday, countdown to 9 PM (21:00)
+        targetTime = new Date(now);
+        targetTime.setHours(21, 0, 0, 0);
+        labelElement.textContent = 'Termina en';
+      } else {
+        // If it's not Wednesday, countdown to next Wednesday at 9 AM
+        targetTime = new Date(nextWednesday);
+        targetTime.setHours(9, 0, 0, 0);
+        labelElement.textContent = 'Comienza en 🕒';
+      }
+      
+      const diff = targetTime - now;
+      
+      if (diff <= 0) {
+        timerElement.textContent = '--:--:--';
+        // The setInterval will handle the next update
+        return;
+      }
+      
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      
+      if (isWednesday) {
+        // Format as HH:MM:SS for same-day countdown
+        timerElement.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      } else {
+        // Format as "X días, Y horas y Z minutos"
+        const parts = [];
+        if (days > 0) parts.push(`${days} día${days !== 1 ? 's' : ''}`);
+        if (hours > 0) parts.push(`${hours} hora${hours !== 1 ? 's' : ''}`);
+        if (minutes > 0 || parts.length === 0) parts.push(`${minutes} minuto${minutes !== 1 ? 's' : ''}`);
+        
+        timerElement.textContent = parts.join(', ').replace(/, ([^,]*)$/, ' y $1');
+      }
+      
+      // Update the date text
+      dateElement.textContent = `Promociones válidas solo el día ${formatWednesdayDate(nextWednesday)}`;
+    }
+
+    // Initialize and update countdown every second
+    if (document.querySelector('.countdown-timer')) {
+      updateMiercolazoCountdown();
+      setInterval(updateMiercolazoCountdown, 1000);
     }
   </script>
 
