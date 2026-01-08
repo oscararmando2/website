@@ -776,6 +776,71 @@
       -webkit-box-orient:vertical;
       overflow:hidden;
     }
+    /* Shine effect for PRECIO MEXIQUENSE */
+    .btn-shine {
+      display: block;
+      text-align: center;
+      padding: 12px 0;
+      color: #fff;
+      background: linear-gradient(to right, #ff0000 0%, #fff 10%, #ff0000 20%);
+      background-position: 0;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shine 3s infinite linear;
+      animation-fill-mode: forwards;
+      -webkit-text-size-adjust: none;
+      font-weight: 600;
+      font-size: 16px;
+      text-decoration: none;
+      white-space: nowrap;
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+    }
+    @-moz-keyframes shine {
+      0% {
+        background-position: 0;
+      }
+      60% {
+        background-position: 180px;
+      }
+      100% {
+        background-position: 180px;
+      }
+    }
+    @-webkit-keyframes shine {
+      0% {
+        background-position: 0;
+      }
+      60% {
+        background-position: 180px;
+      }
+      100% {
+        background-position: 180px;
+      }
+    }
+    @-o-keyframes shine {
+      0% {
+        background-position: 0;
+      }
+      60% {
+        background-position: 180px;
+      }
+      100% {
+        background-position: 180px;
+      }
+    }
+    @keyframes shine {
+      0% {
+        background-position: 0;
+      }
+      60% {
+        background-position: 180px;
+      }
+      100% {
+        background-position: 180px;
+      }
+    }
     .mexiquense-card__price{
       margin-top:auto;
       display:flex;
@@ -1993,7 +2058,7 @@
           <div class="mexiquense-card__body">
             <span class="mexiquense-card__tag">$1.99</span>
             <h3>Huevo Best Choice 12 pack</h3>
-            <p>PRECIO MEXIQUENSE</p>
+            <a href="#" class="btn-shine">PRECIO MEXIQUENSE</a>
             <div class="mexiquense-card__price" aria-label="Precio: $1.99">
               <span class="mexiquense-card__amount">$1.99</span>
             </div>
@@ -2008,7 +2073,7 @@
           <div class="mexiquense-card__body">
             <span class="mexiquense-card__tag">$4.69</span>
             <h3>Gallon de Leche Prairie Farms</h3>
- <p>PRECIO MEXIQUENSE</p>
+            <a href="#" class="btn-shine">PRECIO MEXIQUENSE</a>
             <div class="mexiquense-card__price" aria-label="Precio: $4.69">
               <span class="mexiquense-card__amount">$4.69</span>
             </div>
@@ -2023,7 +2088,7 @@
           <div class="mexiquense-card__body">
             <span class="mexiquense-card__tag">$1.99</span>
             <h3>Jugo Tampico</h3>
-             <p>PRECIO MEXIQUENSE</p>
+            <a href="#" class="btn-shine">PRECIO MEXIQUENSE</a>
             <div class="mexiquense-card__price" aria-label="Precio: $1.99">
               <span class="mexiquense-card__amount">$1.99</span>
             </div>
@@ -2038,7 +2103,7 @@
           <div class="mexiquense-card__body">
             <span class="mexiquense-card__tag">$4.99</span>
             <h3>Harina Pan 5 LB</h3>
-            <p>PRECIO MEXIQUENSE</p>
+            <a href="#" class="btn-shine">PRECIO MEXIQUENSE</a>
             <div class="mexiquense-card__price" aria-label="Precio: $4.99">
               <span class="mexiquense-card__amount">$4.99</span>
             </div>
@@ -2053,7 +2118,7 @@
           <div class="mexiquense-card__body">
             <span class="mexiquense-card__tag">$3.99</span>
             <h3>Maseca 5 LB</h3>
-          <p>PRECIO MEXIQUENSE</p>
+            <a href="#" class="btn-shine">PRECIO MEXIQUENSE</a>
             <div class="mexiquense-card__price" aria-label="Precio: $1.89">
               <span class="mexiquense-card__amount">$3.99</span>
             </div>
@@ -2068,7 +2133,7 @@
           <div class="mexiquense-card__body">
             <span class="mexiquense-card__tag">2x6</span>
             <h3>Frijol Goya 40 OZ</h3>
-           <p>PRECIO MEXIQUENSE</p>
+            <a href="#" class="btn-shine">PRECIO MEXIQUENSE</a>
             <div class="mexiquense-card__price" aria-label="Precio: 2x6">
               <span class="mexiquense-card__amount">2x6</span>
             </div>
@@ -2083,7 +2148,7 @@
           <div class="mexiquense-card__body">
             <span class="mexiquense-card__tag">$4.99</span>
             <h3>Aceite Mazola 32 oz</h3>
-          <p>PRECIO MEXIQUENSE</p>
+            <a href="#" class="btn-shine">PRECIO MEXIQUENSE</a>
             <div class="mexiquense-card__price" aria-label="Precio: $4.99">
               <span class="mexiquense-card__amount">$4.99</span>
             </div>
@@ -2098,7 +2163,7 @@
           <div class="mexiquense-card__body">
             <span class="mexiquense-card__tag">$6.99</span>
             <h3>Coca Cola 12 Pack</h3>
-           <p>PRECIO MEXIQUENSE</p>
+            <a href="#" class="btn-shine">PRECIO MEXIQUENSE</a>
             <div class="mexiquense-card__price" aria-label="Precio: $6.99">
               <span class="mexiquense-card__amount">$6.99</span>
             </div>
@@ -2113,7 +2178,7 @@
           <div class="mexiquense-card__body">
             <span class="mexiquense-card__tag">$2.79</span>
             <h3>Nutri Leche 32 Oz</h3>
-             <p>PRECIO MEXIQUENSE</p>
+            <a href="#" class="btn-shine">PRECIO MEXIQUENSE</a>
             <div class="mexiquense-card__price" aria-label="Precio: $2.79">
               <span class="mexiquense-card__amount">$2.79</span>
             </div>
@@ -2128,7 +2193,7 @@
           <div class="mexiquense-card__body">
             <span class="mexiquense-card__tag">$4.49</span>
             <h3>Chuleta Ahumada</h3>
-          <p>PRECIO MEXIQUENSE</p>
+            <a href="#" class="btn-shine">PRECIO MEXIQUENSE</a>
             <div class="mexiquense-card__price" aria-label="Precio: $4.49">
               <span class="mexiquense-card__amount">$4.49</span>
             </div>
@@ -2143,7 +2208,7 @@
           <div class="mexiquense-card__body">
             <span class="mexiquense-card__tag">$7.99</span>
             <h3>Nescafé 7.9 Oz</h3>
-         <p>PRECIO MEXIQUENSE</p>
+            <a href="#" class="btn-shine">PRECIO MEXIQUENSE</a>
             <div class="mexiquense-card__price" aria-label="Precio: $7.99">
             </div>
           </div>
