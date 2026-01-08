@@ -645,12 +645,43 @@
       background:rgba(29,132,69,.25);
       border-radius:999px;
     }
-    .mexiquense-card{
-      position:relative;
-      flex:0 0 auto;
+    /* Wrapper for glowing border effect */
+    .mexiquense-cardBox {
+      position: relative;
       width: clamp(220px, 58vw, 240px);
       min-width: clamp(220px, 58vw, 240px);
       height: clamp(340px, 70vw, 360px);
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border-radius: 20px;
+      scroll-snap-align:start;
+    }
+    /* Animated rotating gradient for glowing border effect 
+       40% width ensures gradient bar is narrow enough to create border appearance
+       150% height ensures full coverage during rotation */
+    .mexiquense-cardBox::before {
+      content: "";
+      position: absolute;
+      width: 40%;
+      height: 150%;
+      background: linear-gradient(to right, #FF0080, #FF8C00, #40E0D0);
+      animation: glowing 5s linear infinite;
+      z-index: 1;
+    }
+    @keyframes glowing {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    .mexiquense-card{
+      position:absolute;
+      width: 95%;
+      height: 95%;
       background:rgba(255,255,255,.96);
       border-radius:18px;
       box-shadow:0 16px 32px rgba(0,0,0,.08);
@@ -658,8 +689,8 @@
       display:flex;
       flex-direction:column;
       overflow:hidden;
-      scroll-snap-align:start;
       transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+      z-index: 5;
     }
     .mexiquense-card::before{
       content:"";
@@ -775,7 +806,7 @@
       .mexiquense-track{
         gap:.85rem;
       }
-      .mexiquense-card{
+      .mexiquense-cardBox{
         width: clamp(220px, 72vw, 240px);
         min-width: clamp(220px, 72vw, 240px);
         height: clamp(340px, 78vw, 360px);
@@ -1954,7 +1985,8 @@
         <p class="mexiquense-subtitle">Productos a precios que solo encontrarás con nosotros, listos para llevarte el auténtico sabor de casa.</p>
       </div>
       <div class="mexiquense-track" role="list" aria-label="Tarjetas de promociones exclusivas del Mexiquense">
-        <article class="mexiquense-card" role="listitem">
+        <div class="mexiquense-cardBox">
+          <article class="mexiquense-card" role="listitem">
           <figure class="mexiquense-card__media">
             <img src="https://www.instacart.com/image-server/1200x1200/www.instacart.com/assets/domains/product-image/file/large_6a930469-dbc4-44d6-92ea-331416ff4953.jpeg" alt="Docena de huevos frescos" loading="lazy">
           </figure>
@@ -1967,7 +1999,9 @@
             </div>
           </div>
         </article>
-        <article class="mexiquense-card" role="listitem">
+        </div>
+        <div class="mexiquense-cardBox">
+          <article class="mexiquense-card" role="listitem">
           <figure class="mexiquense-card__media">
             <img src="https://i5.walmartimages.com/asr/c0d2f31c-08a1-4b4b-8a4a-204d8b010646.4cd43d99d75562863fb93014fdcccc8b.png?odnHeight=768&odnWidth=768&odnBg=FFFFFF" alt="Botellas de leche sobre una mesa" loading="lazy">
           </figure>
@@ -1980,7 +2014,9 @@
             </div>
           </div>
         </article>
-        <article class="mexiquense-card" role="listitem">
+        </div>
+        <div class="mexiquense-cardBox">
+          <article class="mexiquense-card" role="listitem">
           <figure class="mexiquense-card__media">
             <img src="https://i5.walmartimages.com/asr/9cff15dc-321a-465e-af26-4a927241673c.3539d159641763b2d4aadd480c233f36.jpeg" alt="Pan dulce tradicional mexicano" loading="lazy">
           </figure>
@@ -1993,7 +2029,9 @@
             </div>
           </div>
         </article>
-        <article class="mexiquense-card" role="listitem">
+        </div>
+        <div class="mexiquense-cardBox">
+          <article class="mexiquense-card" role="listitem">
           <figure class="mexiquense-card__media">
             <img src="https://amazonaslatinmarket.com/wp-content/uploads/2020/10/harina-pan-5lb-1.jpg" alt="Tortillas recién hechas apiladas" loading="lazy">
           </figure>
@@ -2006,7 +2044,9 @@
             </div>
           </div>
         </article>
-        <article class="mexiquense-card" role="listitem">
+        </div>
+        <div class="mexiquense-cardBox">
+          <article class="mexiquense-card" role="listitem">
           <figure class="mexiquense-card__media">
             <img src="https://rancholatinmarket.ca/cdn/shop/files/maseca_for_tortillas.jpg?v=1735250215&width=1200" alt=""   loading="lazy">
           </figure>
@@ -2019,7 +2059,9 @@
             </div>
           </div>
         </article>
-        <article class="mexiquense-card" role="listitem">
+        </div>
+        <div class="mexiquense-cardBox">
+          <article class="mexiquense-card" role="listitem">
           <figure class="mexiquense-card__media">
             <img src="https://www.goya.com/wp-content/uploads/2023/12/Black-Beans_Front.png" alt="Arroz blanco servido en un tazón" loading="lazy">
           </figure>
@@ -2032,7 +2074,9 @@
             </div>
           </div>
         </article>
-        <article class="mexiquense-card" role="listitem">
+        </div>
+        <div class="mexiquense-cardBox">
+          <article class="mexiquense-card" role="listitem">
           <figure class="mexiquense-card__media">
             <img src="https://latorremx.vtexassets.com/arquivos/ids/165625/41281-frontal.jpg?v=637691351591400000" alt="Botella de aceite vegetal" loading="lazy">
           </figure>
@@ -2045,7 +2089,9 @@
             </div>
           </div>
         </article>
-        <article class="mexiquense-card" role="listitem">
+        </div>
+        <div class="mexiquense-cardBox">
+          <article class="mexiquense-card" role="listitem">
           <figure class="mexiquense-card__media">
             <img src="https://punto929.mx/cdn/shop/products/Coca_Cola_Original.jpg?v=1597039859" alt="Queso fresco cortado sobre tabla" loading="lazy">
           </figure>
@@ -2058,7 +2104,9 @@
             </div>
           </div>
         </article>
-        <article class="mexiquense-card" role="listitem">
+        </div>
+        <div class="mexiquense-cardBox">
+          <article class="mexiquense-card" role="listitem">
           <figure class="mexiquense-card__media">
             <img src="https://www.subodega.mx/articulo/922/03.webp" alt="Mutri Leche" loading="lazy">
           </figure>
@@ -2071,7 +2119,9 @@
             </div>
           </div>
         </article>
-        <article class="mexiquense-card" role="listitem">
+        </div>
+        <div class="mexiquense-cardBox">
+          <article class="mexiquense-card" role="listitem">
           <figure class="mexiquense-card__media">
             <img src="https://carnesideal.tienda/cdn/shop/products/CRD15-1_2ec75d12-afea-432c-b0e8-8cf108370bba.jpg?v=1747962590" alt="Chuleta Agumada" loading="lazy">
           </figure>
@@ -2084,7 +2134,9 @@
             </div>
           </div>
         </article>
-        <article class="mexiquense-card" role="listitem">
+        </div>
+        <div class="mexiquense-cardBox">
+          <article class="mexiquense-card" role="listitem">
           <figure class="mexiquense-card__media">
             <img src="https://www.instacart.com/image-server/600x600/filters:fill(FFFFFF,true):format(jpg)/d2lnr5mha7bycj.cloudfront.net/product-image/file/large_2bd25f2e-72bc-43b4-8448-5c84410a517e.jpg" alt="Taza de café de olla humeante" loading="lazy">
           </figure>
@@ -2097,6 +2149,7 @@
             </div>
           </div>
         </article>
+        </div>
       </div>
     </div>
   </section>
