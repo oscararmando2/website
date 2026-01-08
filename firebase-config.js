@@ -6,6 +6,9 @@ import { getAnalytics } from "firebase/analytics";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// NOTE: This is the canonical Firebase configuration for npm-based builds.
+// For the static HTML site (index.html), the configuration is embedded directly
+// using the CDN approach for simplicity.
 const firebaseConfig = {
   apiKey: "AIzaSyB_5GFz2nM55vesrFvFE5QHSXaGxfuuZ9A",
   authDomain: "mexiquenseweb-4931b.firebaseapp.com",
