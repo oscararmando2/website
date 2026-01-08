@@ -141,6 +141,14 @@
       box-shadow: var(--shadow);
     }
     .btn:hover{ background:#166b36; transform: translateY(-1px); }
+    .btn-disabled{
+      cursor: default;
+      opacity: 0.85;
+    }
+    .btn-disabled:hover{
+      background:var(--verde);
+      transform: none;
+    }
     .btn-outline{ background:white; color:var(--verde); border-color:var(--verde); }
     .btn-outline:hover{ background:var(--verde); color:white; }
 
@@ -1455,6 +1463,7 @@
       font-size: clamp(1.65rem, 3.8vw, 2.3rem);
       color:var(--verde);
       line-height:1.2;
+      text-align:center;
     }
     .loyalty-copy p{
       margin:0;
@@ -1500,6 +1509,7 @@
       flex-wrap:wrap;
       gap:.75rem;
       align-items:center;
+      justify-content:center;
       margin-top:auto;
     }
     .loyalty-media{
@@ -1510,7 +1520,7 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      background:#ffffff url("LOYAL.jpg") center/contain no-repeat;
+      background:#ffffff url("LOYAL.jpg") center/cover no-repeat;
     }
     .loyalty-media::before{
       content:"";
@@ -2252,7 +2262,7 @@
           <li>Canjea puntos por ahorros y sorpresas especiales.</li>
         </ul>
         <div class="loyalty-actions" role="group" aria-label="Acciones del programa de lealtad">
-          <a class="btn" href="#contacto">Únete sin costo</a>
+          <span class="btn btn-disabled" role="button" aria-disabled="true">Próximamente</span>
         </div>
       </div>
       <figure class="loyalty-media loyalty-card" role="img" aria-label="Tarjeta de regalo del programa de lealtad de El Mexiquense Market"></figure>
