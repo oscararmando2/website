@@ -23,6 +23,7 @@ firebase deploy --only hosting
 |-----------|-------------|
 | **[INDICE_DOCUMENTACION.md](INDICE_DOCUMENTACION.md)** | 📖 Índice completo de toda la documentación |
 | **[RESUMEN_COMPLETO.md](RESUMEN_COMPLETO.md)** | ⭐ **EMPIEZA AQUÍ** - Responde las 5 preguntas principales |
+| **[GUIA_FIREBASE_INIT_HOSTING.md](GUIA_FIREBASE_INIT_HOSTING.md)** | 🔥 Guía de inicialización de Firebase Hosting |
 | **[COMANDOS_RAPIDOS.md](COMANDOS_RAPIDOS.md)** | ⚡ Referencia rápida de comandos |
 | **[GUIA_COMPLETA_DEPLOYMENT.md](GUIA_COMPLETA_DEPLOYMENT.md)** | 📝 Guía paso a paso detallada |
 | **[EXPLICACION_ARCHIVOS.md](EXPLICACION_ARCHIVOS.md)** | 📂 Qué archivos necesitas y por qué |

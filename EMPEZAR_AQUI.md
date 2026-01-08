@@ -24,7 +24,7 @@ firebase deploy --only hosting
 
 ---
 
-## 📖 ¿Primera vez? Lee estos 3 documentos
+## 📖 ¿Primera vez? Lee estos documentos
 
 ### 1️⃣ LISTO_PARA_DEPLOY.md (3 minutos)
 Estado del proyecto y verificación de archivos
@@ -32,7 +32,13 @@ Estado del proyecto y verificación de archivos
 - ✅ Ve qué archivos tienes
 - ✅ Entiende el siguiente paso
 
-### 2️⃣ RESUMEN_COMPLETO.md (5 minutos)  
+### 2️⃣ GUIA_FIREBASE_INIT_HOSTING.md (5 minutos)
+Inicialización completa de Firebase Hosting
+- 🔥 Proceso de `firebase init hosting`
+- 🔥 Configuración de archivos
+- 🔥 URLs de deployment
+
+### 3️⃣ RESUMEN_COMPLETO.md (5 minutos)  
 Responde tus 5 preguntas principales
 - ❓ ¿Qué archivos necesito?
 - ❓ ¿Cómo es firebase.json?
@@ -40,7 +46,7 @@ Responde tus 5 preguntas principales
 - ❓ ¿Qué comandos ejecuto?
 - ❓ ¿Cómo verifico?
 
-### 3️⃣ COMANDOS_RAPIDOS.md (2 minutos)
+### 4️⃣ COMANDOS_RAPIDOS.md (2 minutos)
 Comandos esenciales en una página
 - ⚡ 3 comandos para deploy
 - ⚡ Comandos útiles
@@ -55,6 +61,7 @@ Para más detalles, ve el índice completo:
 **[INDICE_DOCUMENTACION.md](INDICE_DOCUMENTACION.md)**
 
 Incluye:
+- Guía de inicialización de Firebase
 - Guía paso a paso detallada
 - Explicación de archivos
 - Checklist de verificación

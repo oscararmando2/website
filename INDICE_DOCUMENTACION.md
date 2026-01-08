@@ -22,6 +22,7 @@
 
 | Documento | Descripción | Cuándo Leer |
 |-----------|-------------|-------------|
+| **[GUIA_FIREBASE_INIT_HOSTING.md](GUIA_FIREBASE_INIT_HOSTING.md)** | 🔥 Guía de inicialización de Firebase Hosting | Configuración inicial |
 | **[EXPLICACION_ARCHIVOS.md](EXPLICACION_ARCHIVOS.md)** | Explica qué archivos necesitas y por qué | Antes del primer deploy |
 | **[GUIA_COMPLETA_DEPLOYMENT.md](GUIA_COMPLETA_DEPLOYMENT.md)** | Guía paso a paso detallada con ejemplos | Durante el deployment |
 | **[CHECKLIST_VERIFICACION.md](CHECKLIST_VERIFICACION.md)** | Cómo verificar que todo funcione | Después del deploy |
@@ -63,12 +64,13 @@
 
 ### Documentación (Estos archivos)
 ```
-├── RESUMEN_COMPLETO.md          ← ⭐ COMIENZA AQUÍ
-├── GUIA_COMPLETA_DEPLOYMENT.md  ← Guía paso a paso
-├── EXPLICACION_ARCHIVOS.md      ← Qué archivos necesitas
-├── COMANDOS_RAPIDOS.md          ← Referencia rápida
-├── CHECKLIST_VERIFICACION.md    ← Verificación post-deploy
-└── INDICE_DOCUMENTACION.md      ← Este archivo
+├── RESUMEN_COMPLETO.md           ← ⭐ COMIENZA AQUÍ
+├── GUIA_FIREBASE_INIT_HOSTING.md ← 🔥 Inicialización Firebase
+├── GUIA_COMPLETA_DEPLOYMENT.md   ← Guía paso a paso
+├── EXPLICACION_ARCHIVOS.md       ← Qué archivos necesitas
+├── COMANDOS_RAPIDOS.md           ← Referencia rápida
+├── CHECKLIST_VERIFICACION.md     ← Verificación post-deploy
+└── INDICE_DOCUMENTACION.md       ← Este archivo
 ```
 
 ### Configuración Firebase
@@ -91,9 +93,10 @@
 ## 🎓 Por Nivel de Experiencia
 
 ### Principiante (Nunca has usado Firebase)
-1. **[RESUMEN_COMPLETO.md](RESUMEN_COMPLETO.md)** - Lee todo
-2. **[GUIA_COMPLETA_DEPLOYMENT.md](GUIA_COMPLETA_DEPLOYMENT.md)** - Sigue paso a paso
-3. **[CHECKLIST_VERIFICACION.md](CHECKLIST_VERIFICACION.md)** - Verifica todo
+1. **[GUIA_FIREBASE_INIT_HOSTING.md](GUIA_FIREBASE_INIT_HOSTING.md)** - Inicialización desde cero
+2. **[RESUMEN_COMPLETO.md](RESUMEN_COMPLETO.md)** - Lee todo
+3. **[GUIA_COMPLETA_DEPLOYMENT.md](GUIA_COMPLETA_DEPLOYMENT.md)** - Sigue paso a paso
+4. **[CHECKLIST_VERIFICACION.md](CHECKLIST_VERIFICACION.md)** - Verifica todo
 
 ### Intermedio (Ya has usado Firebase)
 1. **[COMANDOS_RAPIDOS.md](COMANDOS_RAPIDOS.md)** - Deploy rápido
@@ -108,8 +111,9 @@
 ## 🔍 Buscar por Tema
 
 ### Configuración
-- ¿Qué es `firebase.json`? → [EXPLICACION_ARCHIVOS.md](EXPLICACION_ARCHIVOS.md#-firebasejson-obligatorio)
-- ¿Necesito carpeta `public/`? → [EXPLICACION_ARCHIVOS.md](EXPLICACION_ARCHIVOS.md#2--estructura-de-carpetas)
+- Firebase init hosting → [GUIA_FIREBASE_INIT_HOSTING.md](GUIA_FIREBASE_INIT_HOSTING.md#1-conectar-archivos-locales-a-firebase)
+- ¿Qué es `firebase.json`? → [GUIA_FIREBASE_INIT_HOSTING.md](GUIA_FIREBASE_INIT_HOSTING.md#31-firebasejson) y [EXPLICACION_ARCHIVOS.md](EXPLICACION_ARCHIVOS.md#-firebasejson-obligatorio)
+- ¿Necesito carpeta `public/`? → [GUIA_FIREBASE_INIT_HOSTING.md](GUIA_FIREBASE_INIT_HOSTING.md#22-especifica-el-directorio-raíz-público) y [EXPLICACION_ARCHIVOS.md](EXPLICACION_ARCHIVOS.md#2--estructura-de-carpetas)
 - ¿Qué archivos se publican? → [EXPLICACION_ARCHIVOS.md](EXPLICACION_ARCHIVOS.md#3--qué-debe-ir-en-la-carpeta-pública)
 
 ### Comandos
@@ -136,6 +140,7 @@
 
 | Quiero... | Ve a... |
 |-----------|---------|
+| Inicializar Firebase Hosting | [GUIA_FIREBASE_INIT_HOSTING.md](GUIA_FIREBASE_INIT_HOSTING.md) |
 | Hacer mi primer deploy | [GUIA_COMPLETA_DEPLOYMENT.md](GUIA_COMPLETA_DEPLOYMENT.md) |
 | Deploy rápido | [COMANDOS_RAPIDOS.md](COMANDOS_RAPIDOS.md) |
 | Entender los archivos | [EXPLICACION_ARCHIVOS.md](EXPLICACION_ARCHIVOS.md) |
@@ -149,7 +154,7 @@
 
 Marca lo que necesitas:
 
-- [ ] **Primera vez con Firebase** → [RESUMEN_COMPLETO.md](RESUMEN_COMPLETO.md) + [GUIA_COMPLETA_DEPLOYMENT.md](GUIA_COMPLETA_DEPLOYMENT.md)
+- [ ] **Primera vez con Firebase** → [GUIA_FIREBASE_INIT_HOSTING.md](GUIA_FIREBASE_INIT_HOSTING.md) + [RESUMEN_COMPLETO.md](RESUMEN_COMPLETO.md) + [GUIA_COMPLETA_DEPLOYMENT.md](GUIA_COMPLETA_DEPLOYMENT.md)
 - [ ] **Ya sé usar Firebase** → [COMANDOS_RAPIDOS.md](COMANDOS_RAPIDOS.md)
 - [ ] **Entender archivos** → [EXPLICACION_ARCHIVOS.md](EXPLICACION_ARCHIVOS.md)
 - [ ] **Verificar deployment** → [CHECKLIST_VERIFICACION.md](CHECKLIST_VERIFICACION.md)
@@ -202,6 +207,7 @@ Marca lo que necesitas:
 
 | Documento | Estado | Idioma | Nivel |
 |-----------|--------|--------|-------|
+| GUIA_FIREBASE_INIT_HOSTING.md | ✅ Completo | 🇪🇸 Español | Principiante |
 | RESUMEN_COMPLETO.md | ✅ Completo | 🇪🇸 Español | Todos |
 | GUIA_COMPLETA_DEPLOYMENT.md | ✅ Completo | 🇪🇸 Español | Principiante |
 | EXPLICACION_ARCHIVOS.md | ✅ Completo | 🇪🇸 Español | Principiante |
