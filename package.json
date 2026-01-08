@@ -1,0 +1,15 @@
+{
+  "name": "website",
+  "version": "1.0.0",
+  "description": "Esta maqueta está enfocada en presentar promociones destacadas, una sección hero y un bloque especial para la \"Canasta de frutas\". El diseño usa tipografía Poppins, botones en verde y rojo característicos de la marca, y un carrusel horizontal accesible optimizado para móvil.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "firebase": "^12.7.0"
+  }
+}
