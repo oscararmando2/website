@@ -2677,12 +2677,10 @@
         if (currentHour >= 21) {
           date.setDate(date.getDate() + 7);
         }
-      } else if (daysUntilWednesday === 0 && date.getHours() < 9) {
-        // If it's Wednesday but before 9 AM, it's still the same Wednesday
-        // Do nothing
+        // Otherwise stay on current Wednesday
       } else {
         // Move to next Wednesday
-        date.setDate(date.getDate() + (daysUntilWednesday === 0 ? 7 : daysUntilWednesday));
+        date.setDate(date.getDate() + daysUntilWednesday);
       }
       
       return date;
@@ -2739,8 +2737,7 @@
       
       if (diff <= 0) {
         timerElement.textContent = '--:--:--';
-        // Refresh to recalculate next Wednesday
-        setTimeout(updateMiercolazoCountdown, 1000);
+        // The setInterval will handle the next update
         return;
       }
       
