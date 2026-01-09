@@ -523,6 +523,19 @@
     .price-current{ color:var(--rojo); font-size:1.05rem; font-weight:700; }
     .price-divider{ color:rgba(0,0,0,.25); }
     .price-unit{ font-weight:500; color:var(--muted); }
+
+    /* Mobile: Stack price labels on separate lines */
+    @media (max-width: 680px){
+      .price-mixed{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:.25rem;
+      }
+      .price-label--now{
+        margin-top:.15rem;
+      }
+    }
+
     .offers-grid{
       width:var(--container);
       margin:2.5rem auto 0;
