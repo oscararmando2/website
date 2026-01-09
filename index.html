@@ -509,13 +509,13 @@
       color:var(--texto);
       display:flex;
       flex-direction:column;
-      gap:.2rem;
+      gap:.4rem;
     }
     .price-mixed{
-      display:inline-flex;
-      flex-wrap:wrap;
-      align-items:center;
-      gap:.35rem;
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+      gap:.3rem;
       font-size:.95rem;
     }
     .price-label{ font-weight:700; letter-spacing:.3px; }
@@ -2000,11 +2000,8 @@
           <h3 class="product-title">Coca Cola 12 Pack Cans</h3>
           <div class="price-stack" aria-label="Precio promocional de Harina P.A.N. Maíz Blanco">
             <span class="price-mixed">
-              <span class="price-label">Antes:</span>
-              <span>$9.99</span><span class="price-unit">/unidad</span>
-              <span class="price-divider" aria-hidden="true">|</span>
-              <span class="price-label price-label--now">Ahora:</span>
-              <span class="price-current">$6.99</span><span class="price-unit">/unidad</span>
+              <span><span class="price-label">Antes:</span> <span>$9.99</span></span>
+              <span><span class="price-label price-label--now">Ahora:</span> <span class="price-current">$6.99</span></span>
             </span>
           </div>
         </div>
@@ -2019,11 +2016,8 @@
           <h3 class="product-title">Jarritos 12 Oz</h3>
           <div class="price-stack" aria-label="Precio promocional de Maseca Maíz Instantáneo">
             <span class="price-mixed">
-              <span class="price-label">Antes:</span>
-              <span>$1.59</span><span class="price-unit">/unidad</span>
-              <span class="price-divider" aria-hidden="true">|</span>
-              <span class="price-label price-label--now">Ahora:</span>
-              <span class="price-current">$.99</span><span class="price-unit">/unidad</span>
+              <span><span class="price-label">Antes:</span> <span>$1.59</span></span>
+              <span><span class="price-label price-label--now">Ahora:</span> <span class="price-current">$.99</span></span>
             </span>
           </div>
         </div>
@@ -2038,11 +2032,8 @@
           <h3 class="product-title">Jugo De La Granja</h3>
           <div class="price-stack" aria-label="Precio promocional de Frijoles Negros Listos">
             <span class="price-mixed">
-              <span class="price-label">Antes:</span>
-              <span>$10.79</span><span class="price-unit">/unidad</span>
-              <span class="price-divider" aria-hidden="true">|</span>
-              <span class="price-label price-label--now">Ahora:</span>
-              <span class="price-current">$6.79</span><span class="price-unit">/unidad</span>
+              <span><span class="price-label">Antes:</span> <span>$10.79</span></span>
+              <span><span class="price-label price-label--now">Ahora:</span> <span class="price-current">$6.79</span></span>
             </span>
           </div>
         </div>
@@ -2057,11 +2048,8 @@
           <h3 class="product-title">Limón</h3>
           <div class="price-stack" aria-label="Precio promocional de Salsa Picante Artesanal">
             <span class="price-mixed">
-              <span class="price-label">Antes:</span>
-              <span>$5x1</span><span class="price-unit">/unidad</span>
-              <span class="price-divider" aria-hidden="true">|</span>
-              <span class="price-label price-label--now">Ahora:</span>
-              <span class="price-current">$10x1</span><span class="price-unit">/unidad</span>
+              <span><span class="price-label">Antes:</span> <span>$5x1</span></span>
+              <span><span class="price-label price-label--now">Ahora:</span> <span class="price-current">$10x1</span></span>
             </span>
           </div>
         </div>
@@ -2076,11 +2064,8 @@
           <h3 class="product-title">Arrachera</h3>
           <div class="price-stack" aria-label="Precio promocional de Queso Fresco Artesanal">
             <span class="price-mixed">
-              <span class="price-label">Antes:</span>
-              <span>$10.99</span><span class="price-unit">/Por Libra</span>
-              <span class="price-divider" aria-hidden="true">|</span>
-              <span class="price-label price-label--now">Ahora:</span>
-              <span class="price-current">$8.99</span><span class="price-unit">/Por Libra</span>
+              <span><span class="price-label">Antes:</span> <span>$10.99</span></span>
+              <span><span class="price-label price-label--now">Ahora:</span> <span class="price-current">$8.99</span></span>
             </span>
           </div>
         </div>
@@ -2095,11 +2080,8 @@
           <h3 class="product-title">Chile Serrano</h3>
           <div class="price-stack" aria-label="Precio promocional de Chiles Poblanos Frescos">
             <span class="price-mixed">
-              <span class="price-label">Antes:</span>
-              <span>$1.29</span><span class="price-unit">/Por Libra</span>
-              <span class="price-divider" aria-hidden="true">|</span>
-              <span class="price-label price-label--now">Ahora:</span>
-              <span class="price-current">$.79</span><span class="price-unit">/Por Libra</span>
+              <span><span class="price-label">Antes:</span> <span>$1.29</span></span>
+              <span><span class="price-label price-label--now">Ahora:</span> <span class="price-current">$.79</span></span>
             </span>
           </div>
         </div>
@@ -2114,11 +2096,8 @@
           <h3 class="product-title">Cebolla Blanca</h3>
           <div class="price-stack" aria-label="Precio promocional de Pan Dulce Variado">
             <span class="price-mixed">
-              <span class="price-label">Antes:</span>
-              <span>$1.29</span><span class="price-unit">/Por Libra</span>
-              <span class="price-divider" aria-hidden="true">|</span>
-              <span class="price-label price-label--now">Ahora:</span>
-              <span class="price-current">$.79</span><span class="price-unit">/Por Libra</span>
+              <span><span class="price-label">Antes:</span> <span>$1.29</span></span>
+              <span><span class="price-label price-label--now">Ahora:</span> <span class="price-current">$.79</span></span>
             </span>
           </div>
         </div>
