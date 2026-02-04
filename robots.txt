@@ -1,0 +1,33 @@
+# robots.txt para El Mexiquense Market
+# SEO: Control de rastreo para motores de búsqueda
+
+# Permitir acceso a todos los bots de búsqueda
+User-agent: *
+Allow: /
+
+# Permitir específicamente a Google
+User-agent: Googlebot
+Allow: /
+
+# Permitir a Bing
+User-agent: Bingbot
+Allow: /
+
+# Bloquear archivos de configuración y documentación
+Disallow: /firebase-config.js
+Disallow: /*.md$
+Disallow: /deploy.sh
+
+# Permitir recursos importantes para SEO
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.webp$
+
+# Sitemap para facilitar indexación
+Sitemap: https://elmexiquensemarket.com/sitemap.xml
+
+# Tiempo de crawl delay (opcional, evita sobrecarga)
+Crawl-delay: 1
