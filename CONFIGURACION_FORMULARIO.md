@@ -49,12 +49,14 @@ El formulario incluye:
 <input type="hidden" name="_subject" value="Nuevo mensaje desde El Mexiquense Market">
 <input type="hidden" name="_captcha" value="false">
 <input type="hidden" name="_template" value="table">
+<input type="hidden" name="_next" value="https://mexiquensemarket.com">
 ```
 
 ### Explicación de campos:
 - `_subject`: Define el asunto del correo
 - `_captcha`: Desactiva el CAPTCHA (cambiar a "true" para activar protección anti-spam)
 - `_template`: Define el formato del correo (table = tabla, box = caja)
+- `_next`: URL de redirección después de enviar el formulario. Este campo registra el dominio en la allowlist de FormSubmit
 
 ## Modificar el Correo de Destino
 
