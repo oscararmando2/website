@@ -569,6 +569,39 @@
     .price-current{ color:var(--rojo); font-size:1.05rem; font-weight:700; }
     .price-divider{ color:rgba(0,0,0,.25); }
     .price-unit{ font-weight:500; color:var(--muted); }
+    
+    /* Compact pricing block for Semanita del Ahorro */
+    .product-title-compact{
+      font-size:1.25rem;
+      font-weight:700;
+      margin:0 0 0.375rem 0;
+      color:var(--texto);
+      line-height:1.3;
+    }
+    .product-pricing-compact{
+      display:flex;
+      flex-direction:column;
+      gap:0.25rem;
+      margin-top:0;
+    }
+    .product-pricing-compact .price-original{
+      text-decoration:line-through;
+      color:#6b7280;
+      font-size:0.95rem;
+      margin:0;
+    }
+    .product-pricing-compact .price-discounted{
+      font-size:1.5rem;
+      font-weight:700;
+      color:#059669;
+      margin:0;
+    }
+    .product-pricing-compact .savings-text{
+      font-size:0.875rem;
+      color:#059669;
+      font-weight:600;
+      margin:0;
+    }
 
 
 
@@ -3092,7 +3125,7 @@
       
       // Build savings display
       const savingsDisplay = showSavings 
-        ? `<p style="font-size: 0.875rem; color: #059669; font-weight: 600; margin: 0.25rem 0;">Ahorro: $${ahorro.toFixed(2)} (${ahorroPercent}%)</p>`
+        ? `<p class="savings-text">Ahorro: $${ahorro.toFixed(2)} (${ahorroPercent}%)</p>`
         : '';
       
       card.innerHTML = `
@@ -3100,12 +3133,12 @@
           <img src="${imageUrl}" alt="${nombre}" loading="lazy" onerror="this.src='https://via.placeholder.com/300x300?text=Sin+Imagen'">
         </div>
         <div class="product-body">
-          <h3 class="product-title" style="font-size: 1.25rem; font-weight: bold; margin-bottom: 0.5rem;">${nombre}</h3>
-          <div class="price-stack" aria-label="Precio promocional de ${nombre}" style="display: flex; flex-direction: column; gap: 0.25rem; margin-top: 0.5rem;">
-            ${antes > 0 ? `<span style="text-decoration: line-through; color: #6b7280; font-size: 0.95rem;">$${antes.toFixed(2)}</span>` : ''}
-            <span style="font-size: 1.5rem; font-weight: bold; color: #059669;">$${price.toFixed(2)}</span>
+          <h3 class="product-title-compact">${nombre}</h3>
+          <div class="product-pricing-compact" aria-label="Precio promocional de ${nombre}">
+            ${antes > 0 ? `<span class="price-original">$${antes.toFixed(2)}</span>` : ''}
+            <span class="price-discounted">$${price.toFixed(2)}</span>
+            ${savingsDisplay}
           </div>
-          ${savingsDisplay}
         </div>
       `;
       
