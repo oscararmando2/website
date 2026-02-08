@@ -486,19 +486,21 @@
       min-width: clamp(240px, 62vw, 280px);
       height: clamp(340px, 68vw, 380px);
       background:white;
-      border-radius:18px;
-      box-shadow: var(--shadow);
+      border-radius:20px;
+      box-shadow: 0 4px 16px rgba(0,0,0,.08), 0 2px 8px rgba(0,0,0,.04);
       display:flex;
       flex-direction:column;
       scroll-snap-align:start;
       overflow:hidden;
       transition: transform .4s cubic-bezier(.25,.1,.25,1), box-shadow .4s ease;
       position:relative;
+      border: 1px solid rgba(0,0,0,.05);
     }
     .product-card:hover,
     .product-card:focus-within{
-      transform: translateY(-8px);
-      box-shadow: 0 20px 36px rgba(0,0,0,.14);
+      transform: translateY(-10px);
+      box-shadow: 0 24px 40px rgba(0,0,0,.15), 0 8px 16px rgba(0,0,0,.08);
+      border-color: rgba(5,150,105,.1);
     }
     .product-media{
       position:relative;
@@ -506,6 +508,7 @@
       height:55%;
       min-height:55%;
       overflow:hidden;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e8edf2 100%);
     }
     .product-media img{
       position:absolute;
@@ -517,21 +520,24 @@
     }
     .product-card:hover .product-media img,
     .product-card:focus-within .product-media img{
-      transform:scale(1.05);
-      filter:contrast(1.05) saturate(1.05);
+      transform:scale(1.08);
+      filter:contrast(1.05) saturate(1.1) brightness(1.02);
     }
     .product-body{
       flex:1 1 45%;
-      padding:1.15rem 1.2rem 1.45rem;
+      padding:1.25rem 1.35rem 1.5rem;
       display:flex;
       flex-direction:column;
-      gap:.4rem;
+      gap:.5rem;
+      background: linear-gradient(to bottom, #ffffff 0%, #fafbfc 100%);
     }
     .product-title{
-      font-size:1.05rem;
+      font-size:1.08rem;
       font-weight:700;
       margin:0;
       color:var(--texto);
+      line-height: 1.3;
+      letter-spacing: -0.02em;
     }
     .product-info{
       margin:0;
@@ -3075,7 +3081,6 @@
       
       // Extract fields from especialesTienda node
       const nombre = product.nombre || 'Producto';
-      const upc = product.upc || '';
       const antes = product.antes || 0;
       const price = product.price || 0;
       const imageUrl = product.imageUrl || 'https://via.placeholder.com/300x300?text=Sin+Imagen';
@@ -3085,12 +3090,9 @@
       const ahorro = showSavings ? antes - price : 0;
       const ahorroPercent = (showSavings && antes !== 0) ? Math.round((ahorro / antes) * 100) : 0;
       
-      // Build UPC display
-      const upcDisplay = upc ? `<p style="font-size: 0.875rem; color: #666; margin: 0.25rem 0;">UPC: ${upc}</p>` : '';
-      
       // Build savings display
       const savingsDisplay = showSavings 
-        ? `<p style="font-size: 0.875rem; color: #059669; margin: 0.25rem 0;">Ahorro: $${ahorro.toFixed(2)} (${ahorroPercent}%)</p>`
+        ? `<p style="font-size: 0.875rem; color: #059669; font-weight: 600; margin: 0.25rem 0;">Ahorro: $${ahorro.toFixed(2)} (${ahorroPercent}%)</p>`
         : '';
       
       card.innerHTML = `
@@ -3099,7 +3101,6 @@
         </div>
         <div class="product-body">
           <h3 class="product-title" style="font-size: 1.25rem; font-weight: bold; margin-bottom: 0.5rem;">${nombre}</h3>
-          ${upcDisplay}
           <div class="price-stack" aria-label="Precio promocional de ${nombre}" style="display: flex; flex-direction: column; gap: 0.25rem; margin-top: 0.5rem;">
             ${antes > 0 ? `<span style="text-decoration: line-through; color: #6b7280; font-size: 0.95rem;">$${antes.toFixed(2)}</span>` : ''}
             <span style="font-size: 1.5rem; font-weight: bold; color: #059669;">$${price.toFixed(2)}</span>
