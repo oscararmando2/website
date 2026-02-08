@@ -3073,26 +3073,38 @@
       card.className = 'product-card';
       card.setAttribute('role', 'listitem');
       
-      // Build price display
-      const precioAntes = product.precioAntes || product.precio || '';
-      const precioEspecial = product.precioEspecial || product.precioAntes || product.precio || '';
+      // Extract fields from especialesTienda node
       const nombre = product.nombre || 'Producto';
-      const imagen = product.imagen || product.url || 'https://via.placeholder.com/300x300?text=Sin+Imagen';
-      const alt = product.alt || nombre;
+      const upc = product.upc || '';
+      const antes = product.antes || 0;
+      const price = product.price || 0;
+      const imageUrl = product.imageUrl || 'https://via.placeholder.com/300x300?text=Sin+Imagen';
+      
+      // Calculate savings if antes > price
+      const showSavings = antes > price;
+      const ahorro = showSavings ? antes - price : 0;
+      const ahorroPercent = showSavings ? Math.round((ahorro / antes) * 100) : 0;
+      
+      // Build UPC display
+      const upcDisplay = upc ? `<p style="font-size: 0.875rem; color: #666; margin: 0.25rem 0;">UPC: ${upc}</p>` : '';
+      
+      // Build savings display
+      const savingsDisplay = showSavings 
+        ? `<p style="font-size: 0.875rem; color: #059669; margin: 0.25rem 0;">Ahorro: $${ahorro.toFixed(2)} (${ahorroPercent}%)</p>`
+        : '';
       
       card.innerHTML = `
-        <span class="offer-badge" aria-live="polite"><span>${nombre}</span></span>
         <div class="product-media" aria-hidden="true">
-          <img src="${imagen}" alt="${alt}" loading="lazy" onerror="this.src='https://via.placeholder.com/300x300?text=Sin+Imagen'">
+          <img src="${imageUrl}" alt="${nombre}" loading="lazy" onerror="this.src='https://via.placeholder.com/300x300?text=Sin+Imagen'">
         </div>
         <div class="product-body">
-          <h3 class="product-title">${nombre}</h3>
-          <div class="price-stack" aria-label="Precio promocional de ${nombre}">
-            <span class="price-mixed">
-              <span><span class="price-label">Antes:</span> <span>$${precioAntes}</span></span>
-              <span><span class="price-label price-label--now">Ahora:</span> <span class="price-current">$${precioEspecial}</span></span>
-            </span>
+          <h3 class="product-title" style="font-size: 1.25rem; font-weight: bold; margin-bottom: 0.5rem;">${nombre}</h3>
+          ${upcDisplay}
+          <div class="price-stack" aria-label="Precio promocional de ${nombre}" style="display: flex; flex-direction: column; gap: 0.25rem; margin-top: 0.5rem;">
+            ${antes > 0 ? `<span style="text-decoration: line-through; color: #6b7280; font-size: 0.95rem;">$${antes.toFixed(2)}</span>` : ''}
+            <span style="font-size: 1.5rem; font-weight: bold; color: #059669;">$${price.toFixed(2)}</span>
           </div>
+          ${savingsDisplay}
         </div>
       `;
       
