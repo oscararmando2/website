@@ -3081,9 +3081,9 @@
       const imageUrl = product.imageUrl || 'https://via.placeholder.com/300x300?text=Sin+Imagen';
       
       // Calculate savings if antes > price
-      const showSavings = antes > price;
+      const showSavings = antes > price && antes > 0;
       const ahorro = showSavings ? antes - price : 0;
-      const ahorroPercent = showSavings ? Math.round((ahorro / antes) * 100) : 0;
+      const ahorroPercent = (showSavings && antes !== 0) ? Math.round((ahorro / antes) * 100) : 0;
       
       // Build UPC display
       const upcDisplay = upc ? `<p style="font-size: 0.875rem; color: #666; margin: 0.25rem 0;">UPC: ${upc}</p>` : '';
