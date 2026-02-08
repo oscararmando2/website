@@ -577,6 +577,13 @@
       margin:0 0 0.375rem 0;
       color:var(--texto);
       line-height:1.3;
+      /* Limit to 2 lines with consistent height */
+      display:-webkit-box;
+      -webkit-line-clamp:2;
+      -webkit-box-orient:vertical;
+      overflow:hidden;
+      min-height:3.25rem;
+      max-height:3.25rem;
     }
     .product-pricing-compact{
       display:flex;
