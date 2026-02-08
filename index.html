@@ -573,20 +573,20 @@
     
     /* Compact pricing block for Semanita del Ahorro */
     .product-title-compact{
-      font-size:1.25rem;
+      font-size:1.1rem;
       font-weight:700;
-      margin:0 0 0.3rem 0;
+      margin:0 0 0.5rem 0;
       color:var(--texto);
-      line-height:1.35;
-      /* Limit to 2 lines with consistent height */
+      line-height:1.3;
+      /* Limit to 2 lines with flexible height */
       display:-webkit-box;
       -webkit-line-clamp:2;
       -webkit-box-orient:vertical;
       overflow:hidden;
       text-overflow:ellipsis;
       word-break:break-word;
-      /* Fixed height for exactly 2 lines: 1.25rem * 1.35 * 2 = 3.375rem */
-      height:3.375rem;
+      /* Use min-height instead of fixed height for better flexibility */
+      min-height:auto;
     }
     .product-pricing-compact{
       display:flex;
