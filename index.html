@@ -436,13 +436,13 @@
     }
 
     /* ===== Productos destacados ===== */
-    #productos{
+    #promos{
       position:relative;
       background:linear-gradient(135deg, rgba(212,84,56,0.15) 0%, rgba(212,84,56,0.08) 50%, rgba(212,84,56,0.15) 100%);
       overflow:hidden;
       isolation:isolate;
     }
-    #productos::before{
+    #promos::before{
       content:"";
       position:absolute;
       inset:auto 0 -30% 0;
@@ -452,14 +452,14 @@
       pointer-events:none;
       z-index:0;
     }
-    #productos > *{
+    #promos > *{
       position:relative;
       z-index:1;
     }
-    #productos .section-title{
+    #promos .section-title{
       color:var(--rojo);
     }
-    #productos .muted{
+    #promos .muted{
       color:var(--muted);
     }
     .product-carousel{
@@ -2089,7 +2089,7 @@
       <nav class="menu" id="menu" aria-label="Menú principal">
         <a href="#inicio">Inicio</a>
         <a href="#promociones">Servicios</a>
-        <a href="#productos">Especiales</a>
+        <a href="/promos">Especiales</a>
         <a href="#recetas">Recetas</a>
         <a href="#contacto">Contacto</a>
       </nav>
@@ -2112,7 +2112,7 @@
       <p>Frescura diaria • Precios justos • Calidad garantizada</p>
       <div class="hero-actions" role="group" aria-label="Acciones destacadas">
         <a class="btn" href="https://whatsapp.com/channel/0029VbBpK3I2f3EFCBkqI42g">Ver promociones</a>
-        <a class="btn btn-outline" href="#productos">Ver productos</a>
+        <a class="btn btn-outline" href="/promos">Ver productos</a>
       </div>
     </div>
   </section>
@@ -2157,7 +2157,7 @@
             <h3 class="promo-title">¡Miercolazo de Descuento!</h3>
             <p class="promo-text">🎉 En El Mexiquense! 🎉
  🥳 ¡Cada semana es una nueva aventura de sabores y ahorros! Todos los miercoles tenemos promociones diferentes.</p>
-            <a class="btn promo-cta" href="#productos">Ver productos</a>
+            <a class="btn promo-cta" href="/promos">Ver productos</a>
           </div>
         </article>
         
@@ -2233,7 +2233,7 @@
   </section>
 
   <!-- ===== SECCIONES DEMO ===== -->
-  <section id="productos" class="section">
+  <section id="promos" class="section">
     <h2 class="section-title">SEMANITA DEL AHORRO %</h2>
     <p class="muted">Promos que se renuevan todas las semanas</p>
     <div class="product-carousel" role="list">
@@ -2718,6 +2718,23 @@
       }
     }());
 
+    // Routing: Handle /promos path
+    (function() {
+      const path = window.location.pathname;
+      if (path === '/promos') {
+        // Scroll to promos section after page load
+        window.addEventListener('load', () => {
+          const promosSection = document.getElementById('promos');
+          if (promosSection) {
+            const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const behavior = prefersReducedMotion ? 'auto' : 'smooth';
+            promosSection.scrollIntoView({ behavior, block: 'start' });
+            promosSection.focus({ preventScroll: true });
+          }
+        }, { once: true });
+      }
+    })();
+
     // Año dinámico
     document.getElementById('year').textContent = '2026';
 
@@ -2830,6 +2847,51 @@
           window.history.pushState(null, '', hash);
         } else {
           window.location.hash = hash;
+        }
+
+        window.setTimeout(focusTarget, prefersReducedMotion ? 0 : 250);
+      });
+    });
+
+    // Handle /promos path-based navigation
+    document.querySelectorAll('a[href="/promos"]').forEach(anchor => {
+      anchor.addEventListener('click', event => {
+        event.preventDefault();
+        
+        const target = document.getElementById('promos');
+        if (!target) {
+          return;
+        }
+
+        const behavior = prefersReducedMotion ? 'auto' : 'smooth';
+        target.scrollIntoView({ behavior, block: 'start' });
+
+        const focusTarget = () => {
+          const previousTabIndex = target.getAttribute('tabindex');
+          const needsTemporaryTabIndex = target.tabIndex === -1;
+          if (needsTemporaryTabIndex) {
+            target.setAttribute('tabindex', '-1');
+          }
+
+          if (typeof target.focus === 'function') {
+            target.focus({ preventScroll: true });
+          }
+
+          if (needsTemporaryTabIndex) {
+            target.addEventListener('blur', () => {
+              if (previousTabIndex !== null) {
+                target.setAttribute('tabindex', previousTabIndex);
+              } else {
+                target.removeAttribute('tabindex');
+              }
+            }, { once: true });
+          }
+        };
+
+        if (window.history && typeof window.history.pushState === 'function') {
+          window.history.pushState(null, '', '/promos');
+        } else {
+          window.location.pathname = '/promos';
         }
 
         window.setTimeout(focusTarget, prefersReducedMotion ? 0 : 250);
