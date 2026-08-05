@@ -2244,7 +2244,7 @@
       <span class="countdown-label" data-timer-label>Termina en</span>
       <span class="timer countdown-timer" role="timer">--:--:--</span>
     </p>
-    <p class="muted" id="promo-date">Promociones válidas solo del día Miércoles 14 Enero al Sábado 17 de Enero</p>
+    <p class="muted" id="promo-date">Promociones válidas de Miércoles a Domingo</p>
   </section>
 
   <section id="recetas" class="recipes-hero" aria-labelledby="recetas-title">
@@ -3040,103 +3040,69 @@
       });
     }
 
-    // ===== Miercolazo Countdown Timer =====
-    function getNextWednesday(fromDate = new Date()) {
-      const date = new Date(fromDate);
-      const dayOfWeek = date.getDay();
-      const daysUntilWednesday = (3 - dayOfWeek + 7) % 7;
-      
-      // If today is Wednesday, check if we're past end of day (9 PM)
-      if (daysUntilWednesday === 0) {
-        const currentHour = date.getHours();
-        // If it's past 9 PM (21:00), move to next Wednesday
-        if (currentHour >= 21) {
-          date.setDate(date.getDate() + 7);
-        }
-        // Otherwise stay on current Wednesday
-      } else {
-        // Move to next Wednesday
-        date.setDate(date.getDate() + daysUntilWednesday);
+    // ===== Semanita del Ahorro Countdown (Miércoles a Domingo) =====
+    const PROMO_MONTHS = [
+      'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+      'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+    ];
+
+    // Ventana de promo actual o próxima: Miércoles 00:00 -> Domingo 23:59:59
+    function getPromoWindow(now) {
+      const d = new Date(now);
+      const dow = d.getDay(); // 0=Dom ... 6=Sáb
+      const daysSinceWed = (dow === 0) ? 4 : (dow - 3); // Dom=4; Mié=0..Sáb=3; Lun=-2; Mar=-1
+      const start = new Date(d);
+      start.setHours(0, 0, 0, 0);
+      start.setDate(start.getDate() - daysSinceWed);
+      const end = new Date(start);
+      end.setDate(end.getDate() + 4); // Domingo
+      end.setHours(23, 59, 59, 999);
+      return { start, end };
+    }
+
+    function formatPromoRange(start, end) {
+      const dS = start.getDate(), mS = PROMO_MONTHS[start.getMonth()];
+      const dE = end.getDate(), mE = PROMO_MONTHS[end.getMonth()], yE = end.getFullYear();
+      if (start.getMonth() === end.getMonth()) {
+        return `Promociones válidas del Miércoles ${dS} al Domingo ${dE} de ${mE} ${yE}`;
       }
-      
-      return date;
-    }
-
-    function isCurrentlyWednesday() {
-      const now = new Date();
-      const dayOfWeek = now.getDay();
-      const hour = now.getHours();
-      
-      // Wednesday is day 3, and promotion runs from 9 AM to 9 PM
-      return dayOfWeek === 3 && hour >= 9 && hour < 21;
-    }
-
-    function formatWednesdayDate(date) {
-      const months = [
-        'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-        'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
-      ];
-      
-      const day = date.getDate();
-      const month = months[date.getMonth()];
-      const year = date.getFullYear();
-      
-      return `Miércoles ${day} ${month} ${year}`;
+      return `Promociones válidas del Miércoles ${dS} de ${mS} al Domingo ${dE} de ${mE} ${yE}`;
     }
 
     function updateMiercolazoCountdown() {
       const timerElement = document.querySelector('.countdown-timer');
       const labelElement = document.querySelector('[data-timer-label]');
       const dateElement = document.getElementById('promo-date');
-      
       if (!timerElement || !labelElement || !dateElement) return;
-      
+
       const now = new Date();
-      const nextWednesday = getNextWednesday(now);
-      const isWednesday = isCurrentlyWednesday();
-      
-      let targetTime;
-      
-      if (isWednesday) {
-        // If it's Wednesday, countdown to 9 PM (21:00)
-        targetTime = new Date(now);
-        targetTime.setHours(21, 0, 0, 0);
+      const { start, end } = getPromoWindow(now);
+      const active = now >= start && now <= end;
+
+      const target = active ? end : start;
+      const diff = target - now;
+
+      const days = Math.floor(diff / 86400000);
+      const hours = Math.floor((diff % 86400000) / 3600000);
+      const minutes = Math.floor((diff % 3600000) / 60000);
+      const seconds = Math.floor((diff % 60000) / 1000);
+
+      if (active) {
+        // Promo en curso: cuenta regresiva hasta el Domingo
         labelElement.textContent = 'Termina en';
+        const hhmmss = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        timerElement.textContent = days > 0 ? `${days}d ${hhmmss}` : hhmmss;
       } else {
-        // If it's not Wednesday, countdown to next Wednesday at 9 AM
-        targetTime = new Date(nextWednesday);
-        targetTime.setHours(9, 0, 0, 0);
+        // Fuera de promo (Lun/Mar): cuenta hacia el próximo Miércoles
         labelElement.textContent = 'Comienza en 🕒';
-      }
-      
-      const diff = targetTime - now;
-      
-      if (diff <= 0) {
-        timerElement.textContent = '--:--:--';
-        // The setInterval will handle the next update
-        return;
-      }
-      
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-      
-      if (isWednesday) {
-        // Format as HH:MM:SS for same-day countdown
-        timerElement.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-      } else {
-        // Format as "X días, Y horas y Z minutos"
         const parts = [];
         if (days > 0) parts.push(`${days} día${days !== 1 ? 's' : ''}`);
         if (hours > 0) parts.push(`${hours} hora${hours !== 1 ? 's' : ''}`);
         if (minutes > 0 || parts.length === 0) parts.push(`${minutes} minuto${minutes !== 1 ? 's' : ''}`);
-        
         timerElement.textContent = parts.join(', ').replace(/, ([^,]*)$/, ' y $1');
       }
-      
-      // Update the date text
-      dateElement.textContent = `Promociones válidas solo el día ${formatWednesdayDate(nextWednesday)}`;
+
+      dateElement.textContent = formatPromoRange(start, end);
     }
 
     // Initialize and update countdown every second
