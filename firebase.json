@@ -14,6 +14,10 @@
     ],
     "rewrites": [
       {
+        "source": "/especiales",
+        "destination": "/especiales.html"
+      },
+      {
         "source": "!/{robots.txt,sitemap.xml,**/*.@(html|js|css|png|jpg|jpeg|gif|svg|webp)}",
         "destination": "/index.html"
       }
