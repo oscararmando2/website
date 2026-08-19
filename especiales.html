@@ -2157,6 +2157,40 @@
     </div>
   </section>
 
+  <style>
+    .mavesa-banner{max-width:1050px;margin:1.6rem auto .4rem;padding:0 16px}
+    .mavesa-inner{display:grid;grid-template-columns:1.15fr .85fr;align-items:center;gap:12px;
+      background:linear-gradient(135deg,#FFE9A8 0%,#FFC72C 60%,#FDB515 100%);
+      border-radius:22px;padding:26px 34px;box-shadow:0 16px 34px rgba(210,150,0,.35);position:relative;overflow:hidden}
+    .mavesa-inner::before{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;
+      background:radial-gradient(circle,rgba(255,255,255,.55),transparent 70%);border-radius:50%}
+    .mavesa-eyebrow{display:inline-block;background:#0033A0;color:#fff;font-weight:800;font-size:.82rem;
+      padding:.35rem .9rem;border-radius:999px;letter-spacing:.04em;text-transform:uppercase}
+    .mavesa-name{font-size:clamp(1.8rem,4.5vw,2.6rem);margin:.6rem 0 .15rem;color:#0033A0;font-weight:900;line-height:1.05}
+    .mavesa-desc{color:#6b5400;margin:0 0 .7rem;font-size:1.02rem;max-width:34ch}
+    .mavesa-price{font-weight:900;color:#C0261C;line-height:1;font-size:clamp(3rem,8vw,4rem);text-shadow:0 2px 0 rgba(255,255,255,.5)}
+    .mavesa-price .cur,.mavesa-price .cents{font-size:.46em;vertical-align:top}
+    .mavesa-badge{display:inline-block;margin-top:.7rem;background:#fff;color:#0033A0;font-weight:800;
+      font-size:.82rem;padding:.4rem .85rem;border-radius:999px;box-shadow:0 3px 8px rgba(0,0,0,.12)}
+    .mavesa-img{text-align:center;position:relative;z-index:1}
+    .mavesa-img img{max-width:100%;max-height:230px;filter:drop-shadow(0 14px 22px rgba(0,0,0,.28))}
+    @media(max-width:640px){.mavesa-inner{grid-template-columns:1fr;text-align:center}.mavesa-img{order:-1}.mavesa-desc{margin-inline:auto}}
+  </style>
+  <section class="mavesa-banner" aria-label="Oferta destacada: Mavesa Margarina">
+    <div class="mavesa-inner">
+      <div class="mavesa-text">
+        <span class="mavesa-eyebrow">⭐ Oferta destacada</span>
+        <h2 class="mavesa-name">Mavesa Margarina</h2>
+        <p class="mavesa-desc">Cremosa y con el sabor de siempre — perfecta para cocinar y untar.</p>
+        <div class="mavesa-price"><span class="cur">$</span>4<span class="cents">.99</span></div>
+        <span class="mavesa-badge">Solo esta Semanita · Miércoles a Domingo</span>
+      </div>
+      <div class="mavesa-img">
+        <img src="https://mqlatina.com/cdn/shop/files/MavesaMargarinaTodoUso.jpg?v=1734474163" alt="Mavesa Margarina" loading="lazy">
+      </div>
+    </div>
+  </section>
+
   <main class="esp-products">
     <h2>Aprovecha estos precios 🛒</h2>
     <p class="hint">Desliza para ver todas las ofertas de esta semana.</p>
