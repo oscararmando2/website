@@ -26,17 +26,17 @@
   <meta property="og:description" content="Precios frescos que se renuevan cada semana. Aprovecha las ofertas de la Semanita del Ahorro, de miércoles a domingo." />
   <meta property="og:url" content="https://mexiquensemarket.com/especiales" />
   <meta property="og:site_name" content="El Mexiquense Market" />
-  <meta property="og:image" content="https://mexiquensemarket.com/og-morcilla.png" />
+  <meta property="og:image" content="https://mexiquensemarket.com/og-pierna-muslo.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Paisa Morcilla Colombiana 16 oz $5.99 - Semanita del Ahorro El Mexiquense Market" />
+  <meta property="og:image:alt" content="Pierna y Muslo de Pollo $0.99 - Semanita del Ahorro El Mexiquense Market" />
   
   <!-- SEO: Twitter Card tags para compartir en Twitter/X -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Semanita del Ahorro — El Mexiquense Market" />
   <meta name="twitter:description" content="Precios frescos que se renuevan cada semana. Ofertas de miércoles a domingo." />
-  <meta name="twitter:image" content="https://mexiquensemarket.com/og-morcilla.png" />
-  <meta name="twitter:image:alt" content="Paisa Morcilla Colombiana 16 oz $5.99 - Semanita del Ahorro" />
+  <meta name="twitter:image" content="https://mexiquensemarket.com/og-pierna-muslo.png" />
+  <meta name="twitter:image:alt" content="Pierna y Muslo de Pollo $0.99 - Semanita del Ahorro" />
   <meta name="twitter:site" content="@mexiquensemarket" />
   
   <!-- SEO: Información geográfica -->
@@ -2158,42 +2158,45 @@
   </section>
 
   <style>
-    .morcilla-banner{max-width:1050px;margin:1.6rem auto .4rem;padding:0 16px}
-    .morcilla-inner{display:grid;grid-template-columns:0.95fr 1.05fr;align-items:center;gap:26px;
-      background:linear-gradient(135deg,#6E1020 0%,#8C1528 52%,#4A0A14 100%);
-      border-radius:22px;padding:30px 34px 26px;box-shadow:0 18px 38px rgba(90,10,22,.38);
+    /* Banner de oferta destacada — clases genericas para poder cambiar el producto cada semana */
+    .destacado-banner{max-width:1050px;margin:1.6rem auto .4rem;padding:0 16px}
+    .destacado-inner{display:grid;grid-template-columns:1.15fr .85fr;align-items:center;gap:28px;
+      background:linear-gradient(135deg,#C62828 0%,#E0482D 55%,#9E1212 100%);
+      border-radius:22px;padding:30px 34px;box-shadow:0 18px 38px rgba(158,18,18,.34);
       position:relative;overflow:hidden;color:#fff}
-    .morcilla-inner::before{content:"";position:absolute;left:0;right:0;top:0;height:7px;
-      background:linear-gradient(90deg,#FCD116 0 50%,#003893 50% 75%,#CE1126 75% 100%)}
-    .morcilla-inner::after{content:"";position:absolute;right:-70px;bottom:-90px;width:260px;height:260px;
-      background:radial-gradient(circle,rgba(252,209,22,.22),transparent 70%);border-radius:50%;pointer-events:none}
-    .morcilla-text{position:relative;z-index:1}
-    .morcilla-eyebrow{display:inline-block;background:#FCD116;color:#4A0A14;font-weight:800;font-size:.82rem;
+    .destacado-inner::after{content:"";position:absolute;right:-80px;bottom:-110px;width:280px;height:280px;
+      background:radial-gradient(circle,rgba(255,209,0,.22),transparent 70%);border-radius:50%;pointer-events:none}
+    .destacado-text{position:relative;z-index:1}
+    .destacado-eyebrow{display:inline-block;background:#FFD100;color:#7A0F0F;font-weight:800;font-size:.82rem;
       padding:.35rem .9rem;border-radius:999px;letter-spacing:.04em;text-transform:uppercase}
-    .morcilla-name{font-size:clamp(1.8rem,4.5vw,2.6rem);margin:.65rem 0 .1rem;color:#fff;font-weight:900;line-height:1.05}
-    .morcilla-brand{display:block;font-size:.95rem;font-weight:700;color:#FCD116;letter-spacing:.06em;text-transform:uppercase}
-    .morcilla-desc{color:rgba(255,255,255,.86);margin:.5rem 0 .8rem;font-size:1.02rem;max-width:34ch}
-    .morcilla-price{font-weight:900;color:#FCD116;line-height:1;font-size:clamp(3rem,8vw,4rem);text-shadow:0 3px 0 rgba(0,0,0,.22)}
-    .morcilla-price .cur,.morcilla-price .cents{font-size:.46em;vertical-align:top}
-    .morcilla-badge{display:inline-block;margin-top:.75rem;background:#fff;color:#8C1528;font-weight:800;
+    .destacado-name{font-size:clamp(1.9rem,4.8vw,2.8rem);margin:.6rem 0 .1rem;color:#fff;font-weight:900;line-height:1.04}
+    .destacado-desc{color:rgba(255,255,255,.88);margin:.55rem 0 .8rem;font-size:1.02rem;max-width:32ch}
+    .destacado-badge{display:inline-block;background:#fff;color:#C62828;font-weight:800;
       font-size:.82rem;padding:.4rem .85rem;border-radius:999px;box-shadow:0 3px 8px rgba(0,0,0,.18)}
-    .morcilla-img{text-align:center;position:relative;z-index:1;background:#fff;border-radius:20px;
-      padding:16px;box-shadow:0 14px 30px rgba(0,0,0,.3)}
-    .morcilla-img img{max-width:100%;max-height:300px;display:block;margin:0 auto}
-    @media(max-width:640px){.morcilla-inner{grid-template-columns:1fr;text-align:center;padding:26px 22px 24px}
-      .morcilla-img{order:-1}.morcilla-img img{max-height:240px}.morcilla-desc{margin-inline:auto}}
+    .destacado-pricebox{position:relative;z-index:1;text-align:center}
+    .destacado-antes{display:inline-block;color:rgba(255,255,255,.75);font-size:1.08rem;font-weight:600;
+      text-decoration:line-through;text-decoration-thickness:2px}
+    .destacado-price{font-weight:900;color:#FFD100;line-height:.9;font-size:clamp(3.6rem,10vw,5.2rem);
+      letter-spacing:-2px;text-shadow:0 4px 0 rgba(0,0,0,.22)}
+    .destacado-price .cur,.destacado-price .cents{font-size:.44em;vertical-align:top;letter-spacing:-1px}
+    .destacado-seal{display:inline-block;margin-top:.5rem;background:#FFD100;color:#7A0F0F;
+      font-weight:900;font-size:1.12rem;padding:.45rem 1.15rem;border-radius:999px;
+      box-shadow:0 6px 16px rgba(0,0,0,.25);transform:rotate(-3deg)}
+    @media(max-width:640px){.destacado-inner{grid-template-columns:1fr;text-align:center;padding:26px 22px}
+      .destacado-pricebox{margin-top:.4rem}.destacado-desc{margin-inline:auto}}
   </style>
-  <section class="morcilla-banner" aria-label="Oferta destacada: Paisa Morcilla Colombiana 16 oz">
-    <div class="morcilla-inner">
-      <div class="morcilla-text">
-        <span class="morcilla-eyebrow">🇨🇴 Oferta destacada</span>
-        <h2 class="morcilla-name"><span class="morcilla-brand">Paisa</span>Morcilla Colombiana</h2>
-        <p class="morcilla-desc">16 oz del sabor auténtico de Colombia — lista para asar, freír o acompañar tu bandeja paisa.</p>
-        <div class="morcilla-price"><span class="cur">$</span>5<span class="cents">.99</span></div>
-        <span class="morcilla-badge">Solo esta Semanita · Miércoles a Domingo</span>
+  <section class="destacado-banner" aria-label="Oferta destacada: Pierna y Muslo de Pollo">
+    <div class="destacado-inner">
+      <div class="destacado-text">
+        <span class="destacado-eyebrow">⭐ Oferta destacada</span>
+        <h2 class="destacado-name">Pierna y Muslo<br>de Pollo</h2>
+        <p class="destacado-desc">El precio más bajo de la semanita — rinde para toda la familia.</p>
+        <span class="destacado-badge">Solo esta Semanita · Miércoles a Domingo</span>
       </div>
-      <div class="morcilla-img">
-        <img src="/morcilla-colombiana.jpg" alt="Paisa Morcilla Colombiana 16 oz" loading="lazy">
+      <div class="destacado-pricebox">
+        <span class="destacado-antes">Antes $1.99</span>
+        <div class="destacado-price"><span class="cur">$</span>0<span class="cents">.99</span></div>
+        <span class="destacado-seal">50% de descuento</span>
       </div>
     </div>
   </section>
